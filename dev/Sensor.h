@@ -15,12 +15,15 @@
 #define SENSOR5_PIN  			      	    	GPIO_Pin_1
 #define SENSOR6_GPIO 	                	GPIOC
 #define SENSOR6_PIN  			      	    	GPIO_Pin_2
+#define SENSOR7_GPIO 	                	GPIOA
+#define SENSOR7_PIN  			      	    	GPIO_Pin_1
 #define SENSOR1_STATE() 								GPIO_ReadInputDataBit(SENSOR1_GPIO,SENSOR1_PIN)
 #define SENSOR2_STATE() 								GPIO_ReadInputDataBit(SENSOR2_GPIO,SENSOR2_PIN)
 #define SENSOR3_STATE() 								GPIO_ReadInputDataBit(SENSOR3_GPIO,SENSOR3_PIN)
 #define SENSOR4_STATE() 								GPIO_ReadInputDataBit(SENSOR4_GPIO,SENSOR4_PIN)
 #define SENSOR5_STATE() 								GPIO_ReadInputDataBit(SENSOR5_GPIO,SENSOR5_PIN)
 #define SENSOR6_STATE() 								GPIO_ReadInputDataBit(SENSOR6_GPIO,SENSOR6_PIN)
+#define SENSOR7_STATE() 								GPIO_ReadInputDataBit(SENSOR7_GPIO,SENSOR7_PIN)
 
 void Sensor_Init(void);
 
