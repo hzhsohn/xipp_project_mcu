@@ -44,3 +44,4 @@
 .\objects\system_init.o: .\dev\Stm32f1_uart2_diver.h
 .\objects\system_init.o: .\dev\Stm32f1_uart3_diver.h
 .\objects\system_init.o: .\dev\ds18b20.h
+.\objects\system_init.o: .\dev\Stm32f1_ADC1_Diver.h

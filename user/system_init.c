@@ -10,6 +10,7 @@
 #include "Stm32f1_uart2_diver.h"
 #include "Stm32f1_uart3_diver.h"
 #include "ds18b20.h"
+#include "Stm32f1_ADC1_Diver.h"
 void System_Init(void)
 {
 	STM32_Delay_init();
@@ -23,6 +24,7 @@ void System_Init(void)
 	STM32F1_UART3_Init(9600);
 	STM32F1_UART1_Init(115200);
 	DS18B20_Init();
+	Adc_Init();
 //	x =AT24C02_ReadOneByte(0x00);
 	//AT24C02_WriteOneByte(0x00,0xaa);
 //	x =AT24C02_ReadOneByte(0x00);

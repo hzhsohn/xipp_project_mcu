@@ -461,6 +461,11 @@
               <FileType>1</FileType>
               <FilePath>.\libs\src\stm32f10x_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f10x_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libs\src\stm32f10x_adc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -520,6 +525,11 @@
               <FileName>ds18b20.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\dev\ds18b20.c</FilePath>
+            </File>
+            <File>
+              <FileName>STM32F1_ADC1_Diver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dev\STM32F1_ADC1_Diver.c</FilePath>
             </File>
           </Files>
         </Group>

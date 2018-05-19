@@ -44,3 +44,4 @@
 .\objects\main.o: user\mini-data.h
 .\objects\main.o: .\dev\ds18b20.h
 .\objects\main.o: .\dev\STM32_Delay.h
+.\objects\main.o: .\dev\Stm32f1_ADC1_Diver.h

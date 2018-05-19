@@ -9,6 +9,7 @@
 #include "Sensor.h"
 #include "mini-data.h"
 #include "ds18b20.h"
+#include "Stm32f1_ADC1_Diver.h"
 //
 u8_t haha[6]={0x00,0x00,0x00,0x00,0x00,0x00};
 extern u8_t kk;
@@ -140,6 +141,6 @@ int main(void)
 			aurtEventSendStatus();
 			kk=0;
 		}*/
-		pp = DS18B20_Get_Temp();
+		pp = Get_Adc_Average13(10);
 	}
 }
