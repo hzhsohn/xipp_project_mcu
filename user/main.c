@@ -8,7 +8,7 @@
 #include "Stm32f1_uart3_diver.h"
 #include "Sensor.h"
 #include "mini-data.h"
-
+#include "ds18b20.h"
 //
 u8_t haha[6]={0x00,0x00,0x00,0x00,0x00,0x00};
 extern u8_t kk;
@@ -16,6 +16,8 @@ extern uchar dst_buf[255];
 extern uchar myData[20];
 //
 int nMPU_DO=0;
+//--
+u16_t pp;
 //
 void aurtEventSendStatus()
 {
@@ -138,5 +140,6 @@ int main(void)
 			aurtEventSendStatus();
 			kk=0;
 		}*/
+		pp = DS18B20_Get_Temp();
 	}
 }

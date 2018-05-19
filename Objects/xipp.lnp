@@ -17,6 +17,7 @@
 ".\objects\stm32f1_uart1_diver.o"
 ".\objects\stm32f1_uart2_diver.o"
 ".\objects\stm32f1_uart3_diver.o"
+".\objects\ds18b20.o"
 ".\objects\touchkeyfunction.o"
 ".\objects\startup_stm32f10x_cl.o"
 ".\objects\system_stm32f10x.o"
