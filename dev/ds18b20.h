@@ -4,8 +4,8 @@
 #include "system_init.h"
 #include "STM32_Delay.h"
 
-#define DS18B20_DQ_GPIO 	    GPIOB
-#define DS18B20_DQ_PIN  	    GPIO_Pin_1
+#define DS18B20_DQ_GPIO 	    GPIOA
+#define DS18B20_DQ_PIN  	    GPIO_Pin_5
 #define DS18B20_DQ_STATE(x) (x)>0?GPIO_SetBits(DS18B20_DQ_GPIO,DS18B20_DQ_PIN):GPIO_ResetBits(DS18B20_DQ_GPIO,DS18B20_DQ_PIN)
 #define DS18B20_DQ_GET() GPIO_ReadInputDataBit(DS18B20_DQ_GPIO,DS18B20_DQ_PIN)
 u8 DS18B20_Init(void);			//≥ı ºªØDS18B20

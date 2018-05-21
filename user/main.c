@@ -11,14 +11,14 @@
 #include "ds18b20.h"
 #include "Stm32f1_ADC1_Diver.h"
 //
-u8_t haha[6]={0x00,0x00,0x00,0x00,0x00,0x00};
+u8_t haha[7]={0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 extern u8_t kk;
 extern uchar dst_buf[255];
 extern uchar myData[20];
 //
 int nMPU_DO=0;
 //--
-u16_t pp;
+u16_t pp,rTemperature;
 //
 void aurtEventSendStatus()
 {
@@ -31,7 +31,8 @@ void aurtEventSendStatus()
 		cbuf[4]=haha[3];
 		cbuf[5]=haha[4];
 		cbuf[6]=haha[5];
-		myDataLen = miniDataCreate(7,cbuf,dst_buf);
+		cbuf[7]=haha[6];
+		myDataLen = miniDataCreate(8,cbuf,dst_buf);
 		STM32F1_UART3SendDataS(dst_buf,myDataLen);
 }
 
@@ -39,7 +40,7 @@ void aurtEventSendUIButton(int i)
 {
 		int myDataLen=0;
 		unsigned char cbuf[2]={0};
-		cbuf[0]=0;
+		cbuf[0]=0xAA;
 		cbuf[0]=i;
 		myDataLen = miniDataCreate(1,cbuf,dst_buf);
 		STM32F1_UART3SendDataS(dst_buf,myDataLen);
@@ -48,26 +49,6 @@ void aurtEventSendUIButton(int i)
 int main(void)
 {
 	System_Init();
-			
-	RELAY1_STATE(1);
-	RELAY2_STATE(1);
-	RELAY3_STATE(1);
-	RELAY4_STATE(1);
-	RELAY5_STATE(1);
-	RELAY6_STATE(1);
-	RELAY7_STATE(1);
-	RELAY8_STATE(1);
-	RELAY9_STATE(1);
-	
-	RELAY1_STATE(0);
-	RELAY2_STATE(0);
-	RELAY3_STATE(0);
-	RELAY4_STATE(0);
-	RELAY5_STATE(0);
-	RELAY6_STATE(0);
-	RELAY7_STATE(0);		
-	RELAY8_STATE(0);
-	RELAY9_STATE(0);
 
 	while(1)
 	{
@@ -132,15 +113,20 @@ int main(void)
 		
 		//---------------------s
 		//
-	/*	if(kk>=200)
-		{			
+		if(kk>=200)
+		{
 			haha[0]=SENSOR1_STATE()?1:0;
 			haha[1]=SENSOR2_STATE()?1:0;
-			h/aha[4]=SENSOR5_STATE()?1:0;
+			haha[2]=SENSOR3_STATE()?1:0;
+			haha[3]=SENSOR4_STATE()?1:0;
+			haha[4]=SENSOR5_STATE()?1:0;
 			haha[5]=SENSOR6_STATE()?1:0;
+			haha[6]=SENSOR7_STATE()?1:0;
 			aurtEventSendStatus();
 			kk=0;
-		}*/
+		}
 		pp = Get_Adc_Average13(10);
+		rTemperature=DS18B20_Get_Temp();
 	}
+
 }
