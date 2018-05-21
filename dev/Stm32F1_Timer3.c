@@ -1,6 +1,7 @@
 #include "Stm32F1_Timer3.h"
 #include "TouchKey_Diver.h"
 #include "Sensor.h"
+#include "Motor_Diver.h"
 
 int kk=0;
 u16_t sCount1ms;
@@ -45,8 +46,13 @@ void TIM3_IRQHandler(void)
 {
 
 	TOUCHKEY_TIMER_ISR();//按钮中断处理函数
-
+	 MOTOR_TIMER_ISR();
 	kk++;
+
+
+	
+
+
 	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
 }

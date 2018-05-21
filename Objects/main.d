@@ -45,3 +45,4 @@
 .\objects\main.o: .\dev\ds18b20.h
 .\objects\main.o: .\dev\STM32_Delay.h
 .\objects\main.o: .\dev\Stm32f1_ADC1_Diver.h
+.\objects\main.o: .\dev\Motor_Diver.h

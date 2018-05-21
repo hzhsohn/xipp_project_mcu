@@ -10,13 +10,14 @@
 #include "mini-data.h"
 #include "ds18b20.h"
 #include "Stm32f1_ADC1_Diver.h"
+#include "Motor_Diver.h"
 //
 u8_t haha[7]={0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 extern u8_t kk;
 extern uchar dst_buf[255];
 extern uchar myData[20];
 //
-int nMPU_DO=0;
+
 //--
 u16_t pp,rTemperature;
 //
@@ -41,8 +42,8 @@ void aurtEventSendUIButton(int i)
 		int myDataLen=0;
 		unsigned char cbuf[2]={0};
 		cbuf[0]=0xAA;
-		cbuf[0]=i;
-		myDataLen = miniDataCreate(1,cbuf,dst_buf);
+		cbuf[1]=i;
+		myDataLen = miniDataCreate(2,cbuf,dst_buf);
 		STM32F1_UART3SendDataS(dst_buf,myDataLen);
 }
 
@@ -91,7 +92,7 @@ int main(void)
 				aurtEventSendUIButton(7);
 				bButton7 = _Disable;
 		}		
-		
+		/*
 		switch(nMPU_DO)
 		{
 			case 0:
@@ -109,7 +110,7 @@ int main(void)
 				RELAY6_STATE(0);
 				RELAY7_STATE(1);		
 				break;
-		}
+		}*/
 		
 		//---------------------s
 		//
@@ -127,6 +128,8 @@ int main(void)
 		}
 		pp = Get_Adc_Average13(10);
 		rTemperature=DS18B20_Get_Temp();
+		Motor_State();
 	}
+	
 
 }

@@ -531,6 +531,11 @@
               <FileType>1</FileType>
               <FilePath>.\dev\STM32F1_ADC1_Diver.c</FilePath>
             </File>
+            <File>
+              <FileName>Motor_Diver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dev\Motor_Diver.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -540,6 +545,11 @@
               <FileName>TouchKeyFunction.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\app\TouchKeyFunction.c</FilePath>
+            </File>
+            <File>
+              <FileName>AutoFunction.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\app\AutoFunction.c</FilePath>
             </File>
           </Files>
         </Group>
