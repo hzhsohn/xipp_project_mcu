@@ -30,6 +30,7 @@ void TouchKey_Init(void)
 	/* ±÷” πƒ‹*/
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
 	
 	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_1_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;

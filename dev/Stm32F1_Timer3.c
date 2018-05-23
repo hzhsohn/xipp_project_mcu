@@ -46,7 +46,6 @@ void TIM3_IRQHandler(void)
 {
 
 	TOUCHKEY_TIMER_ISR();//按钮中断处理函数
-	 MOTOR_TIMER_ISR();
 	kk++;
 
 

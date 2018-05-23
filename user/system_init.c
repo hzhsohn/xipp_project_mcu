@@ -11,23 +11,26 @@
 #include "Stm32f1_uart3_diver.h"
 #include "ds18b20.h"
 #include "Stm32f1_ADC1_Diver.h"
+#include "Stm32f1_ADC2_Diver.h"
 #include "Motor_Diver.h"
 void System_Init(void)
 {
-	STM32_Delay_init();
-//	AT24C02IIC_Init();
-	Relay_Init();
-//	Sensor_Init();
-	//BeeSpeak_Init();
-	Sensor_Init();
-	TouchKey_Init();
-	Stm32F1_Timer3Init();
-	STM32F1_UART3_Init(9600);
-	STM32F1_UART1_Init(115200);
-	DS18B20_Init();
-	Adc_Init();
-  Motor_Init();
-//	x =AT24C02_ReadOneByte(0x00);
-	//AT24C02_WriteOneByte(0x00,0xaa);
-//	x =AT24C02_ReadOneByte(0x00);
+		STM32_Delay_init();
+		//	AT24C02IIC_Init();
+		Relay_Init();
+		//	Sensor_Init();
+		//BeeSpeak_Init();
+		Sensor_Init();
+		TouchKey_Init();
+		Stm32F1_Timer3Init();
+		STM32F1_UART3_Init(9600);
+		//STM32F1_UART2_Init(9600);
+		STM32F1_UART1_Init(115200);
+		DS18B20_Init();
+		Adc_Init();
+		Adc2_Init();
+		Motor_Init();
+		//	x =AT24C02_ReadOneByte(0x00);
+		//AT24C02_WriteOneByte(0x00,0xaa);
+		//	x =AT24C02_ReadOneByte(0x00);
 }

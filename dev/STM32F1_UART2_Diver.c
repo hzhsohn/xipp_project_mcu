@@ -61,11 +61,17 @@ void STM32F1_UART2_Init(u32_t lBaudRate)
     USART_Cmd(USART2, ENABLE);//Ê¹ÄÜ´®¿Ú
 
 }
+
+
 void USART2_IRQHandler(void)
 {
     if (USART_GetITStatus(USART2,USART_IT_RXNE)!=RESET)
     {
-				
-				
+				u8 uart2Data;
+				uart2Data = USART_ReceiveData(USART3);
+				if(0x00==uart2Data)
+				{
+					STM32F1_UART2SendDataS((u8_t*)"abcdef",6);
+				}
     }
 }

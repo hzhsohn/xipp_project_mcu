@@ -25,11 +25,11 @@
 #define TOUCHKEY_2_GPIO 			    			GPIOC
 #define TOUCHKEY_2_PIN  				  			GPIO_Pin_7
 
-#define TOUCHKEY_3_GPIO 			    			GPIOA
-#define TOUCHKEY_3_PIN  				  			GPIO_Pin_2
+#define TOUCHKEY_3_GPIO 			    			GPIOB
+#define TOUCHKEY_3_PIN  				  			GPIO_Pin_4
 
-#define TOUCHKEY_4_GPIO 				    		GPIOA
-#define TOUCHKEY_4_PIN  				    		GPIO_Pin_3
+#define TOUCHKEY_4_GPIO 				    		GPIOB
+#define TOUCHKEY_4_PIN  				    		GPIO_Pin_6
 
 #define TOUCHKEY_5_GPIO 								GPIOA
 #define TOUCHKEY_5_PIN  								GPIO_Pin_15

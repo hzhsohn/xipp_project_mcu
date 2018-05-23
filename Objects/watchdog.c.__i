@@ -1,0 +1,7 @@
+-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app
+-I C:\Users\han.zh\Desktop\¾ÛµÂ\xipp_auto_proccess\RTE
+-I C:\Users\han.zh\Desktop\¾ÛµÂ\xipp_auto_proccess\RTE\Device\STM32F105R8
+-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER
+-o .\objects\watchdog.c.o --omf_browse .\objects\watchdog.c.crf --depend .\objects\watchdog.c.d "dev\watchdog.c.c"

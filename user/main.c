@@ -10,29 +10,38 @@
 #include "mini-data.h"
 #include "ds18b20.h"
 #include "Stm32f1_ADC1_Diver.h"
+#include "Stm32f1_ADC2_Diver.h"
 #include "Motor_Diver.h"
 //
 u8_t haha[7]={0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 extern u8_t kk;
 extern uchar dst_buf[255];
 extern uchar myData[20];
-//
+//是否自动化操作
+unsigned char g_isAutomation=0;
+//当前清洗小场景
+unsigned char g_cCleanCurrentSence=0;  //0没执行,1小便 ,2大便
 
 //--
-u16_t pp,rTemperature;
-//
+u16_t pp,pp2,rTemperature;
+
+//提交当前状态
 void aurtEventSendStatus()
 {
 		unsigned char cbuf[13]={0};
 		int myDataLen=0;
-		cbuf[0]=1;
-		cbuf[1]=haha[0];
-		cbuf[2]=haha[1];
-		cbuf[3]=haha[2];
-		cbuf[4]=haha[3];
-		cbuf[5]=haha[4];
-		cbuf[6]=haha[5];
-		cbuf[7]=haha[6];
+		//
+		cbuf[0]=0;
+		cbuf[1]=g_isAutomation;
+		cbuf[2]=g_cCleanCurrentSence;
+		cbuf[3]=0;//抽吸启用
+		cbuf[4]=0;//烘干启用
+		cbuf[5]=0;//除菌启用
+		cbuf[6]=0;//大便启用
+		cbuf[7]=0;//大便冲洗启用
+		cbuf[8]=0;//小便启用
+		cbuf[9]=0;//小便冲洗启用
+		
 		myDataLen = miniDataCreate(8,cbuf,dst_buf);
 		STM32F1_UART3SendDataS(dst_buf,myDataLen);
 }
@@ -50,11 +59,16 @@ void aurtEventSendUIButton(int i)
 int main(void)
 {
 	System_Init();
+	
+	Motor1_do(1);
+	Motor1_do(0);
+	Motor2_do(1);
+	Motor2_do(0);
 
 	while(1)
 	{
 		TouchKey_Scan();
-			
+
 		//---------------------
 		//按键
 		if(bButton1)
@@ -112,7 +126,7 @@ int main(void)
 				break;
 		}*/
 		
-		//---------------------s
+		//---------------------
 		//
 		if(kk>=200)
 		{
@@ -121,15 +135,12 @@ int main(void)
 			haha[2]=SENSOR3_STATE()?1:0;
 			haha[3]=SENSOR4_STATE()?1:0;
 			haha[4]=SENSOR5_STATE()?1:0;
-			haha[5]=SENSOR6_STATE()?1:0;
-			haha[6]=SENSOR7_STATE()?1:0;
-			aurtEventSendStatus();
+			//aurtEventSendStatus();
 			kk=0;
 		}
-		pp = Get_Adc_Average13(10);
+		pp = Get_Adc_Average(10);
+		pp2= Get_Adc2_Average(10);
 		rTemperature=DS18B20_Get_Temp();
-		Motor_State();
 	}
 	
-
 }
