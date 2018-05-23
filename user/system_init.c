@@ -13,6 +13,7 @@
 #include "Stm32f1_ADC1_Diver.h"
 #include "Stm32f1_ADC2_Diver.h"
 #include "Motor_Diver.h"
+#include "ds18b20_1.h"
 void System_Init(void)
 {
 		STM32_Delay_init();
@@ -27,6 +28,7 @@ void System_Init(void)
 		//STM32F1_UART2_Init(9600);
 		STM32F1_UART1_Init(115200);
 		DS18B20_Init();
+	DS18B20_Init1();
 		Adc_Init();
 		Adc2_Init();
 		Motor_Init();

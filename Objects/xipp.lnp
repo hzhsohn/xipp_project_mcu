@@ -23,6 +23,7 @@
 ".\objects\motor_diver.o"
 ".\objects\watchdog.o"
 ".\objects\stm32f1_adc2_diver.o"
+".\objects\ds18b20_1.o"
 ".\objects\touchkeyfunction.o"
 ".\objects\autofunction.o"
 ".\objects\startup_stm32f10x_cl.o"

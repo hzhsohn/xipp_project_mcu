@@ -12,6 +12,7 @@
 #include "Stm32f1_ADC1_Diver.h"
 #include "Stm32f1_ADC2_Diver.h"
 #include "Motor_Diver.h"
+#include "ds18b20_1.h"
 //
 u8_t haha[7]={0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 extern u8_t kk;
@@ -23,7 +24,7 @@ unsigned char g_isAutomation=0;
 unsigned char g_cCleanCurrentSence=0;  //0没执行,1小便 ,2大便
 
 //--
-u16_t pp,pp2,rTemperature;
+u16_t pp,pp2,rTemperature,rTemperature1;
 
 //提交当前状态
 void aurtEventSendStatus()
@@ -141,6 +142,7 @@ int main(void)
 		pp = Get_Adc_Average(10);
 		pp2= Get_Adc2_Average(10);
 		rTemperature=DS18B20_Get_Temp();
+		rTemperature1=DS18B20_Get_Temp1();
 	}
 	
 }
