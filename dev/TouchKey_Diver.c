@@ -9,6 +9,7 @@ Func_Staus bButton4=_Disable;
 Func_Staus bButton5=_Disable;
 Func_Staus bButton6=_Disable;
 Func_Staus bButton7=_Disable;
+Func_Staus bButton8=_Disable;
 
 #define TOUCHKEY_NONE_VALUE                     0xFF
 #define TOUCHKEY_TURNON_VALUE										0xFE
@@ -67,8 +68,12 @@ void TouchKey_Init(void)
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
   GPIO_Init(TOUCHKEY_7_GPIO, &GPIO_MyStruct);
 	
-
-
+	/*
+	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_8_PIN;
+  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
+  GPIO_Init(TOUCHKEY_8_GPIO, &GPIO_MyStruct);
+	*/
 }
 /*--------------------------------------------------
 //
@@ -204,8 +209,14 @@ void TouchKey_Scan(void)
 				nTouchKeyCnt=0;
 				break;
 				
-
-			default:
+				case TOUCHKEY_BUTTON8_VALUE:
+				if (nTouchKeyCnt>2){
+					if (nTouchKeyCnt<=TOUCHKEY_SHORTDOWN_10MS)
+					{
+						bButton8 = _Enable;
+					}
+				}
+				nTouchKeyCnt=0;
 				break;
 		}
 	}
@@ -225,7 +236,16 @@ void TouchKey_Scan(void)
 //-------------------------------------------------*/
 void TOUCHKEY_TIMER_ISR(void)
 {
-	if (
+	if(bButton1==_Disable && 
+		 bButton2==_Disable && 
+		 bButton3==_Disable && 
+		 bButton4==_Disable && 
+		 bButton5==_Disable &&
+		 bButton6==_Disable &&
+		 bButton7==_Disable &&
+		 bButton8==_Disable )
+	{
+		if (
 						(TOUCHKEY_1_STATE()==RESET)
 					||(TOUCHKEY_2_STATE()==RESET)
 					||(TOUCHKEY_3_STATE()==RESET)
@@ -233,6 +253,7 @@ void TOUCHKEY_TIMER_ISR(void)
 					||(TOUCHKEY_5_STATE()==RESET)
 					||(TOUCHKEY_6_STATE()==RESET)
 					||(TOUCHKEY_7_STATE()==RESET)
+					//||(TOUCHKEY_8_STATE()==RESET)
 					)
 			{
 					nTouchKeyCnt++;
@@ -241,6 +262,5 @@ void TOUCHKEY_TIMER_ISR(void)
 						nTouchKeyCnt=200;
 					}
 			}
-
-
+	}
 }

@@ -4,7 +4,13 @@
 #include "Motor_Diver.h"
 
 int kk=0;
+int kk2=0;
+int kk_1ms=0;
 u16_t sCount1ms;
+int kkUart3count=0;
+
+extern int g_uart3len;
+
 void Stm32F1_Timer3Init(void)
 {
 	NVIC_InitTypeDef MyTimerIrConfig;
@@ -47,11 +53,17 @@ void TIM3_IRQHandler(void)
 
 	TOUCHKEY_TIMER_ISR();//按钮中断处理函数
 	kk++;
-
-
+	kk2++;	
+	kk_1ms++;
+	kkUart3count++;
 	
-
-
+	//周期计数复位
+	 if(kkUart3count>500)
+	 {
+		 g_uart3len=0;
+		 kkUart3count=0;
+	 }
+	 
 	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
 }

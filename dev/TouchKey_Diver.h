@@ -11,6 +11,7 @@
 #define TOUCHKEY_BUTTON5_VALUE									0xDF
 #define TOUCHKEY_BUTTON6_VALUE									0xBF
 #define TOUCHKEY_BUTTON7_VALUE									0x7F
+#define TOUCHKEY_BUTTON8_VALUE									0x0F
 
 #define TOUCHKEY_FLASCHECK_10MS                 30
 #define TOUCHKEY_SHORTDOWN_10MS                 50
@@ -34,11 +35,15 @@
 #define TOUCHKEY_5_GPIO 								GPIOA
 #define TOUCHKEY_5_PIN  								GPIO_Pin_15
 
-#define TOUCHKEY_6_GPIO 								GPIOC
-#define TOUCHKEY_6_PIN  								GPIO_Pin_4
+#define TOUCHKEY_6_GPIO 								GPIOB
+#define TOUCHKEY_6_PIN  								GPIO_Pin_0
 
 #define TOUCHKEY_7_GPIO 								GPIOC
 #define TOUCHKEY_7_PIN  								GPIO_Pin_5
+
+/*测试板引脚被晶振点用*/
+#define TOUCHKEY_8_GPIO 								//GPIOC
+#define TOUCHKEY_8_PIN  								//GPIO_Pin_14
 
 /*管脚控制*/
 #define TOUCHKEY_1_STATE() 							GPIO_ReadInputDataBit(TOUCHKEY_1_GPIO,TOUCHKEY_1_PIN)
@@ -48,6 +53,9 @@
 #define TOUCHKEY_5_STATE() 							GPIO_ReadInputDataBit(TOUCHKEY_5_GPIO,TOUCHKEY_5_PIN)
 #define TOUCHKEY_6_STATE() 							GPIO_ReadInputDataBit(TOUCHKEY_6_GPIO,TOUCHKEY_6_PIN)
 #define TOUCHKEY_7_STATE() 							GPIO_ReadInputDataBit(TOUCHKEY_7_GPIO,TOUCHKEY_7_PIN)
+//#define TOUCHKEY_8_STATE() 							GPIO_ReadInputDataBit(TOUCHKEY_8_GPIO,TOUCHKEY_8_PIN)
+
+
 void TouchKey_Init(void);
 u8_t TouchKey_Collect(void);
 void TouchKey_Scan(void);

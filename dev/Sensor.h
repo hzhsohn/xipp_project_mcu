@@ -18,6 +18,8 @@
 #define SENSOR5_GPIO 	                	GPIOC
 #define SENSOR5_PIN  			      	    	GPIO_Pin_0
 
+//ºìÍâÒ£¿ØÆ÷
+//------------PC9
 
 #define SENSOR1_STATE() 								GPIO_ReadInputDataBit(SENSOR1_GPIO,SENSOR1_PIN)
 #define SENSOR2_STATE() 								GPIO_ReadInputDataBit(SENSOR2_GPIO,SENSOR2_PIN)

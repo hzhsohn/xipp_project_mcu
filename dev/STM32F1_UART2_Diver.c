@@ -62,16 +62,23 @@ void STM32F1_UART2_Init(u32_t lBaudRate)
 
 }
 
-
+unsigned char u2Re_buf[11],u2Counter=0;
+extern unsigned char cHeartJump;
 void USART2_IRQHandler(void)
 {
     if (USART_GetITStatus(USART2,USART_IT_RXNE)!=RESET)
     {
-				u8 uart2Data;
-				uart2Data = USART_ReceiveData(USART3);
-				if(0x00==uart2Data)
+				u2Re_buf[u2Counter]=USART_ReceiveData(USART2);
+				if(u2Counter==0&&u2Re_buf[0]!=0xF0) return;
+				
+
+				u2Counter++;				
+				if(u2Counter==7) 
 				{
-					STM32F1_UART2SendDataS((u8_t*)"abcdef",6);
+						if(u2Counter==0&&u2Re_buf[1]!=0xF0) return; 					
+					  u2Counter=0;
+						//
+					  cHeartJump=u2Re_buf[5];
 				}
     }
 }

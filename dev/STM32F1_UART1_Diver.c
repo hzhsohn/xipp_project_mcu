@@ -1,5 +1,6 @@
 #include "Stm32f1_uart1_diver.h"
 #include "mini-data.h"
+#include "SenceAct.h"
 
 //****************************************************************************
 //*º¯Êý¹¦ÄÜ£º
@@ -66,7 +67,9 @@ void STM32F1_UART1_Init(u32_t lBaudRate)
 //---------------------------------------
 unsigned char Re_buf[11],counter=0;
 float _mpu_a[3],_mpu_w[3],_mpu_angle[3],_mpu_T;
-extern int nMPU_DO;
+extern int g_nMPU_DO;
+extern TagTimeingSetting g_tmeSetting;
+
 //
 void USART1_IRQHandler(void)
 {
@@ -99,13 +102,13 @@ void USART1_IRQHandler(void)
 							_mpu_angle[1] = (short)(Re_buf [5]<<8| Re_buf [4])/32768.0*180;
 							_mpu_angle[2] = (short)(Re_buf [7]<<8| Re_buf [6])/32768.0*180;
 							_mpu_T = (short)(Re_buf [9]<<8| Re_buf [8])/340.0+36.25;
-							if(_mpu_angle[0]<-30)
-							{nMPU_DO=1;}
+							if(_mpu_angle[1]<(-g_tmeSetting.mpuLeft))
+							{g_nMPU_DO=1;}
 							else
-							if(_mpu_angle[0]>30)
-							{nMPU_DO=2;}
+							if(_mpu_angle[1]>g_tmeSetting.mpuRight)
+							{g_nMPU_DO=2;}
 							else
-							{nMPU_DO=0;}
+							{g_nMPU_DO=0;}
 						break;						
 						}
 				}			

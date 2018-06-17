@@ -11,13 +11,13 @@ void Adc2_Init(void)
         ADC_InitTypeDef ADC_InitStructure; 
         GPIO_InitTypeDef GPIO_InitStructure;
 
-        RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC  , ENABLE );          //使能ADC1通道时钟
+        RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC|RCC_APB2Periph_ADC1  , ENABLE );          //使能ADC1通道时钟
         RCC_ADCCLKConfig(RCC_PCLK2_Div6);   //设置ADC分频因子6 72M/6=12,ADC最大时间不能超过14M
 
         //PA1 作为模拟通道输入引脚                         
         GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
         GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;                //模拟输入引脚
-        GPIO_Init(GPIOB, &GPIO_InitStructure);        
+        GPIO_Init(GPIOC, &GPIO_InitStructure);        
 
         ADC_DeInit(ADC1);  //复位ADC1 
 
