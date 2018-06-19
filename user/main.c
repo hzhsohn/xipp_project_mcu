@@ -63,6 +63,7 @@ unsigned char g_cCleanCurrentSence=0;
 //继电器逻辑重定义
 int isOpenDry=0;
 
+/*
 #define _unit1(x) 							RELAY1_STATE(!x)		//小便转换
 #define _unit2(x) 							RELAY2_STATE(!x)		//大便转换
 #define _unit3(x) 							RELAY3_STATE(!x)		//床气转换
@@ -76,6 +77,20 @@ int isOpenDry=0;
 #define _unit11(x)							RELAY11_STATE(!x) 	//水加热
 #define _unit12(x) 	 						RELAY12_STATE(!x)		//净化机
 #define _unit13(x) 							RELAY13_STATE(!x)		//杀菌气转换
+*/
+#define _unit1(x) 							RELAY10_STATE(!x)		//unit=小便转换
+#define _unit2(x) 							RELAY2_STATE(!x)		//unit=大便转换
+#define _unit3(x) 							RELAY13_STATE(!x)		//unit=床气转换
+#define _unit4(x) 		 					RELAY11_STATE(!x)		//unit=裤子气转机
+#define _unit5(x) 							RELAY12_STATE(!x)		//unit=加热气转换
+#define _unit6(x) 							RELAY9_STATE(!x)		//unit=气加热
+#define _unit7(x) 							RELAY3_STATE(!x)		//unit=抽吸机
+#define _unit8(x) 				 			RELAY8_STATE(!x) 		//unit=抽水机
+#define _unit9(x) 							RELAY6_STATE(!x)		//unit=杀菌发生器
+#define _unit10(x) 				 			RELAY4_STATE(!x)		//unit=吹气
+#define _unit11(x)							RELAY1_STATE(!x) 	//unit=水加热
+#define _unit12(x) 	 						RELAY7_STATE(!x)		//unit=净化机
+#define _unit13(x) 							RELAY5_STATE(!x)		//unit=杀菌气转换
 
 //
 #define udoDry(x)						 			_unit5(x);_unit6(x);_unit10(x);isOpenDry=x		//烘干程序
@@ -251,6 +266,21 @@ int main(void)
 {
 	System_Init();
 	allOutClose();
+	
+	RELAY1_STATE(0);
+	RELAY2_STATE(0);
+	RELAY3_STATE(0);
+	RELAY4_STATE(0);
+	RELAY5_STATE(0);
+	RELAY6_STATE(0);
+	RELAY7_STATE(0);
+	RELAY8_STATE(0);
+	RELAY9_STATE(0);
+	RELAY10_STATE(0);
+	RELAY11_STATE(0);
+	RELAY12_STATE(0);
+	RELAY13_STATE(0);
+	
 	
 	g_tmeSetting.pooDelay=1;					  //拉屎后多少秒启动 ,单位分钟
 	g_tmeSetting.xuxuDelay=10;				  //拉屎后多少秒启动 ,单位秒
