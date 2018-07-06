@@ -498,11 +498,6 @@
               <FilePath>.\dev\Motor_Diver.c</FilePath>
             </File>
             <File>
-              <FileName>watchdog.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\dev\watchdog.c</FilePath>
-            </File>
-            <File>
               <FileName>STM32F1_ADC2_Diver.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\dev\STM32F1_ADC2_Diver.c</FilePath>
@@ -511,6 +506,21 @@
               <FileName>ds18b20_1.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\dev\ds18b20_1.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_wwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dev\stm32f10x_wwdg.c</FilePath>
+            </File>
+            <File>
+              <FileName>watchdog.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dev\watchdog.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_iwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dev\stm32f10x_iwdg.c</FilePath>
             </File>
           </Files>
         </Group>

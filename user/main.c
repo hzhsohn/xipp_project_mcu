@@ -13,6 +13,7 @@
 #include "Motor_Diver.h"
 #include "ds18b20_1.h"
 #include "SenceAct.h"
+#include "watchdog.h"
 
 //
 extern u8_t kk,kk2;
@@ -148,6 +149,14 @@ extern TagTimeingSetting g_tmeSetting;
 int isCleanRuning=0;
 int ppxxStep=0;
 
+//摄像头电机
+int Motor1_do_step=0;
+int Motor2_do_step=0;
+int motor1_p_or_n=0;
+int motor2_p_or_n=0;
+void sceMotor1_do(void);
+void sceMotor2_do(void);
+
 ////////////////////////////////////////////////////////////////
 
 void LitteSenceRun(void);
@@ -265,6 +274,8 @@ void allOutClose()
 int main(void)
 {
 	System_Init();
+	watchdog_init();
+	
 	allOutClose();
 	
 	RELAY1_STATE(0);
@@ -298,16 +309,17 @@ int main(void)
 	g_tmeSetting.mpuRight=30;  					//床陀螺右角度  单位角度
 	
 	LED1_ON;
-	Motor1_do(1);
-	Motor1_do(0);
 	LED1_OFF;
-	Motor2_do(1);
-	Motor2_do(0);
-	
-	RelayTest();
+
+	//RelayTest();
 
 	while(1)
 	{
+		watchdog_action();
+		//
+		sceMotor1_do();
+		sceMotor2_do();
+		//
 		TouchKey_Scan();
 		//---------------------
 		//按键
@@ -1228,4 +1240,93 @@ void litteSenceRunBaoNang(void)
 							ppxxStep=0;
 							break;
 					}
+}
+
+void Motor1_do(int p_or_n)
+{
+	motor1_p_or_n=p_or_n;
+	Motor1_do_step=1;
+
+}
+void Motor2_do(int p_or_n)
+{
+	motor2_p_or_n=p_or_n;
+  Motor2_do_step=1;
+}
+	
+void sceMotor1_do(void)
+{		
+		static int nCalca=0;
+		switch(Motor1_do_step)
+			{
+				case 1:
+					nCalca=0;
+					Motor1_do_step++;	//下一步
+					if(motor1_p_or_n)
+					{
+							//正转
+							MOTOR1_A_STATE(1);
+							MOTOR1_B_STATE(0);
+					}
+					else
+					{
+							//反转
+							MOTOR1_A_STATE(0);
+							MOTOR1_B_STATE(1);
+					}
+				case 2:
+					if(nCalca>10000)
+					{
+							nCalca=0;
+							Motor1_do_step++;
+					}
+					else
+					{
+							nCalca++;
+					}
+					break;
+				default: //完毕									
+					MOTOR1_A_STATE(0);
+					MOTOR1_B_STATE(0);
+					break;
+			}
+	
+}
+
+void sceMotor2_do(void)
+{
+	static int nCalca=0;
+		switch(Motor2_do_step)
+			{
+				case 1:
+					nCalca=0;
+					Motor2_do_step++;	//下一步					
+					if(motor2_p_or_n)
+					{
+							//正转
+							MOTOR2_A_STATE(1);
+							MOTOR2_B_STATE(0);
+					}
+					else
+					{
+							//反转
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(1);
+					}
+				case 2:
+					if(nCalca>10000)
+					{
+							nCalca=0;
+							Motor2_do_step++;
+					}
+					else
+					{
+							nCalca++;
+					}
+					break;
+				default: //完毕									
+						MOTOR2_A_STATE(0);
+						MOTOR2_B_STATE(0);
+					break;
+			}
 }
