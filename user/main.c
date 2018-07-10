@@ -274,6 +274,15 @@ void allOutClose()
 int main(void)
 {
 	System_Init();
+	
+	//测试逻辑
+	STM32F1_UART3SendDataS("hello",5);
+	LED1_ON;
+	LED1_OFF;
+	RelayTest();
+
+	
+	//看门狗
 	watchdog_init();
 	
 	allOutClose();
@@ -308,13 +317,9 @@ int main(void)
 	g_tmeSetting.mpuLeft=30;  					//床陀螺左角度  单位角度
 	g_tmeSetting.mpuRight=30;  					//床陀螺右角度  单位角度
 	
-	LED1_ON;
-	LED1_OFF;
-
-	//RelayTest();
-
 	while(1)
 	{
+		//看门狗
 		watchdog_action();
 		//
 		sceMotor1_do();
