@@ -79,19 +79,19 @@ int isOpenDry=0;
 #define _unit12(x) 	 						RELAY12_STATE(!x)		//净化机
 #define _unit13(x) 							RELAY13_STATE(!x)		//杀菌气转换
 */
-#define _unit1(x) 							RELAY10_STATE(!x)		//unit=小便转换
-#define _unit2(x) 							RELAY2_STATE(!x)		//unit=大便转换
-#define _unit3(x) 							RELAY13_STATE(!x)		//unit=床气转换
-#define _unit4(x) 		 					RELAY11_STATE(!x)		//unit=裤子气转机
-#define _unit5(x) 							RELAY12_STATE(!x)		//unit=加热气转换
-#define _unit6(x) 							RELAY9_STATE(!x)		//unit=气加热
-#define _unit7(x) 							RELAY3_STATE(!x)		//unit=抽吸机
-#define _unit8(x) 				 			RELAY8_STATE(!x) 		//unit=抽水机
-#define _unit9(x) 							RELAY6_STATE(!x)		//unit=杀菌发生器
-#define _unit10(x) 				 			RELAY4_STATE(!x)		//unit=吹气
-#define _unit11(x)							RELAY1_STATE(!x) 	//unit=水加热
-#define _unit12(x) 	 						RELAY7_STATE(!x)		//unit=净化机
-#define _unit13(x) 							RELAY5_STATE(!x)		//unit=杀菌气转换
+#define _unit1(x) 							RELAY4_STATE(x)//RELAY9_STATE(x)//RELAY10_STATE(x)		//unit=小便转换
+#define _unit2(x) 							RELAY7_STATE(x)//RELAY2_STATE(x)		//unit=大便转换
+#define _unit3(x) 							RELAY13_STATE(x)		//unit=床气转换
+#define _unit4(x) 		 					RELAY11_STATE(x)		//unit=裤子气转机
+#define _unit5(x) 							RELAY12_STATE(x)		//unit=加热气转换
+#define _unit6(x) 							RELAY10_STATE(x)//RELAY9_STATE(x)		//unit=气加热
+#define _unit7(x) 							RELAY8_STATE(x)//RELAY3_STATE(x)		//unit=抽吸机
+#define _unit8(x) 				 			RELAY3_STATE(x)//RELAY8_STATE(x) 		//unit=抽水机
+#define _unit9(x) 							RELAY6_STATE(x)		//unit=杀菌发生器
+#define _unit10(x) 				 			RELAY9_STATE(x)//RELAY1_STATE(x)//RELAY9_STATE(x)//RELAY4_STATE(x)		//unit=吹气
+#define _unit11(x)							RELAY1_STATE(x)//RELAY9_STATE(x)//RELAY1_STATE(x) 	//unit=水加热
+#define _unit12(x) 	 						RELAY2_STATE(x)//RELAY7_STATE(x)		//unit=净化机
+#define _unit13(x) 							RELAY5_STATE(x)		//unit=杀菌气转换
 
 //
 #define udoDry(x)						 			_unit5(x);_unit6(x);_unit10(x);isOpenDry=x		//烘干程序
@@ -107,7 +107,7 @@ int isOpenDry=0;
 
 /**************/
 //传感器逻辑重定义
-#define cgqSewageHeight  					SENSOR1_STATE()?0:1 //污水满
+#define cgqSewageHeight  					SENSOR1_STATE()?1:0 //污水满
 #define cgqCleanWaterLow  				SENSOR2_STATE()?1:0 //清水低
 #define cgqSewageSuitable  				SENSOR3_STATE()?0:1 //污水到位
 
@@ -256,6 +256,7 @@ void aurtEventUnitSence(EzhCleanSence i,int isEnable)
 
 void allOutClose()
 {	
+	 isOpenDry=0;
 	 _unit1(0); 									//小便转换
 	 _unit2(0); 									//大便转换
 	 _unit3(0); 									//床气转换
@@ -274,34 +275,40 @@ void allOutClose()
 int main(void)
 {
 	System_Init();
-	
+	/*
 	//测试逻辑
+	STM32F1_UART3SendDataS("hello",5);
 	STM32F1_UART3SendDataS("hello",5);
 	LED1_ON;
 	LED1_OFF;
+	allOutClose();
 	RelayTest();
-
-	
+	allOutClose();
+	*/
 	//看门狗
-	watchdog_init();
+	//watchdog_init();
 	
+	//allOutClose();
+	//RELAY1_STATE(1);
+	//RELAY2_STATE(1);
+	//RELAY4_STATE(1);
+	//RELAY5_STATE(1);
+	//RELAY6_STATE(1);
+	//RELAY7_STATE(1);
+	//RELAY8_STATE(1);
+	//RELAY9_STATE(1);
+	//RELAY10_STATE(1);
+	//RELAY11_STATE(1);
+	//RELAY12_STATE(1);
+	//RELAY13_STATE(1);
+	 
+	//RELAY3_STATE(1);//
 	allOutClose();
 	
-	RELAY1_STATE(0);
-	RELAY2_STATE(0);
-	RELAY3_STATE(0);
-	RELAY4_STATE(0);
-	RELAY5_STATE(0);
-	RELAY6_STATE(0);
-	RELAY7_STATE(0);
-	RELAY8_STATE(0);
-	RELAY9_STATE(0);
-	RELAY10_STATE(0);
-	RELAY11_STATE(0);
-	RELAY12_STATE(0);
-	RELAY13_STATE(0);
-	
-	
+	//-------------------------------
+	//startup system delay-----------
+	LED1_ON;
+	STM32_Delay_ms(2000);
 	g_tmeSetting.pooDelay=1;					  //拉屎后多少秒启动 ,单位分钟
 	g_tmeSetting.xuxuDelay=10;				  //拉屎后多少秒启动 ,单位秒
 	g_tmeSetting.pooFlush=30;					  //屎屎冲洗  ,	单位秒
@@ -310,9 +317,9 @@ int main(void)
 	g_tmeSetting.xuxuDry=1;					  //尿尿烘干时间 单位 分钟
 	g_tmeSetting.pooSterilize=10;			  //屎屎消毒时间 单位 秒
 	g_tmeSetting.xuxuSterilize=10;		  //尿尿消毒时间 单位 秒
-	g_tmeSetting.crotchPressure=15;			//裤档气压 单位 100电压变数
-	g_tmeSetting.bedPressure=15;   			//床垫的气压  单位 100电压变数
-	g_tmeSetting.waterTemperature=40;		//最低水温   			单位摄氏度
+	g_tmeSetting.crotchPressure=13;			//裤档气压 单位 100电压变数
+	g_tmeSetting.bedPressure=13;   			//床垫的气压  单位 100电压变数
+	g_tmeSetting.waterTemperature=38;		//最低水温   			单位摄氏度
 	g_tmeSetting.airTemperature=50;  		//最低烘干温度   	单位摄氏度
 	g_tmeSetting.mpuLeft=30;  					//床陀螺左角度  单位角度
 	g_tmeSetting.mpuRight=30;  					//床陀螺右角度  单位角度
@@ -320,7 +327,7 @@ int main(void)
 	while(1)
 	{
 		//看门狗
-		watchdog_action();
+		//watchdog_action();
 		//
 		sceMotor1_do();
 		sceMotor2_do();
@@ -455,7 +462,7 @@ int main(void)
 							
 							if(rWaterTemp<g_tmeSetting.waterTemperature*10 ) //默认小于40度就加热
 							{
-								udoWaterHeating(1);
+ 								udoWaterHeating(1);
 							}
 							else
 							{
@@ -472,7 +479,8 @@ int main(void)
 						if(isCheckWaterSensorErr>10) //传感数据毛病太多关掉加热继电器
 						{
 							//传感器有毛病了.关掉继电器
-							udoWaterHeating(0);
+							if(g_cCleanCurrentSence==0)
+							{	udoWaterHeating(0);}
 						}
 					}
 
@@ -522,11 +530,13 @@ int main(void)
 					{
 						if(rPressureTmp<g_tmeSetting.crotchPressure*100)
 						{
-							udoKuZiCongQi(1);
+							if(g_cCleanCurrentSence==0)
+							{		udoKuZiCongQi(1);}
 						}
 						else
 						{
-							udoKuZiCongQi(0);
+							if(g_cCleanCurrentSence==0)
+							{		udoKuZiCongQi(0);}
 						}
 						rTruePressure1=rPressureTmp;
 						isCheckDZCQSensorErr=0;
@@ -536,7 +546,8 @@ int main(void)
 						isCheckDZCQSensorErr++;						
 						if(isCheckDZCQSensorErr>10) //传感数据有毛病关掉继电器
 						{
-							udoKuZiCongQi(0);
+							if(g_cCleanCurrentSence==0)
+							{	udoKuZiCongQi(0);}
 						}
 					}
 					rPressure=rPressureTmp;
@@ -549,11 +560,13 @@ int main(void)
 					{
 						if(rPressure2Tmp<g_tmeSetting.bedPressure*100)
 						{
-							udoBedCongQi(1);
+							if(g_cCleanCurrentSence==0)
+							{	udoBedCongQi(1);}
 						}
 						else
 						{
-							udoBedCongQi(0);
+							if(g_cCleanCurrentSence==0)
+							{	udoBedCongQi(0);}
 						}
 						rTruePressure2=rPressure2Tmp;
 						isCheckBedCQSensorErr=0;
@@ -563,7 +576,8 @@ int main(void)
 						isCheckBedCQSensorErr++;						
 						if(isCheckBedCQSensorErr>10) //传感数据毛病太多关等继电器
 						{
-							udoBedCongQi(0);
+							if(g_cCleanCurrentSence==0)
+							{	udoBedCongQi(0);}
 						}
 					}
 					rPressure2=rPressure2Tmp;
@@ -600,7 +614,7 @@ int main(void)
 					{
 							bSewageSuitable=0;
 					}
-					//---------------------
+					//---------------------s
 					kk=0;
 		}
 		//------------------------------------------------------------------
@@ -616,6 +630,12 @@ int main(void)
 		{
 					LitteSenceRun();
 					kk_1ms=0;
+			
+					//
+					if(g_cCleanCurrentSence)
+					{LED1_RE;}
+					else 
+					{LED1_ON;}
 		}
 	}	
 }
@@ -1043,8 +1063,9 @@ void litteSenceRunChongXi(void)
 							aurtEventUnitSence(ezhCleanSence4,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;	//下一步
+						  udoPoPoFlush(1);
 						case 1:
-							if(nCalca>DEF_TIME_MS_DELAY*10)
+							if(nCalca>DEF_TIME_MS_DELAY*5)
 							{
 									nCalca=0;
 									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;
@@ -1057,11 +1078,13 @@ void litteSenceRunChongXi(void)
 							}
 							break;
 						case 2:	
+							udoPoPoFlush(0);
+						  udoDry(1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//下一步
 							break;
 						case 3:
-							if(nCalca>DEF_TIME_MS_DELAY*10)
+							if(nCalca>DEF_TIME_MS_DELAY*20)
 							{
 									nCalca=0;
 									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;
@@ -1074,6 +1097,7 @@ void litteSenceRunChongXi(void)
 							}
 							break;
 						case 4:	
+							udoDry(0);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//下一步
 							break;
@@ -1101,7 +1125,7 @@ void litteSenceRunHongGan(void)
 						
 							udoDry(1);//########### 烘干
 						case 1:
-							if(nCalca>DEF_TIME_MS_DELAY*10)
+							if(nCalca>DEF_TIME_MS_DELAY*20)
 							{
 									nCalca=0;
 									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;
@@ -1144,7 +1168,7 @@ void litteSenceRunChuQun(void)
 
 							udoSterilization(1); //########### 除菌
 						case 1:
-							if(nCalca>DEF_TIME_MS_DELAY*10)
+							if(nCalca>DEF_TIME_MS_DELAY*20)
 							{
 									nCalca=0;
 									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;

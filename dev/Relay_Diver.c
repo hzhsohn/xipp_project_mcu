@@ -125,98 +125,98 @@ void RelayTest()
 	RELAY13_STATE(0);
 	//-------------------------------------------------
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY1_STATE(1); 						//水加热
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY2_STATE(1); 							//气加热
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY3_STATE(1); 						//污水满 
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY4_STATE(1); 				 			 		//抽水机
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY5_STATE(1); 	 					//净化处理
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY6_STATE(1); 						//杀菌
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY7_STATE(1); 						//小便清洗转换器
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY8_STATE(1); 				//一坨屎清洗转换
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY9_STATE(1); 				 					//抽吸机
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY10_STATE(1);						 					//烘干
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY11_STATE(1); 										//吹风转换
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY12_STATE(1); 		 					//充气转换裤子
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY13_STATE(1); 						//气体转换床垫
 	tmeCal=0;
-	while(tmeCal<4600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
