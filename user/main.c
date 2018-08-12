@@ -265,7 +265,10 @@ void allOutClose()
 
 int main(void)
 {
-	System_Init();
+	Code_Init();
+	
+	STM32F1_UART1SendDataS("start",6);
+
 	/*
 	//≤‚ ‘¬ﬂº≠
 	LED1_ON;
@@ -326,9 +329,6 @@ int main(void)
 		
 	//-------------------
 	Motor1_do(1);
-	STM32F1_UART1SendDataS("abc",3);
-	STM32F1_UART2SendDataS("abc",3);
-	STM32F1_UART3SendDataS("abc",3);
 	
 	while(1)
 	{
@@ -1551,15 +1551,236 @@ void sceMotor2_do(void)
 	static int nCalca=0;
 	if(xiii<xiiiLimit)
 	{
-		if(motor2_p_or_n)
-		{
-				
+			if(motor2_p_or_n)
+			{
+						switch(Motor2_do_step)
+						{
+							case 1:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?							
+								MOTOR2_A_STATE(1);
+								MOTOR2_B_STATE(0);
+								MOTOR2_C_STATE(0);
+								MOTOR2_D_STATE(0);
+							case 2:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 3:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?							
+								MOTOR2_A_STATE(1);
+								MOTOR2_B_STATE(1);
+								MOTOR2_C_STATE(0);
+								MOTOR2_D_STATE(0);
+								break;
+							case 4:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 5:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+								MOTOR2_A_STATE(0);
+								MOTOR2_B_STATE(1);
+								MOTOR2_C_STATE(0);
+								MOTOR2_D_STATE(0);						
+								break;
+							case 6:
+								if(nCalca>1000)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 7:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+								MOTOR2_A_STATE(0);
+								MOTOR2_B_STATE(1);
+								MOTOR2_C_STATE(1);
+								MOTOR2_D_STATE(0);						
+								break;
+							case 8:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 9:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+								MOTOR2_A_STATE(0);
+								MOTOR2_B_STATE(0);
+								MOTOR2_C_STATE(1);
+								MOTOR2_D_STATE(0);
+								break;
+							case 10:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 11:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+								MOTOR2_A_STATE(0);
+								MOTOR2_B_STATE(0);
+								MOTOR2_C_STATE(1);
+								MOTOR2_D_STATE(1);
+								break;
+							case 12:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 13:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+								MOTOR2_A_STATE(0);
+								MOTOR2_B_STATE(0);
+								MOTOR2_C_STATE(0);
+								MOTOR2_D_STATE(1);
+								break;
+							case 14:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 15:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+								MOTOR2_A_STATE(1);
+								MOTOR2_B_STATE(0);
+								MOTOR2_C_STATE(0);
+								MOTOR2_D_STATE(1);
+								break;
+							case 16:
+								Motor2_do_step=1;
+								xiii++;
+								break;
+						}
 
-		}
-		else
-		{
-					
-		}
+			}
+			else
+			{
+						switch(Motor2_do_step)
+						{
+							case 1:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?							
+	MOTOR2_A_STATE(1);
+	MOTOR2_B_STATE(0);
+	MOTOR2_C_STATE(0);
+	MOTOR2_D_STATE(1);
+							case 2:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 3:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?							
+	MOTOR2_A_STATE(0);
+	MOTOR2_B_STATE(0);
+	MOTOR2_C_STATE(0);
+	MOTOR2_D_STATE(1);
+								break;
+							case 4:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 5:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+	MOTOR2_A_STATE(0);
+	MOTOR2_B_STATE(0);
+	MOTOR2_C_STATE(1);
+	MOTOR2_D_STATE(1);				
+								break;
+							case 6:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 7:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+	MOTOR2_A_STATE(0);
+	MOTOR2_B_STATE(0);
+	MOTOR2_C_STATE(1);
+	MOTOR2_D_STATE(0);				
+								break;
+							case 8:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 9:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+	MOTOR2_A_STATE(0);
+	MOTOR2_B_STATE(1);
+	MOTOR2_C_STATE(1);
+	MOTOR2_D_STATE(0);
+								break;
+							case 10:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 11:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+	MOTOR2_A_STATE(0);
+	MOTOR2_B_STATE(1);
+	MOTOR2_C_STATE(0);
+	MOTOR2_D_STATE(0);
+								break;
+							case 12:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 13:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+	MOTOR2_A_STATE(1);
+	MOTOR2_B_STATE(1);
+	MOTOR2_C_STATE(0);
+	MOTOR2_D_STATE(0);
+								break;
+							case 14:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 15:
+								nCalca=0;
+								Motor2_do_step++;	//??Ú?2?
+	MOTOR2_A_STATE(1);
+	MOTOR2_B_STATE(0);
+	MOTOR2_C_STATE(0);
+	MOTOR2_D_STATE(0);
+								break;
+							case 16:
+								Motor2_do_step=1;
+								break;
+						}
+			}
 	}
 	else
 	{

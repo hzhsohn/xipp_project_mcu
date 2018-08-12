@@ -43,7 +43,6 @@
 #define RTE_USBCLK                      48000000
 // </h>
 
-
 // <e> USART1 (Universal synchronous asynchronous receiver transmitter)
 // <i> Configuration settings for Driver_USART1 in component ::CMSIS Driver:USART
 #define RTE_USART1                       0

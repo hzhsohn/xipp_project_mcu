@@ -38,7 +38,7 @@ void STM32F1_UART3_Init(u32_t lBaudRate)
     GPIO_InitTypeDef  GPIO_InitStructure;
     USART_InitTypeDef USART_InitStructure;
 
-    RCC_AHBPeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);   //enable clock of GPIOB
+    RCC_APB1PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);   //enable clock of GPIOB
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE); //enable clock of USART3
     /* Configure USART Tx as alternate function push-pull */
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;//ISART3_TX PB10

@@ -2,5 +2,6 @@
 #define __SYSTEM_INIT_H_
 #include "stm32f10x_conf.h"
 #include "global.h"
-void System_Init(void);
+
+void Code_Init(void);
 #endif

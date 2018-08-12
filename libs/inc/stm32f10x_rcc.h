@@ -30,6 +30,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x.h"
+	 
+	 #define PLL_M 8
+#define PLL_Q 7
+#define PLL_N 336
+#define PLL_P 2
 
 /** @addtogroup STM32F10x_StdPeriph_Driver
   * @{

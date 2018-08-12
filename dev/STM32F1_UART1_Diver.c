@@ -35,7 +35,7 @@ void STM32F1_UART1_Init(u32_t lBaudRate)
     GPIO_InitTypeDef  GPIO_InitStructure;
     USART_InitTypeDef USART_InitStructure;
 
-    RCC_AHBPeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);   //enable clock of GPIOA
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);   //enable clock of GPIOA
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE); //enable clock of USART1
     /* Configure USART Tx as alternate function push-pull */
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;//ISART1_TX PA.9
