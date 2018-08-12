@@ -25,9 +25,9 @@ void System_Init(void)
 		Sensor_Init();
 		TouchKey_Init();
 		Stm32F1_Timer3Init();
-		STM32F1_UART3_Init(115200);
-		STM32F1_UART2_Init(230400);
 		STM32F1_UART1_Init(115200);
+		STM32F1_UART2_Init(230400);
+		STM32F1_UART3_Init(115200);
 		DS18B20_Init();
 		DS18B20_Init1();
 		Adc_Init();

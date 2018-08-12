@@ -5,11 +5,11 @@
 <h2>Tool Versions:</h2>
 IDE-Version: μVision V5.20.0.0
 Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 111 ASUS, 888, LIC=----
+License Information: aa Microsoft, Microsoft, LIC=HF8TG-VEY4Y-ILZCB-2LC9W-F98MF-79GIE
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.20
-Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+Toolchain:       MDK-ARM Professional  Version: 5.20
+Toolchain Path:  D:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 2 (build 183)
 Assembler:       Armasm.exe V5.06 update 2 (build 183)
 Linker/Locator:  ArmLink.exe V5.06 update 2 (build 183)
@@ -21,20 +21,70 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
 Dialog DLL:      TCM.DLL V1.14.9.0
  
 <h2>Project:</h2>
-C:\Users\ASUS\Desktop\stm32shaolu\xipp_project_mcu\xipp.uvprojx
-Project File Date:  07/10/2018
+E:\work\外包\聚德\xipp_project_mcu\xipp.uvprojx
+Project File Date:  08/10/2018
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 2 (build 183)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'Target 1'
-compiling AutoFunction.c...
+*** Using Compiler 'V5.06 update 2 (build 183)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'Target 1'
+compiling mini-data.c...
 compiling system_init.c...
-compiling SenceAct.c...
-compiling Relay_Diver.c...
+.\dev\Motor_Diver.h(39): warning:  #47-D: incompatible redefinition of macro "TOUCHKEY_1_STATE" (declared at line 48 of ".\dev\TouchKey_Diver.h")
+  #define TOUCHKEY_1_STATE() 							GPIO_ReadInputDataBit(MOTOR1_LIMIT_GPIO,MOTOR1_LIMIT_PIN)
+.\dev\Motor_Diver.h(40): warning:  #47-D: incompatible redefinition of macro "TOUCHKEY_2_STATE" (declared at line 49 of ".\dev\TouchKey_Diver.h")
+  #define TOUCHKEY_2_STATE() 							GPIO_ReadInputDataBit(MOTOR2_LIMIT_GPIO,MOTOR2_LIMIT_PIN)
+user\system_init.c: 2 warnings, 0 errors
 compiling main.c...
+.\dev\Motor_Diver.h(39): warning:  #47-D: incompatible redefinition of macro "TOUCHKEY_1_STATE" (declared at line 48 of ".\dev\TouchKey_Diver.h")
+  #define TOUCHKEY_1_STATE() 							GPIO_ReadInputDataBit(MOTOR1_LIMIT_GPIO,MOTOR1_LIMIT_PIN)
+.\dev\Motor_Diver.h(40): warning:  #47-D: incompatible redefinition of macro "TOUCHKEY_2_STATE" (declared at line 49 of ".\dev\TouchKey_Diver.h")
+  #define TOUCHKEY_2_STATE() 							GPIO_ReadInputDataBit(MOTOR2_LIMIT_GPIO,MOTOR2_LIMIT_PIN)
+user\main.c(1538): warning:  #177-D: variable "dododyes" was declared but never referenced
+  	static int dododyes=70;
+user\main.c(1539): warning:  #177-D: variable "nCalca" was declared but never referenced
+  	static int nCalca=0;
+user\main.c: 4 warnings, 0 errors
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_tim.c...
+compiling misc.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_adc.c...
+compiling BeeSpeaker_Diver.c...
+compiling TouchKey_Diver.c...
+compiling Stm32F1_Timer3.c...
+dev\Motor_Diver.h(39): warning:  #47-D: incompatible redefinition of macro "TOUCHKEY_1_STATE" (declared at line 48 of "dev\TouchKey_Diver.h")
+  #define TOUCHKEY_1_STATE() 							GPIO_ReadInputDataBit(MOTOR1_LIMIT_GPIO,MOTOR1_LIMIT_PIN)
+dev\Motor_Diver.h(40): warning:  #47-D: incompatible redefinition of macro "TOUCHKEY_2_STATE" (declared at line 49 of "dev\TouchKey_Diver.h")
+  #define TOUCHKEY_2_STATE() 							GPIO_ReadInputDataBit(MOTOR2_LIMIT_GPIO,MOTOR2_LIMIT_PIN)
+dev\Stm32F1_Timer3.c: 2 warnings, 0 errors
+compiling STM32_Delay.c...
+compiling AT24C02_Diver.c...
+compiling Relay_Diver.c...
+compiling Sensor.c...
+compiling STM32F1_UART1_Diver.c...
+dev\STM32F1_UART1_Diver.c(127): warning:  #223-D: function "Motor1_do" declared implicitly
+  											Motor1_do(0);
+dev\STM32F1_UART1_Diver.c(133): warning:  #223-D: function "Motor2_do" declared implicitly
+  											Motor2_do(0);
+dev\STM32F1_UART1_Diver.c: 2 warnings, 0 errors
+compiling STM32F1_UART2_Diver.c...
+compiling STM32F1_UART3_Diver.c...
+compiling ds18b20.c...
+compiling STM32F1_ADC1_Diver.c...
+compiling STM32F1_ADC2_Diver.c...
+compiling Motor_Diver.c...
+compiling ds18b20_1.c...
+compiling stm32f10x_wwdg.c...
+compiling watchdog.c...
+compiling stm32f10x_iwdg.c...
+assembling startup_stm32f10x_cl.s...
+compiling AutoFunction.c...
+compiling SenceAct.c...
+compiling system_stm32f10x.c...
 linking...
-Program Size: Code=18640 RO-data=368 RW-data=232 ZI-data=1856  
-".\Objects\xipp.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=20796 RO-data=368 RW-data=248 ZI-data=1856  
+".\Objects\xipp.axf" - 0 Error(s), 10 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -51,10 +101,10 @@ Package Vendor: Keil
    * Component: Startup Version: 1.0.0
 
 <h2>Collection of Component include folders:</h2>
-  C:\Users\ASUS\Desktop\stm32shaolu\xipp_project_mcu\RTE
-  C:\Users\ASUS\Desktop\stm32shaolu\xipp_project_mcu\RTE\Device\STM32F105R8
-  C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
-  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+  E:\work\外包\聚德\xipp_project_mcu\RTE
+  E:\work\外包\聚德\xipp_project_mcu\RTE\Device\STM32F105VC
+  D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+  D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 
@@ -65,7 +115,7 @@ Package Vendor: Keil
       Source file:   Device\Source\ARM\startup_stm32f10x_cl.s
       Source file:   Device\Source\system_stm32f10x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:10
 </pre>
 </body>
 </html>

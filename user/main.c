@@ -26,6 +26,7 @@ extern Func_Staus bButton4;
 extern Func_Staus bButton5;
 extern Func_Staus bButton6;
 extern Func_Staus bButton7;
+extern Func_Staus bButton8;
 
 //
 extern int g_nMPU_DO;
@@ -64,7 +65,7 @@ unsigned char g_cCleanCurrentSence=0;
 //继电器逻辑重定义
 int isOpenDry=0;
 
-/*
+
 #define _unit1(x) 							RELAY1_STATE(!x)		//小便转换
 #define _unit2(x) 							RELAY2_STATE(!x)		//大便转换
 #define _unit3(x) 							RELAY3_STATE(!x)		//床气转换
@@ -78,20 +79,6 @@ int isOpenDry=0;
 #define _unit11(x)							RELAY11_STATE(!x) 	//水加热
 #define _unit12(x) 	 						RELAY12_STATE(!x)		//净化机
 #define _unit13(x) 							RELAY13_STATE(!x)		//杀菌气转换
-*/
-#define _unit1(x) 							RELAY4_STATE(x)//RELAY9_STATE(x)//RELAY10_STATE(x)		//unit=小便转换
-#define _unit2(x) 							RELAY7_STATE(x)//RELAY2_STATE(x)		//unit=大便转换
-#define _unit3(x) 							RELAY13_STATE(x)		//unit=床气转换
-#define _unit4(x) 		 					RELAY11_STATE(x)		//unit=裤子气转机
-#define _unit5(x) 							RELAY12_STATE(x)		//unit=加热气转换
-#define _unit6(x) 							RELAY10_STATE(x)//RELAY9_STATE(x)		//unit=气加热
-#define _unit7(x) 							RELAY8_STATE(x)//RELAY3_STATE(x)		//unit=抽吸机
-#define _unit8(x) 				 			RELAY3_STATE(x)//RELAY8_STATE(x) 		//unit=抽水机
-#define _unit9(x) 							RELAY6_STATE(x)		//unit=杀菌发生器
-#define _unit10(x) 				 			RELAY9_STATE(x)//RELAY1_STATE(x)//RELAY9_STATE(x)//RELAY4_STATE(x)		//unit=吹气
-#define _unit11(x)							RELAY1_STATE(x)//RELAY9_STATE(x)//RELAY1_STATE(x) 	//unit=水加热
-#define _unit12(x) 	 						RELAY2_STATE(x)//RELAY7_STATE(x)		//unit=净化机
-#define _unit13(x) 							RELAY5_STATE(x)		//unit=杀菌气转换
 
 //
 #define udoDry(x)						 			_unit5(x);_unit6(x);_unit10(x);isOpenDry=x		//烘干程序
@@ -150,6 +137,9 @@ int isCleanRuning=0;
 int ppxxStep=0;
 
 //摄像头电机
+int xiiiLimit=100;
+int xiii=0;
+int xiii2=0;
 int Motor1_do_step=0;
 int Motor2_do_step=0;
 int motor1_p_or_n=0;
@@ -216,7 +206,7 @@ void aurtEventStatus()
 		cbuf[17]=isGasTooHot;
 
 		myDataLen = miniDataCreate(18,cbuf,dst_buf);
-		STM32F1_UART3SendDataS(dst_buf,myDataLen);
+		STM32F1_UART1SendDataS(dst_buf,myDataLen);
 		
 		//
 		cHeartJump=0;
@@ -230,7 +220,7 @@ void aurtEventBtn(int i)
 		cbuf[0]=0x01;
 		cbuf[1]=i;
 		myDataLen = miniDataCreate(2,cbuf,dst_buf);
-		STM32F1_UART3SendDataS(dst_buf,myDataLen);
+		STM32F1_UART1SendDataS(dst_buf,myDataLen);
 }
 
 void aurtEventUnitSence(EzhCleanSence i,int isEnable)
@@ -251,7 +241,7 @@ void aurtEventUnitSence(EzhCleanSence i,int isEnable)
 		cbuf[1]=i;
 		cbuf[2]=isEnable;
 		myDataLen = miniDataCreate(3,cbuf,dst_buf);
-		STM32F1_UART3SendDataS(dst_buf,myDataLen);
+		STM32F1_UART1SendDataS(dst_buf,myDataLen);
 }
 
 void allOutClose()
@@ -277,8 +267,6 @@ int main(void)
 	System_Init();
 	/*
 	//测试逻辑
-	STM32F1_UART3SendDataS("hello",5);
-	STM32F1_UART3SendDataS("hello",5);
 	LED1_ON;
 	LED1_OFF;
 	allOutClose();
@@ -323,6 +311,12 @@ int main(void)
 	g_tmeSetting.airTemperature=50;  		//最低烘干温度   	单位摄氏度
 	g_tmeSetting.mpuLeft=30;  					//床陀螺左角度  单位角度
 	g_tmeSetting.mpuRight=30;  					//床陀螺右角度  单位角度
+		
+	//-------------------
+	Motor1_do(1);
+	STM32F1_UART1SendDataS("abc",3);
+	STM32F1_UART2SendDataS("abc",3);
+	STM32F1_UART3SendDataS("abc",3);
 	
 	while(1)
 	{
@@ -342,6 +336,7 @@ int main(void)
 		//5按摩键
 		//6保暖键
 		//7设置链
+		//8待机开关
 		if(bButton1 && 0==g_cCleanCurrentSence)
 		{
 					aurtEventBtn(1);
@@ -389,8 +384,14 @@ int main(void)
 					aurtEventBtn(7);
 					bButton7 = _Disable;
 		}	
+		if(bButton8 && 0==g_cCleanCurrentSence)
+		{
+					aurtEventBtn(8);
+					bButton8 = _Disable;
+		}	
 		//------------------------------------------------------------------
-		//检测有无尿拉下来
+		//检测有无尿拉下来		
+		if(rWaterTemperature>=g_tmeSetting.waterTemperature*10) //限制如果水温不够不操作
 		if(dxbXuXu)
 		{
 			rXuxuDD++;
@@ -412,6 +413,7 @@ int main(void)
 
 		//------------------------------------------------------------------
 		//检测有没有屎掉下来
+		if(rWaterTemperature>=g_tmeSetting.waterTemperature*10)  //限制如果水温不够不操作
 		if(dxbPooPoo)
 		{
 			rPoopoDD++;
@@ -432,7 +434,7 @@ int main(void)
 		}
 
 		//---------------------//
-		if(kk>=10) //限制0.1秒执行一次
+		if(kk>=10 && xiii>=xiiiLimit && xiii>=xiiiLimit) //限制0.1秒执行一次,且步进电机不能有动作
 		{
 					//---------------------//
 					//陀螺任务,做翻身检测,不知道有啥个伦用
@@ -483,7 +485,7 @@ int main(void)
 							{	udoWaterHeating(0);}
 						}
 					}
-
+	
 					//-------------------------------------------------------------------
 					//空气加热,实时条件限制
 					rGasTemp=DS18B20_Get_Temp1(); 
@@ -633,9 +635,9 @@ int main(void)
 			
 					//
 					if(g_cCleanCurrentSence)
-					{LED1_RE;}
+					{LED1_RE;LED2_RE;LED3_RE;}
 					else 
-					{LED1_ON;}
+					{LED1_ON;LED2_ON;LED3_ON;}
 		}
 	}	
 }
@@ -1275,87 +1277,284 @@ void Motor1_do(int p_or_n)
 {
 	motor1_p_or_n=p_or_n;
 	Motor1_do_step=1;
-
+	xiii=0;
 }
 void Motor2_do(int p_or_n)
 {
 	motor2_p_or_n=p_or_n;
   Motor2_do_step=1;
+	xiii2=0;
 }
 	
 void sceMotor1_do(void)
 {		
+		static int dododyes=70;
 		static int nCalca=0;
-		switch(Motor1_do_step)
-			{
-				case 1:
-					nCalca=0;
-					Motor1_do_step++;	//下一步
-					if(motor1_p_or_n)
-					{
-							//正转
-							MOTOR1_A_STATE(1);
-							MOTOR1_B_STATE(0);
-					}
-					else
-					{
-							//反转
-							MOTOR1_A_STATE(0);
-							MOTOR1_B_STATE(1);
-					}
-				case 2:
-					if(nCalca>10000)
-					{
-							nCalca=0;
-							Motor1_do_step++;
-					}
-					else
-					{
-							nCalca++;
-					}
-					break;
-				default: //完毕									
-					MOTOR1_A_STATE(0);
-					MOTOR1_B_STATE(0);
-					break;
-			}
-	
+	  if(xiii<xiiiLimit)
+		{
+						if(motor1_p_or_n)
+						{
+									switch(Motor1_do_step)
+									{
+										case 1:
+											nCalca=0;
+											Motor1_do_step++;	//下一步							
+											MOTOR1_A_STATE(1);
+											MOTOR1_B_STATE(0);
+											MOTOR1_C_STATE(0);
+											MOTOR1_D_STATE(0);
+										case 2:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 3:
+											nCalca=0;
+											Motor1_do_step++;	//下一步							
+											MOTOR1_A_STATE(1);
+											MOTOR1_B_STATE(1);
+											MOTOR1_C_STATE(0);
+											MOTOR1_D_STATE(0);
+											break;
+										case 4:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 5:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+											MOTOR1_A_STATE(0);
+											MOTOR1_B_STATE(1);
+											MOTOR1_C_STATE(0);
+											MOTOR1_D_STATE(0);						
+											break;
+										case 6:
+											if(nCalca>1000)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 7:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+											MOTOR1_A_STATE(0);
+											MOTOR1_B_STATE(1);
+											MOTOR1_C_STATE(1);
+											MOTOR1_D_STATE(0);						
+											break;
+										case 8:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 9:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+											MOTOR1_A_STATE(0);
+											MOTOR1_B_STATE(0);
+											MOTOR1_C_STATE(1);
+											MOTOR1_D_STATE(0);
+											break;
+										case 10:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 11:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+											MOTOR1_A_STATE(0);
+											MOTOR1_B_STATE(0);
+											MOTOR1_C_STATE(1);
+											MOTOR1_D_STATE(1);
+											break;
+										case 12:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 13:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+											MOTOR1_A_STATE(0);
+											MOTOR1_B_STATE(0);
+											MOTOR1_C_STATE(0);
+											MOTOR1_D_STATE(1);
+											break;
+										case 14:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 15:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+											MOTOR1_A_STATE(1);
+											MOTOR1_B_STATE(0);
+											MOTOR1_C_STATE(0);
+											MOTOR1_D_STATE(1);
+											break;
+										case 16:
+											Motor1_do_step=1;
+											xiii++;
+											break;
+									}
+
+						}
+						else
+						{
+									switch(Motor1_do_step)
+									{
+										case 1:
+											nCalca=0;
+											Motor1_do_step++;	//下一步							
+				MOTOR1_A_STATE(1);
+				MOTOR1_B_STATE(0);
+				MOTOR1_C_STATE(0);
+				MOTOR1_D_STATE(1);
+										case 2:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 3:
+											nCalca=0;
+											Motor1_do_step++;	//下一步							
+				MOTOR1_A_STATE(0);
+				MOTOR1_B_STATE(0);
+				MOTOR1_C_STATE(0);
+				MOTOR1_D_STATE(1);
+											break;
+										case 4:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 5:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+				MOTOR1_A_STATE(0);
+				MOTOR1_B_STATE(0);
+				MOTOR1_C_STATE(1);
+				MOTOR1_D_STATE(1);				
+											break;
+										case 6:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 7:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+				MOTOR1_A_STATE(0);
+				MOTOR1_B_STATE(0);
+				MOTOR1_C_STATE(1);
+				MOTOR1_D_STATE(0);				
+											break;
+										case 8:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 9:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+				MOTOR1_A_STATE(0);
+				MOTOR1_B_STATE(1);
+				MOTOR1_C_STATE(1);
+				MOTOR1_D_STATE(0);
+											break;
+										case 10:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 11:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+				MOTOR1_A_STATE(0);
+				MOTOR1_B_STATE(1);
+				MOTOR1_C_STATE(0);
+				MOTOR1_D_STATE(0);
+											break;
+										case 12:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 13:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+				MOTOR1_A_STATE(1);
+				MOTOR1_B_STATE(1);
+				MOTOR1_C_STATE(0);
+				MOTOR1_D_STATE(0);
+											break;
+										case 14:
+											if(nCalca>dododyes)
+											{ nCalca=0; Motor1_do_step++; }
+											else
+											{ nCalca++; }
+											break;
+										case 15:
+											nCalca=0;
+											Motor1_do_step++;	//下一步
+				MOTOR1_A_STATE(1);
+				MOTOR1_B_STATE(0);
+				MOTOR1_C_STATE(0);
+				MOTOR1_D_STATE(0);
+											break;
+										case 16:
+											Motor1_do_step=1;
+											break;
+									}
+						}
+	}
+	else
+	{
+				//关掉线圈套的任何通电行为
+				MOTOR1_A_STATE(0);
+				MOTOR1_B_STATE(0);
+				MOTOR1_C_STATE(0);
+				MOTOR1_D_STATE(0);
+	}
 }
 
 void sceMotor2_do(void)
 {
+	static int dododyes=70;
 	static int nCalca=0;
-		switch(Motor2_do_step)
-			{
-				case 1:
-					nCalca=0;
-					Motor2_do_step++;	//下一步					
-					if(motor2_p_or_n)
-					{
-							//正转
-							MOTOR2_A_STATE(1);
-							MOTOR2_B_STATE(0);
-					}
-					else
-					{
-							//反转
-							MOTOR2_A_STATE(0);
-							MOTOR2_B_STATE(1);
-					}
-				case 2:
-					if(nCalca>10000)
-					{
-							nCalca=0;
-							Motor2_do_step++;
-					}
-					else
-					{
-							nCalca++;
-					}
-					break;
-				default: //完毕									
-						MOTOR2_A_STATE(0);
-						MOTOR2_B_STATE(0);
-					break;
-			}
+	if(xiii<xiiiLimit)
+	{
+		if(motor2_p_or_n)
+		{
+				
+
+		}
+		else
+		{
+					
+		}
+	}
+	else
+	{
+				//关掉线圈套的任何通电行为
+				MOTOR1_A_STATE(0);
+				MOTOR1_B_STATE(0);
+				MOTOR1_C_STATE(0);
+				MOTOR1_D_STATE(0);
+	}
 }

@@ -30,8 +30,10 @@ void TouchKey_Init(void)
 	GPIO_InitTypeDef GPIO_MyStruct;
 	/* ±÷” πƒ‹*/
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC,ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE,ENABLE);
 	
 	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_1_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
@@ -68,12 +70,11 @@ void TouchKey_Init(void)
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
   GPIO_Init(TOUCHKEY_7_GPIO, &GPIO_MyStruct);
 	
-	/*
 	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_8_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
   GPIO_Init(TOUCHKEY_8_GPIO, &GPIO_MyStruct);
-	*/
+	
 }
 /*--------------------------------------------------
 //
@@ -82,6 +83,12 @@ void TouchKey_Init(void)
 u8_t TouchKey_Collect(void)
 {
   u8_t nKeyBuff=0xfe;
+	if (TOUCHKEY_8_STATE()!=RESET)
+	{
+		nKeyBuff=nKeyBuff|0x01;
+	}
+	nKeyBuff=nKeyBuff<<1;
+	
 	if (TOUCHKEY_7_STATE()!=RESET)
 	{
 		nKeyBuff=nKeyBuff|0x01;
@@ -124,7 +131,6 @@ u8_t TouchKey_Collect(void)
 	}
 	nKeyBuff=nKeyBuff<<1;
 	
-	nKeyBuff=nKeyBuff|0x01;
 	return nKeyBuff;
 }
 /*--------------------------------------------------
@@ -253,7 +259,7 @@ void TOUCHKEY_TIMER_ISR(void)
 					||(TOUCHKEY_5_STATE()==RESET)
 					||(TOUCHKEY_6_STATE()==RESET)
 					||(TOUCHKEY_7_STATE()==RESET)
-					//||(TOUCHKEY_8_STATE()==RESET)
+					||(TOUCHKEY_8_STATE()==RESET)
 					)
 			{
 					nTouchKeyCnt++;

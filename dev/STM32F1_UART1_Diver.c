@@ -64,53 +64,108 @@ void STM32F1_UART1_Init(u32_t lBaudRate)
     USART_Cmd(USART1, ENABLE);//使能串口
 }
 
-//---------------------------------------
-unsigned char Re_buf[11],counter=0;
-float _mpu_a[3],_mpu_w[3],_mpu_angle[3],_mpu_T;
-extern int g_nMPU_DO;
-extern TagTimeingSetting g_tmeSetting;
 
+
+//------------------------------------------------------
+//接收缓存
+uchar g_cache[128]={0};
+unsigned short g_uart3len=0;
+TzhMiniData g_ocCmd;
+uchar g_isGetCmdOk;
+extern unsigned char g_isAutomation;
+extern TagTimeingSetting g_tmeSetting;
 //
+extern int kkUart3count;
+//中断当前动作
+extern int isCleanRuning;
+
+//发送时间参数
+void sendTimeCfg()
+{
+		int i=0;
+		char *pstr;
+		uchar dst_buf[55]={0};
+		int myDataLen=0;
+		unsigned char cbuf[50]={0};
+		cbuf[0]=0xB1;
+		pstr=(char *)&g_tmeSetting;
+		for(i=0;i<sizeof(TagTimeingSetting);i++)
+		{
+			cbuf[i+1]=pstr[i];
+		}
+		myDataLen = miniDataCreate(sizeof(TagTimeingSetting)+1,cbuf,dst_buf);
+		STM32F1_UART1SendDataS(dst_buf,myDataLen);
+}
+
 void USART1_IRQHandler(void)
 {
-    if (USART_GetITStatus(USART1,USART_IT_RXNE)!=RESET)
-    {
-				Re_buf[counter]=USART_ReceiveData(USART1);
-				if(counter==0&&Re_buf[0]!=0x55) return; 
-
-				counter++;				
-				if(counter==11) 
-				{    
-					  counter=0;
-					  //
-						switch(Re_buf [1])
-						{
-						case 0x51:
-							_mpu_a[0] = (short)(Re_buf [3]<<8| Re_buf [2])/32768.0*16;
-							_mpu_a[1] = (short)(Re_buf [5]<<8| Re_buf [4])/32768.0*16;
-							_mpu_a[2] = (short)(Re_buf [7]<<8| Re_buf [6])/32768.0*16;
-							_mpu_T = (short)(Re_buf [9]<<8| Re_buf [8])/340.0+36.25;
-						break;
-						case 0x52:
-							_mpu_w[0] = (short)(Re_buf [3]<<8| Re_buf [2])/32768.0*2000;
-							_mpu_w[1] = (short)(Re_buf [5]<<8| Re_buf [4])/32768.0*2000;
-							_mpu_w[2] = (short)(Re_buf [7]<<8| Re_buf [6])/32768.0*2000;
-							_mpu_T = (short)(Re_buf [9]<<8| Re_buf [8])/340.0+36.25;
-						break;
-						case 0x53:
-							_mpu_angle[0] = (short)(Re_buf [3]<<8| Re_buf [2])/32768.0*180;
-							_mpu_angle[1] = (short)(Re_buf [5]<<8| Re_buf [4])/32768.0*180;
-							_mpu_angle[2] = (short)(Re_buf [7]<<8| Re_buf [6])/32768.0*180;
-							_mpu_T = (short)(Re_buf [9]<<8| Re_buf [8])/340.0+36.25;
-							if(_mpu_angle[1]<(-g_tmeSetting.mpuLeft))
-							{g_nMPU_DO=1;}
-							else
-							if(_mpu_angle[1]>g_tmeSetting.mpuRight)
-							{g_nMPU_DO=2;}
-							else
-							{g_nMPU_DO=0;}
-						break;						
-						}
-				}			
-    }
-}
+    if (USART_GetITStatus(USART3,USART_IT_RXNE)!=RESET)
+    {			 
+				u8 uart3Data;
+				uart3Data = USART_ReceiveData(USART3);
+				
+			  //周期计数复位
+			  kkUart3count=0;
+			
+				if(g_uart3len+1>128){ g_uart3len=0; }
+				g_cache[g_uart3len]=uart3Data;
+				g_uart3len++;
+				if(0xFA==uart3Data)
+				{
+						 int tmp;
+					_nnc:
+						 tmp=miniDataGet(g_cache,g_uart3len,&g_ocCmd,&g_isGetCmdOk);
+						 //
+						 if(g_isGetCmdOk)
+						 {
+								//周期计数复位
+								kkUart3count=0;
+								
+							  switch(g_ocCmd.parameter[0])
+								{
+									case 0x90:
+											Motor1_do(0);
+										break;
+									case 0x91:
+											Motor1_do(1);
+										break;
+									case 0x92:
+											Motor2_do(0);
+										break;
+									case 0x93:
+											Motor2_do(1);
+										break;
+									case 0xA0: //启用自动化
+											g_isAutomation=g_ocCmd.parameter[1]?1:0;
+										break;
+									case 0xA1: //参数获取
+											sendTimeCfg();
+										break;
+									case 0xA2: //设置参数
+									{
+											int i=0;
+											char *pstr=(char *)&g_tmeSetting;
+											for(i=0;i<sizeof(TagTimeingSetting);i++)
+											{
+												pstr[i]=(char)g_ocCmd.parameter[1+i];
+											}
+									}
+										break;
+									case 0xA3: //中断当前
+										isCleanRuning=0;
+										break;
+								}
+						 }
+						 if(tmp>0)
+						 {
+								int n;
+								g_uart3len-=tmp;
+								for(n=0;n<g_uart3len;n++)
+								{
+									g_cache[n]=g_cache[tmp+n]; 
+								}
+								goto _nnc;
+						 }
+				 }
+		 }
+	}

@@ -97,12 +97,26 @@ void Relay_Init(void)
 void LED_Configuration(void)
 {
 		GPIO_InitTypeDef GPIO_MyStruct;
+	
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE,ENABLE);
 
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_4;
+		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_13;
 		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
 		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOC, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOC,GPIO_Pin_4);
+		GPIO_Init(GPIOE, &GPIO_MyStruct);
+		GPIO_SetBits(GPIOE,GPIO_Pin_13);
+	
+		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_14;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+		GPIO_Init(GPIOE, &GPIO_MyStruct);
+		GPIO_SetBits(GPIOE,GPIO_Pin_14);
+	
+		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_15;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+		GPIO_Init(GPIOE, &GPIO_MyStruct);
+		GPIO_SetBits(GPIOE,GPIO_Pin_15);
 }
 
 
