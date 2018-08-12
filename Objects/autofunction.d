@@ -26,6 +26,7 @@
 .\objects\autofunction.o: .\libs\inc\stm32f10x_iwdg.h
 .\objects\autofunction.o: .\libs\inc\stm32f10x_pwr.h
 .\objects\autofunction.o: .\libs\inc\stm32f10x_rcc.h
+.\objects\autofunction.o: .\libs\inc\conf.h
 .\objects\autofunction.o: .\libs\inc\stm32f10x_rtc.h
 .\objects\autofunction.o: .\libs\inc\stm32f10x_sdio.h
 .\objects\autofunction.o: .\libs\inc\stm32f10x_spi.h

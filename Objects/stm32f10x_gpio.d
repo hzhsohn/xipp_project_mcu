@@ -25,6 +25,7 @@
 .\objects\stm32f10x_gpio.o: .\libs\inc\stm32f10x_iwdg.h
 .\objects\stm32f10x_gpio.o: .\libs\inc\stm32f10x_pwr.h
 .\objects\stm32f10x_gpio.o: .\libs\inc\stm32f10x_rcc.h
+.\objects\stm32f10x_gpio.o: .\libs\inc\conf.h
 .\objects\stm32f10x_gpio.o: .\libs\inc\stm32f10x_rtc.h
 .\objects\stm32f10x_gpio.o: .\libs\inc\stm32f10x_sdio.h
 .\objects\stm32f10x_gpio.o: .\libs\inc\stm32f10x_spi.h

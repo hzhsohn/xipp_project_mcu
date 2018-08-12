@@ -437,6 +437,11 @@
               <FileType>1</FileType>
               <FilePath>.\libs\src\stm32f10x_flash.c</FilePath>
             </File>
+            <File>
+              <FileName>conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\libs\inc\conf.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

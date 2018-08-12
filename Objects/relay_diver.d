@@ -26,6 +26,7 @@
 .\objects\relay_diver.o: .\libs\inc\stm32f10x_iwdg.h
 .\objects\relay_diver.o: .\libs\inc\stm32f10x_pwr.h
 .\objects\relay_diver.o: .\libs\inc\stm32f10x_rcc.h
+.\objects\relay_diver.o: .\libs\inc\conf.h
 .\objects\relay_diver.o: .\libs\inc\stm32f10x_rtc.h
 .\objects\relay_diver.o: .\libs\inc\stm32f10x_sdio.h
 .\objects\relay_diver.o: .\libs\inc\stm32f10x_spi.h

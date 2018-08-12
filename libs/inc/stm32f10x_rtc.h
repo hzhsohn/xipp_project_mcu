@@ -29,6 +29,7 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
+#include "conf.h"
 #include "stm32f10x.h"
 
 /** @addtogroup STM32F10x_StdPeriph_Driver

@@ -25,6 +25,7 @@
 .\objects\main.o: .\libs\inc\stm32f10x_iwdg.h
 .\objects\main.o: .\libs\inc\stm32f10x_pwr.h
 .\objects\main.o: .\libs\inc\stm32f10x_rcc.h
+.\objects\main.o: .\libs\inc\conf.h
 .\objects\main.o: .\libs\inc\stm32f10x_rtc.h
 .\objects\main.o: .\libs\inc\stm32f10x_sdio.h
 .\objects\main.o: .\libs\inc\stm32f10x_spi.h

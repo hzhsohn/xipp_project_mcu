@@ -26,6 +26,7 @@
 .\objects\flash_rw.o: .\libs\inc\stm32f10x_iwdg.h
 .\objects\flash_rw.o: .\libs\inc\stm32f10x_pwr.h
 .\objects\flash_rw.o: .\libs\inc\stm32f10x_rcc.h
+.\objects\flash_rw.o: .\libs\inc\conf.h
 .\objects\flash_rw.o: .\libs\inc\stm32f10x_rtc.h
 .\objects\flash_rw.o: .\libs\inc\stm32f10x_sdio.h
 .\objects\flash_rw.o: .\libs\inc\stm32f10x_spi.h

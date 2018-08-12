@@ -929,7 +929,6 @@ void RCC_GetClocksFreq(RCC_ClocksTypeDef* RCC_Clocks)
       RCC_Clocks->SYSCLK_Frequency = HSE_VALUE;
       break;
     case 0x08:  /* PLL used as system clock */
-
       /* Get PLL clock source and multiplication factor ----------------------*/
       pllmull = RCC->CFGR & CFGR_PLLMull_Mask;
       pllsource = RCC->CFGR & CFGR_PLLSRC_Mask;

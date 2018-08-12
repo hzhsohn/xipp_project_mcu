@@ -26,6 +26,7 @@
 .\objects\senceact.o: .\libs\inc\stm32f10x_iwdg.h
 .\objects\senceact.o: .\libs\inc\stm32f10x_pwr.h
 .\objects\senceact.o: .\libs\inc\stm32f10x_rcc.h
+.\objects\senceact.o: .\libs\inc\conf.h
 .\objects\senceact.o: .\libs\inc\stm32f10x_rtc.h
 .\objects\senceact.o: .\libs\inc\stm32f10x_sdio.h
 .\objects\senceact.o: .\libs\inc\stm32f10x_spi.h
