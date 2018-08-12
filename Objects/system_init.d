@@ -36,7 +36,6 @@
 .\objects\system_init.o: .\dev\BeeSpeaker_Diver.h
 .\objects\system_init.o: .\dev\Stm32F1_Timer3.h
 .\objects\system_init.o: .\dev\TouchKey_Diver.h
-.\objects\system_init.o: .\dev\AT24C02_Diver.h
 .\objects\system_init.o: .\dev\STM32_Delay.h
 .\objects\system_init.o: .\dev\Relay_Diver.h
 .\objects\system_init.o: .\dev\Sensor.h

@@ -49,3 +49,4 @@
 .\objects\main.o: .\dev\ds18b20_1.h
 .\objects\main.o: .\app\SenceAct.h
 .\objects\main.o: .\dev\watchdog.h
+.\objects\main.o: user\flash_rw.h

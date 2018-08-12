@@ -14,6 +14,7 @@
 #include "ds18b20_1.h"
 #include "SenceAct.h"
 #include "watchdog.h"
+#include "flash_rw.h"
 
 //
 extern u8_t kk,kk2;
@@ -295,22 +296,33 @@ int main(void)
 	
 	//-------------------------------
 	//startup system delay-----------
-	LED1_ON;
 	STM32_Delay_ms(2000);
-	g_tmeSetting.pooDelay=1;					  //拉屎后多少秒启动 ,单位分钟
-	g_tmeSetting.xuxuDelay=10;				  //拉屎后多少秒启动 ,单位秒
-	g_tmeSetting.pooFlush=30;					  //屎屎冲洗  ,	单位秒
-	g_tmeSetting.xuxuFlush=10;				  //尿尿冲洗  	单位 秒
-	g_tmeSetting.pooDry=2;      		  //屎屎烘干时间 单位 分钟
-	g_tmeSetting.xuxuDry=1;					  //尿尿烘干时间 单位 分钟
-	g_tmeSetting.pooSterilize=10;			  //屎屎消毒时间 单位 秒
-	g_tmeSetting.xuxuSterilize=10;		  //尿尿消毒时间 单位 秒
-	g_tmeSetting.crotchPressure=13;			//裤档气压 单位 100电压变数
-	g_tmeSetting.bedPressure=13;   			//床垫的气压  单位 100电压变数
-	g_tmeSetting.waterTemperature=38;		//最低水温   			单位摄氏度
-	g_tmeSetting.airTemperature=50;  		//最低烘干温度   	单位摄氏度
-	g_tmeSetting.mpuLeft=30;  					//床陀螺左角度  单位角度
-	g_tmeSetting.mpuRight=30;  					//床陀螺右角度  单位角度
+	//
+	LED1_ON;LED2_ON;LED3_ON;
+	
+	//获取数据
+	FLASH_ReadByte(STARTADDR ,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
+	
+	if(g_tmeSetting.waterTemperature<10 || g_tmeSetting.waterTemperature>70)
+	{
+			g_tmeSetting.pooDelay=1;					  //拉屎后多少秒启动 ,单位分钟
+			g_tmeSetting.xuxuDelay=10;				  //拉屎后多少秒启动 ,单位秒
+			g_tmeSetting.pooFlush=30;					  //屎屎冲洗  ,	单位秒
+			g_tmeSetting.xuxuFlush=10;				  //尿尿冲洗  	单位 秒
+			g_tmeSetting.pooDry=2;      		  //屎屎烘干时间 单位 分钟
+			g_tmeSetting.xuxuDry=1;					  //尿尿烘干时间 单位 分钟
+			g_tmeSetting.pooSterilize=10;			  //屎屎消毒时间 单位 秒
+			g_tmeSetting.xuxuSterilize=10;		  //尿尿消毒时间 单位 秒
+			g_tmeSetting.crotchPressure=13;			//裤档气压 单位 100电压变数
+			g_tmeSetting.bedPressure=13;   			//床垫的气压  单位 100电压变数
+			g_tmeSetting.waterTemperature=38;		//最低水温   			单位摄氏度
+			g_tmeSetting.airTemperature=50;  		//最低烘干温度   	单位摄氏度
+			g_tmeSetting.mpuLeft=30;  					//床陀螺左角度  单位角度
+			g_tmeSetting.mpuRight=30;  					//床陀螺右角度  单位角度
+				
+			FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
+	}
+
 		
 	//-------------------
 	Motor1_do(1);

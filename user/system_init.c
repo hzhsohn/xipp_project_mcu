@@ -2,7 +2,6 @@
 #include "BeeSpeaker_Diver.h"
 #include "Stm32F1_Timer3.h"
 #include "TouchKey_Diver.h"
-#include "AT24C02_Diver.h"
 #include "STM32_Delay.h"
 #include "Relay_Diver.h"
 #include "Sensor.h"

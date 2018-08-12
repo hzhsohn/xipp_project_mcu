@@ -36,3 +36,5 @@
 .\objects\stm32f1_uart1_diver.o: .\user\global.h
 .\objects\stm32f1_uart1_diver.o: .\user\mini-data.h
 .\objects\stm32f1_uart1_diver.o: .\app\SenceAct.h
+.\objects\stm32f1_uart1_diver.o: .\user\flash_rw.h
+.\objects\stm32f1_uart1_diver.o: .\dev\STM32_Delay.h

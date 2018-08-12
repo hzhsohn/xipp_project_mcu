@@ -392,6 +392,11 @@
               <FileType>1</FileType>
               <FilePath>.\user\mini-data.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_rw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\user\flash_rw.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -427,6 +432,11 @@
               <FileType>1</FileType>
               <FilePath>.\libs\src\stm32f10x_adc.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f10x_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libs\src\stm32f10x_flash.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -446,11 +456,6 @@
               <FileName>Stm32F1_Timer3.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\dev\Stm32F1_Timer3.c</FilePath>
-            </File>
-            <File>
-              <FileName>AT24C02_Diver.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\dev\AT24C02_Diver.c</FilePath>
             </File>
             <File>
               <FileName>STM32_Delay.c</FileName>

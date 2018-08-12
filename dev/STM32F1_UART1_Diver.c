@@ -1,6 +1,7 @@
 #include "Stm32f1_uart1_diver.h"
 #include "mini-data.h"
 #include "SenceAct.h"
+#include "flash_rw.h"
 
 //****************************************************************************
 //*函数功能：
@@ -149,6 +150,7 @@ void USART1_IRQHandler(void)
 											{
 												pstr[i]=(char)g_ocCmd.parameter[1+i];
 											}
+											FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
 									}
 										break;
 									case 0xA3: //中断当前
