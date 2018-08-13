@@ -172,59 +172,52 @@
           <Name>UL2CM3(-S0 -C0 -P0 )  -FN1 -FC1000 -FD20000000 -FF0STM32F10x_CL -FL080000 -FS08000000 -FP0($$Device:STM32F105VC$Flash\STM32F10x_CL.FLM)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>13</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134224370</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\work\澶栧寘\鑱氬痉\xipp_project_mcu\dev\STM32_Delay.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\xipp\dev/STM32_Delay.c\13</Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <WatchWindow1>
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>cbuf</ItemText>
+          <ItemText>rTrueWaterTemp,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ezhCleanSence1</ItemText>
+          <ItemText>rGasTemperature,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>rTrueWaterTemp</ItemText>
+          <ItemText>rTruePressure1,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>rGasTemperature</ItemText>
+          <ItemText>rTruePressure2,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>rTruePressure1,0x0A</ItemText>
+          <ItemText>g_tmeSetting,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>rTruePressure2,0x0A</ItemText>
+          <ItemText>pdxbPooPoo</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>RCC-&gt;CFGR</ItemText>
+          <ItemText>pdxbXuXu</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>monLimitState1</ItemText>
+        </Ww>
+        <Ww>
+          <count>8</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>monLimitState2</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow2>

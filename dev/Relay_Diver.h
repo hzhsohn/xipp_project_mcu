@@ -87,6 +87,9 @@
 #define LED3_ON 		GPIO_SetBits(GPIOE , GPIO_Pin_15)
 #define LED3_RE 		GPIO_WriteBit(GPIOE , GPIO_Pin_15,(BitAction)(1-GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_15)));
 
+//
+void POWER_Configuration(void);
+void VOLUME_Configuration(void);
 void LED_Configuration(void);
 void Relay_Init(void);
 

@@ -27,14 +27,14 @@ Project File Date:  08/12/2018
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling STM32_Delay.c...
-.\libs\inc\conf.h(6): warning:  #47-D: incompatible redefinition of macro "HSE_VALUE" (declared at line 122 of "D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h")
-  #define HSE_VALUE 8000000
+compiling main.c...
 .\libs\inc\conf.h(8): warning:  #1-D: last line of file ends without a newline
   #endif 
-dev\STM32_Delay.c: 2 warnings, 0 errors
+user\main.c(274): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8_t *"
+  	STM32F1_UART1SendDataS((char*)"start",6);
+user\main.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=22996 RO-data=368 RW-data=248 ZI-data=1856  
+Program Size: Code=23728 RO-data=368 RW-data=264 ZI-data=1856  
 ".\Objects\xipp.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>

@@ -91,8 +91,49 @@ void Relay_Init(void)
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
   GPIO_Init(RELAY13_GPIO, &GPIO_MyStruct);
 	RELAY13_STATE(LOW);
+	
 
 }
+
+
+void POWER_Configuration(void)
+{
+		GPIO_InitTypeDef GPIO_MyStruct;
+	
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE,ENABLE);
+
+		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_2;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+		GPIO_Init(GPIOE, &GPIO_MyStruct);
+		GPIO_SetBits(GPIOE,GPIO_Pin_2);
+	
+		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_3;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+		GPIO_Init(GPIOE, &GPIO_MyStruct);
+		GPIO_SetBits(GPIOE,GPIO_Pin_3);
+}
+
+void VOLUME_Configuration(void)
+{
+		GPIO_InitTypeDef GPIO_MyStruct;
+	
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
+
+		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_4;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+		GPIO_Init(GPIOB, &GPIO_MyStruct);
+		GPIO_ResetBits(GPIOB,GPIO_Pin_4);
+	
+		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_5;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+		GPIO_Init(GPIOB, &GPIO_MyStruct);
+		GPIO_SetBits(GPIOB,GPIO_Pin_5);
+}
+
 
 void LED_Configuration(void)
 {
@@ -139,98 +180,98 @@ void RelayTest()
 	RELAY13_STATE(0);
 	//-------------------------------------------------
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY1_STATE(1); 						//水加热
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY2_STATE(1); 							//气加热
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY3_STATE(1); 						//污水满 
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY4_STATE(1); 				 			 		//抽水机
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY5_STATE(1); 	 					//净化处理
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY6_STATE(1); 						//杀菌
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY7_STATE(1); 						//小便清洗转换器
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY8_STATE(1); 				//一坨屎清洗转换
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY9_STATE(1); 				 					//抽吸机
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY10_STATE(1);						 					//烘干
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY11_STATE(1); 										//吹风转换
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY12_STATE(1); 		 					//充气转换裤子
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY13_STATE(1); 						//气体转换床垫
 	tmeCal=0;
-	while(tmeCal<3600000)
+	while(tmeCal<1600000)
 	{
 		tmeCal++;
 	}

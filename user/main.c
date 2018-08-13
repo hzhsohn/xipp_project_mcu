@@ -67,19 +67,19 @@ unsigned char g_cCleanCurrentSence=0;
 int isOpenDry=0;
 
 
-#define _unit1(x) 							RELAY1_STATE(!x)		//小便转换
-#define _unit2(x) 							RELAY2_STATE(!x)		//大便转换
-#define _unit3(x) 							RELAY3_STATE(!x)		//床气转换
-#define _unit4(x) 		 					RELAY4_STATE(!x)		//裤子气转机
-#define _unit5(x) 							RELAY5_STATE(!x)		//加热气转换
-#define _unit6(x) 							RELAY6_STATE(!x)		//气加热
-#define _unit7(x) 							RELAY7_STATE(!x)		//抽吸机
-#define _unit8(x) 				 			RELAY8_STATE(!x) 		//抽水机
-#define _unit9(x) 							RELAY9_STATE(!x)		//杀菌发生器
-#define _unit10(x) 				 			RELAY10_STATE(!x)		//吹气
-#define _unit11(x)							RELAY11_STATE(!x) 	//水加热
-#define _unit12(x) 	 						RELAY12_STATE(!x)		//净化机
-#define _unit13(x) 							RELAY13_STATE(!x)		//杀菌气转换
+#define _unit1(x) 							RELAY1_STATE(x)		//小便转换
+#define _unit2(x) 							RELAY2_STATE(x)		//大便转换
+#define _unit3(x) 							RELAY3_STATE(x)		//床气转换
+#define _unit4(x) 		 					RELAY4_STATE(x)		//裤子气转机
+#define _unit5(x) 							RELAY5_STATE(x)		//加热气转换
+#define _unit6(x) 							RELAY6_STATE(x)		//气加热
+#define _unit7(x) 							RELAY7_STATE(x)		//抽吸机
+#define _unit8(x) 				 			RELAY8_STATE(x) 		//抽水机
+#define _unit9(x) 							RELAY9_STATE(x)		//杀菌发生器
+#define _unit10(x) 				 			RELAY10_STATE(x)		//吹气
+#define _unit11(x)							RELAY11_STATE(x) 	//水加热
+#define _unit12(x) 	 						RELAY12_STATE(x)		//净化机
+#define _unit13(x) 							RELAY13_STATE(x)		//杀菌气转换
 
 //
 #define udoDry(x)						 			_unit5(x);_unit6(x);_unit10(x);isOpenDry=x		//烘干程序
@@ -121,6 +121,8 @@ u16_t rTruePressure1=0,rTruePressure2=0;
 //屎屎尿尿的防抖动
 int rPoopoDD=0;
 int rXuxuDD=0;
+int pdxbPooPoo;
+int pdxbXuXu;
 
 //脉博
 unsigned char cHeartJump=0;
@@ -133,20 +135,22 @@ char bSewageSuitable=0;
 //时间调度值
 extern TagTimeingSetting g_tmeSetting;
 
-//中断运行
+//中断运行chart
 int isCleanRuning=0;
 int ppxxStep=0;
 
 //摄像头电机
 int xiiiLimit=100;
-int xiii=0;
-int xiii2=0;
+int xiii=0xFFFF;
+int xiii2=0xFFFF;
 int Motor1_do_step=0;
 int Motor2_do_step=0;
 int motor1_p_or_n=0;
 int motor2_p_or_n=0;
 void sceMotor1_do(void);
 void sceMotor2_do(void);
+int monLimitState1;
+int monLimitState2;
 
 ////////////////////////////////////////////////////////////////
 
@@ -267,34 +271,15 @@ int main(void)
 {
 	Code_Init();
 	
-	STM32F1_UART1SendDataS("start",6);
-
-	/*
-	//测试逻辑
-	LED1_ON;
-	LED1_OFF;
+	STM32F1_UART1SendDataS((char*)"start",6);
+	
+	//测试继电子器逻辑	
 	allOutClose();
 	RelayTest();
 	allOutClose();
-	*/
+	
 	//看门狗
 	//watchdog_init();
-	
-	//allOutClose();
-	//RELAY1_STATE(1);
-	//RELAY2_STATE(1);
-	//RELAY4_STATE(1);
-	//RELAY5_STATE(1);
-	//RELAY6_STATE(1);
-	//RELAY7_STATE(1);
-	//RELAY8_STATE(1);
-	//RELAY9_STATE(1);
-	//RELAY10_STATE(1);
-	//RELAY11_STATE(1);
-	//RELAY12_STATE(1);
-	//RELAY13_STATE(1);
-	 
-	//RELAY3_STATE(1);//
 	allOutClose();
 	
 	//-------------------------------
@@ -328,10 +313,10 @@ int main(void)
 
 		
 	//-------------------
-	Motor1_do(1);
-	
 	while(1)
 	{
+		pdxbPooPoo=dxbPooPoo;
+		pdxbXuXu=dxbXuXu;
 		//看门狗
 		//watchdog_action();
 		//
@@ -403,50 +388,53 @@ int main(void)
 		}	
 		//------------------------------------------------------------------
 		//检测有无尿拉下来		
-		if(rWaterTemperature>=g_tmeSetting.waterTemperature*10) //限制如果水温不够不操作
-		if(dxbXuXu)
+		if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //限制如果水温不够不操作
 		{
-			rXuxuDD++;
-			if(rXuxuDD>2000)
-			{
-					if(0==g_cCleanCurrentSence && g_isAutomation)
+					if(dxbXuXu)
 					{
-						aurtEventBtn(0x50);
-						g_cCleanCurrentSence=ezhCleanSence1;
-						isCleanRuning=1;
+						rXuxuDD++;
+						if(rXuxuDD>2000)
+						{
+								if(0==g_cCleanCurrentSence && g_isAutomation)
+								{
+									aurtEventBtn(0x50);
+									g_cCleanCurrentSence=ezhCleanSence1;
+									isCleanRuning=1;
+								}
+								rXuxuDD=0;
+						}
 					}
-					rXuxuDD=0;
-			}
+					else
+					{
+							rXuxuDD=0;
+					}
 		}
-		else
-		{
-				rXuxuDD=0;
-		}
-
 		//------------------------------------------------------------------
 		//检测有没有屎掉下来
-		if(rWaterTemperature>=g_tmeSetting.waterTemperature*10)  //限制如果水温不够不操作
-		if(dxbPooPoo)
+		if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10)  //限制如果水温不够不操作
 		{
-			rPoopoDD++;
-			if(rPoopoDD>2000)
-			{
-					if(0==g_cCleanCurrentSence && g_isAutomation)//场景执行中
+					if(dxbPooPoo)
 					{
-						aurtEventBtn(0x51);
-						g_cCleanCurrentSence=ezhCleanSence2;
-						isCleanRuning=1;
+						rPoopoDD++;
+						if(rPoopoDD>2000)
+						{
+								if(0==g_cCleanCurrentSence && g_isAutomation)//场景执行中
+								{
+									aurtEventBtn(0x51);
+									g_cCleanCurrentSence=ezhCleanSence2;
+									isCleanRuning=1;
+								}
+								rPoopoDD=0;
+						}
 					}
-					rPoopoDD=0;
-			}
-		}
-		else
-		{
-			rPoopoDD=0;
+					else
+					{
+						rPoopoDD=0;
+					}
 		}
 
 		//---------------------//
-		if(kk>=10 && xiii>=xiiiLimit && xiii>=xiiiLimit) //限制0.1秒执行一次,且步进电机不能有动作
+		if(kk>=10 && xiii>=xiiiLimit && xiii2>=xiiiLimit) //限制0.1秒执行一次,且步进电机不能有动作
 		{
 					//---------------------//
 					//陀螺任务,做翻身检测,不知道有啥个伦用
@@ -643,8 +631,7 @@ int main(void)
 		if(kk_1ms)
 		{
 					LitteSenceRun();
-					kk_1ms=0;
-			
+					kk_1ms=0;			
 					//
 					if(g_cCleanCurrentSence)
 					{LED1_RE;LED2_RE;LED3_RE;}
@@ -1299,9 +1286,11 @@ void Motor2_do(int p_or_n)
 }
 	
 void sceMotor1_do(void)
-{		
+{				
 		static int dododyes=70;
 		static int nCalca=0;
+	
+		monLimitState1=MOTOR_LIMIT_1_STATE();
 	  if(xiii<xiiiLimit)
 		{
 						if(motor1_p_or_n)
@@ -1549,7 +1538,9 @@ void sceMotor2_do(void)
 {
 	static int dododyes=70;
 	static int nCalca=0;
-	if(xiii<xiiiLimit)
+	
+	monLimitState2=MOTOR_LIMIT_2_STATE();
+	if(xiii2<xiiiLimit)
 	{
 			if(motor2_p_or_n)
 			{
@@ -1785,9 +1776,9 @@ void sceMotor2_do(void)
 	else
 	{
 				//关掉线圈套的任何通电行为
-				MOTOR1_A_STATE(0);
-				MOTOR1_B_STATE(0);
-				MOTOR1_C_STATE(0);
-				MOTOR1_D_STATE(0);
+				MOTOR2_A_STATE(0);
+				MOTOR2_B_STATE(0);
+				MOTOR2_C_STATE(0);
+				MOTOR2_D_STATE(0);
 	}
 }

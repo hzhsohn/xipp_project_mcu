@@ -29,7 +29,9 @@ void Code_Init(void)
 		STM32F1_UART2_Init(230400);
 		STM32F1_UART3_Init(115200);
 
+		POWER_Configuration();
 		Relay_Init();
+		VOLUME_Configuration();
 		LED_Configuration();
 		Sensor_Init();
 		TouchKey_Init();

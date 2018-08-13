@@ -100,10 +100,10 @@ void sendTimeCfg()
 
 void USART1_IRQHandler(void)
 {
-    if (USART_GetITStatus(USART3,USART_IT_RXNE)!=RESET)
+    if (USART_GetITStatus(USART1,USART_IT_RXNE)!=RESET)
     {			 
 				u8 uart3Data;
-				uart3Data = USART_ReceiveData(USART3);
+				uart3Data = USART_ReceiveData(USART1);
 				
 			  //周期计数复位
 			  kkUart3count=0;

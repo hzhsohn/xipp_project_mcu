@@ -80,9 +80,9 @@ extern TagTimeingSetting g_tmeSetting;
 //
 void USART3_IRQHandler(void)
 {
-    if (USART_GetITStatus(USART1,USART_IT_RXNE)!=RESET)
+    if (USART_GetITStatus(USART3,USART_IT_RXNE)!=RESET)
     {
-				Re_buf[counter]=USART_ReceiveData(USART1);
+				Re_buf[counter]=USART_ReceiveData(USART3);
 				if(counter==0&&Re_buf[0]!=0x55) return; 
 
 				counter++;				
