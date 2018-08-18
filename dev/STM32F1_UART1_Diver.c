@@ -2,6 +2,7 @@
 #include "mini-data.h"
 #include "SenceAct.h"
 #include "flash_rw.h"
+#include "Motor_Diver.h"
 
 //****************************************************************************
 //*函数功能：
@@ -125,16 +126,19 @@ void USART1_IRQHandler(void)
 							  switch(g_ocCmd.parameter[0])
 								{
 									case 0x90:
-											Motor1_do(0);
-										break;
-									case 0x91:
 											Motor1_do(1);
 										break;
+									case 0x91:
+											Motor1_do(2);
+										break;
 									case 0x92:
-											Motor2_do(0);
+											Motor2_do(1);
 										break;
 									case 0x93:
-											Motor2_do(1);
+											Motor2_do(2);
+										break;
+									case 0x94:				//演示模式
+											Motor_demo();
 										break;
 									case 0xA0: //启用自动化
 											g_isAutomation=g_ocCmd.parameter[1]?1:0;

@@ -76,6 +76,7 @@ unsigned char Re_buf[11],counter=0;
 float _mpu_a[3],_mpu_w[3],_mpu_angle[3],_mpu_T;
 extern int g_nMPU_DO;
 extern TagTimeingSetting g_tmeSetting;
+unsigned char jiaodu[2];
 
 //
 void USART3_IRQHandler(void)
@@ -109,6 +110,10 @@ void USART3_IRQHandler(void)
 							_mpu_angle[1] = (short)(Re_buf [5]<<8| Re_buf [4])/32768.0*180;
 							_mpu_angle[2] = (short)(Re_buf [7]<<8| Re_buf [6])/32768.0*180;
 							_mpu_T = (short)(Re_buf [9]<<8| Re_buf [8])/340.0+36.25;
+						
+							jiaodu[0]=Re_buf [4];
+							jiaodu[1]=Re_buf [5];
+						
 							if(_mpu_angle[1]<(-g_tmeSetting.mpuLeft))
 							{g_nMPU_DO=1;}
 							else

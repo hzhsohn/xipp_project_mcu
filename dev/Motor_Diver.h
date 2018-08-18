@@ -1,6 +1,13 @@
 #ifndef __MOTOR_DIVER_H_
 #include "system_init.h"
 
+void sceMotor1_do(void);
+void sceMotor2_do(void);
+
+void Motor1_do(int p_or_n);
+void Motor2_do(int p_or_n);
+void Motor_demo(void);
+
 /*管脚定义*/
 #define MOTOR1_A_GPIO 	GPIOB
 #define MOTOR1_A_PIN  	GPIO_Pin_1
@@ -31,14 +38,20 @@
 #define MOTOR2_D_STATE(x) (x)>0?GPIO_SetBits(MOTOR2_D_GPIO,MOTOR2_D_PIN):GPIO_ResetBits(MOTOR2_D_GPIO,MOTOR2_D_PIN)
 
 //输入
-#define MOTOR1_LIMIT_GPIO 	GPIOA
-#define MOTOR1_LIMIT_PIN  	GPIO_Pin_0
-#define MOTOR2_LIMIT_GPIO 	GPIOA
-#define MOTOR2_LIMIT_PIN  	GPIO_Pin_1
+#define MOTOR1_L_LIMIT_GPIO 	GPIOA
+#define MOTOR1_L_LIMIT_PIN  	GPIO_Pin_0
+#define MOTOR1_R_LIMIT_GPIO 	GPIOA
+#define MOTOR1_R_LIMIT_PIN  	GPIO_Pin_1
 
-#define MOTOR_LIMIT_1_STATE() 							GPIO_ReadInputDataBit(MOTOR1_LIMIT_GPIO,MOTOR1_LIMIT_PIN)
-#define MOTOR_LIMIT_2_STATE() 							GPIO_ReadInputDataBit(MOTOR2_LIMIT_GPIO,MOTOR2_LIMIT_PIN)
+#define MOTOR2_L_LIMIT_GPIO 	GPIOD
+#define MOTOR2_L_LIMIT_PIN  	GPIO_Pin_8
+#define MOTOR2_R_LIMIT_GPIO 	GPIOD
+#define MOTOR2_R_LIMIT_PIN  	GPIO_Pin_9
 
+#define MOTOR1_L_LIMIT_STATE() 							GPIO_ReadInputDataBit(MOTOR1_L_LIMIT_GPIO,MOTOR1_L_LIMIT_PIN)
+#define MOTOR1_R_LIMIT_STATE() 							GPIO_ReadInputDataBit(MOTOR1_R_LIMIT_GPIO,MOTOR1_R_LIMIT_PIN)
+#define MOTOR2_L_LIMIT_STATE() 							GPIO_ReadInputDataBit(MOTOR2_L_LIMIT_GPIO,MOTOR2_L_LIMIT_PIN)
+#define MOTOR2_R_LIMIT_STATE() 							GPIO_ReadInputDataBit(MOTOR2_R_LIMIT_GPIO,MOTOR2_R_LIMIT_PIN)
 
 void Motor_Init(void);
 void Motor1_do(int p_or_n);
