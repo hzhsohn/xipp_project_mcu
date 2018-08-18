@@ -274,9 +274,9 @@ int main(void)
 	STM32F1_UART1SendDataS((char*)"start",6);
 	
 	//测试继电子器逻辑	
-	allOutClose();
-	RelayTest();
-	allOutClose();
+	//allOutClose();
+//	RelayTest();
+//	allOutClose();
 	
 	//看门狗
 	//watchdog_init();
@@ -1208,6 +1208,7 @@ void litteSenceRunAnMo(void)
 							aurtEventUnitSence(ezhCleanSence7,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
+							ANMO1_STATE(1);
 						case 1:
 							if(nCalca>DEF_TIME_MS_DELAY*10)
 							{
@@ -1221,9 +1222,59 @@ void litteSenceRunAnMo(void)
 									nCalca++;
 							}
 							break;
-						case 2:							
+						case 2:	
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//下一步
+							ANMO1_STATE(0);
+							break;
+						case 3:
+							if(nCalca>DEF_TIME_MS_DELAY*2000)
+							{
+									nCalca=0;
+									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
+							}
+							else
+							{
+									if(0==isCleanRuning)//中断
+									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
+									nCalca++;
+							}
+							break;
+						case 4:
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//下一步
+							ANMO2_STATE(1);
+							break;
+						case 5:
+							if(nCalca>DEF_TIME_MS_DELAY*10)
+							{
+									nCalca=0;
+									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
+							}
+							else
+							{
+									if(0==isCleanRuning)//中断
+									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
+									nCalca++;
+							}
+							break;
+						case 6:
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//下一步
+							ANMO2_STATE(0);
+							break;
+						case 7:
+							if(nCalca>DEF_TIME_MS_DELAY*3000)
+							{
+									nCalca=0;
+									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
+							}
+							else
+							{
+									if(0==isCleanRuning)//中断
+									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
+									nCalca++;
+							}
 							break;
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence7,0);

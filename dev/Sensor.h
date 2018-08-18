@@ -2,14 +2,15 @@
 #define __Sensor_H_
 
 #include "system_init.h"
+
 //污水桶满
-#define SENSOR1_GPIO 	                	GPIOA
-#define SENSOR1_PIN  			      	    	GPIO_Pin_3
+#define SENSOR1_GPIO 	                	GPIOE
+#define SENSOR1_PIN  			      	    	GPIO_Pin_5
 //清水低
 #define SENSOR2_GPIO 	                	GPIOA
 #define SENSOR2_PIN  			      	    	GPIO_Pin_4
 //污水桶到位
-#define SENSOR3_GPIO 	                	GPIOE
+#define SENSOR3_GPIO 	                	GPIOD
 #define SENSOR3_PIN  			      	    	GPIO_Pin_5
 //大便
 #define SENSOR4_GPIO 	                	GPIOE
@@ -17,6 +18,7 @@
 //小便
 #define SENSOR5_GPIO 	                	GPIOE
 #define SENSOR5_PIN  			      	    	GPIO_Pin_6
+
 
 //红外遥控器
 //------------PC9

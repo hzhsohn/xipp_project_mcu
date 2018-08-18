@@ -2,16 +2,15 @@
 #define __TOUCHKEY_DIVER_H_
 #include "system_init.h"
 
-#define TOUCHKEY_NONE_VALUE                     0xFF
-#define TOUCHKEY_TURNON_VALUE										0xFE
-#define TOUCHKEY_BUTTON1_VALUE									0xFD
-#define TOUCHKEY_BUTTON2_VALUE									0xFB
-#define TOUCHKEY_BUTTON3_VALUE									0xF7
-#define TOUCHKEY_BUTTON4_VALUE									0xEF
-#define TOUCHKEY_BUTTON5_VALUE									0xDF
-#define TOUCHKEY_BUTTON6_VALUE									0xBF
-#define TOUCHKEY_BUTTON7_VALUE									0x7F
-#define TOUCHKEY_BUTTON8_VALUE									0xAF
+#define TOUCHKEY_NONE_VALUE                     0x00
+#define TOUCHKEY_BUTTON1_VALUE									0x01
+#define TOUCHKEY_BUTTON2_VALUE									0x02
+#define TOUCHKEY_BUTTON3_VALUE									0x04
+#define TOUCHKEY_BUTTON4_VALUE									0x08
+#define TOUCHKEY_BUTTON5_VALUE									0x10
+#define TOUCHKEY_BUTTON6_VALUE									0x20
+#define TOUCHKEY_BUTTON7_VALUE									0x40
+#define TOUCHKEY_BUTTON8_VALUE									0x80
 
 #define TOUCHKEY_FLASCHECK_10MS                 30
 #define TOUCHKEY_SHORTDOWN_10MS                 50
@@ -30,7 +29,7 @@
 #define TOUCHKEY_3_PIN  				  			GPIO_Pin_5
 
 #define TOUCHKEY_4_GPIO 				    		GPIOC
-#define TOUCHKEY_4_PIN  				    		GPIO_Pin_4
+#define TOUCHKEY_4_PIN  				    		GPIO_Pin_0
 
 #define TOUCHKEY_5_GPIO 								GPIOA
 #define TOUCHKEY_5_PIN  								GPIO_Pin_7
@@ -39,7 +38,7 @@
 #define TOUCHKEY_6_PIN  								GPIO_Pin_6
 
 #define TOUCHKEY_7_GPIO 								GPIOC
-#define TOUCHKEY_7_PIN  								GPIO_Pin_0
+#define TOUCHKEY_7_PIN  								GPIO_Pin_4
 
 #define TOUCHKEY_8_GPIO 								GPIOE
 #define TOUCHKEY_8_PIN  								GPIO_Pin_1

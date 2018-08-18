@@ -11,17 +11,6 @@ Func_Staus bButton6=_Disable;
 Func_Staus bButton7=_Disable;
 Func_Staus bButton8=_Disable;
 
-#define TOUCHKEY_NONE_VALUE                     0xFF
-#define TOUCHKEY_TURNON_VALUE										0xFE
-
-#define TOUCHKEY_BUTTON1_VALUE									0xFD
-#define TOUCHKEY_BUTTON2_VALUE									0xFB
-#define TOUCHKEY_BUTTON3_VALUE									0xF7
-#define TOUCHKEY_BUTTON4_VALUE									0xEF
-#define TOUCHKEY_BUTTON5_VALUE									0xDF
-#define TOUCHKEY_BUTTON6_VALUE									0xBF
-#define TOUCHKEY_BUTTON7_VALUE									0x7F
-
 /*--------------------------------------------------
 //
 //-------------------------------------------------*/
@@ -82,54 +71,39 @@ void TouchKey_Init(void)
 //-------------------------------------------------*/
 u8_t TouchKey_Collect(void)
 {
-  u8_t nKeyBuff=0xfe;
-	if (TOUCHKEY_8_STATE()!=RESET)
+  u8_t nKeyBuff=0;
+	if (TOUCHKEY_1_STATE()==RESET)
 	{
-		nKeyBuff=nKeyBuff|0x01;
+		nKeyBuff|=0x01;
 	}
-	nKeyBuff=nKeyBuff<<1;
-	
-	if (TOUCHKEY_7_STATE()!=RESET)
+	if (TOUCHKEY_2_STATE()==RESET)
 	{
-		nKeyBuff=nKeyBuff|0x01;
+		nKeyBuff|=0x02;
 	}
-	nKeyBuff=nKeyBuff<<1;
-
-	if (TOUCHKEY_6_STATE()!=RESET)
+	if (TOUCHKEY_3_STATE()==RESET)
 	{
-		nKeyBuff=nKeyBuff|0x01;
+		nKeyBuff|=0x04;
 	}
-	nKeyBuff=nKeyBuff<<1;
-
-	if (TOUCHKEY_5_STATE()!=RESET)
+	if (TOUCHKEY_4_STATE()==RESET)
 	{
-		nKeyBuff=nKeyBuff|0x01;
+		nKeyBuff|=0x08;
 	}
-	nKeyBuff=nKeyBuff<<1;
-	//
-	if (TOUCHKEY_4_STATE()!=RESET)
+	if (TOUCHKEY_5_STATE()==RESET)
 	{
-		nKeyBuff=nKeyBuff|0x01;
+		nKeyBuff|=0x10;
 	}
-	nKeyBuff=nKeyBuff<<1;
-	
-	if (TOUCHKEY_3_STATE()!=RESET)
+	if (TOUCHKEY_6_STATE()==RESET)
 	{
-		nKeyBuff=nKeyBuff|0x01;
+		nKeyBuff|=0x20;
 	}
-	nKeyBuff=nKeyBuff<<1;
-	
-	if (TOUCHKEY_2_STATE()!=RESET)
+	if (TOUCHKEY_7_STATE()==RESET)
 	{
-		nKeyBuff=nKeyBuff|0x01;
+		nKeyBuff|=0x40;
 	}
-	nKeyBuff=nKeyBuff<<1;
-	
-	if (TOUCHKEY_1_STATE()!=RESET)
+	if (TOUCHKEY_8_STATE()==RESET)
 	{
-		nKeyBuff=nKeyBuff|0x01;
+		nKeyBuff|=0x80;
 	}
-	nKeyBuff=nKeyBuff<<1;
 	
 	return nKeyBuff;
 }
@@ -140,7 +114,7 @@ void TouchKey_Scan(void)
 {
 	u8_t nKeyBuff;
 	nKeyBuff=TouchKey_Collect();
-	if (nKeyBuff==0xff)
+	if (nKeyBuff==0x00)
 	{
 		switch (nTouchKey)
 		{

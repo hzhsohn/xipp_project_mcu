@@ -219,6 +219,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>monLimitState2</ItemText>
         </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>_mpu_angle</ItemText>
+        </Ww>
       </WatchWindow1>
       <MemoryWindow2>
         <Mm>

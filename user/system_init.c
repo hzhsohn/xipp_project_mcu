@@ -32,6 +32,7 @@ void Code_Init(void)
 		POWER_Configuration();
 		Relay_Init();
 		VOLUME_Configuration();
+		ANMO_Configuration();
 		LED_Configuration();
 		Sensor_Init();
 		TouchKey_Init();

@@ -87,11 +87,14 @@
 #define LED3_ON 		GPIO_SetBits(GPIOE , GPIO_Pin_15)
 #define LED3_RE 		GPIO_WriteBit(GPIOE , GPIO_Pin_15,(BitAction)(1-GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_15)));
 
+#define ANMO1_STATE(x) (!x)>0?GPIO_SetBits(GPIOB,GPIO_Pin_6):GPIO_ResetBits(GPIOB,GPIO_Pin_6)
+#define ANMO2_STATE(x) (!x)>0?GPIO_SetBits(GPIOB,GPIO_Pin_7):GPIO_ResetBits(GPIOB,GPIO_Pin_7)
 //
 void POWER_Configuration(void);
 void VOLUME_Configuration(void);
 void LED_Configuration(void);
 void Relay_Init(void);
+void ANMO_Configuration(void);
 
 //¼ÌµçÆ÷Êä³ö²âÊÔ
 void RelayTest(void);//
