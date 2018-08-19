@@ -3,10 +3,9 @@
 
 void sceMotor1_do(void);
 void sceMotor2_do(void);
+void sceMotorDemo_do(void);
 
-void Motor1_do(int p_or_n);
-void Motor2_do(int p_or_n);
-void Motor_demo(void);
+
 
 /*π‹Ω≈∂®“Â*/
 #define MOTOR1_A_GPIO 	GPIOB
@@ -54,8 +53,17 @@ void Motor_demo(void);
 #define MOTOR2_R_LIMIT_STATE() 							GPIO_ReadInputDataBit(MOTOR2_R_LIMIT_GPIO,MOTOR2_R_LIMIT_PIN)
 
 void Motor_Init(void);
+
+void Motor1_do_intpr_cmd(int p_or_n);
+void Motor2_do_intpr_cmd(int p_or_n);
+
 void Motor1_do(int p_or_n);
 void Motor2_do(int p_or_n);
+
+void Motor_demo(void);
+
+void Mon2blockTurnLeft(void);
+void Mon2blockTurnRight(void);
 
 #define __MOTOR_DIVER_H_
 #endif

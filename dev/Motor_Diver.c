@@ -13,8 +13,9 @@ extern int monLimitState1L;
 extern int monLimitState1R;
 extern int monLimitState2L;
 extern int monLimitState2R;
-
-
+//
+int motor_demo_do=0;
+int current_demo_step=0;
 
 void Motor_Init(void)
 {
@@ -92,521 +93,1342 @@ void Motor_Init(void)
   GPIO_Init(MOTOR2_R_LIMIT_GPIO, &GPIO_MyStruct);
 }
 
+void Mon2blockTurnLeft(void)
+{
+			int dododyes=90;
+			int nCalca=0;
+			int Motor2_block_step=0;
+			int i=0;
+			for(i=1;i<=16;i++)
+			{
+					switch(Motor2_block_step)
+					{
+						case 1:
+							nCalca=0;
+							Motor2_block_step++;				
+							MOTOR2_A_STATE(1);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(0);
+							break;
+						case 2:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_block_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 3:
+							nCalca=0;
+							Motor2_block_step++;						
+							MOTOR2_A_STATE(1);
+							MOTOR2_B_STATE(1);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(0);
+							break;
+						case 4:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_block_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 5:
+							nCalca=0;
+							Motor2_block_step++;	
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(1);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(0);						
+							break;
+						case 6:
+							if(nCalca>1000)
+							{ nCalca=0; Motor2_block_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 7:
+							nCalca=0;
+							Motor2_block_step++;
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(1);
+							MOTOR2_C_STATE(1);
+							MOTOR2_D_STATE(0);						
+							break;
+						case 8:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_block_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 9:
+							nCalca=0;
+							Motor2_block_step++;
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(1);
+							MOTOR2_D_STATE(0);
+							break;
+						case 10:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_block_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 11:
+							nCalca=0;
+							Motor2_block_step++;
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(1);
+							MOTOR2_D_STATE(1);
+							break;
+						case 12:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_block_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 13:
+							nCalca=0;
+							Motor2_block_step++;
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(1);
+							break;
+						case 14:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_block_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 15:
+							nCalca=0;
+							Motor2_block_step++;
+							MOTOR2_A_STATE(1);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(1);
+							break;
+						case 16:
+							Motor2_block_step=1;
+							break;
+					}
+		}
+}
+void Mon2blockTurnRight(void)
+{	
+			int dododyes=90;
+			int nCalca=0;
+			int Motor2_block_step=0;
+			int i=0;
+			for(i=1;i<=16;i++)
+			{
+						switch(Motor2_block_step)
+						{
+							case 1:
+								nCalca=0;
+								Motor2_block_step++;						
+			MOTOR2_A_STATE(1);
+			MOTOR2_B_STATE(0);
+			MOTOR2_C_STATE(0);
+			MOTOR2_D_STATE(1);
+								break;
+							case 2:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_block_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 3:
+								nCalca=0;
+								Motor2_block_step++;				
+			MOTOR2_A_STATE(0);
+			MOTOR2_B_STATE(0);
+			MOTOR2_C_STATE(0);
+			MOTOR2_D_STATE(1);
+								break;
+							case 4:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_block_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 5:
+								nCalca=0;
+								Motor2_block_step++;
+			MOTOR2_A_STATE(0);
+			MOTOR2_B_STATE(0);
+			MOTOR2_C_STATE(1);
+			MOTOR2_D_STATE(1);				
+								break;
+							case 6:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_block_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 7:
+								nCalca=0;
+								Motor2_block_step++;
+			MOTOR2_A_STATE(0);
+			MOTOR2_B_STATE(0);
+			MOTOR2_C_STATE(1);
+			MOTOR2_D_STATE(0);				
+								break;
+							case 8:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_block_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 9:
+								nCalca=0;
+								Motor2_block_step++;
+			MOTOR2_A_STATE(0);
+			MOTOR2_B_STATE(1);
+			MOTOR2_C_STATE(1);
+			MOTOR2_D_STATE(0);
+								break;
+							case 10:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_block_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 11:
+								nCalca=0;
+								Motor2_block_step++;
+			MOTOR2_A_STATE(0);
+			MOTOR2_B_STATE(1);
+			MOTOR2_C_STATE(0);
+			MOTOR2_D_STATE(0);
+								break;
+							case 12:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_block_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 13:
+								nCalca=0;
+								Motor2_block_step++;
+			MOTOR2_A_STATE(1);
+			MOTOR2_B_STATE(1);
+			MOTOR2_C_STATE(0);
+			MOTOR2_D_STATE(0);
+								break;
+							case 14:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor2_block_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 15:
+								nCalca=0;
+								Motor2_block_step++;
+			MOTOR2_A_STATE(1);
+			MOTOR2_B_STATE(0);
+			MOTOR2_C_STATE(0);
+			MOTOR2_D_STATE(0);
+								break;
+							case 16:
+								Motor2_block_step=1;
+								break;
+						}
+		}
+}
 
 void sceMotor1_do(void)
 {				
 		static int dododyes=90;
 		static int nCalca=0;
 	
+		if(motor_demo_do)
+		{return;}
+	
 		monLimitState1L=MOTOR1_L_LIMIT_STATE();
 		monLimitState1R=MOTOR1_R_LIMIT_STATE();
-	  if(xiii<xiiiLimit)
-		{
-						xiii++;
-						if(1==motor1_p_or_n && 1==monLimitState1L)
-						{
-									switch(Motor1_do_step)
-									{
-										case 1:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½							
-											MOTOR1_A_STATE(1);
-											MOTOR1_B_STATE(0);
-											MOTOR1_C_STATE(0);
-											MOTOR1_D_STATE(0);
-										case 2:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 3:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½							
-											MOTOR1_A_STATE(1);
-											MOTOR1_B_STATE(1);
-											MOTOR1_C_STATE(0);
-											MOTOR1_D_STATE(0);
-											break;
-										case 4:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 5:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-											MOTOR1_A_STATE(0);
-											MOTOR1_B_STATE(1);
-											MOTOR1_C_STATE(0);
-											MOTOR1_D_STATE(0);						
-											break;
-										case 6:
-											if(nCalca>1000)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 7:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-											MOTOR1_A_STATE(0);
-											MOTOR1_B_STATE(1);
-											MOTOR1_C_STATE(1);
-											MOTOR1_D_STATE(0);						
-											break;
-										case 8:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 9:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-											MOTOR1_A_STATE(0);
-											MOTOR1_B_STATE(0);
-											MOTOR1_C_STATE(1);
-											MOTOR1_D_STATE(0);
-											break;
-										case 10:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 11:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-											MOTOR1_A_STATE(0);
-											MOTOR1_B_STATE(0);
-											MOTOR1_C_STATE(1);
-											MOTOR1_D_STATE(1);
-											break;
-										case 12:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 13:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-											MOTOR1_A_STATE(0);
-											MOTOR1_B_STATE(0);
-											MOTOR1_C_STATE(0);
-											MOTOR1_D_STATE(1);
-											break;
-										case 14:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 15:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-											MOTOR1_A_STATE(1);
-											MOTOR1_B_STATE(0);
-											MOTOR1_C_STATE(0);
-											MOTOR1_D_STATE(1);
-											break;
-										case 16:
-											Motor1_do_step=1;
-											break;
-									}
 
-						}
-						else if(2==motor1_p_or_n && 1==monLimitState1R)
+		if(1==motor1_p_or_n && 1==monLimitState1L)
+		{
+					if(xiii<xiiiLimit)
+					{
+							xiii++;
+							switch(Motor1_do_step)
+							{
+								case 1:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½							
+									MOTOR1_A_STATE(1);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(0);
+									break;
+								case 2:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 3:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½							
+									MOTOR1_A_STATE(1);
+									MOTOR1_B_STATE(1);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(0);
+									break;
+								case 4:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 5:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(1);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(0);						
+									break;
+								case 6:
+									if(nCalca>1000)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 7:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(1);
+									MOTOR1_C_STATE(1);
+									MOTOR1_D_STATE(0);						
+									break;
+								case 8:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 9:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(1);
+									MOTOR1_D_STATE(0);
+									break;
+								case 10:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 11:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(1);
+									MOTOR1_D_STATE(1);
+									break;
+								case 12:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 13:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(1);
+									break;
+								case 14:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 15:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(1);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(1);
+									break;
+								case 16:
+									Motor1_do_step=1;
+									break;
+							}
+				}
+				else
+				{motor1_p_or_n=0;}
+		}
+		else if(2==motor1_p_or_n && 1==monLimitState1R)
+		{
+				if(xiii<xiiiLimit)
+				{
+						xiii++;
+						switch(Motor1_do_step)
 						{
-									switch(Motor1_do_step)
-									{
-										case 1:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½							
-				MOTOR1_A_STATE(1);
-				MOTOR1_B_STATE(0);
-				MOTOR1_C_STATE(0);
-				MOTOR1_D_STATE(1);
-										case 2:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 3:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½							
-				MOTOR1_A_STATE(0);
-				MOTOR1_B_STATE(0);
-				MOTOR1_C_STATE(0);
-				MOTOR1_D_STATE(1);
-											break;
-										case 4:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 5:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-				MOTOR1_A_STATE(0);
-				MOTOR1_B_STATE(0);
-				MOTOR1_C_STATE(1);
-				MOTOR1_D_STATE(1);				
-											break;
-										case 6:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 7:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-				MOTOR1_A_STATE(0);
-				MOTOR1_B_STATE(0);
-				MOTOR1_C_STATE(1);
-				MOTOR1_D_STATE(0);				
-											break;
-										case 8:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 9:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-				MOTOR1_A_STATE(0);
-				MOTOR1_B_STATE(1);
-				MOTOR1_C_STATE(1);
-				MOTOR1_D_STATE(0);
-											break;
-										case 10:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 11:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-				MOTOR1_A_STATE(0);
-				MOTOR1_B_STATE(1);
-				MOTOR1_C_STATE(0);
-				MOTOR1_D_STATE(0);
-											break;
-										case 12:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 13:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-				MOTOR1_A_STATE(1);
-				MOTOR1_B_STATE(1);
-				MOTOR1_C_STATE(0);
-				MOTOR1_D_STATE(0);
-											break;
-										case 14:
-											if(nCalca>dododyes)
-											{ nCalca=0; Motor1_do_step++; }
-											else
-											{ nCalca++; }
-											break;
-										case 15:
-											nCalca=0;
-											Motor1_do_step++;	//ÏÂÒ»²½
-				MOTOR1_A_STATE(1);
-				MOTOR1_B_STATE(0);
-				MOTOR1_C_STATE(0);
-				MOTOR1_D_STATE(0);
-											break;
-										case 16:
-											Motor1_do_step=1;
-											break;
-									}
+							case 1:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½							
+	MOTOR1_A_STATE(1);
+	MOTOR1_B_STATE(0);
+	MOTOR1_C_STATE(0);
+	MOTOR1_D_STATE(1);
+								break;
+							case 2:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 3:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½							
+	MOTOR1_A_STATE(0);
+	MOTOR1_B_STATE(0);
+	MOTOR1_C_STATE(0);
+	MOTOR1_D_STATE(1);
+								break;
+							case 4:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 5:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(0);
+	MOTOR1_B_STATE(0);
+	MOTOR1_C_STATE(1);
+	MOTOR1_D_STATE(1);				
+								break;
+							case 6:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 7:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(0);
+	MOTOR1_B_STATE(0);
+	MOTOR1_C_STATE(1);
+	MOTOR1_D_STATE(0);				
+								break;
+							case 8:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 9:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(0);
+	MOTOR1_B_STATE(1);
+	MOTOR1_C_STATE(1);
+	MOTOR1_D_STATE(0);
+								break;
+							case 10:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 11:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(0);
+	MOTOR1_B_STATE(1);
+	MOTOR1_C_STATE(0);
+	MOTOR1_D_STATE(0);
+								break;
+							case 12:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 13:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(1);
+	MOTOR1_B_STATE(1);
+	MOTOR1_C_STATE(0);
+	MOTOR1_D_STATE(0);
+								break;
+							case 14:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 15:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(1);
+	MOTOR1_B_STATE(0);
+	MOTOR1_C_STATE(0);
+	MOTOR1_D_STATE(0);
+								break;
+							case 16:
+								Motor1_do_step=1;
+								break;
 						}
-	}
-	else
-	{
-				//¹ØµôÏßÈ¦Ì×µÄÈÎºÎÍ¨µçÐÐÎª
-				MOTOR1_A_STATE(0);
-				MOTOR1_B_STATE(0);
-				MOTOR1_C_STATE(0);
-				MOTOR1_D_STATE(0);
-	}
+				}
+				else
+				{motor1_p_or_n=0;}
+		}
+		else if(3==motor1_p_or_n && 1==monLimitState1L)
+		{
+							switch(Motor1_do_step)
+							{
+								case 1:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½							
+									MOTOR1_A_STATE(1);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(0);
+									break;
+								case 2:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 3:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½							
+									MOTOR1_A_STATE(1);
+									MOTOR1_B_STATE(1);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(0);
+									break;
+								case 4:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 5:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(1);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(0);						
+									break;
+								case 6:
+									if(nCalca>1000)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 7:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(1);
+									MOTOR1_C_STATE(1);
+									MOTOR1_D_STATE(0);						
+									break;
+								case 8:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 9:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(1);
+									MOTOR1_D_STATE(0);
+									break;
+								case 10:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 11:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(1);
+									MOTOR1_D_STATE(1);
+									break;
+								case 12:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 13:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(1);
+									break;
+								case 14:
+									if(nCalca>dododyes)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 15:
+									nCalca=0;
+									Motor1_do_step++;	//ÏÂÒ»²½
+									MOTOR1_A_STATE(1);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(1);
+									break;
+								case 16:
+									Motor1_do_step=1;
+									break;
+							}
+		}
+		else if(4==motor1_p_or_n && 1==monLimitState1R)
+		{
+						switch(Motor1_do_step)
+						{
+							case 1:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½							
+	MOTOR1_A_STATE(1);
+	MOTOR1_B_STATE(0);
+	MOTOR1_C_STATE(0);
+	MOTOR1_D_STATE(1);
+								break;
+							case 2:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 3:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½							
+	MOTOR1_A_STATE(0);
+	MOTOR1_B_STATE(0);
+	MOTOR1_C_STATE(0);
+	MOTOR1_D_STATE(1);
+								break;
+							case 4:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 5:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(0);
+	MOTOR1_B_STATE(0);
+	MOTOR1_C_STATE(1);
+	MOTOR1_D_STATE(1);				
+								break;
+							case 6:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 7:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(0);
+	MOTOR1_B_STATE(0);
+	MOTOR1_C_STATE(1);
+	MOTOR1_D_STATE(0);				
+								break;
+							case 8:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 9:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(0);
+	MOTOR1_B_STATE(1);
+	MOTOR1_C_STATE(1);
+	MOTOR1_D_STATE(0);
+								break;
+							case 10:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 11:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(0);
+	MOTOR1_B_STATE(1);
+	MOTOR1_C_STATE(0);
+	MOTOR1_D_STATE(0);
+								break;
+							case 12:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 13:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(1);
+	MOTOR1_B_STATE(1);
+	MOTOR1_C_STATE(0);
+	MOTOR1_D_STATE(0);
+								break;
+							case 14:
+								if(nCalca>dododyes)
+								{ nCalca=0; Motor1_do_step++; }
+								else
+								{ nCalca++; }
+								break;
+							case 15:
+								nCalca=0;
+								Motor1_do_step++;	//ÏÂÒ»²½
+	MOTOR1_A_STATE(1);
+	MOTOR1_B_STATE(0);
+	MOTOR1_C_STATE(0);
+	MOTOR1_D_STATE(0);
+								break;
+							case 16:
+								Motor1_do_step=1;
+								break;
+						}
+		}
+		else
+		{
+					//¹ØµôÏßÈ¦Ì×µÄÈÎºÎÍ¨µçÐÐÎª
+					MOTOR1_A_STATE(0);
+					MOTOR1_B_STATE(0);
+					MOTOR1_C_STATE(0);
+					MOTOR1_D_STATE(0);
+					motor1_p_or_n=0;
+		}
 }
 
 void sceMotor2_do(void)
 {
-	static int dododyes=90;
-	static int nCalca=0;
+		static int dododyes=90;
+		static int nCalca=0;
 	
-	monLimitState2L=MOTOR2_L_LIMIT_STATE();
-	monLimitState2R=MOTOR2_R_LIMIT_STATE();
-	if(xiii2<xiiiLimit)
-	{
-			xiii2++;
-			if(1==motor2_p_or_n && 1==monLimitState2L)
-			{
-						switch(Motor2_do_step)
-						{
-							case 1:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?							
-								MOTOR2_A_STATE(1);
-								MOTOR2_B_STATE(0);
-								MOTOR2_C_STATE(0);
-								MOTOR2_D_STATE(0);
-							case 2:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 3:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?							
-								MOTOR2_A_STATE(1);
-								MOTOR2_B_STATE(1);
-								MOTOR2_C_STATE(0);
-								MOTOR2_D_STATE(0);
-								break;
-							case 4:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 5:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-								MOTOR2_A_STATE(0);
-								MOTOR2_B_STATE(1);
-								MOTOR2_C_STATE(0);
-								MOTOR2_D_STATE(0);						
-								break;
-							case 6:
-								if(nCalca>1000)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 7:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-								MOTOR2_A_STATE(0);
-								MOTOR2_B_STATE(1);
-								MOTOR2_C_STATE(1);
-								MOTOR2_D_STATE(0);						
-								break;
-							case 8:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 9:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-								MOTOR2_A_STATE(0);
-								MOTOR2_B_STATE(0);
-								MOTOR2_C_STATE(1);
-								MOTOR2_D_STATE(0);
-								break;
-							case 10:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 11:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-								MOTOR2_A_STATE(0);
-								MOTOR2_B_STATE(0);
-								MOTOR2_C_STATE(1);
-								MOTOR2_D_STATE(1);
-								break;
-							case 12:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 13:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-								MOTOR2_A_STATE(0);
-								MOTOR2_B_STATE(0);
-								MOTOR2_C_STATE(0);
-								MOTOR2_D_STATE(1);
-								break;
-							case 14:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 15:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-								MOTOR2_A_STATE(1);
-								MOTOR2_B_STATE(0);
-								MOTOR2_C_STATE(0);
-								MOTOR2_D_STATE(1);
-								break;
-							case 16:
-								Motor2_do_step=1;
-								break;
-						}
+		if(motor_demo_do)
+		{return;}
+		
+		monLimitState2L=MOTOR2_L_LIMIT_STATE();
+		monLimitState2R=MOTOR2_R_LIMIT_STATE();
 
-			}
-			else if(2==motor2_p_or_n && 1==monLimitState2R)
-			{
-						switch(Motor2_do_step)
-						{
-							case 1:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?							
-	MOTOR2_A_STATE(1);
-	MOTOR2_B_STATE(0);
-	MOTOR2_C_STATE(0);
-	MOTOR2_D_STATE(1);
-							case 2:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 3:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?							
-	MOTOR2_A_STATE(0);
-	MOTOR2_B_STATE(0);
-	MOTOR2_C_STATE(0);
-	MOTOR2_D_STATE(1);
-								break;
-							case 4:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 5:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-	MOTOR2_A_STATE(0);
-	MOTOR2_B_STATE(0);
-	MOTOR2_C_STATE(1);
-	MOTOR2_D_STATE(1);				
-								break;
-							case 6:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 7:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-	MOTOR2_A_STATE(0);
-	MOTOR2_B_STATE(0);
-	MOTOR2_C_STATE(1);
-	MOTOR2_D_STATE(0);				
-								break;
-							case 8:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 9:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-	MOTOR2_A_STATE(0);
-	MOTOR2_B_STATE(1);
-	MOTOR2_C_STATE(1);
-	MOTOR2_D_STATE(0);
-								break;
-							case 10:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 11:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-	MOTOR2_A_STATE(0);
-	MOTOR2_B_STATE(1);
-	MOTOR2_C_STATE(0);
-	MOTOR2_D_STATE(0);
-								break;
-							case 12:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 13:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-	MOTOR2_A_STATE(1);
-	MOTOR2_B_STATE(1);
-	MOTOR2_C_STATE(0);
-	MOTOR2_D_STATE(0);
-								break;
-							case 14:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor2_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 15:
-								nCalca=0;
-								Motor2_do_step++;	//??ò?2?
-	MOTOR2_A_STATE(1);
-	MOTOR2_B_STATE(0);
-	MOTOR2_C_STATE(0);
-	MOTOR2_D_STATE(0);
-								break;
-							case 16:
-								Motor2_do_step=1;
-								break;
-						}
-			}
-	}
-	else
-	{
-				//¹ØµôÏßÈ¦Ì×µÄÈÎºÎÍ¨µçÐÐÎª
-				MOTOR2_A_STATE(0);
-				MOTOR2_B_STATE(0);
-				MOTOR2_C_STATE(0);
-				MOTOR2_D_STATE(0);
-	}
+		if(1==motor2_p_or_n && 1==monLimitState2L)
+		{
+				if(xiii2<xiiiLimit)
+				{
+					xiii2++;
+					switch(Motor2_do_step)
+					{
+						case 1:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?							
+							MOTOR2_A_STATE(1);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(0);
+							break;
+						case 2:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 3:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?							
+							MOTOR2_A_STATE(1);
+							MOTOR2_B_STATE(1);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(0);
+							break;
+						case 4:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 5:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(1);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(0);						
+							break;
+						case 6:
+							if(nCalca>1000)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 7:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(1);
+							MOTOR2_C_STATE(1);
+							MOTOR2_D_STATE(0);						
+							break;
+						case 8:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 9:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(1);
+							MOTOR2_D_STATE(0);
+							break;
+						case 10:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 11:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(1);
+							MOTOR2_D_STATE(1);
+							break;
+						case 12:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 13:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(1);
+							break;
+						case 14:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 15:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+							MOTOR2_A_STATE(1);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(1);
+							break;
+						case 16:
+							Motor2_do_step=1;
+							break;
+					}
+				}
+				else
+				{motor2_p_or_n=0;}
+		}
+		else if(2==motor2_p_or_n && 1==monLimitState2R)
+		{
+				if(xiii2<xiiiLimit)
+				{
+						xiii2++;
+					switch(Motor2_do_step)
+					{
+						case 1:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?							
+MOTOR2_A_STATE(1);
+MOTOR2_B_STATE(0);
+MOTOR2_C_STATE(0);
+MOTOR2_D_STATE(1);
+							break;
+						case 2:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 3:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?							
+MOTOR2_A_STATE(0);
+MOTOR2_B_STATE(0);
+MOTOR2_C_STATE(0);
+MOTOR2_D_STATE(1);
+							break;
+						case 4:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 5:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+MOTOR2_A_STATE(0);
+MOTOR2_B_STATE(0);
+MOTOR2_C_STATE(1);
+MOTOR2_D_STATE(1);				
+							break;
+						case 6:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 7:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+MOTOR2_A_STATE(0);
+MOTOR2_B_STATE(0);
+MOTOR2_C_STATE(1);
+MOTOR2_D_STATE(0);				
+							break;
+						case 8:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 9:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+MOTOR2_A_STATE(0);
+MOTOR2_B_STATE(1);
+MOTOR2_C_STATE(1);
+MOTOR2_D_STATE(0);
+							break;
+						case 10:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 11:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+MOTOR2_A_STATE(0);
+MOTOR2_B_STATE(1);
+MOTOR2_C_STATE(0);
+MOTOR2_D_STATE(0);
+							break;
+						case 12:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 13:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+MOTOR2_A_STATE(1);
+MOTOR2_B_STATE(1);
+MOTOR2_C_STATE(0);
+MOTOR2_D_STATE(0);
+							break;
+						case 14:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 15:
+							nCalca=0;
+							Motor2_do_step++;	//??ò?2?
+MOTOR2_A_STATE(1);
+MOTOR2_B_STATE(0);
+MOTOR2_C_STATE(0);
+MOTOR2_D_STATE(0);
+							break;
+						case 16:
+							Motor2_do_step=1;
+							break;
+					}
+				}
+				else
+				{motor2_p_or_n=0;}
+		}
+		else if(3==motor2_p_or_n && 1==monLimitState2L)
+		{
+					switch(Motor2_do_step)
+					{
+						case 1:
+							nCalca=0;
+							Motor2_do_step++;
+							MOTOR2_A_STATE(1);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(0);
+							break;
+						case 2:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 3:
+							nCalca=0;
+							Motor2_do_step++;
+							MOTOR2_A_STATE(1);
+							MOTOR2_B_STATE(1);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(0);
+							break;
+						case 4:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 5:
+							nCalca=0;
+							Motor2_do_step++;
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(1);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(0);						
+							break;
+						case 6:
+							if(nCalca>1000)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 7:
+							nCalca=0;
+							Motor2_do_step++;
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(1);
+							MOTOR2_C_STATE(1);
+							MOTOR2_D_STATE(0);						
+							break;
+						case 8:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 9:
+							nCalca=0;
+							Motor2_do_step++;
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(1);
+							MOTOR2_D_STATE(0);
+							break;
+						case 10:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 11:
+							nCalca=0;
+							Motor2_do_step++;
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(1);
+							MOTOR2_D_STATE(1);
+							break;
+						case 12:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 13:
+							nCalca=0;
+							Motor2_do_step++;
+							MOTOR2_A_STATE(0);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(1);
+							break;
+						case 14:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 15:
+							nCalca=0;
+							Motor2_do_step++;
+							MOTOR2_A_STATE(1);
+							MOTOR2_B_STATE(0);
+							MOTOR2_C_STATE(0);
+							MOTOR2_D_STATE(1);
+							break;
+						case 16:
+							Motor2_do_step=1;
+							break;
+					}
+		}
+		else if(4==motor2_p_or_n && 1==monLimitState2R)
+		{
+					switch(Motor2_do_step)
+					{
+						case 1:
+							nCalca=0;
+							Motor2_do_step++;						
+MOTOR2_A_STATE(1);
+MOTOR2_B_STATE(0);
+MOTOR2_C_STATE(0);
+MOTOR2_D_STATE(1);
+							break;
+						case 2:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 3:
+							nCalca=0;
+							Motor2_do_step++;				
+MOTOR2_A_STATE(0);
+MOTOR2_B_STATE(0);
+MOTOR2_C_STATE(0);
+MOTOR2_D_STATE(1);
+							break;
+						case 4:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 5:
+							nCalca=0;
+							Motor2_do_step++;
+MOTOR2_A_STATE(0);
+MOTOR2_B_STATE(0);
+MOTOR2_C_STATE(1);
+MOTOR2_D_STATE(1);				
+							break;
+						case 6:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 7:
+							nCalca=0;
+							Motor2_do_step++;
+MOTOR2_A_STATE(0);
+MOTOR2_B_STATE(0);
+MOTOR2_C_STATE(1);
+MOTOR2_D_STATE(0);				
+							break;
+						case 8:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 9:
+							nCalca=0;
+							Motor2_do_step++;
+MOTOR2_A_STATE(0);
+MOTOR2_B_STATE(1);
+MOTOR2_C_STATE(1);
+MOTOR2_D_STATE(0);
+							break;
+						case 10:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 11:
+							nCalca=0;
+							Motor2_do_step++;
+MOTOR2_A_STATE(0);
+MOTOR2_B_STATE(1);
+MOTOR2_C_STATE(0);
+MOTOR2_D_STATE(0);
+							break;
+						case 12:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 13:
+							nCalca=0;
+							Motor2_do_step++;
+MOTOR2_A_STATE(1);
+MOTOR2_B_STATE(1);
+MOTOR2_C_STATE(0);
+MOTOR2_D_STATE(0);
+							break;
+						case 14:
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_do_step++; }
+							else
+							{ nCalca++; }
+							break;
+						case 15:
+							nCalca=0;
+							Motor2_do_step++;
+MOTOR2_A_STATE(1);
+MOTOR2_B_STATE(0);
+MOTOR2_C_STATE(0);
+MOTOR2_D_STATE(0);
+							break;
+						case 16:
+							Motor2_do_step=1;
+							break;
+					}
+		}
+		else
+		{
+					//¹ØµôÏßÈ¦Ì×µÄÈÎºÎÍ¨µçÐÐÎª
+					MOTOR2_A_STATE(0);
+					MOTOR2_B_STATE(0);
+					MOTOR2_C_STATE(0);
+					MOTOR2_D_STATE(0);
+					motor2_p_or_n=0;
+		}
 }
 
+void sceMotorDemo_do(void)
+{
+		if(motor_demo_do)
+		{
+					monLimitState1L=MOTOR1_L_LIMIT_STATE();
+					monLimitState1R=MOTOR1_R_LIMIT_STATE();
+					monLimitState2L=MOTOR2_L_LIMIT_STATE();
+					monLimitState2R=MOTOR2_R_LIMIT_STATE();
+					switch(current_demo_step)
+					{
+						case 1:
+							if(0==monLimitState1L)
+							{
+								current_demo_step=2;
+							}
+							else
+							{
+								Motor1_do(3);
+							}
+							break;
+						case 2:
+							if(0==monLimitState2L)
+							{
+								current_demo_step=3;
+							}
+							else
+							{
+								Motor2_do(3);
+							}
+							break;
+						case 3:
+							if(0==monLimitState2R)
+							{
+								current_demo_step=4;
+							}
+							else
+							{
+								Motor2_do(4);
+							}
+							break;
+						case 4:
+						{
+							int i=0;
+							//×èÈûÓÒÒÆµ½°ë³Ì
+							for(i=0;i<100;i++)
+							{
+								Mon2blockTurnLeft();
+							}
+							current_demo_step=5;
+						}
+							break;
+						case 5:
+							if(0==monLimitState1R)
+							{
+								motor_demo_do=0;
+								current_demo_step=0;
+							}
+							else
+							{
+								Motor1_do(4);
+							}
+						break;
+					}
+		}
+}
+
+void Motor1_do_intpr_cmd(int p_or_n)
+{
+			Motor1_do(p_or_n);
+			motor_demo_do=0;
+			current_demo_step=0;
+}
+
+void Motor2_do_intpr_cmd(int p_or_n)
+{
+			Motor2_do(p_or_n);
+			motor_demo_do=0;
+			current_demo_step=0;
+}
+
+/*
+1,2 ²½½øÒ»¶Î
+3,4 Ò»Ö±µ½¼ì²âÎ»
+*/
 void Motor1_do(int p_or_n)
 {
-	motor1_p_or_n=p_or_n;
-	Motor1_do_step=1;
-	xiii=0;
+		if(motor1_p_or_n==p_or_n)
+		{return;}
+		motor1_p_or_n=p_or_n;
+		Motor1_do_step=1;
+		xiii=0;
 }
 void Motor2_do(int p_or_n)
 {
-	motor2_p_or_n=p_or_n;
-  Motor2_do_step=1;
-	xiii2=0;
+		if(motor2_p_or_n==p_or_n)
+		{return;}
+		motor2_p_or_n=p_or_n;
+		Motor2_do_step=1;
+		xiii2=0;
 }
 void Motor_demo(void)
 {
-	
+		motor_demo_do=1;
+		current_demo_step=1;
 }
 

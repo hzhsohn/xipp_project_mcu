@@ -317,7 +317,6 @@ int main(void)
 			FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
 	}
 
-		
 	//-------------------
 	while(1)
 	{
@@ -328,6 +327,7 @@ int main(void)
 		//
 		sceMotor1_do();
 		sceMotor2_do();
+		sceMotorDemo_do();
 		//
 		TouchKey_Scan();
 		//---------------------
