@@ -95,11 +95,10 @@ void Motor_Init(void)
 
 void Mon2blockTurnLeft(void)
 {
-			int dododyes=90;
+			int dododyes=11000;
 			int nCalca=0;
-			int Motor2_block_step=0;
-			int i=0;
-			for(i=1;i<=16;i++)
+			int Motor2_block_step=1;
+			for(Motor2_block_step=1;Motor2_block_step<=16;)
 			{
 					switch(Motor2_block_step)
 					{
@@ -210,18 +209,21 @@ void Mon2blockTurnLeft(void)
 							MOTOR2_D_STATE(1);
 							break;
 						case 16:
-							Motor2_block_step=1;
+							if(nCalca>dododyes)
+							{ nCalca=0; Motor2_block_step++; }
+							else
+							{ nCalca++; }
 							break;
 					}
 		}
 }
 void Mon2blockTurnRight(void)
 {	
-			int dododyes=90;
+			int dododyes=11000;
 			int nCalca=0;
-			int Motor2_block_step=0;
+			int Motor2_block_step=1;
 			int i=0;
-			for(i=1;i<=16;i++)
+			for(Motor2_block_step=1;Motor2_block_step<=16;)
 			{
 						switch(Motor2_block_step)
 						{
@@ -332,7 +334,10 @@ void Mon2blockTurnRight(void)
 			MOTOR2_D_STATE(0);
 								break;
 							case 16:
-								Motor2_block_step=1;
+								if(nCalca>dododyes)
+							{ nCalca=0; Motor2_block_step++; }
+							else
+							{ nCalca++; }
 								break;
 						}
 		}
@@ -1364,7 +1369,7 @@ void sceMotorDemo_do(void)
 						{
 							int i=0;
 							//◊Ë»˚”““∆µΩ∞Î≥Ã
-							for(i=0;i<1000;i++)
+							for(i=0;i<300;i++)
 							{
 								Mon2blockTurnLeft();
 							}
