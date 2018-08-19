@@ -343,9 +343,6 @@ void sceMotor1_do(void)
 		static int dododyes=90;
 		static int nCalca=0;
 	
-		if(motor_demo_do)
-		{return;}
-	
 		monLimitState1L=MOTOR1_L_LIMIT_STATE();
 		monLimitState1R=MOTOR1_R_LIMIT_STATE();
 
@@ -836,10 +833,7 @@ void sceMotor2_do(void)
 {
 		static int dododyes=90;
 		static int nCalca=0;
-	
-		if(motor_demo_do)
-		{return;}
-		
+
 		monLimitState2L=MOTOR2_L_LIMIT_STATE();
 		monLimitState2R=MOTOR2_R_LIMIT_STATE();
 
@@ -1370,7 +1364,7 @@ void sceMotorDemo_do(void)
 						{
 							int i=0;
 							//◊Ë»˚”““∆µΩ∞Î≥Ã
-							for(i=0;i<100;i++)
+							for(i=0;i<1000;i++)
 							{
 								Mon2blockTurnLeft();
 							}

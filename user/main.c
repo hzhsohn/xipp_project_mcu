@@ -192,7 +192,7 @@ void aurtEventStatus()
 				
 		cbuf[3]=bSewageHeight;//传感器污水满
 		cbuf[4]=bCleanWaterLow;//传感器清水太小
-		cbuf[5]=bSewageSuitable;//传感器污水到位
+		cbuf[5]=bSewageSuitable;//传感器污水管未安装到位
 		
 		cbuf[6]=cHeartJump; //脉博
 		cbuf[7]=0;
