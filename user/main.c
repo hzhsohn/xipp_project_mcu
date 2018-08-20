@@ -66,19 +66,19 @@ unsigned char g_cCleanCurrentSence=0;
 //继电器逻辑重定义
 int isOpenDry=0;
 
-#define _unit1(x) 							RELAY7_STATE(!x)		//小便转换
-#define _unit2(x) 							RELAY6_STATE(!x)		//大便转换
-#define _unit3(x) 							RELAY11_STATE(!x)		//床气转换
-#define _unit4(x) 		 					RELAY12_STATE(!x)		//裤子气转机
-#define _unit5(x) 							RELAY10_STATE(!x)		//加热气转换
-#define _unit6(x) 							RELAY1_STATE(!x)		//气加热
-#define _unit7(x) 							RELAY9_STATE(!x)		//抽吸机
-#define _unit8(x) 				 			RELAY3_STATE(!x) 		//抽水机
-#define _unit9(x) 							RELAY2_STATE(!x)		//杀菌发生器
-#define _unit10(x) 				 			RELAY8_STATE(!x)		//吹气
-#define _unit11(x)							RELAY13_STATE(!x) 	//水加热
-#define _unit12(x) 	 						RELAY4_STATE(!x)		//净化机
-#define _unit13(x) 							RELAY5_STATE(!x)		//杀菌气转换
+#define _unit1(x) 							RELAY7_STATE(x)		//小便转换
+#define _unit2(x) 							RELAY6_STATE(x)		//大便转换
+#define _unit3(x) 							RELAY11_STATE(x)		//床气转换
+#define _unit4(x) 		 					RELAY12_STATE(x)		//裤子气转机
+#define _unit5(x) 							RELAY10_STATE(x)		//加热气转换
+#define _unit6(x) 							RELAY1_STATE(x)		//气加热
+#define _unit7(x) 							RELAY9_STATE(x)		//抽吸机
+#define _unit8(x) 				 			RELAY3_STATE(x) 		//抽水机
+#define _unit9(x) 							RELAY2_STATE(x)		//杀菌发生器
+#define _unit10(x) 				 			RELAY8_STATE(x)		//吹气
+#define _unit11(x)							RELAY13_STATE(x) 	//水加热
+#define _unit12(x) 	 						RELAY4_STATE(x)		//净化机
+#define _unit13(x) 							RELAY5_STATE(x)		//杀菌气转换
 
 //
 #define udoDry(x)						 			_unit5(x);_unit6(x);_unit10(x);isOpenDry=x		//烘干程序
@@ -142,8 +142,8 @@ int ppxxStep=0;
 
 //摄像头电机
 int xiiiLimit=90000;
-int xiii=0xFFFF;
-int xiii2=0xFFFF;
+int xiii=1000000;
+int xiii2=1000000;
 int Motor1_do_step=0;
 int Motor2_do_step=0;
 int motor1_p_or_n=0;
@@ -279,9 +279,9 @@ int main(void)
 	STM32F1_UART1SendDataS((char*)"start",6);
 	
 	//测试继电子器逻辑	
-	//allOutClose();
-//	RelayTest();
-//	allOutClose();
+	allOutClose();
+	RelayTest();
+	allOutClose();
 	
 	//看门狗
 	//watchdog_init();
