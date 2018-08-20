@@ -95,7 +95,7 @@ void Motor_Init(void)
 
 void Mon2blockTurnLeft(void)
 {
-			int dododyesLeft=11000;
+			int dododyesLeft=8000;
 			int nCalca=0;
 			int Motor2_block_step=1;
 			for(Motor2_block_step=1;Motor2_block_step<=16;)
@@ -219,7 +219,7 @@ void Mon2blockTurnLeft(void)
 }
 void Mon2blockTurnRight(void)
 {	
-			int dododyes=11000;
+			int dododyes=8000;
 			int nCalca=0;
 			int Motor2_block_step=1;
 			int i=0;
@@ -354,127 +354,7 @@ void sceMotor1_do(void)
 
 		if(1==motor1_p_or_n && 1==monLimitState1L)
 		{
-					if(xiii<xiiiLimit)
-					{
-							xiii++;
-							switch(Motor1_do_step)
-							{
-								case 1:
-									nCalca=0;
-									Motor1_do_step++;	//下一步							
-									MOTOR1_A_STATE(1);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(0);
-									break;
-								case 2:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 3:
-									nCalca=0;
-									Motor1_do_step++;	//下一步							
-									MOTOR1_A_STATE(1);
-									MOTOR1_B_STATE(1);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(0);
-									break;
-								case 4:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 5:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(1);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(0);						
-									break;
-								case 6:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 7:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(1);
-									MOTOR1_C_STATE(1);
-									MOTOR1_D_STATE(0);						
-									break;
-								case 8:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 9:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(1);
-									MOTOR1_D_STATE(0);
-									break;
-								case 10:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 11:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(1);
-									MOTOR1_D_STATE(1);
-									break;
-								case 12:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 13:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(1);
-									break;
-								case 14:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 15:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(1);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(1);
-									break;
-								case 16:
-									Motor1_do_step=1;
-									break;
-							}
-				}
-				else
-				{motor1_p_or_n=0;}
-		}
-		else if(2==motor1_p_or_n && 1==monLimitState1R)
-		{
+					
 				if(xiii<xiiiLimit)
 				{
 						xiii++;
@@ -594,8 +474,11 @@ void sceMotor1_do(void)
 				else
 				{motor1_p_or_n=0;}
 		}
-		else if(3==motor1_p_or_n && 1==monLimitState1L)
+		else if(2==motor1_p_or_n && 1==monLimitState1R)
 		{
+				if(xiii<xiiiLimit)
+					{
+							xiii++;
 							switch(Motor1_do_step)
 							{
 								case 1:
@@ -708,8 +591,11 @@ void sceMotor1_do(void)
 									Motor1_do_step=1;
 									break;
 							}
+				}
+				else
+				{motor1_p_or_n=0;}
 		}
-		else if(4==motor1_p_or_n && 1==monLimitState1R)
+		else if(3==motor1_p_or_n && 1==monLimitState1L)
 		{
 						switch(Motor1_do_step)
 						{
@@ -823,6 +709,121 @@ void sceMotor1_do(void)
 								Motor1_do_step=1;
 								break;
 						}
+		}
+		else if(4==motor1_p_or_n && 1==monLimitState1R)
+		{
+						switch(Motor1_do_step)
+							{
+								case 1:
+									nCalca=0;
+									Motor1_do_step++;	//下一步							
+									MOTOR1_A_STATE(1);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(0);
+									break;
+								case 2:
+									if(nCalca>dododyesLeft)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 3:
+									nCalca=0;
+									Motor1_do_step++;	//下一步							
+									MOTOR1_A_STATE(1);
+									MOTOR1_B_STATE(1);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(0);
+									break;
+								case 4:
+									if(nCalca>dododyesLeft)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 5:
+									nCalca=0;
+									Motor1_do_step++;	//下一步
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(1);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(0);						
+									break;
+								case 6:
+									if(nCalca>dododyesLeft)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 7:
+									nCalca=0;
+									Motor1_do_step++;	//下一步
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(1);
+									MOTOR1_C_STATE(1);
+									MOTOR1_D_STATE(0);						
+									break;
+								case 8:
+									if(nCalca>dododyesLeft)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 9:
+									nCalca=0;
+									Motor1_do_step++;	//下一步
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(1);
+									MOTOR1_D_STATE(0);
+									break;
+								case 10:
+									if(nCalca>dododyesLeft)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 11:
+									nCalca=0;
+									Motor1_do_step++;	//下一步
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(1);
+									MOTOR1_D_STATE(1);
+									break;
+								case 12:
+									if(nCalca>dododyesLeft)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 13:
+									nCalca=0;
+									Motor1_do_step++;	//下一步
+									MOTOR1_A_STATE(0);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(1);
+									break;
+								case 14:
+									if(nCalca>dododyesLeft)
+									{ nCalca=0; Motor1_do_step++; }
+									else
+									{ nCalca++; }
+									break;
+								case 15:
+									nCalca=0;
+									Motor1_do_step++;	//下一步
+									MOTOR1_A_STATE(1);
+									MOTOR1_B_STATE(0);
+									MOTOR1_C_STATE(0);
+									MOTOR1_D_STATE(1);
+									break;
+								case 16:
+									Motor1_do_step=1;
+									break;
+							}
 		}
 		else
 		{
