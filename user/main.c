@@ -386,11 +386,14 @@ int main(void)
 					aurtEventBtn(7);
 					bButton7 = _Disable;
 		}	
+		/*
 		if(bButton8 && 0==g_cCleanCurrentSence)
 		{
 					aurtEventBtn(8);
 					bButton8 = _Disable;
 		}	
+		*/
+		A33POWER_STATE(TOUCHKEY_8_STATE());
 		//------------------------------------------------------------------
 		//检测有无尿拉下来		
 		if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //限制如果水温不够不操作

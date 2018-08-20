@@ -113,6 +113,14 @@ void POWER_Configuration(void)
 		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
 		GPIO_Init(GPIOE, &GPIO_MyStruct);
 		GPIO_SetBits(GPIOE,GPIO_Pin_3);
+	
+	//-------------------------------------------------
+	//A33¿ª¹Ø»ú
+		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_7;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+		GPIO_Init(GPIOD, &GPIO_MyStruct);
+		GPIO_SetBits(GPIOD,GPIO_Pin_7);
 }
 
 void VOLUME_Configuration(void)

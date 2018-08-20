@@ -95,7 +95,7 @@ void Motor_Init(void)
 
 void Mon2blockTurnLeft(void)
 {
-			int dododyes=11000;
+			int dododyesLeft=11000;
 			int nCalca=0;
 			int Motor2_block_step=1;
 			for(Motor2_block_step=1;Motor2_block_step<=16;)
@@ -111,7 +111,7 @@ void Mon2blockTurnLeft(void)
 							MOTOR2_D_STATE(0);
 							break;
 						case 2:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_block_step++; }
 							else
 							{ nCalca++; }
@@ -125,7 +125,7 @@ void Mon2blockTurnLeft(void)
 							MOTOR2_D_STATE(0);
 							break;
 						case 4:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_block_step++; }
 							else
 							{ nCalca++; }
@@ -153,7 +153,7 @@ void Mon2blockTurnLeft(void)
 							MOTOR2_D_STATE(0);						
 							break;
 						case 8:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_block_step++; }
 							else
 							{ nCalca++; }
@@ -167,7 +167,7 @@ void Mon2blockTurnLeft(void)
 							MOTOR2_D_STATE(0);
 							break;
 						case 10:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_block_step++; }
 							else
 							{ nCalca++; }
@@ -181,7 +181,7 @@ void Mon2blockTurnLeft(void)
 							MOTOR2_D_STATE(1);
 							break;
 						case 12:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_block_step++; }
 							else
 							{ nCalca++; }
@@ -195,7 +195,7 @@ void Mon2blockTurnLeft(void)
 							MOTOR2_D_STATE(1);
 							break;
 						case 14:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_block_step++; }
 							else
 							{ nCalca++; }
@@ -209,7 +209,7 @@ void Mon2blockTurnLeft(void)
 							MOTOR2_D_STATE(1);
 							break;
 						case 16:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_block_step++; }
 							else
 							{ nCalca++; }
@@ -344,8 +344,9 @@ void Mon2blockTurnRight(void)
 }
 
 void sceMotor1_do(void)
-{				
-		static int dododyes=90;
+{
+		static int dododyesLeft=110;
+		static int dododyes=110;
 		static int nCalca=0;
 	
 		monLimitState1L=MOTOR1_L_LIMIT_STATE();
@@ -367,7 +368,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(0);
 									break;
 								case 2:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -381,7 +382,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(0);
 									break;
 								case 4:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -395,7 +396,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(0);						
 									break;
 								case 6:
-									if(nCalca>1000)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -409,7 +410,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(0);						
 									break;
 								case 8:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -423,7 +424,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(0);
 									break;
 								case 10:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -437,7 +438,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(1);
 									break;
 								case 12:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -451,7 +452,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(1);
 									break;
 								case 14:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -606,7 +607,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(0);
 									break;
 								case 2:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -620,7 +621,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(0);
 									break;
 								case 4:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -634,7 +635,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(0);						
 									break;
 								case 6:
-									if(nCalca>1000)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -648,7 +649,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(0);						
 									break;
 								case 8:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -662,7 +663,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(0);
 									break;
 								case 10:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -676,7 +677,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(1);
 									break;
 								case 12:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -690,7 +691,7 @@ void sceMotor1_do(void)
 									MOTOR1_D_STATE(1);
 									break;
 								case 14:
-									if(nCalca>dododyes)
+									if(nCalca>dododyesLeft)
 									{ nCalca=0; Motor1_do_step++; }
 									else
 									{ nCalca++; }
@@ -836,7 +837,8 @@ void sceMotor1_do(void)
 
 void sceMotor2_do(void)
 {
-		static int dododyes=90;
+		static int dododyesLeft=110;
+		static int dododyes=110;
 		static int nCalca=0;
 
 		monLimitState2L=MOTOR2_L_LIMIT_STATE();
@@ -858,7 +860,7 @@ void sceMotor2_do(void)
 							MOTOR2_D_STATE(0);
 							break;
 						case 2:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -872,7 +874,7 @@ void sceMotor2_do(void)
 							MOTOR2_D_STATE(0);
 							break;
 						case 4:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -886,7 +888,7 @@ void sceMotor2_do(void)
 							MOTOR2_D_STATE(0);						
 							break;
 						case 6:
-							if(nCalca>1000)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -900,7 +902,7 @@ void sceMotor2_do(void)
 							MOTOR2_D_STATE(0);						
 							break;
 						case 8:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -914,7 +916,7 @@ void sceMotor2_do(void)
 							MOTOR2_D_STATE(0);
 							break;
 						case 10:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -928,7 +930,7 @@ void sceMotor2_do(void)
 							MOTOR2_D_STATE(1);
 							break;
 						case 12:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -942,7 +944,7 @@ void sceMotor2_do(void)
 							MOTOR2_D_STATE(1);
 							break;
 						case 14:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -1097,7 +1099,7 @@ MOTOR2_D_STATE(0);
 							MOTOR2_D_STATE(0);
 							break;
 						case 2:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -1111,7 +1113,7 @@ MOTOR2_D_STATE(0);
 							MOTOR2_D_STATE(0);
 							break;
 						case 4:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -1125,7 +1127,7 @@ MOTOR2_D_STATE(0);
 							MOTOR2_D_STATE(0);						
 							break;
 						case 6:
-							if(nCalca>1000)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -1139,7 +1141,7 @@ MOTOR2_D_STATE(0);
 							MOTOR2_D_STATE(0);						
 							break;
 						case 8:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -1153,7 +1155,7 @@ MOTOR2_D_STATE(0);
 							MOTOR2_D_STATE(0);
 							break;
 						case 10:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -1167,7 +1169,7 @@ MOTOR2_D_STATE(0);
 							MOTOR2_D_STATE(1);
 							break;
 						case 12:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
@@ -1181,7 +1183,7 @@ MOTOR2_D_STATE(0);
 							MOTOR2_D_STATE(1);
 							break;
 						case 14:
-							if(nCalca>dododyes)
+							if(nCalca>dododyesLeft)
 							{ nCalca=0; Motor2_do_step++; }
 							else
 							{ nCalca++; }
