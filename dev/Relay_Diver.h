@@ -3,7 +3,7 @@
 #include "system_init.h"
 #define HIGH 	1
 #define LOW 	0
-/*¹Ü½Å¶¨Ò
+/*¹Ü½Å¶¨
 
 #define _unit1(x) 							RELAY1_STATE(!x)		//Ð¡±ã×ª»»
 #define _unit2(x) 							RELAY2_STATE(!x)		//´ó±ã×ª»»
@@ -18,7 +18,7 @@
 #define _unit11(x)							RELAY11_STATE(!x) 	//Ë®¼ÓÈÈ
 #define _unit12(x) 	 						RELAY12_STATE(!x)		//¾»»¯»ú
 #define _unit13(x) 							RELAY13_STATE(!x)		//É±¾úÆø×ª»»
-å*/
+
 #define RELAY1_GPIO 	GPIOD
 #define RELAY1_PIN  	GPIO_Pin_13
 
@@ -57,6 +57,60 @@
 
 #define RELAY13_GPIO 	GPIOB
 #define RELAY13_PIN  	GPIO_Pin_14
+å*/
+/*
+#define _unit1(x) 							RELAY7_STATE(!x)		//Ð¡±ã×ª»»
+#define _unit2(x) 							RELAY6_STATE(!x)		//´ó±ã×ª»»
+#define _unit3(x) 							RELAY11_STATE(!x)		//´²Æø×ª»»
+#define _unit4(x) 		 					RELAY12_STATE(!x)		//¿ã×ÓÆø×ª»ú
+#define _unit5(x) 							RELAY10_STATE(!x)		//¼ÓÈÈÆø×ª»»
+#define _unit6(x) 							RELAY1_STATE(!x)		//Æø¼ÓÈÈ
+#define _unit7(x) 							RELAY9_STATE(!x)		//³éÎü»ú
+#define _unit8(x) 				 			RELAY3_STATE(!x) 		//³éË®»ú
+#define _unit9(x) 							RELAY2_STATE(!x)		//É±¾ú·¢ÉúÆ÷
+#define _unit10(x) 				 			RELAY8_STATE(!x)		//´µÆø
+#define _unit11(x)							RELAY13_STATE(!x) 	//Ë®¼ÓÈÈ
+#define _unit12(x) 	 						RELAY4_STATE(!x)		//¾»»¯»ú
+#define _unit13(x) 							RELAY5_STATE(!x)		//É±¾úÆø×ª»»
+*/
+#define RELAY1_GPIO 	GPIOD
+#define RELAY1_PIN  	GPIO_Pin_12
+
+#define RELAY2_GPIO 	GPIOD
+#define RELAY2_PIN  	GPIO_Pin_14
+
+#define RELAY3_GPIO 	GPIOC
+#define RELAY3_PIN  	GPIO_Pin_8
+
+#define RELAY4_GPIO 	GPIOB
+#define RELAY4_PIN  	GPIO_Pin_15
+
+#define RELAY5_GPIO 	GPIOB
+#define RELAY5_PIN  	GPIO_Pin_14
+                                                                            
+#define RELAY6_GPIO 	GPIOD
+#define RELAY6_PIN  	GPIO_Pin_11
+
+#define RELAY7_GPIO 	GPIOD
+#define RELAY7_PIN  	GPIO_Pin_13
+
+#define RELAY8_GPIO 	GPIOC
+#define RELAY8_PIN  	GPIO_Pin_10
+
+#define RELAY9_GPIO 	GPIOC
+#define RELAY9_PIN  	GPIO_Pin_9
+
+#define RELAY10_GPIO 	GPIOC
+#define RELAY10_PIN  	GPIO_Pin_7
+
+#define RELAY11_GPIO 	GPIOB
+#define RELAY11_PIN  	GPIO_Pin_13
+
+#define RELAY12_GPIO 	GPIOB
+#define RELAY12_PIN  	GPIO_Pin_12
+
+#define RELAY13_GPIO 	GPIOA
+#define RELAY13_PIN  	GPIO_Pin_8
 
 
 #define RELAY1_STATE(x) (!x)>0?GPIO_SetBits(RELAY1_GPIO,RELAY1_PIN):GPIO_ResetBits(RELAY1_GPIO,RELAY1_PIN)
