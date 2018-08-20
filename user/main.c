@@ -141,7 +141,7 @@ int isCleanRuning=0;
 int ppxxStep=0;
 
 //ÉãÏñÍ·µç»ú
-int xiiiLimit=80000;
+int xiiiLimit=90000;
 int xiii=0xFFFF;
 int xiii2=0xFFFF;
 int Motor1_do_step=0;
