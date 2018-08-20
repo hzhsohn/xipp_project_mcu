@@ -345,8 +345,8 @@ void Mon2blockTurnRight(void)
 
 void sceMotor1_do(void)
 {
-		static int dododyesLeft=110;
-		static int dododyes=110;
+		static int dododyesLeft=80;
+		static int dododyes=80;
 		static int nCalca=0;
 	
 		monLimitState1L=MOTOR1_L_LIMIT_STATE();
@@ -837,8 +837,8 @@ void sceMotor1_do(void)
 
 void sceMotor2_do(void)
 {
-		static int dododyesLeft=110;
-		static int dododyes=110;
+		static int dododyesLeft=80;
+		static int dododyes=80;
 		static int nCalca=0;
 
 		monLimitState2L=MOTOR2_L_LIMIT_STATE();
