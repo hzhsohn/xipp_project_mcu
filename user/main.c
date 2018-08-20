@@ -362,10 +362,9 @@ int main(void)
 		}
 		if(bButton4 && 0==g_cCleanCurrentSence)
 		{
-					aurtEventBtn(4);
-					g_cCleanCurrentSence=ezhCleanSence6;
-					isCleanRuning=1;
-					bButton4 = _Disable;
+					aurtEventBtn(7);
+					bButton7 = _Disable;
+			
 		}		
 		if(bButton5 && 0==g_cCleanCurrentSence)
 		{
@@ -383,8 +382,10 @@ int main(void)
 		}
 		if(bButton7 && 0==g_cCleanCurrentSence)
 		{
-					aurtEventBtn(7);
-					bButton7 = _Disable;
+					aurtEventBtn(4);
+					g_cCleanCurrentSence=ezhCleanSence6;
+					isCleanRuning=1;
+					bButton4 = _Disable;
 		}	
 		
 		if(bButton8 && 0==g_cCleanCurrentSence)

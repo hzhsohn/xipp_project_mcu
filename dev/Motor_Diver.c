@@ -1371,6 +1371,8 @@ void sceMotorDemo_do(void)
 						case 4:
 						{
 							int i=0;
+							Motor2_do(0);//停止电机
+							
 							//阻塞右移到半程
 							for(i=0;i<300;i++)
 							{
@@ -1409,6 +1411,7 @@ void Motor2_do_intpr_cmd(int p_or_n)
 }
 
 /*
+0停止
 1,2 步进一段
 3,4 一直到检测位
 */
