@@ -82,22 +82,22 @@
         <Book>
           <Number>0</Number>
           <Title>Quick Start Guide (MCBSTM32C)</Title>
-          <Path>D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32C\Documentation\STM32C_QSG.pdf</Path>
+          <Path>C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32C\Documentation\STM32C_QSG.pdf</Path>
         </Book>
         <Book>
           <Number>1</Number>
           <Title>Base Board Schematics (MCBSTM32C)</Title>
-          <Path>D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32C\Documentation\mcbstm32c-base-board-schematics.pdf</Path>
+          <Path>C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32C\Documentation\mcbstm32c-base-board-schematics.pdf</Path>
         </Book>
         <Book>
           <Number>2</Number>
           <Title>Display Board Schematics (MCBSTM32C)</Title>
-          <Path>D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32C\Documentation\mcbstm32c-display-board-schematics.pdf</Path>
+          <Path>C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32C\Documentation\mcbstm32c-display-board-schematics.pdf</Path>
         </Book>
         <Book>
           <Number>3</Number>
           <Title>User Manual (MCBSTM32C)</Title>
-          <Path>D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32C\Documentation\mcbstm32c.chm</Path>
+          <Path>C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32C\Documentation\mcbstm32c.chm</Path>
         </Book>
         <Book>
           <Number>4</Number>
@@ -176,9 +176,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>475</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134235184</Address>
+          <LineNumber>1305</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134230838</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -187,14 +187,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\user\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\475</Expression>
+          <Expression>\\xipp\user/main.c\1305</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>479</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134235196</Address>
+          <LineNumber>1292</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134230764</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -203,14 +203,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\user\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\479</Expression>
+          <Expression>\\xipp\user/main.c\1292</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>473</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134235164</Address>
+          <LineNumber>379</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134234730</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -219,14 +219,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\user\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\473</Expression>
+          <Expression>\\xipp\user/main.c\379</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>460</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134235074</Address>
+          <LineNumber>372</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134234694</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -235,14 +235,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\user\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\460</Expression>
+          <Expression>\\xipp\user/main.c\372</Expression>
         </Bp>
         <Bp>
           <Number>4</Number>
           <Type>0</Type>
-          <LineNumber>445</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134235018</Address>
+          <LineNumber>1271</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134230624</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -251,7 +251,55 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\user\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\445</Expression>
+          <Expression>\\xipp\user/main.c\1271</Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+          <LineNumber>1288</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134230732</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\user\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\xipp\user/main.c\1288</Expression>
+        </Bp>
+        <Bp>
+          <Number>6</Number>
+          <Type>0</Type>
+          <LineNumber>1252</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134230538</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\user\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\xipp\user/main.c\1252</Expression>
+        </Bp>
+        <Bp>
+          <Number>7</Number>
+          <Type>0</Type>
+          <LineNumber>1216</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134230310</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\user\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\xipp\user/main.c\1216</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
