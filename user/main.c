@@ -1218,7 +1218,7 @@ void litteSenceRunAnMo(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
 							ANMO1_STATE(1);
 						case 1:
-							if(nCalca>10)
+							if(nCalca>DEF_TIME_MS_DELAY*100)
 							{
 									nCalca=0;
 									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
@@ -1236,7 +1236,7 @@ void litteSenceRunAnMo(void)
 							ANMO1_STATE(0);
 							break;
 						case 3:
-							if(nCalca>300)
+							if(nCalca>DEF_TIME_MS_DELAY*3000)
 							{
 									nCalca=0;
 									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
@@ -1271,7 +1271,7 @@ void litteSenceRunBaoNang(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//下一步
 							BAONAN_STATE(1);
 						case 1:
-							if(nCalca>10)
+							if(nCalca>DEF_TIME_MS_DELAY*100)
 							{
 									nCalca=0;
 									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;
@@ -1289,7 +1289,7 @@ void litteSenceRunBaoNang(void)
 							BAONAN_STATE(0);
 							break;
 						case 3:
-							if(nCalca>300)
+							if(nCalca>DEF_TIME_MS_DELAY*3000)
 							{
 									nCalca=0;
 									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;
