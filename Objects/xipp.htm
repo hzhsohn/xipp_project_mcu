@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\xipp.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\xipp.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Fri Aug 24 20:49:39 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Fri Aug 24 20:54:15 2018
 <BR><P>
 <H3>Maximum Stack Usage =        176 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1328,7 +1328,6 @@ Global Symbols
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Adc2_Average
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Code_Init
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRunAnMo
 </UL>
 
 <P><STRONG><a name="[81]"></a>STM32_Delay_us</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, stm32_delay.o(i.STM32_Delay_us))
@@ -1581,11 +1580,10 @@ Global Symbols
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRunAnMo
 </UL>
 
-<P><STRONG><a name="[ae]"></a>litteSenceRunAnMo</STRONG> (Thumb, 1128 bytes, Stack size 8 bytes, main.o(i.litteSenceRunAnMo))
+<P><STRONG><a name="[ae]"></a>litteSenceRunAnMo</STRONG> (Thumb, 1028 bytes, Stack size 8 bytes, main.o(i.litteSenceRunAnMo))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunAnMo &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32_Delay_ms
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;aurtEventUnitSence
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allOutClose

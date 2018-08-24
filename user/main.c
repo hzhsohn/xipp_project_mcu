@@ -1331,7 +1331,7 @@ void litteSenceRunAnMo(void)
 									nCalca++;
 							}
 							break;
-							
+							/*
 						//-----------------------------------------------
 							//—” ±
 							case 12:
@@ -1353,7 +1353,7 @@ void litteSenceRunAnMo(void)
 									}
 									nCalca++;
 							}
-							break;
+							break;*/
 						default: //ÕÍ±œ
 							aurtEventUnitSence(ezhCleanSence7,0);
 							allOutClose();						
