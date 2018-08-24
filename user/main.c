@@ -346,30 +346,62 @@ int main(void)
 		//8´ý»ú¿ª¹Ø
 		if(bButton1 && 0==g_cCleanCurrentSence)
 		{
+			if(!isCleanRuning)
+			{
 					aurtEventBtn(1);
 					g_cCleanCurrentSence=ezhCleanSence3;
 					isCleanRuning=1;
+			}
+			else
+			{
+					g_cCleanCurrentSence=0;
+					isCleanRuning=0;
+			}
 					bButton1 = _Disable;
 		}
 		if(bButton2 && 0==g_cCleanCurrentSence)
 		{
+			if(!isCleanRuning)
+			{
 					aurtEventBtn(2);
 					g_cCleanCurrentSence=ezhCleanSence4;
 					isCleanRuning=1;
+			}
+			else
+			{
+					g_cCleanCurrentSence=0;
+					isCleanRuning=0;
+			}
 					bButton2 = _Disable;
 		}
 		if(bButton3 && 0==g_cCleanCurrentSence)
 		{
+			if(!isCleanRuning)
+			{
 					aurtEventBtn(3);
 					g_cCleanCurrentSence=ezhCleanSence5;
 					isCleanRuning=1;
+			}
+			else
+			{
+					g_cCleanCurrentSence=0;
+					isCleanRuning=0;
+			}
 					bButton3 = _Disable;
 		}
 		if(bButton4 && 0==g_cCleanCurrentSence)
 		{
+			if(!isCleanRuning)
+			{
 					aurtEventBtn(4);
 					g_cCleanCurrentSence=ezhCleanSence6;
 					isCleanRuning=1;
+			}
+			else
+			{
+					g_cCleanCurrentSence=0;
+					isCleanRuning=0;
+			}
 					bButton4 = _Disable;
 		}		
 		if(bButton5 && 0==g_cCleanCurrentSence)
@@ -383,9 +415,17 @@ int main(void)
 		}	
 		if(bButton6 && 0==g_cCleanCurrentSence)
 		{
+			if(!isCleanRuning)
+			{
 					aurtEventBtn(6);
 					g_cCleanCurrentSence=ezhCleanSence8;
 					isCleanRuning=1;
+			}
+			else
+			{
+					g_cCleanCurrentSence=0;
+					isCleanRuning=0;
+			}
 					bButton6 = _Disable;
 		}
 		if(bButton7 && 0==g_cCleanCurrentSence)
