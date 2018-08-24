@@ -7,9 +7,9 @@ int kk=0;
 int kk2=0;
 int kk_1ms=0;
 u16_t sCount1ms;
-int kkUart3count=0;
+int kkUart1count=0;
 
-extern int g_uart3len;
+extern int g_uart1len;
 
 void Stm32F1_Timer3Init(void)
 {
@@ -55,13 +55,13 @@ void TIM3_IRQHandler(void)
 	kk++;
 	kk2++;	
 	kk_1ms++;
-	kkUart3count++;
+	kkUart1count++;
 	
 	//周期计数复位
-	 if(kkUart3count>500)
+	 if(kkUart1count>500)
 	 {
-		 g_uart3len=0;
-		 kkUart3count=0;
+		 g_uart1len=0;
+		 kkUart1count=0;
 	 }
 	 
 	//---------------------------

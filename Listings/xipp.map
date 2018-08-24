@@ -181,7 +181,7 @@ Section Cross References
     stm32f1_timer3.o(i.TIM3_IRQHandler) refers to touchkey_diver.o(i.TOUCHKEY_TIMER_ISR) for TOUCHKEY_TIMER_ISR
     stm32f1_timer3.o(i.TIM3_IRQHandler) refers to stm32f10x_tim.o(i.TIM_ClearITPendingBit) for TIM_ClearITPendingBit
     stm32f1_timer3.o(i.TIM3_IRQHandler) refers to stm32f1_timer3.o(.data) for kk
-    stm32f1_timer3.o(i.TIM3_IRQHandler) refers to stm32f1_uart1_diver.o(.data) for g_uart3len
+    stm32f1_timer3.o(i.TIM3_IRQHandler) refers to stm32f1_uart1_diver.o(.data) for g_uart1len
     stm32_delay.o(i.STM32_Delay_init) refers to misc.o(i.SysTick_CLKSourceConfig) for SysTick_CLKSourceConfig
     stm32_delay.o(i.STM32_Delay_init) refers to system_stm32f10x.o(.data) for SystemCoreClock
     stm32_delay.o(i.STM32_Delay_init) refers to stm32_delay.o(.data) for fac_us
@@ -225,8 +225,8 @@ Section Cross References
     stm32f1_uart1_diver.o(i.USART1_IRQHandler) refers to motor_diver.o(i.Motor_demo) for Motor_demo
     stm32f1_uart1_diver.o(i.USART1_IRQHandler) refers to stm32f1_uart1_diver.o(i.sendTimeCfg) for sendTimeCfg
     stm32f1_uart1_diver.o(i.USART1_IRQHandler) refers to flash_rw.o(i.FLASH_WriteByte) for FLASH_WriteByte
-    stm32f1_uart1_diver.o(i.USART1_IRQHandler) refers to stm32f1_timer3.o(.data) for kkUart3count
-    stm32f1_uart1_diver.o(i.USART1_IRQHandler) refers to stm32f1_uart1_diver.o(.data) for g_uart3len
+    stm32f1_uart1_diver.o(i.USART1_IRQHandler) refers to stm32f1_timer3.o(.data) for kkUart1count
+    stm32f1_uart1_diver.o(i.USART1_IRQHandler) refers to stm32f1_uart1_diver.o(.data) for g_uart1len
     stm32f1_uart1_diver.o(i.USART1_IRQHandler) refers to stm32f1_uart1_diver.o(.bss) for g_cache
     stm32f1_uart1_diver.o(i.USART1_IRQHandler) refers to main.o(.data) for g_isAutomation
     stm32f1_uart1_diver.o(i.USART1_IRQHandler) refers to senceact.o(.bss) for g_tmeSetting
@@ -1662,10 +1662,10 @@ Image Symbol Table
     kk2                                      0x200000d0   Data           4  stm32f1_timer3.o(.data)
     kk_1ms                                   0x200000d4   Data           4  stm32f1_timer3.o(.data)
     sCount1ms                                0x200000d8   Data           2  stm32f1_timer3.o(.data)
-    kkUart3count                             0x200000dc   Data           4  stm32f1_timer3.o(.data)
+    kkUart1count                             0x200000dc   Data           4  stm32f1_timer3.o(.data)
     fac_us                                   0x200000e0   Data           1  stm32_delay.o(.data)
     fac_ms                                   0x200000e2   Data           2  stm32_delay.o(.data)
-    g_uart3len                               0x200000e4   Data           2  stm32f1_uart1_diver.o(.data)
+    g_uart1len                               0x200000e4   Data           2  stm32f1_uart1_diver.o(.data)
     g_isGetCmdOk                             0x200000e6   Data           1  stm32f1_uart1_diver.o(.data)
     u2Counter                                0x200000e7   Data           1  stm32f1_uart2_diver.o(.data)
     counter                                  0x200000e8   Data           1  stm32f1_uart3_diver.o(.data)

@@ -176,9 +176,25 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
+          <LineNumber>161</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134227792</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\dev\STM32F1_UART1_Diver.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\xipp\dev/STM32F1_UART1_Diver.c\161</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
           <LineNumber>1461</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134231302</Address>
+          <Address>134231186</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -190,11 +206,11 @@
           <Expression>\\xipp\user/main.c\1461</Expression>
         </Bp>
         <Bp>
-          <Number>1</Number>
+          <Number>2</Number>
           <Type>0</Type>
           <LineNumber>1433</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134231134</Address>
+          <Address>134231018</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -206,11 +222,11 @@
           <Expression>\\xipp\user/main.c\1433</Expression>
         </Bp>
         <Bp>
-          <Number>2</Number>
+          <Number>3</Number>
           <Type>0</Type>
           <LineNumber>1407</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134231008</Address>
+          <Address>134230880</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -222,11 +238,11 @@
           <Expression>\\xipp\user/main.c\1407</Expression>
         </Bp>
         <Bp>
-          <Number>3</Number>
+          <Number>4</Number>
           <Type>0</Type>
           <LineNumber>386</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134235202</Address>
+          <Address>134235086</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -238,11 +254,11 @@
           <Expression>\\xipp\user/main.c\386</Expression>
         </Bp>
         <Bp>
-          <Number>4</Number>
+          <Number>5</Number>
           <Type>0</Type>
           <LineNumber>377</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134235146</Address>
+          <Address>134235030</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -254,7 +270,23 @@
           <Expression>\\xipp\user/main.c\377</Expression>
         </Bp>
         <Bp>
-          <Number>5</Number>
+          <Number>6</Number>
+          <Type>0</Type>
+          <LineNumber>124</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\dev\STM32F1_UART1_Diver.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>7</Number>
           <Type>0</Type>
           <LineNumber>1435</LineNumber>
           <EnabledFlag>0</EnabledFlag>

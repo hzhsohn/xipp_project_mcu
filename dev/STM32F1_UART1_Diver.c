@@ -71,13 +71,13 @@ void STM32F1_UART1_Init(u32_t lBaudRate)
 //------------------------------------------------------
 //接收缓存
 uchar g_cache[128]={0};
-unsigned short g_uart3len=0;
+unsigned short g_uart1len=0;
 TzhMiniData g_ocCmd;
 uchar g_isGetCmdOk;
 extern unsigned char g_isAutomation;
 extern TagTimeingSetting g_tmeSetting;
 //
-extern int kkUart3count;
+extern int kkUart1count;
 //中断当前动作
 extern int isCleanRuning;
 
@@ -102,26 +102,26 @@ void sendTimeCfg()
 void USART1_IRQHandler(void)
 {
     if (USART_GetITStatus(USART1,USART_IT_RXNE)!=RESET)
-    {			 
-				u8 uart3Data;
-				uart3Data = USART_ReceiveData(USART1);
+    {
+				u8 uart1Data;
+				uart1Data = USART_ReceiveData(USART1);
 				
 			  //周期计数复位
-			  kkUart3count=0;
+			  kkUart1count=0;
 			
-				if(g_uart3len+1>128){ g_uart3len=0; }
-				g_cache[g_uart3len]=uart3Data;
-				g_uart3len++;
-				if(0xFA==uart3Data)
+				if(g_uart1len+1>128){ g_uart1len=0; }
+				g_cache[g_uart1len]=uart1Data;
+				g_uart1len++;
+				if(0xFA==uart1Data)
 				{
 						 int tmp;
 					_nnc:
-						 tmp=miniDataGet(g_cache,g_uart3len,&g_ocCmd,&g_isGetCmdOk);
+						 tmp=miniDataGet(g_cache,g_uart1len,&g_ocCmd,&g_isGetCmdOk);
 						 //
 						 if(g_isGetCmdOk)
 						 {
 								//周期计数复位
-								kkUart3count=0;
+								kkUart1count=0;
 								
 							  switch(g_ocCmd.parameter[0])
 								{
@@ -165,8 +165,8 @@ void USART1_IRQHandler(void)
 						 if(tmp>0)
 						 {
 								int n;
-								g_uart3len-=tmp;
-								for(n=0;n<g_uart3len;n++)
+								g_uart1len-=tmp;
+								for(n=0;n<g_uart1len;n++)
 								{
 									g_cache[n]=g_cache[tmp+n]; 
 								}
