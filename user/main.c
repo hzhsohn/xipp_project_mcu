@@ -356,6 +356,7 @@ int main(void)
 			{
 					g_cCleanCurrentSence=0;
 					isCleanRuning=0;
+					allOutClose();
 					aurtEventBtn(0);
 			}
 					bButton1 = _Disable;
@@ -372,6 +373,7 @@ int main(void)
 			{
 					g_cCleanCurrentSence=0;
 					isCleanRuning=0;
+					allOutClose();
 					aurtEventBtn(0);
 			}
 					bButton2 = _Disable;
@@ -388,6 +390,7 @@ int main(void)
 			{
 					g_cCleanCurrentSence=0;
 					isCleanRuning=0;
+					allOutClose();
 					aurtEventBtn(0);
 			}
 					bButton3 = _Disable;
@@ -404,6 +407,7 @@ int main(void)
 			{
 					g_cCleanCurrentSence=0;
 					isCleanRuning=0;
+					allOutClose();
 					aurtEventBtn(0);
 			}
 					bButton4 = _Disable;
@@ -429,6 +433,7 @@ int main(void)
 			{
 					g_cCleanCurrentSence=0;
 					isCleanRuning=0;
+					allOutClose();
 					aurtEventBtn(0);
 			}
 					bButton6 = _Disable;
