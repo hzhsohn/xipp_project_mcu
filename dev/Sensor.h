@@ -11,7 +11,7 @@
 #define SENSOR2_PIN  			      	    	GPIO_Pin_4
 //污水桶到位
 #define SENSOR3_GPIO 	                	GPIOD
-#define SENSOR3_PIN  			      	    	GPIO_Pin_5
+#define SENSOR3_PIN  			      	    	GPIO_Pin_6
 //大便
 #define SENSOR4_GPIO 	                	GPIOE
 #define SENSOR4_PIN  			      	    	GPIO_Pin_4

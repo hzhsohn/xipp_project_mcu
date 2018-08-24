@@ -96,7 +96,7 @@ int isOpenDry=0;
 //传感器逻辑重定义
 #define cgqSewageHeight  					SENSOR1_STATE()?1:0 //污水满
 #define cgqCleanWaterLow  				SENSOR2_STATE()?1:0 //清水低
-#define cgqSewageSuitable  				SENSOR3_STATE()?0:1 //污水到位
+#define cgqSewageSuitable  				SENSOR3_STATE()?1:0 //污水到位
 
 //大小便检测
 #define dxbPooPoo  				SENSOR4_STATE()?0:1    //屎
@@ -153,6 +153,9 @@ int monLimitState1R;
 int monLimitState2L;
 int monLimitState2R;
 
+//按摩状态
+static int anmiCurrentState=0;
+		
 ////////////////////////////////////////////////////////////////
 
 void LitteSenceRun(void);
@@ -279,9 +282,11 @@ int main(void)
 	STM32F1_UART1SendDataS((char*)"start",6);
 	
 	//测试继电子器逻辑	
-	allOutClose();
-	RelayTest();
-	allOutClose();
+	#if 0
+			allOutClose();
+			RelayTest();
+			allOutClose();
+	#endif 
 	
 	//看门狗
 	//watchdog_init();
@@ -372,6 +377,8 @@ int main(void)
 					aurtEventBtn(5);
 					g_cCleanCurrentSence=ezhCleanSence7;
 					isCleanRuning=1;
+					anmiCurrentState=!anmiCurrentState;
+					ppxxStep=0; //复位场景
 					bButton5 = _Disable;
 		}	
 		if(bButton6 && 0==g_cCleanCurrentSence)
@@ -1209,6 +1216,8 @@ void litteSenceRunChuQun(void)
 *********************************/
 void litteSenceRunAnMo(void)
 {
+		if(anmiCurrentState)
+		{
 				static int nCalca=0;
 				switch(ppxxStep)
 					{
@@ -1218,7 +1227,7 @@ void litteSenceRunAnMo(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
 							ANMO1_STATE(1);
 						case 1:
-							if(nCalca>10)
+							if(nCalca>15)
 							{
 									nCalca=0;
 									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
@@ -1236,7 +1245,153 @@ void litteSenceRunAnMo(void)
 							ANMO1_STATE(0);
 							break;
 						case 3:
-							if(nCalca>300)
+							if(nCalca>30)
+							{
+									nCalca=0;
+									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
+							}
+							else
+							{
+									if(0==isCleanRuning)//中断
+									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
+									nCalca++;
+							}
+							break;
+							
+						//-----------------------------------------------	
+						case 4:							
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
+							ANMO1_STATE(1);
+						case 5:
+							if(nCalca>15)
+							{
+									nCalca=0;
+									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
+							}
+							else
+							{
+									if(0==isCleanRuning)//中断
+									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
+									nCalca++;
+							}
+							break;
+						case 6:	
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//下一步
+							ANMO1_STATE(0);
+							break;
+						case 7:
+							if(nCalca>30)
+							{
+									nCalca=0;
+									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
+							}
+							else
+							{
+									if(0==isCleanRuning)//中断
+									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
+									nCalca++;
+							}
+							break;
+						//-----------------------------------------------	
+							
+						case 8:							
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
+							ANMO1_STATE(1);
+						case 9:
+							if(nCalca>15)
+							{
+									nCalca=0;
+									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
+							}
+							else
+							{
+									if(0==isCleanRuning)//中断
+									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
+									nCalca++;
+							}
+							break;
+						case 10:	
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//下一步
+							ANMO1_STATE(0);
+							break;
+						case 11:
+							if(nCalca>30)
+							{
+									nCalca=0;
+									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
+							}
+							else
+							{
+									if(0==isCleanRuning)//中断
+									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
+									nCalca++;
+							}
+							break;
+							
+						//-----------------------------------------------
+							//延时
+							case 12:
+							if(nCalca>500)
+							{
+									nCalca=0;
+									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
+							}
+							else
+							{
+									if(0==isCleanRuning)//中断
+									{
+										//中断信号
+										ANMO1_STATE(1);
+										STM32_Delay_ms(200);
+										ANMO1_STATE(0);
+										//
+										g_cCleanCurrentSence=0;nCalca=0;allOutClose();
+									}
+									nCalca++;
+							}
+							break;
+						default: //完毕
+							aurtEventUnitSence(ezhCleanSence7,0);
+							allOutClose();						
+							g_cCleanCurrentSence=0;  		//场景复位
+							ppxxStep=0;
+							break;
+					}
+		}
+		else 
+		{
+				static int nCalca=0;
+				switch(ppxxStep)
+					{
+						case 0:							
+							aurtEventUnitSence(ezhCleanSence7,1);
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
+							ANMO1_STATE(1);
+						case 1:
+							if(nCalca>15)
+							{
+									nCalca=0;
+									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
+							}
+							else
+							{
+									if(0==isCleanRuning)//中断
+									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
+									nCalca++;
+							}
+							break;
+						case 2:	
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//下一步
+							ANMO1_STATE(0);
+							break;
+						case 3:
+							if(nCalca>30)
 							{
 									nCalca=0;
 									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
@@ -1255,6 +1410,7 @@ void litteSenceRunAnMo(void)
 							ppxxStep=0;
 							break;
 					}
+		}
 }
 
 /********************************

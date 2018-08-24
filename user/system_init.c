@@ -29,7 +29,6 @@ void Code_Init(void)
 		STM32F1_UART2_Init(230400);
 		STM32F1_UART3_Init(115200);
 
-		POWER_Configuration();
 		Relay_Init();
 		VOLUME_Configuration();
 		ANMO_Configuration();
@@ -42,4 +41,7 @@ void Code_Init(void)
 		Adc_Init();
 		Adc2_Init();
 		Motor_Init();
+		//°²×¿ÑÓÊ±Æô¶¯
+		STM32_Delay_ms(1000);
+		POWER_Configuration();
 }
