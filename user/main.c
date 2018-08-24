@@ -344,9 +344,9 @@ int main(void)
 		//6保暖键
 		//7设置链
 		//8待机开关
-		if(bButton1 && 0==g_cCleanCurrentSence)
+		if(bButton1 )
 		{
-			if(!isCleanRuning)
+			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
 					aurtEventBtn(1);
 					g_cCleanCurrentSence=ezhCleanSence3;
@@ -359,9 +359,9 @@ int main(void)
 			}
 					bButton1 = _Disable;
 		}
-		if(bButton2 && 0==g_cCleanCurrentSence)
+		if(bButton2 )
 		{
-			if(!isCleanRuning)
+			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
 					aurtEventBtn(2);
 					g_cCleanCurrentSence=ezhCleanSence4;
@@ -374,9 +374,9 @@ int main(void)
 			}
 					bButton2 = _Disable;
 		}
-		if(bButton3 && 0==g_cCleanCurrentSence)
+		if(bButton3 )
 		{
-			if(!isCleanRuning)
+			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
 					aurtEventBtn(3);
 					g_cCleanCurrentSence=ezhCleanSence5;
@@ -389,9 +389,9 @@ int main(void)
 			}
 					bButton3 = _Disable;
 		}
-		if(bButton4 && 0==g_cCleanCurrentSence)
+		if(bButton4 )
 		{
-			if(!isCleanRuning)
+			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
 					aurtEventBtn(4);
 					g_cCleanCurrentSence=ezhCleanSence6;
@@ -404,7 +404,7 @@ int main(void)
 			}
 					bButton4 = _Disable;
 		}		
-		if(bButton5 && 0==g_cCleanCurrentSence)
+		if(bButton5 /*&& 0==g_cCleanCurrentSence*/)
 		{
 					aurtEventBtn(5);
 					g_cCleanCurrentSence=ezhCleanSence7;
@@ -413,9 +413,9 @@ int main(void)
 					ppxxStep=0; //复位场景
 					bButton5 = _Disable;
 		}	
-		if(bButton6 && 0==g_cCleanCurrentSence)
+		if(bButton6 )
 		{
-			if(!isCleanRuning)
+			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
 					aurtEventBtn(6);
 					g_cCleanCurrentSence=ezhCleanSence8;
