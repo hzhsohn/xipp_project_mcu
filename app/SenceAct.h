@@ -5,6 +5,7 @@
 
 //工作时间设置
 typedef struct _TagTimeingSetting{
+		char binFlag[4];
 		uchar pooDelay;				//拉屎后多少秒启动 ,单位分钟
 		uchar xuxuDelay;			//拉屎后多少秒启动 ,单位秒
 		uchar pooFlush;				//屎屎冲洗  ,单位秒

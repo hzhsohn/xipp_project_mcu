@@ -301,8 +301,14 @@ int main(void)
 	//获取数据
 	FLASH_ReadByte(STARTADDR ,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
 	
-	if(g_tmeSetting.waterTemperature<10 || g_tmeSetting.waterTemperature>70)
+	if(!(g_tmeSetting.binFlag[0]=='a' && g_tmeSetting.binFlag[1]=='b' && 
+			 g_tmeSetting.binFlag[2]=='c' && g_tmeSetting.binFlag[3]=='d'))
 	{
+			g_tmeSetting.binFlag[0]='a';
+			g_tmeSetting.binFlag[1]='b';
+			g_tmeSetting.binFlag[2]='c';
+			g_tmeSetting.binFlag[3]='d';
+		
 			g_tmeSetting.pooDelay=1;					  //拉屎后多少秒启动 ,单位分钟
 			g_tmeSetting.xuxuDelay=10;				  //拉屎后多少秒启动 ,单位秒
 			g_tmeSetting.pooFlush=30;					  //屎屎冲洗  ,	单位秒
@@ -453,7 +459,7 @@ int main(void)
 		//A33POWER_STATE(TOUCHKEY_8_STATE());
 		//------------------------------------------------------------------
 		//检测有无尿拉下来		
-		if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //限制如果水温不够不操作
+		//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //限制如果水温不够不操作
 		{
 					if(dxbXuXu)
 					{
@@ -476,7 +482,7 @@ int main(void)
 		}
 		//------------------------------------------------------------------
 		//检测有没有屎掉下来
-		if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10)  //限制如果水温不够不操作
+		//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10)  //限制如果水温不够不操作
 		{
 					if(dxbPooPoo)
 					{
@@ -838,7 +844,7 @@ void litteSenceRunXuXu()
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;//下一步
 							break;
 						case 7:
-							if(nCalca>DEF_TIME_MS_DELAY*10) //10秒延时
+							if(nCalca>DEF_TIME_MS_DELAY*1) //1秒延时
 							{
 									nCalca=0;
 									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;
