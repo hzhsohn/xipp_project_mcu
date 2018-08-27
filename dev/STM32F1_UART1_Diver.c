@@ -126,10 +126,12 @@ void USART1_IRQHandler(void)
 							  switch(g_ocCmd.parameter[0])
 								{
 									case 0x90:
-											Motor1_do_intpr_cmd(1);
+											//Motor1_do_intpr_cmd(1);
+											Motor_demo_up();
 										break;
 									case 0x91:
-											Motor1_do_intpr_cmd(2);
+											//Motor1_do_intpr_cmd(2);
+											Motor_demo_down();
 										break;
 									case 0x92:
 											Motor2_do_intpr_cmd(1);

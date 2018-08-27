@@ -61,6 +61,8 @@ void Motor1_do(int p_or_n);
 void Motor2_do(int p_or_n);
 
 void Motor_demo(void);
+void Motor_demo_up(void);
+void Motor_demo_down(void);
 
 void Mon2blockTurnLeft(void);
 void Mon2blockTurnRight(void);

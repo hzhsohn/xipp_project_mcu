@@ -1330,7 +1330,7 @@ MOTOR2_D_STATE(0);
 
 void sceMotorDemo_do(void)
 {
-		if(motor_demo_do)
+		if(1==motor_demo_do)
 		{
 					monLimitState1L=MOTOR1_L_LIMIT_STATE();
 					monLimitState1R=MOTOR1_R_LIMIT_STATE();
@@ -1394,6 +1394,54 @@ void sceMotorDemo_do(void)
 						break;
 					}
 		}
+		else if(2==motor_demo_do)
+		{
+					monLimitState1L=MOTOR1_L_LIMIT_STATE();
+					monLimitState1R=MOTOR1_R_LIMIT_STATE();
+					monLimitState2L=MOTOR2_L_LIMIT_STATE();
+					monLimitState2R=MOTOR2_R_LIMIT_STATE();
+					switch(current_demo_step)
+					{
+						case 1:
+							if(0==monLimitState1L)
+							{
+								current_demo_step=2;
+							}
+							else
+							{
+								Motor1_do(3);
+							}
+							break;
+						case 2:
+							motor_demo_do=0;
+							current_demo_step=0;
+						break;
+					}
+		}
+		else if(3==motor_demo_do)
+		{
+					monLimitState1L=MOTOR1_L_LIMIT_STATE();
+					monLimitState1R=MOTOR1_R_LIMIT_STATE();
+					monLimitState2L=MOTOR2_L_LIMIT_STATE();
+					monLimitState2R=MOTOR2_R_LIMIT_STATE();
+					switch(current_demo_step)
+					{
+						case 1:
+							if(0==monLimitState1R)
+							{
+								current_demo_step=2;
+							}
+							else
+							{
+								Motor1_do(4);
+							}
+						break;
+						case 2:
+							motor_demo_do=0;
+							current_demo_step=0;
+							break;
+					}
+		}
 }
 
 void Motor1_do_intpr_cmd(int p_or_n)
@@ -1437,3 +1485,14 @@ void Motor_demo(void)
 		current_demo_step=1;
 }
 
+void Motor_demo_up(void)
+{
+		motor_demo_do=2;
+		current_demo_step=1;
+}
+
+void Motor_demo_down(void)
+{
+		motor_demo_do=3;
+		current_demo_step=1;
+}

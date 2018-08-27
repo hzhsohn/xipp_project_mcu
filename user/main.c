@@ -279,7 +279,7 @@ int main(void)
 {
 	Code_Init();
 	
-	STM32F1_UART1SendDataS((char*)"start",6);
+	STM32F1_UART1SendDataS((unsigned char*)"start",6);
 	
 	//²âÊÔ¼Ìµç×ÓÆ÷Âß¼­	
 	#if 0
