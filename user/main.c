@@ -84,8 +84,8 @@ int isOpenDry=0;
 #define udoDry(x)						 			_unit5(x);_unit6(x);_unit10(x);isOpenDry=x		//ºæ¸É³ÌÐò
 #define udoSterilization(x) 			_unit9(x);_unit10(x);_unit13(x)								//É±¾ú
 #define udoWaterHeating(x) 				_unit11(x)																		//Ë®¼ÓÈÈ³ÌÐò
-#define udoXuXuFlush(x) 					_unit1(x);_unit8(x)														//Ð¡±ã³åÏ´
-#define udoPoPoFlush(x) 					_unit2(x);_unit8(x)														//´ó±ã³åÏ´
+#define udoXuXuFlush(x) 					_unit1(x);_unit7(x);_unit8(x)									//Ð¡±ã³åÏ´
+#define udoPoPoFlush(x) 					_unit2(x);_unit7(x);_unit8(x)									//´ó±ã³åÏ´
 #define udoKuZiCongQi(x) 					_unit4(x);_unit10(x)													//¿ã×Ó³äÆø
 #define udoBedCongQi(x) 	 				_unit3(x);_unit10(x)													//´²µæ³äÆø
 #define udoDeodorization(x) 			_unit7(x);_unit12(x)													//³ý³ô
@@ -294,7 +294,7 @@ int main(void)
 	
 	//-------------------------------
 	//startup system delay-----------
-	STM32_Delay_ms(2000);
+	STM32_Delay_ms(10000);
 	//
 	LED1_ON;LED2_ON;LED3_ON;
 	

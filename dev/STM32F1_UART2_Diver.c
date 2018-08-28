@@ -79,8 +79,8 @@ void USART2_IRQHandler(void)
 				{
 						if(u2Counter==0&&u2Re_buf[1]!=0xF0) return; 					
 					  u2Counter=0;
-						//平均7次
-						if(hhjCount<7 && cOldHeartJump>0)
+						//平均3次
+						if(0 && hhjCount<3 && cOldHeartJump>0)
 						{
 							if(0==u2Re_buf[5])
 							{
