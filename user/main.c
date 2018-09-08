@@ -95,7 +95,7 @@ int isOpenDry=0;
 /**************/
 //传感器逻辑重定义
 #define cgqSewageHeight  					SENSOR1_STATE()?1:0 //污水满
-#define cgqCleanWaterLow  				SENSOR2_STATE()?1:0 //清水低
+#define cgqCleanWaterLow  				SENSOR2_STATE()?0:1 //清水低
 #define cgqSewageSuitable  				SENSOR3_STATE()?1:0 //污水到位
 
 //大小便检测
