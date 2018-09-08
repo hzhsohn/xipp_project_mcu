@@ -39,12 +39,14 @@ void Motor_Init(void)
 		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
 		GPIO_Init(MOTOR1_C_GPIO, &GPIO_MyStruct);
 		MOTOR1_C_STATE(0);
+	
+	/*
 		GPIO_MyStruct.GPIO_Pin = MOTOR1_D_PIN;
 		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
 		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
 		GPIO_Init(MOTOR1_D_GPIO, &GPIO_MyStruct);
 		MOTOR1_D_STATE(0);
-		
+		*/
 	
 	/*MOTOR2*/
 	GPIO_MyStruct.GPIO_Pin = MOTOR2_A_PIN;
@@ -222,7 +224,7 @@ void Mon2blockTurnRight(void)
 			int dododyes=8000;
 			int nCalca=0;
 			int Motor2_block_step=1;
-			int i=0;
+
 			for(Motor2_block_step=1;Motor2_block_step<=16;)
 			{
 						switch(Motor2_block_step)
@@ -354,484 +356,46 @@ void sceMotor1_do(void)
 
 		if(1==motor1_p_or_n && 1==monLimitState1L)
 		{
-					
 				if(xiii<xiiiLimit)
 				{
 						xiii++;
-						switch(Motor1_do_step)
-						{
-							case 1:
-								nCalca=0;
-								Motor1_do_step++;	//下一步							
-	MOTOR1_A_STATE(1);
-	MOTOR1_B_STATE(0);
-	MOTOR1_C_STATE(0);
-	MOTOR1_D_STATE(1);
-								break;
-							case 2:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 3:
-								nCalca=0;
-								Motor1_do_step++;	//下一步							
-	MOTOR1_A_STATE(0);
-	MOTOR1_B_STATE(0);
-	MOTOR1_C_STATE(0);
-	MOTOR1_D_STATE(1);
-								break;
-							case 4:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 5:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(0);
-	MOTOR1_B_STATE(0);
-	MOTOR1_C_STATE(1);
-	MOTOR1_D_STATE(1);				
-								break;
-							case 6:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 7:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(0);
-	MOTOR1_B_STATE(0);
-	MOTOR1_C_STATE(1);
-	MOTOR1_D_STATE(0);				
-								break;
-							case 8:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 9:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(0);
-	MOTOR1_B_STATE(1);
-	MOTOR1_C_STATE(1);
-	MOTOR1_D_STATE(0);
-								break;
-							case 10:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 11:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(0);
-	MOTOR1_B_STATE(1);
-	MOTOR1_C_STATE(0);
-	MOTOR1_D_STATE(0);
-								break;
-							case 12:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 13:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(1);
-	MOTOR1_B_STATE(1);
-	MOTOR1_C_STATE(0);
-	MOTOR1_D_STATE(0);
-								break;
-							case 14:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 15:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(1);
-	MOTOR1_B_STATE(0);
-	MOTOR1_C_STATE(0);
-	MOTOR1_D_STATE(0);
-								break;
-							case 16:
-								Motor1_do_step=1;
-								break;
-						}
+						MOTOR1_B_STATE(1);
+						MOTOR1_C_STATE(1);
 				}
 				else
-				{motor1_p_or_n=0;}
+				{
+					MOTOR1_C_STATE(0);
+					motor1_p_or_n=0;
+				}
 		}
 		else if(2==motor1_p_or_n && 1==monLimitState1R)
 		{
 				if(xiii<xiiiLimit)
-					{
-							xiii++;
-							switch(Motor1_do_step)
-							{
-								case 1:
-									nCalca=0;
-									Motor1_do_step++;	//下一步							
-									MOTOR1_A_STATE(1);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(0);
-									break;
-								case 2:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 3:
-									nCalca=0;
-									Motor1_do_step++;	//下一步							
-									MOTOR1_A_STATE(1);
-									MOTOR1_B_STATE(1);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(0);
-									break;
-								case 4:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 5:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(1);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(0);						
-									break;
-								case 6:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 7:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(1);
-									MOTOR1_C_STATE(1);
-									MOTOR1_D_STATE(0);						
-									break;
-								case 8:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 9:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(1);
-									MOTOR1_D_STATE(0);
-									break;
-								case 10:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 11:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(1);
-									MOTOR1_D_STATE(1);
-									break;
-								case 12:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 13:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(1);
-									break;
-								case 14:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 15:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(1);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(1);
-									break;
-								case 16:
-									Motor1_do_step=1;
-									break;
-							}
+				{
+						xiii++;
+						MOTOR1_B_STATE(0);
+						MOTOR1_C_STATE(1);
 				}
 				else
-				{motor1_p_or_n=0;}
+				{
+					MOTOR1_C_STATE(0);
+					motor1_p_or_n=0;
+				}
 		}
 		else if(3==motor1_p_or_n && 1==monLimitState1L)
 		{
-						switch(Motor1_do_step)
-						{
-							case 1:
-								nCalca=0;
-								Motor1_do_step++;	//下一步							
-	MOTOR1_A_STATE(1);
-	MOTOR1_B_STATE(0);
-	MOTOR1_C_STATE(0);
-	MOTOR1_D_STATE(1);
-								break;
-							case 2:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 3:
-								nCalca=0;
-								Motor1_do_step++;	//下一步							
-	MOTOR1_A_STATE(0);
-	MOTOR1_B_STATE(0);
-	MOTOR1_C_STATE(0);
-	MOTOR1_D_STATE(1);
-								break;
-							case 4:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 5:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(0);
-	MOTOR1_B_STATE(0);
-	MOTOR1_C_STATE(1);
-	MOTOR1_D_STATE(1);				
-								break;
-							case 6:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 7:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(0);
-	MOTOR1_B_STATE(0);
-	MOTOR1_C_STATE(1);
-	MOTOR1_D_STATE(0);				
-								break;
-							case 8:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 9:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(0);
-	MOTOR1_B_STATE(1);
-	MOTOR1_C_STATE(1);
-	MOTOR1_D_STATE(0);
-								break;
-							case 10:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 11:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(0);
-	MOTOR1_B_STATE(1);
-	MOTOR1_C_STATE(0);
-	MOTOR1_D_STATE(0);
-								break;
-							case 12:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 13:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(1);
-	MOTOR1_B_STATE(1);
-	MOTOR1_C_STATE(0);
-	MOTOR1_D_STATE(0);
-								break;
-							case 14:
-								if(nCalca>dododyes)
-								{ nCalca=0; Motor1_do_step++; }
-								else
-								{ nCalca++; }
-								break;
-							case 15:
-								nCalca=0;
-								Motor1_do_step++;	//下一步
-	MOTOR1_A_STATE(1);
-	MOTOR1_B_STATE(0);
-	MOTOR1_C_STATE(0);
-	MOTOR1_D_STATE(0);
-								break;
-							case 16:
-								Motor1_do_step=1;
-								break;
-						}
+						MOTOR1_B_STATE(1);
+						MOTOR1_C_STATE(1);
 		}
 		else if(4==motor1_p_or_n && 1==monLimitState1R)
 		{
-						switch(Motor1_do_step)
-							{
-								case 1:
-									nCalca=0;
-									Motor1_do_step++;	//下一步							
-									MOTOR1_A_STATE(1);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(0);
-									break;
-								case 2:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 3:
-									nCalca=0;
-									Motor1_do_step++;	//下一步							
-									MOTOR1_A_STATE(1);
-									MOTOR1_B_STATE(1);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(0);
-									break;
-								case 4:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 5:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(1);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(0);						
-									break;
-								case 6:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 7:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(1);
-									MOTOR1_C_STATE(1);
-									MOTOR1_D_STATE(0);						
-									break;
-								case 8:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 9:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(1);
-									MOTOR1_D_STATE(0);
-									break;
-								case 10:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 11:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(1);
-									MOTOR1_D_STATE(1);
-									break;
-								case 12:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 13:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(0);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(1);
-									break;
-								case 14:
-									if(nCalca>dododyesLeft)
-									{ nCalca=0; Motor1_do_step++; }
-									else
-									{ nCalca++; }
-									break;
-								case 15:
-									nCalca=0;
-									Motor1_do_step++;	//下一步
-									MOTOR1_A_STATE(1);
-									MOTOR1_B_STATE(0);
-									MOTOR1_C_STATE(0);
-									MOTOR1_D_STATE(1);
-									break;
-								case 16:
-									Motor1_do_step=1;
-									break;
-							}
+						MOTOR1_B_STATE(0);
+						MOTOR1_C_STATE(1);
 		}
 		else
 		{
 					//关掉线圈套的任何通电行为
-					MOTOR1_A_STATE(0);
-					MOTOR1_B_STATE(0);
 					MOTOR1_C_STATE(0);
-					MOTOR1_D_STATE(0);
 					motor1_p_or_n=0;
 		}
 }

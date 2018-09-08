@@ -532,6 +532,11 @@
               <FileType>1</FileType>
               <FilePath>.\dev\stm32f10x_iwdg.c</FilePath>
             </File>
+            <File>
+              <FileName>Stm32F1_Timer2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dev\Stm32F1_Timer2.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

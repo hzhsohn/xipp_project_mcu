@@ -1,5 +1,6 @@
 #include "system_init.h"
 #include "BeeSpeaker_Diver.h"
+#include "Stm32F1_Timer2.h"
 #include "Stm32F1_Timer3.h"
 #include "TouchKey_Diver.h"
 #include "STM32_Delay.h"
@@ -28,6 +29,10 @@ void Code_Init(void)
 		STM32F1_UART1_Init(115200);
 		STM32F1_UART2_Init(230400);
 		STM32F1_UART3_Init(115200);
+		
+		
+		Stm32F1_Timer2Init();
+		Stm32F1_Timer3Init();
 
 		Relay_Init();
 		VOLUME_Configuration();
@@ -35,12 +40,13 @@ void Code_Init(void)
 		LED_Configuration();
 		Sensor_Init();
 		TouchKey_Init();
-		Stm32F1_Timer3Init();
 		DS18B20_Init();
 		DS18B20_Init1();
 		Adc_Init();
 		Adc2_Init();
+		
 		Motor_Init();
+		
 		//°²×¿ÑÓÊ±Æô¶¯
 		STM32_Delay_ms(1000);
 		POWER_Configuration();

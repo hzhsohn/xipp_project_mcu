@@ -48,6 +48,8 @@ Func_Staus CountToOneSecond(void)
 /*--------------------------------------------------
 //
 //-------------------------------------------------*/
+
+
 void TIM3_IRQHandler(void)
 {
 
@@ -63,7 +65,6 @@ void TIM3_IRQHandler(void)
 		 g_uart1len=0;
 		 kkUart1count=0;
 	 }
-	 
 	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
 }

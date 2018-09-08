@@ -139,8 +139,15 @@ void USART1_IRQHandler(void)
 									case 0x93:
 											Motor2_do_intpr_cmd(2);
 										break;
-									case 0x94:				//演示模式
+									case 0xD0:
+									case 0x94:				//摄像头演示模式
 											Motor_demo();
+										break;
+									case 0xD1:
+										break;
+									case 0xD2:
+										break;
+									case 0xD3:
 										break;
 									case 0xA0: //启用自动化
 											g_isAutomation=g_ocCmd.parameter[1]?1:0;

@@ -61,7 +61,7 @@ unsigned char g_cCleanCurrentSence=0;
 
 //场景时间调度
 #define DEF_TIME_MS_DELAY		50
-//
+
 /**************/
 //继电器逻辑重定义
 int isOpenDry=0;
@@ -278,7 +278,7 @@ void allOutClose()
 int main(void)
 {
 	Code_Init();
-	
+
 	STM32F1_UART1SendDataS((unsigned char*)"start",6);
 	
 	//测试继电子器逻辑	
@@ -297,7 +297,7 @@ int main(void)
 	STM32_Delay_ms(10000);
 	//
 	LED1_ON;LED2_ON;LED3_ON;
-	
+		
 	//获取数据
 	FLASH_ReadByte(STARTADDR ,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
 	
@@ -326,7 +326,7 @@ int main(void)
 				
 			FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
 	}
-
+						
 	//-------------------
 	while(1)
 	{
@@ -709,6 +709,7 @@ int main(void)
 					else 
 					{LED1_ON;LED2_ON;LED3_ON;}
 		}
+
 	}	
 }
 
@@ -1007,7 +1008,6 @@ void litteSenceRunPooPoo()
 							ppxxStep=0;
 							break;
 					}
-					
 }
 
 void litteSenceRunHuWai(void)

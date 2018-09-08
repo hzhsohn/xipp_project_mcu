@@ -35,6 +35,7 @@
 .\objects\system_init.o: .\libs\inc\misc.h
 .\objects\system_init.o: user\global.h
 .\objects\system_init.o: .\dev\BeeSpeaker_Diver.h
+.\objects\system_init.o: .\dev\Stm32F1_Timer2.h
 .\objects\system_init.o: .\dev\Stm32F1_Timer3.h
 .\objects\system_init.o: .\dev\TouchKey_Diver.h
 .\objects\system_init.o: .\dev\STM32_Delay.h
