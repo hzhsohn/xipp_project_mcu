@@ -2,6 +2,7 @@
 #include "TouchKey_Diver.h"
 #include "Sensor.h"
 #include "Motor_Diver.h"
+#include "Relay_Diver.h"
 
 void Stm32F1_Timer2Init(void)
 {
@@ -25,7 +26,7 @@ void Stm32F1_Timer2Init(void)
 //
 //-------------------------------------------------*/
 int deji_A=0;
-
+int bsmamama=0;
 void TIM2_IRQHandler(void)
 {
 
@@ -33,6 +34,13 @@ void TIM2_IRQHandler(void)
 	deji_A=!deji_A;
 	MOTOR1_A_STATE(deji_A);
 	
+	//变速马达
+	if(bsmamama>100)
+	{
+		bsmamama=0;
+		BS_MADAMADA_STATE(deji_A);
+	}
+	bsmamama++;
 	//---------------------------
 	TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
 }

@@ -121,6 +121,14 @@ void POWER_Configuration(void)
 		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
 		GPIO_Init(GPIOD, &GPIO_MyStruct);
 		GPIO_SetBits(GPIOD,GPIO_Pin_7);*/
+		
+		
+		//变速马达
+		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_15;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+		GPIO_Init(GPIOD, &GPIO_MyStruct);
+		GPIO_SetBits(GPIOD,GPIO_Pin_15);
 }
 
 void VOLUME_Configuration(void)
