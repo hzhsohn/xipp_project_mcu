@@ -155,7 +155,9 @@ int monLimitState2R;
 
 //按摩状态
 static int anmiCurrentState=0;
-		
+//
+void allOutClose();
+void senceDelay(int*nCalca,int*ppxxStep,int delay_ms,int ezhCleanSencePOS);
 ////////////////////////////////////////////////////////////////
 
 void LitteSenceRun(void);
@@ -178,6 +180,23 @@ void litteSenceRunChuQun(void);
 void litteSenceRunAnMo(void);
 void litteSenceRunBaoNang(void);
 
+
+////////////////////////////////////////////////////////////////
+//场景延时
+void senceDelay(int*nCalca,int*ppxxStep,int delay_ms,int ezhCleanSencePOS)
+{
+	if((*nCalca) > delay_ms) 
+	{
+			*nCalca=0;
+			(*ppxxStep)++; g_cCleanCurrentSence=ezhCleanSencePOS | *ppxxStep;
+	}
+	else
+	{
+			if(0==isCleanRuning)//中断
+			{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
+			nCalca++;
+	}
+}
 ////////////////////////////////////////////////////////////////
 
 //提交当前状态
@@ -313,8 +332,8 @@ int main(void)
 			g_tmeSetting.xuxuDelay=10;				  //拉屎后多少秒启动 ,单位秒
 			g_tmeSetting.pooFlush=30;					  //屎屎冲洗  ,	单位秒
 			g_tmeSetting.xuxuFlush=10;				  //尿尿冲洗  	单位 秒
-			g_tmeSetting.pooDry=2;      		  //屎屎烘干时间 单位 分钟
-			g_tmeSetting.xuxuDry=1;					  //尿尿烘干时间 单位 分钟
+			g_tmeSetting.pooDry=2;      		  	//屎屎烘干时间 单位 分钟
+			g_tmeSetting.xuxuDry=1;					  	//尿尿烘干时间 单位 分钟
 			g_tmeSetting.pooSterilize=10;			  //屎屎消毒时间 单位 秒
 			g_tmeSetting.xuxuSterilize=10;		  //尿尿消毒时间 单位 秒
 			g_tmeSetting.crotchPressure=13;			//裤档气压 单位 100电压变数
@@ -1020,17 +1039,7 @@ void litteSenceRunHuWai(void)
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;	//下一步
 						case 1:
-							if(nCalca>DEF_TIME_MS_DELAY* g_tmeSetting.pooDelay * 60)  //默认60秒延时后开始清理
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDelay * 60,ezhCleanSence3);
 							break;
 						case 2:
 							udoXuPooCollect(1);//############# 屎尿收集器
@@ -1039,17 +1048,7 @@ void litteSenceRunHuWai(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;//下一步
 							break;
 						case 3:
-							if(nCalca>DEF_TIME_MS_DELAY*10)  //默认10秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence3);
 							break;
 						case 4:
 							udoPoPoFlush(1);//########### 大便冲洗
@@ -1058,17 +1057,7 @@ void litteSenceRunHuWai(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;	//下一步
 							break;
 						case 5:
-							if(nCalca>DEF_TIME_MS_DELAY*g_tmeSetting.pooFlush) //默认30秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooFlush,ezhCleanSence3);
 							break;
 						case 6:		
 							udoPoPoFlush(0);//########### 大便冲洗
@@ -1077,17 +1066,7 @@ void litteSenceRunHuWai(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
 							break;
 						case 7:
-							if(nCalca>DEF_TIME_MS_DELAY*10) //10秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence3);
 							break;
 						case 8:
 							udoXuPooCollect(0);//############# 屎尿收集器
@@ -1098,17 +1077,7 @@ void litteSenceRunHuWai(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
 							break;
 						case 9:
-							if(nCalca>DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*60) //120秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*60,ezhCleanSence3);
 							break;
 						case 10:
 							
@@ -1137,17 +1106,7 @@ void litteSenceRunChongXi(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;	//下一步
 						  udoPoPoFlush(1);
 						case 1:
-							if(nCalca>DEF_TIME_MS_DELAY*5)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence4);
 							break;
 						case 2:	
 							udoPoPoFlush(0);
@@ -1156,17 +1115,7 @@ void litteSenceRunChongXi(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//下一步
 							break;
 						case 3:
-							if(nCalca>DEF_TIME_MS_DELAY*20)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*20,ezhCleanSence4);
 							break;
 						case 4:	
 							udoDry(0);
@@ -1197,17 +1146,7 @@ void litteSenceRunHongGan(void)
 						
 							udoDry(1);//########### 烘干
 						case 1:
-							if(nCalca>DEF_TIME_MS_DELAY*20)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*20,ezhCleanSence5);
 							break;
 						case 2:
 							
@@ -1240,21 +1179,10 @@ void litteSenceRunChuQun(void)
 
 							udoSterilization(1); //########### 除菌
 						case 1:
-							if(nCalca>DEF_TIME_MS_DELAY*20)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*20,ezhCleanSence6);
 							break;
 						case 2:
 							udoSterilization(0); //########### 除菌
-						
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
 							break;
@@ -1283,54 +1211,23 @@ void litteSenceRunAnMo(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
 							ANMO1_STATE(1);
 						case 1:
-							if(nCalca>15)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence7);
 							break;
-						case 2:	
+						case 2:
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//下一步
 							ANMO1_STATE(0);
 							break;
 						case 3:
-							if(nCalca>30)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence7);
 							break;
-							
 						//-----------------------------------------------	
 						case 4:							
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
 							ANMO1_STATE(1);
 						case 5:
-							if(nCalca>15)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence7);
 							break;
 						case 6:	
 							nCalca=0;
@@ -1338,17 +1235,7 @@ void litteSenceRunAnMo(void)
 							ANMO1_STATE(0);
 							break;
 						case 7:
-							if(nCalca>30)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence7);
 							break;
 						//-----------------------------------------------	
 							
@@ -1357,17 +1244,7 @@ void litteSenceRunAnMo(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
 							ANMO1_STATE(1);
 						case 9:
-							if(nCalca>15)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence7);
 							break;
 						case 10:	
 							nCalca=0;
@@ -1375,17 +1252,7 @@ void litteSenceRunAnMo(void)
 							ANMO1_STATE(0);
 							break;
 						case 11:
-							if(nCalca>30)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence7);
 							break;
 							/*
 						//-----------------------------------------------
@@ -1429,17 +1296,7 @@ void litteSenceRunAnMo(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
 							ANMO1_STATE(1);
 						case 1:
-							if(nCalca>15)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence7);
 							break;
 						case 2:	
 							nCalca=0;
@@ -1447,17 +1304,7 @@ void litteSenceRunAnMo(void)
 							ANMO1_STATE(0);
 							break;
 						case 3:
-							if(nCalca>30)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence7);
 							break;
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence7,0);
@@ -1483,17 +1330,7 @@ void litteSenceRunBaoNang(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//下一步
 							BAONAN_STATE(1);
 						case 1:
-							if(nCalca>10)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,10,ezhCleanSence8);
 							break;
 						case 2:		
 							nCalca=0;
@@ -1501,17 +1338,7 @@ void litteSenceRunBaoNang(void)
 							BAONAN_STATE(0);
 							break;
 						case 3:
-							if(nCalca>300)
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,300,ezhCleanSence8);
 							break;
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence8,0);
