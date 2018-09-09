@@ -34,29 +34,6 @@ extern int g_nMPU_DO;
 //是否自动化操作
 unsigned char g_isAutomation=1;
 
-/*
-//-----------当前清洗小场景
-	ezhCleanSenceNone没执行,
-	ezhCleanSence1自动化小便																					
-	ezhCleanSence2自动化大便 
-	ezhCleanSence3护卫
-	ezhCleanSence4冲洗
-	ezhCleanSence5烘干
-	ezhCleanSence6除菌
-	ezhCleanSence7按摩
-	ezhCleanSence8保暖
-*/
-typedef enum _EzhCleanSence{
-	ezhCleanSenceNone=0x00,
-	ezhCleanSence1=0x10,
-	ezhCleanSence2=0x20,
-	ezhCleanSence3=0x30,
-	ezhCleanSence4=0x40,
-	ezhCleanSence5=0x50,
-	ezhCleanSence6=0x60,
-	ezhCleanSence7=0x70,
-	ezhCleanSence8=0x80,
-}EzhCleanSence;
 unsigned char g_cCleanCurrentSence=0;  
 
 //场景时间调度
@@ -179,7 +156,9 @@ void litteSenceRunHongGan(void);
 void litteSenceRunChuQun(void);
 void litteSenceRunAnMo(void);
 void litteSenceRunBaoNang(void);
-
+void litteSenceRunA(void);
+void litteSenceRunB(void);
+void litteSenceRunC(void);
 
 ////////////////////////////////////////////////////////////////
 //场景延时
@@ -311,6 +290,19 @@ int main(void)
 	//watchdog_init();
 	allOutClose();
 	
+{
+  uint8_t cc1[]={0xAF,0x01,0x01,0xFA};
+	uint8_t cc2[]={0xAF,0x01,0x02,0xFA};
+	uint8_t cc3[]={0xAF,0x01,0x03,0xFA};
+	uint8_t cc4[]={0xAF,0x01,0x04,0xFA};
+	uint8_t cc5[]={0xAF,0x01,0x05,0xFA};
+	
+	STM32F1_UART3SendDataS(cc1,4);
+	STM32F1_UART3SendDataS(cc2,4);
+	STM32F1_UART3SendDataS(cc3,4);
+	STM32F1_UART3SendDataS(cc4,4);
+	STM32F1_UART3SendDataS(cc5,4);
+}
 	//-------------------------------
 	//startup system delay-----------
 	STM32_Delay_ms(10000);
@@ -345,7 +337,7 @@ int main(void)
 				
 			FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
 	}
-						
+
 	//-------------------
 	while(1)
 	{
@@ -783,6 +775,27 @@ void LitteSenceRun()
 				litteSenceRunBaoNang();
 				
 		}
+		else if(ezhCleanSenceA==(g_cCleanCurrentSence&0xf0))
+		{
+				if(0==(g_cCleanCurrentSence&0x0f))
+				{ppxxStep=0;}
+				litteSenceRunA();
+				
+		}
+		else if(ezhCleanSenceB==(g_cCleanCurrentSence&0xf0))
+		{
+				if(0==(g_cCleanCurrentSence&0x0f))
+				{ppxxStep=0;}
+				litteSenceRunB();
+				
+		}
+		else if(ezhCleanSenceC==(g_cCleanCurrentSence&0xf0))
+		{
+				if(0==(g_cCleanCurrentSence&0x0f))
+				{ppxxStep=0;}
+				litteSenceRunC();
+		}
+		
 		else
 		{
 				//没有场景
@@ -1349,3 +1362,92 @@ void litteSenceRunBaoNang(void)
 					}
 }
 
+//--------------------------------------------------------------------------
+//体验场景
+void litteSenceRunA(void)
+{
+				static int nCalca=0;
+				switch(ppxxStep)
+					{
+						case 0:
+							aurtEventUnitSence(ezhCleanSenceA,1);
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceA | ppxxStep;	//下一步
+							
+						case 1:
+							senceDelay(&nCalca,&ppxxStep,10,ezhCleanSenceA);
+							break;
+						case 2:		
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceA | ppxxStep;//下一步
+							
+							break;
+						case 3:
+							senceDelay(&nCalca,&ppxxStep,300,ezhCleanSenceA);
+							break;
+						default: //完毕
+							aurtEventUnitSence(ezhCleanSenceA,0);
+							allOutClose();						
+							g_cCleanCurrentSence=0;  		//场景复位
+							ppxxStep=0;
+							break;
+					}
+}
+void litteSenceRunB(void)
+{
+				static int nCalca=0;
+				switch(ppxxStep)
+					{
+						case 0:
+							aurtEventUnitSence(ezhCleanSenceB,1);
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceB | ppxxStep;	//下一步
+							
+						case 1:
+							senceDelay(&nCalca,&ppxxStep,10,ezhCleanSenceB);
+							break;
+						case 2:		
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceB | ppxxStep;//下一步
+							
+							break;
+						case 3:
+							senceDelay(&nCalca,&ppxxStep,300,ezhCleanSenceB);
+							break;
+						default: //完毕
+							aurtEventUnitSence(ezhCleanSenceB,0);
+							allOutClose();						
+							g_cCleanCurrentSence=0;  		//场景复位
+							ppxxStep=0;
+							break;
+					}
+}
+void litteSenceRunC(void)
+{
+				static int nCalca=0;
+				switch(ppxxStep)
+					{
+						case 0:
+							aurtEventUnitSence(ezhCleanSenceC,1);
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceC | ppxxStep;	//下一步
+							
+						case 1:
+							senceDelay(&nCalca,&ppxxStep,10,ezhCleanSenceC);
+							break;
+						case 2:		
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceC | ppxxStep;//下一步
+							
+							break;
+						case 3:
+							senceDelay(&nCalca,&ppxxStep,300,ezhCleanSenceC);
+							break;
+						default: //完毕
+							aurtEventUnitSence(ezhCleanSenceC,0);
+							allOutClose();						
+							g_cCleanCurrentSence=0;  		//场景复位
+							ppxxStep=0;
+							break;
+					}
+}

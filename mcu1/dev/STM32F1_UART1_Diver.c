@@ -81,6 +81,9 @@ extern int kkUart1count;
 //中断当前动作
 extern int isCleanRuning;
 
+//
+extern unsigned char g_cCleanCurrentSence;  
+
 //发送时间参数
 void sendTimeCfg()
 {
@@ -144,10 +147,28 @@ void USART1_IRQHandler(void)
 											Motor_demo();
 										break;
 									case 0xD1:
+											if(0==g_cCleanCurrentSence)
+											{
+												//aurtEventBtn(0x60);
+												g_cCleanCurrentSence=ezhCleanSenceA;
+												isCleanRuning=1;
+											}
 										break;
 									case 0xD2:
+											if(0==g_cCleanCurrentSence)
+											{
+												//aurtEventBtn(0x60);
+												g_cCleanCurrentSence=ezhCleanSenceB;
+												isCleanRuning=1;
+											}
 										break;
 									case 0xD3:
+											if(0==g_cCleanCurrentSence)
+											{
+												//aurtEventBtn(0x60);
+												g_cCleanCurrentSence=ezhCleanSenceC;
+												isCleanRuning=1;
+											}
 										break;
 									case 0xA0: //启用自动化
 											g_isAutomation=g_ocCmd.parameter[1]?1:0;

@@ -28,7 +28,7 @@ int main(void)
 	sence3();
 	sence4();
 	sence5();*/
-	
+
 	while(1)
 	{
 	}

@@ -1,6 +1,6 @@
 #include "watchdog.h"
 #include "Motor_Diver.h"
-
+#include "STM32_Delay.h"
 
 extern int xiiiLimit;
 extern int xiii;
@@ -905,7 +905,12 @@ void sceMotorDemo_do(void)
 						case 1:
 							if(0==monLimitState1L)
 							{
+								int i=0;
 								current_demo_step=2;
+								for(i=0;i<100;i++)
+								{
+									STM32_Delay_ms(20);
+								}
 							}
 							else
 							{
@@ -915,7 +920,12 @@ void sceMotorDemo_do(void)
 						case 2:
 							if(0==monLimitState2L)
 							{
+								int i=0;
 								current_demo_step=3;
+								for(i=0;i<100;i++)
+								{
+									STM32_Delay_ms(20);
+								}
 							}
 							else
 							{
@@ -925,7 +935,12 @@ void sceMotorDemo_do(void)
 						case 3:
 							if(0==monLimitState2R)
 							{
+								int i=0;
 								current_demo_step=4;
+								for(i=0;i<100;i++)
+								{
+									STM32_Delay_ms(20);
+								}
 							}
 							else
 							{

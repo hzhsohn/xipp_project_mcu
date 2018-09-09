@@ -181,13 +181,13 @@ void LED_Configuration(void)
 		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
 		GPIO_Init(GPIOE, &GPIO_MyStruct);
 		GPIO_SetBits(GPIOE,GPIO_Pin_13);
-	
+
 		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_14;
 		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
 		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
 		GPIO_Init(GPIOE, &GPIO_MyStruct);
 		GPIO_SetBits(GPIOE,GPIO_Pin_14);
-	
+
 		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_15;
 		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
 		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;

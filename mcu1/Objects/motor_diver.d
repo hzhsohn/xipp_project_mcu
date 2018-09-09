@@ -36,3 +36,4 @@
 .\objects\motor_diver.o: .\libs\inc\misc.h
 .\objects\motor_diver.o: .\user\global.h
 .\objects\motor_diver.o: dev\Motor_Diver.h
+.\objects\motor_diver.o: dev\STM32_Delay.h
