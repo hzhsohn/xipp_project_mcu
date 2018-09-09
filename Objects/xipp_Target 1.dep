@@ -1,5 +1,5 @@
 Dependencies for Project 'xipp', Target 'Target 1': (DO NOT MODIFY !)
-F (.\user\main.c)(0x5B940CA9)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\user\main.c)(0x5B94FD33)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (user\system_init.h)(0x5B7D5EB4)
 I (user\stm32f10x_conf.h)(0x5B7D5EB4)
 I (.\libs\inc\stm32f10x_adc.h)(0x5B7D5EB4)
@@ -47,7 +47,7 @@ I (.\dev\ds18b20.h)(0x5B7D5EB4)
 I (.\dev\STM32_Delay.h)(0x5B7D5EB4)
 I (.\dev\Stm32f1_ADC1_Diver.h)(0x5B7D5EB4)
 I (.\dev\Stm32f1_ADC2_Diver.h)(0x5B7D5EB4)
-I (.\dev\Motor_Diver.h)(0x5B940260)
+I (.\dev\Motor_Diver.h)(0x5B95217A)
 I (.\dev\ds18b20_1.h)(0x5B7D5EB4)
 I (.\app\SenceAct.h)(0x5B82AE4E)
 I (.\dev\watchdog.h)(0x5B7D5EB4)
@@ -101,7 +101,7 @@ I (.\dev\Stm32f1_uart3_diver.h)(0x5B7D5EB4)
 I (.\dev\ds18b20.h)(0x5B7D5EB4)
 I (.\dev\Stm32f1_ADC1_Diver.h)(0x5B7D5EB4)
 I (.\dev\Stm32f1_ADC2_Diver.h)(0x5B7D5EB4)
-I (.\dev\Motor_Diver.h)(0x5B940260)
+I (.\dev\Motor_Diver.h)(0x5B95217A)
 I (.\dev\ds18b20_1.h)(0x5B7D5EB4)
 F (.\user\mini-data.c)(0x5B7D5EB4)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\mini-data.o --omf_browse .\objects\mini-data.crf --depend .\objects\mini-data.d)
 I (user\mini-data.h)(0x5B7D5EB4)
@@ -484,7 +484,7 @@ I (.\libs\inc\misc.h)(0x5B7D5EB4)
 I (.\user\global.h)(0x5B7D5EB4)
 I (dev\TouchKey_Diver.h)(0x5B7D5EC0)
 I (dev\Sensor.h)(0x5B93CFCE)
-I (dev\Motor_Diver.h)(0x5B940260)
+I (dev\Motor_Diver.h)(0x5B95217A)
 F (.\dev\STM32_Delay.c)(0x5B7D5EB4)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32_delay.o --omf_browse .\objects\stm32_delay.crf --depend .\objects\stm32_delay.d)
 I (dev\STM32_Delay.h)(0x5B7D5EB4)
 I (.\user\system_init.h)(0x5B7D5EB4)
@@ -633,7 +633,7 @@ I (.\user\mini-data.h)(0x5B7D5EB4)
 I (.\app\SenceAct.h)(0x5B82AE4E)
 I (.\user\flash_rw.h)(0x5B7D5EB4)
 I (.\dev\STM32_Delay.h)(0x5B7D5EB4)
-I (dev\Motor_Diver.h)(0x5B940260)
+I (dev\Motor_Diver.h)(0x5B95217A)
 F (.\dev\STM32F1_UART2_Diver.c)(0x5B852E01)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_uart2_diver.o --omf_browse .\objects\stm32f1_uart2_diver.crf --depend .\objects\stm32f1_uart2_diver.d)
 I (dev\Stm32f1_uart2_diver.h)(0x5B7D5EB4)
 I (.\user\system_init.h)(0x5B7D5EB4)
@@ -710,7 +710,7 @@ I (C:\App\Keil_v5\ARM\ARMCC\include\stdio.h)(0x56FE42DE)
 I (.\user\mini-data.h)(0x5B7D5EB4)
 I (.\app\SenceAct.h)(0x5B82AE4E)
 I (C:\App\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x56FE42DE)
-I (dev\Motor_Diver.h)(0x5B940260)
+I (dev\Motor_Diver.h)(0x5B95217A)
 F (.\dev\ds18b20.c)(0x5B7D5EB4)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\ds18b20.o --omf_browse .\objects\ds18b20.crf --depend .\objects\ds18b20.d)
 I (dev\ds18b20.h)(0x5B7D5EB4)
 I (.\user\system_init.h)(0x5B7D5EB4)
@@ -785,7 +785,7 @@ I (.\libs\inc\stm32f10x_wwdg.h)(0x5B7D5EB4)
 I (.\libs\inc\misc.h)(0x5B7D5EB4)
 I (.\user\global.h)(0x5B7D5EB4)
 I (dev\STM32_Delay.h)(0x5B7D5EB4)
-F (.\dev\Motor_Diver.c)(0x5B94064A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\motor_diver.o --omf_browse .\objects\motor_diver.crf --depend .\objects\motor_diver.d)
+F (.\dev\Motor_Diver.c)(0x5B952175)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\motor_diver.o --omf_browse .\objects\motor_diver.crf --depend .\objects\motor_diver.d)
 I (dev\watchdog.h)(0x5B7D5EB4)
 I (.\user\system_init.h)(0x5B7D5EB4)
 I (.\user\stm32f10x_conf.h)(0x5B7D5EB4)
@@ -821,7 +821,7 @@ I (.\libs\inc\stm32f10x_usart.h)(0x5B7D5EB4)
 I (.\libs\inc\stm32f10x_wwdg.h)(0x5B7D5EB4)
 I (.\libs\inc\misc.h)(0x5B7D5EB4)
 I (.\user\global.h)(0x5B7D5EB4)
-I (dev\Motor_Diver.h)(0x5B940260)
+I (dev\Motor_Diver.h)(0x5B95217A)
 F (.\dev\STM32F1_ADC2_Diver.c)(0x5B7D5EB4)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_adc2_diver.o --omf_browse .\objects\stm32f1_adc2_diver.crf --depend .\objects\stm32f1_adc2_diver.d)
 I (dev\Stm32f1_ADC2_Diver.h)(0x5B7D5EB4)
 I (.\user\system_init.h)(0x5B7D5EB4)
@@ -1040,7 +1040,7 @@ I (.\libs\inc\misc.h)(0x5B7D5EB4)
 I (.\user\global.h)(0x5B7D5EB4)
 I (dev\TouchKey_Diver.h)(0x5B7D5EC0)
 I (dev\Sensor.h)(0x5B93CFCE)
-I (dev\Motor_Diver.h)(0x5B940260)
+I (dev\Motor_Diver.h)(0x5B95217A)
 I (dev\Relay_Diver.h)(0x5B94078B)
 F (.\app\AutoFunction.c)(0x5B7D5EB4)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\autofunction.o --omf_browse .\objects\autofunction.crf --depend .\objects\autofunction.d)
 I (app\AutoFunction.h)(0x5B7D5EB4)

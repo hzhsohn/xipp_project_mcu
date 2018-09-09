@@ -359,7 +359,7 @@ void sceMotor1_do(void)
 				if(xiii<xiiiLimit)
 				{
 						xiii++;
-						MOTOR1_B_STATE(0);
+						MOTOR1_B_STATE(1);
 						MOTOR1_C_STATE(1);
 				}
 				else
@@ -373,7 +373,7 @@ void sceMotor1_do(void)
 				if(xiii<xiiiLimit)
 				{
 						xiii++;
-						MOTOR1_B_STATE(1);
+						MOTOR1_B_STATE(0);
 						MOTOR1_C_STATE(1);
 				}
 				else
@@ -384,12 +384,12 @@ void sceMotor1_do(void)
 		}
 		else if(3==motor1_p_or_n && 1==monLimitState1L)
 		{
-						MOTOR1_B_STATE(0);
+						MOTOR1_B_STATE(1);
 						MOTOR1_C_STATE(1);
 		}
 		else if(4==motor1_p_or_n && 1==monLimitState1R)
 		{
-						MOTOR1_B_STATE(1);
+						MOTOR1_B_STATE(0);
 						MOTOR1_C_STATE(1);
 		}
 		else
