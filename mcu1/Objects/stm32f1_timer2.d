@@ -39,3 +39,4 @@
 .\objects\stm32f1_timer2.o: dev\Sensor.h
 .\objects\stm32f1_timer2.o: dev\Motor_Diver.h
 .\objects\stm32f1_timer2.o: dev\Relay_Diver.h
+.\objects\stm32f1_timer2.o: dev\STM32F1_UART1_Diver.h

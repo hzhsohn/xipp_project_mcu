@@ -3,6 +3,9 @@
 #include "Sensor.h"
 #include "Motor_Diver.h"
 #include "Relay_Diver.h"
+#include "STM32F1_UART1_Diver.h"
+
+extern unsigned char g_cCleanCurrentSence;
 
 void Stm32F1_Timer2Init(void)
 {
@@ -34,13 +37,20 @@ void TIM2_IRQHandler(void)
 	deji_A=!deji_A;
 	MOTOR1_A_STATE(deji_A);
 	
-	//变速马达
-	if(bsmamama>100)
-	{
-		bsmamama=0;
-		BS_MADAMADA_STATE(deji_A);
+	if(ezhCleanSence2==(g_cCleanCurrentSence&0xf0) || ezhCleanSence3==(g_cCleanCurrentSence&0xf0))
+	{		
+		//变速马达
+		if(bsmamama>100)
+		{
+			bsmamama=0;
+			BS_MADAMADA_STATE(deji_A);
+		}
+		bsmamama++;
 	}
-	bsmamama++;
+	else
+	{
+		BS_MADAMADA_STATE(0);
+	}
 	//---------------------------
 	TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
 }
