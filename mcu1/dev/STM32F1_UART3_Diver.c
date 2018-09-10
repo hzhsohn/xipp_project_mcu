@@ -114,10 +114,10 @@ void USART3_IRQHandler(void)
 							jiaodu[0]=Re_buf [4];
 							jiaodu[1]=Re_buf [5];
 						
-							if(_mpu_angle[1]<(-g_tmeSetting.mpuLeft))
+							if(_mpu_angle[1]<(-20))
 							{g_nMPU_DO=1;}
 							else
-							if(_mpu_angle[1]>g_tmeSetting.mpuRight)
+							if(_mpu_angle[1]>20)
 							{g_nMPU_DO=2;}
 							else
 							{g_nMPU_DO=0;}

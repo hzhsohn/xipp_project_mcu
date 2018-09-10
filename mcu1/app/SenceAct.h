@@ -18,8 +18,6 @@ typedef struct _TagTimeingSetting{
 		uchar bedPressure;   	//床垫的气压  单位 100电压变数
 		uchar waterTemperature;//最低水温   单位摄氏度
 		uchar airTemperature;  //最低烘干温度   单位摄氏度
-		uchar mpuLeft;  //床陀螺左角度  单位角度
-		uchar mpuRight;  //床陀螺右角度  单位角度
 }TagTimeingSetting;
 
 #endif

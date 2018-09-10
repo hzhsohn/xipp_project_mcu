@@ -59,7 +59,7 @@ int isOpenDry=0;
 
 //
 #define udoDry(x)						 			_unit5(x);_unit6(x);_unit10(x);isOpenDry=x		//烘干程序
-#define udoSterilization(x) 			_unit9(x);_unit10(x);_unit13(x)								//杀菌
+#define udoSterilization(x) 			_unit5(x);_unit9(x);_unit10(x);_unit13(x)								//杀菌
 #define udoWaterHeating(x) 				_unit11(x)																		//水加热程序
 #define udoXuXuFlush(x) 					_unit1(x);_unit7(x);_unit8(x)									//小便冲洗
 #define udoPoPoFlush(x) 					_unit2(x);_unit7(x);_unit8(x)									//大便冲洗
@@ -332,8 +332,6 @@ int main(void)
 			g_tmeSetting.bedPressure=13;   			//床垫的气压  单位 100电压变数
 			g_tmeSetting.waterTemperature=38;		//最低水温   			单位摄氏度
 			g_tmeSetting.airTemperature=50;  		//最低烘干温度   	单位摄氏度
-			g_tmeSetting.mpuLeft=30;  					//床陀螺左角度  单位角度
-			g_tmeSetting.mpuRight=30;  					//床陀螺右角度  单位角度
 				
 			FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
 	}
