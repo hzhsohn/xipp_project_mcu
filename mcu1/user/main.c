@@ -167,13 +167,13 @@ void senceDelay(int*nCalca,int*ppxxStep,int delay_ms,int ezhCleanSencePOS)
 	if((*nCalca) > delay_ms) 
 	{
 			*nCalca=0;
-			(*ppxxStep)++; g_cCleanCurrentSence=ezhCleanSencePOS | *ppxxStep;
+			(*ppxxStep)++; g_cCleanCurrentSence=ezhCleanSencePOS | (*ppxxStep);
 	}
 	else
 	{
 			if(0==isCleanRuning)//中断
-			{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-			nCalca++;
+			{g_cCleanCurrentSence=0;(*nCalca)=0;allOutClose();}
+			(*nCalca)++;
 	}
 }
 ////////////////////////////////////////////////////////////////
@@ -466,7 +466,7 @@ int main(void)
 					aurtEventBtn(8);
 					bButton8 = _Disable;
 		}	
-		
+
 		//A33POWER_STATE(TOUCHKEY_8_STATE());
 		//------------------------------------------------------------------
 		//检测有无尿拉下来		
@@ -701,13 +701,7 @@ int main(void)
 					//---------------------s
 					kk=0;
 		}
-		//------------------------------------------------------------------
-		//定时上传状态
-		if(kk2>200)
-		{
-					aurtEventStatus();
-					kk2=0;
-		}
+		
 		//------------------------------------------------------------------
 		//冲屎洗尿功能
 		if(kk_1ms)
@@ -820,17 +814,7 @@ void litteSenceRunXuXu()
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//下一步
 						case 1:
-							if(nCalca>DEF_TIME_MS_DELAY*g_tmeSetting.xuxuDelay)  //默认10秒延时后开始清理
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.xuxuDelay,ezhCleanSence1);
 							break;
 						case 2:
 							udoXuPooCollect(1);//############# 屎尿收集器
@@ -839,17 +823,7 @@ void litteSenceRunXuXu()
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//下一步
 							break;
 						case 3:
-							if(nCalca>DEF_TIME_MS_DELAY*10)  //10秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence1);
 							break;
 						case 4:
 							udoXuXuFlush(1);//########### 小便冲洗
@@ -858,17 +832,7 @@ void litteSenceRunXuXu()
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//下一步
 							break;
 						case 5:
-							if(nCalca>DEF_TIME_MS_DELAY*g_tmeSetting.xuxuFlush) //10秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.xuxuFlush,ezhCleanSence1);
 							break;
 						case 6:
 							udoXuXuFlush(0);//########### 小便冲洗
@@ -877,17 +841,7 @@ void litteSenceRunXuXu()
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;//下一步
 							break;
 						case 7:
-							if(nCalca>DEF_TIME_MS_DELAY*1) //1秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*1,ezhCleanSence1);
 							break;
 						case 8:						
 							udoXuPooCollect(0);//############# 屎尿收集器
@@ -898,17 +852,7 @@ void litteSenceRunXuXu()
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;
 							break;
 						case 9:
-							if(nCalca>DEF_TIME_MS_DELAY*g_tmeSetting.xuxuDry) //60秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.xuxuDry,ezhCleanSence1);
 							break;
 						case 10:							
 							udoDry(0);//########### 烘干
@@ -935,17 +879,7 @@ void litteSenceRunPooPoo()
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;	//下一步
 						case 1:
-							if(nCalca>DEF_TIME_MS_DELAY* g_tmeSetting.pooDelay * 60)  //默认60秒延时后开始清理
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDelay * 60,ezhCleanSence2);
 							break;
 						case 2:
 							udoXuPooCollect(1);//############# 屎尿收集器
@@ -954,17 +888,7 @@ void litteSenceRunPooPoo()
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;//下一步
 							break;
 						case 3:
-							if(nCalca>DEF_TIME_MS_DELAY*10)  //默认10秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence2);
 							break;
 						case 4:
 							udoPoPoFlush(1);//########### 大便冲洗
@@ -973,17 +897,7 @@ void litteSenceRunPooPoo()
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;	//下一步
 							break;
 						case 5:
-							if(nCalca>DEF_TIME_MS_DELAY*g_tmeSetting.pooFlush) //默认30秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooFlush,ezhCleanSence2);
 							break;
 						case 6:		
 							udoPoPoFlush(0);//########### 大便冲洗
@@ -992,17 +906,7 @@ void litteSenceRunPooPoo()
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
 							break;
 						case 7:
-							if(nCalca>DEF_TIME_MS_DELAY*10) //10秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence2);
 							break;
 						case 8:
 							udoXuPooCollect(0);//############# 屎尿收集器
@@ -1013,22 +917,29 @@ void litteSenceRunPooPoo()
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
 							break;
 						case 9:
-							if(nCalca>DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*60) //120秒延时
-							{
-									nCalca=0;
-									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
-							}
-							else
-							{
-									if(0==isCleanRuning)//中断
-									{g_cCleanCurrentSence=0;nCalca=0;allOutClose();}
-									nCalca++;
-							}
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*10,ezhCleanSence2);
 							break;
 						case 10:
-							
 							udoDry(0);//########### 烘干
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
+							break;
 						
+						case 11:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence2);
+							break;
+						
+						case 12:
+							udoXuPooCollect(0);//############# 屎尿收集器
+							udoDry(1);//########### 烘干
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
+							break;
+						case 13:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*10,ezhCleanSence2);
+							break;
+						case 14:
+							udoDry(0);//########### 烘干
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
 							break;
@@ -1056,7 +967,6 @@ void litteSenceRunHuWai(void)
 							break;
 						case 2:
 							udoXuPooCollect(1);//############# 屎尿收集器
-						
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;//下一步
 							break;
@@ -1065,7 +975,6 @@ void litteSenceRunHuWai(void)
 							break;
 						case 4:
 							udoPoPoFlush(1);//########### 大便冲洗
-						
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;	//下一步
 							break;
@@ -1074,7 +983,6 @@ void litteSenceRunHuWai(void)
 							break;
 						case 6:		
 							udoPoPoFlush(0);//########### 大便冲洗
-						
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
 							break;
@@ -1083,19 +991,30 @@ void litteSenceRunHuWai(void)
 							break;
 						case 8:
 							udoXuPooCollect(0);//############# 屎尿收集器
-						
 							udoDry(1);//########### 烘干
-						
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
 							break;
 						case 9:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*60,ezhCleanSence3);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*10,ezhCleanSence3);
 							break;
 						case 10:
-							
 							udoDry(0);//########### 烘干
-						
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
+							break;
+						case 11:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence3);
+							break;
+						case 12:
+							udoDry(1);//########### 烘干
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
+							break;
+						case 13:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*10,ezhCleanSence3);
+							break;
+						case 14:
+							udoDry(0);//########### 烘干
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
 							break;

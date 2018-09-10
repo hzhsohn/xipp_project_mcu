@@ -8,8 +8,9 @@ int kk2=0;
 int kk_1ms=0;
 u16_t sCount1ms;
 int kkUart1count=0;
-
 extern int g_uart1len;
+
+void aurtEventStatus();
 
 void Stm32F1_Timer3Init(void)
 {
@@ -65,6 +66,14 @@ void TIM3_IRQHandler(void)
 		 g_uart1len=0;
 		 kkUart1count=0;
 	 }
+	 
+	 //------------------------------------------------------------------
+	 //上传数据
+		if(kk2>200)
+		{
+					aurtEventStatus();
+					kk2=0;
+		}
 	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
 }
