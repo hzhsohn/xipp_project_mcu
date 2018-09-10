@@ -5,7 +5,7 @@
 #include "STM32_Delay.h"
 
 
-#define STARTADDRFLAG		 	0x0801E000
+#define STARTADDRFLAG		 	0x08020000
 #define STARTADDR 				0x0801F000
 
 void FLASH_WriteByte(uint32_t addr , uint8_t *p , uint16_t Byte_Num);

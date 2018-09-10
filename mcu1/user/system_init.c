@@ -17,14 +17,14 @@
 
 void Code_Init(void)
 {
-	  ErrorStatus HSEStartUpStatus;
+	  /*ErrorStatus HSEStartUpStatus;
 		SystemInit();	
 		RCC_HSEConfig(RCC_HSE_ON);
 		HSEStartUpStatus = RCC_WaitForHSEStartUp();
 		if(HSEStartUpStatus == SUCCESS)
 		{
 
-		}		
+		}*/
 		STM32_Delay_init();
 		STM32F1_UART1_Init(115200);
 		STM32F1_UART2_Init(230400);
@@ -49,6 +49,6 @@ void Code_Init(void)
 		Stm32F1_Timer3Init();
 		
 		//°²×¿ÑÓÊ±Æô¶¯
-		STM32_Delay_ms(1000);
+		STM32_Delay_ms(500);
 		POWER_Configuration();
 }
