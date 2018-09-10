@@ -275,6 +275,7 @@ void allOutClose()
 
 int main(void)
 {
+	char binFlag[4]={0};
 	Code_Init();
 
 	STM32F1_UART1SendDataS((unsigned char*)"start",6);
@@ -310,32 +311,33 @@ int main(void)
 	LED1_ON;LED2_ON;LED3_ON;
 		
 	//获取数据
+	FLASH_ReadByte(STARTADDRFLAG ,(uint8_t*)binFlag,4);
 	FLASH_ReadByte(STARTADDR ,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
 	
-	if(!(g_tmeSetting.binFlag[0]=='a' && g_tmeSetting.binFlag[1]=='b' && 
-			 g_tmeSetting.binFlag[2]=='c' && g_tmeSetting.binFlag[3]=='d'))
-	{
-			g_tmeSetting.binFlag[0]='a';
-			g_tmeSetting.binFlag[1]='b';
-			g_tmeSetting.binFlag[2]='c';
-			g_tmeSetting.binFlag[3]='d';
-		
-			g_tmeSetting.pooDelay=1;					  //拉屎后多少秒启动 ,单位分钟
-			g_tmeSetting.xuxuDelay=10;				  //拉屎后多少秒启动 ,单位秒
-			g_tmeSetting.pooFlush=30;					  //屎屎冲洗  ,	单位秒
-			g_tmeSetting.xuxuFlush=10;				  //尿尿冲洗  	单位 秒
-			g_tmeSetting.pooDry=2;      		  	//屎屎烘干时间 单位 分钟
-			g_tmeSetting.xuxuDry=1;					  	//尿尿烘干时间 单位 分钟
-			g_tmeSetting.pooSterilize=10;			  //屎屎消毒时间 单位 秒
-			g_tmeSetting.xuxuSterilize=10;		  //尿尿消毒时间 单位 秒
-			g_tmeSetting.crotchPressure=13;			//裤档气压 单位 100电压变数
-			g_tmeSetting.bedPressure=13;   			//床垫的气压  单位 100电压变数
-			g_tmeSetting.waterTemperature=38;		//最低水温   			单位摄氏度
-			g_tmeSetting.airTemperature=50;  		//最低烘干温度   	单位摄氏度
-				
-			FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
-	}
+if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
+{
+		binFlag[0]='a';
+		binFlag[1]='b';
+		binFlag[2]='c';
+		binFlag[3]='d';
 
+		g_tmeSetting.pooDelay=1;					  //拉屎后多少秒启动 ,单位分钟
+		g_tmeSetting.xuxuDelay=10;				  //拉屎后多少秒启动 ,单位秒
+		g_tmeSetting.pooFlush=30;					  //屎屎冲洗  ,	单位秒
+		g_tmeSetting.xuxuFlush=10;				  //尿尿冲洗  	单位 秒
+		g_tmeSetting.pooDry=2;      		  	//屎屎烘干时间 单位 分钟
+		g_tmeSetting.xuxuDry=1;					  	//尿尿烘干时间 单位 分钟
+		g_tmeSetting.pooSterilize=10;			  //屎屎消毒时间 单位 秒
+		g_tmeSetting.xuxuSterilize=10;		  //尿尿消毒时间 单位 秒
+		g_tmeSetting.crotchPressure=13;			//裤档气压 单位 100电压变数
+		g_tmeSetting.bedPressure=13;   			//床垫的气压  单位 100电压变数
+		g_tmeSetting.waterTemperature=38;		//最低水温   			单位摄氏度
+		g_tmeSetting.airTemperature=50;  		//最低烘干温度   	单位摄氏度
+			
+		FLASH_WriteByte(STARTADDRFLAG,(uint8_t*)binFlag,4);
+		FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
+
+}
 	//-------------------
 	while(1)
 	{
@@ -541,8 +543,7 @@ int main(void)
 								//水他妈必的太热了.发到串口告诉上位机端,通知护士小妹妹,机器故障了
 								isWaterTooHot=1;
 							}
-							
-							if(rWaterTemp<g_tmeSetting.waterTemperature*10 ) //默认小于40度就加热
+							else if(rWaterTemp<g_tmeSetting.waterTemperature*10 && 0==bCleanWaterLow) //默认小于40度就加热
 							{
  								udoWaterHeating(1);
 							}

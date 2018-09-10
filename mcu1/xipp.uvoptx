@@ -176,9 +176,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>977</LineNumber>
+          <LineNumber>978</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134232648</Address>
+          <Address>134232668</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -187,39 +187,39 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\user\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\977</Expression>
+          <Expression>\\xipp\user/main.c\978</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>182</LineNumber>
+          <LineNumber>314</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134228298</Address>
+          <Address>134234610</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\dev\STM32F1_UART1_Diver.c</Filename>
+          <Filename>.\user\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\\dev/STM32F1_UART1_Diver.c\182</Expression>
+          <Expression>\\xipp\user/main.c\314</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>975</LineNumber>
+          <LineNumber>976</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134232632</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
+          <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\user\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\xipp\user/main.c\976</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
