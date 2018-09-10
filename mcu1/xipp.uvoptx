@@ -176,9 +176,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>978</LineNumber>
+          <LineNumber>276</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134232668</Address>
+          <Address>134233608</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -187,39 +187,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\user\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\978</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>314</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134234610</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\user\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\314</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>976</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134232632</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\user\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\976</Expression>
+          <Expression>\\xipp\user/main.c\276</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

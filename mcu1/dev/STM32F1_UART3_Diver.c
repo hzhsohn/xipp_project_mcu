@@ -72,57 +72,11 @@ void STM32F1_UART3_Init(u32_t lBaudRate)
 
 
 //---------------------------------------
-unsigned char Re_buf[11],counter=0;
-float _mpu_a[3],_mpu_w[3],_mpu_angle[3],_mpu_T;
-extern int g_nMPU_DO;
-extern TagTimeingSetting g_tmeSetting;
-unsigned char jiaodu[2];
-
 //
 void USART3_IRQHandler(void)
 {
     if (USART_GetITStatus(USART3,USART_IT_RXNE)!=RESET)
     {
-				Re_buf[counter]=USART_ReceiveData(USART3);
-				if(counter==0&&Re_buf[0]!=0x55) return; 
-
-				counter++;				
-				if(counter==11) 
-				{    
-					  counter=0;
-					  //
-						switch(Re_buf [1])
-						{
-						case 0x51:
-							_mpu_a[0] = (short)(Re_buf [3]<<8| Re_buf [2])/32768.0*16;
-							_mpu_a[1] = (short)(Re_buf [5]<<8| Re_buf [4])/32768.0*16;
-							_mpu_a[2] = (short)(Re_buf [7]<<8| Re_buf [6])/32768.0*16;
-							_mpu_T = (short)(Re_buf [9]<<8| Re_buf [8])/340.0+36.25;
-						break;
-						case 0x52:
-							_mpu_w[0] = (short)(Re_buf [3]<<8| Re_buf [2])/32768.0*2000;
-							_mpu_w[1] = (short)(Re_buf [5]<<8| Re_buf [4])/32768.0*2000;
-							_mpu_w[2] = (short)(Re_buf [7]<<8| Re_buf [6])/32768.0*2000;
-							_mpu_T = (short)(Re_buf [9]<<8| Re_buf [8])/340.0+36.25;
-						break;
-						case 0x53:
-							_mpu_angle[0] = (short)(Re_buf [3]<<8| Re_buf [2])/32768.0*180;
-							_mpu_angle[1] = (short)(Re_buf [5]<<8| Re_buf [4])/32768.0*180;
-							_mpu_angle[2] = (short)(Re_buf [7]<<8| Re_buf [6])/32768.0*180;
-							_mpu_T = (short)(Re_buf [9]<<8| Re_buf [8])/340.0+36.25;
-						
-							jiaodu[0]=Re_buf [4];
-							jiaodu[1]=Re_buf [5];
-						
-							if(_mpu_angle[1]<(-20))
-							{g_nMPU_DO=1;}
-							else
-							if(_mpu_angle[1]>20)
-							{g_nMPU_DO=2;}
-							else
-							{g_nMPU_DO=0;}
-						break;						
-						}
-				}			
+				
     }
 }

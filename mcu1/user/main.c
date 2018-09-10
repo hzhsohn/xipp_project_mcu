@@ -212,9 +212,6 @@ void aurtEventStatus()
 		cbuf[16]=isWaterTooHot;//如果为1就是有问题,意思就是"他奶奶加热功能不知道哪里有问题.."
 		cbuf[17]=isGasTooHot;
 		
-		cbuf[18]=jiaodu[0];//角度
-		cbuf[19]=jiaodu[1];
-		
 
 		myDataLen = miniDataCreate(20,cbuf,dst_buf);
 		STM32F1_UART1SendDataS(dst_buf,myDataLen);
@@ -273,9 +270,9 @@ void allOutClose()
 	 _unit13(0); 									//杀菌气转换
 }
 
+char binFlag[4]={0};
 int main(void)
 {
-	char binFlag[4]={0};
 	Code_Init();
 
 	STM32F1_UART1SendDataS((unsigned char*)"start",6);
@@ -291,19 +288,6 @@ int main(void)
 	//watchdog_init();
 	allOutClose();
 	
-{
-  uint8_t cc1[]={0xAF,0x01,0x01,0xFA};
-	uint8_t cc2[]={0xAF,0x01,0x02,0xFA};
-	uint8_t cc3[]={0xAF,0x01,0x03,0xFA};
-	uint8_t cc4[]={0xAF,0x01,0x04,0xFA};
-	uint8_t cc5[]={0xAF,0x01,0x05,0xFA};
-	
-	STM32F1_UART3SendDataS(cc1,4);
-	STM32F1_UART3SendDataS(cc2,4);
-	STM32F1_UART3SendDataS(cc3,4);
-	STM32F1_UART3SendDataS(cc4,4);
-	STM32F1_UART3SendDataS(cc5,4);
-}
 	//-------------------------------
 	//startup system delay-----------
 	STM32_Delay_ms(10000);
@@ -333,6 +317,8 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		g_tmeSetting.bedPressure=13;   			//床垫的气压  单位 100电压变数
 		g_tmeSetting.waterTemperature=38;		//最低水温   			单位摄氏度
 		g_tmeSetting.airTemperature=50;  		//最低烘干温度   	单位摄氏度
+		g_tmeSetting.mpuLeft=30;  					//??????  ????
+		g_tmeSetting.mpuRight=30;  					//??????  ????
 			
 		FLASH_WriteByte(STARTADDRFLAG,(uint8_t*)binFlag,4);
 		FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
@@ -1369,3 +1355,4 @@ void litteSenceRunC(void)
 							break;
 					}
 }
+
