@@ -125,8 +125,6 @@ Section Cross References
     system_init.o(i.Code_Init) refers to stm32f1_uart1_diver.o(i.STM32F1_UART1_Init) for STM32F1_UART1_Init
     system_init.o(i.Code_Init) refers to stm32f1_uart2_diver.o(i.STM32F1_UART2_Init) for STM32F1_UART2_Init
     system_init.o(i.Code_Init) refers to stm32f1_uart3_diver.o(i.STM32F1_UART3_Init) for STM32F1_UART3_Init
-    system_init.o(i.Code_Init) refers to stm32f1_timer2.o(i.Stm32F1_Timer2Init) for Stm32F1_Timer2Init
-    system_init.o(i.Code_Init) refers to stm32f1_timer3.o(i.Stm32F1_Timer3Init) for Stm32F1_Timer3Init
     system_init.o(i.Code_Init) refers to relay_diver.o(i.Relay_Init) for Relay_Init
     system_init.o(i.Code_Init) refers to relay_diver.o(i.VOLUME_Configuration) for VOLUME_Configuration
     system_init.o(i.Code_Init) refers to relay_diver.o(i.ANMO_Configuration) for ANMO_Configuration
@@ -138,6 +136,8 @@ Section Cross References
     system_init.o(i.Code_Init) refers to stm32f1_adc1_diver.o(i.Adc_Init) for Adc_Init
     system_init.o(i.Code_Init) refers to stm32f1_adc2_diver.o(i.Adc2_Init) for Adc2_Init
     system_init.o(i.Code_Init) refers to motor_diver.o(i.Motor_Init) for Motor_Init
+    system_init.o(i.Code_Init) refers to stm32f1_timer2.o(i.Stm32F1_Timer2Init) for Stm32F1_Timer2Init
+    system_init.o(i.Code_Init) refers to stm32f1_timer3.o(i.Stm32F1_Timer3Init) for Stm32F1_Timer3Init
     system_init.o(i.Code_Init) refers to stm32_delay.o(i.STM32_Delay_ms) for STM32_Delay_ms
     system_init.o(i.Code_Init) refers to relay_diver.o(i.POWER_Configuration) for POWER_Configuration
     flash_rw.o(i.FLASH_WriteByte) refers to stm32f10x_flash.o(i.FLASH_Unlock) for FLASH_Unlock

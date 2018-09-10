@@ -52,7 +52,7 @@ I (.\dev\ds18b20_1.h)(0x5B7D5EB4)
 I (.\app\SenceAct.h)(0x5B969107)
 I (.\dev\watchdog.h)(0x5B7D5EB4)
 I (user\flash_rw.h)(0x5B968F57)
-F (.\user\system_init.c)(0x5B958566)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\mcu1\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\mcu1\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\system_init.o --omf_browse .\objects\system_init.crf --depend .\objects\system_init.d)
+F (.\user\system_init.c)(0x5B969444)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\mcu1\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\mcu1\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\system_init.o --omf_browse .\objects\system_init.crf --depend .\objects\system_init.d)
 I (user\system_init.h)(0x5B7D5EB4)
 I (user\stm32f10x_conf.h)(0x5B7D5EB4)
 I (.\libs\inc\stm32f10x_adc.h)(0x5B7D5EB4)

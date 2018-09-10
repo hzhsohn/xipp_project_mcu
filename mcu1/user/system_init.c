@@ -31,8 +31,6 @@ void Code_Init(void)
 		STM32F1_UART3_Init(9600);
 		
 		
-		Stm32F1_Timer2Init();
-		Stm32F1_Timer3Init();
 
 		Relay_Init();
 		VOLUME_Configuration();
@@ -46,6 +44,9 @@ void Code_Init(void)
 		Adc2_Init();
 		
 		Motor_Init();
+		
+		Stm32F1_Timer2Init();
+		Stm32F1_Timer3Init();
 		
 		//°²×¿ÑÓÊ±Æô¶¯
 		STM32_Delay_ms(1000);
