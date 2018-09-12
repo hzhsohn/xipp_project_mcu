@@ -1052,19 +1052,52 @@ void litteSenceRunHongGan(void)
 				static int nCalca=0;
 				switch(ppxxStep)
 					{
-						case 0:							
+						case 0:
 							aurtEventUnitSence(ezhCleanSence5,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;	//下一步
 						
 							udoDry(1);//########### 烘干
 						case 1:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*20,ezhCleanSence5);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence5);
 							break;
 						case 2:
 							
 							udoDry(0);//########### 烘干
 						
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//下一步
+							break;
+						case 3:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence5);
+							break;
+						case 4:
+							udoDry(1);//########### 烘干
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//下一步
+							break;
+						case 5:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence5);
+							break;
+						case 6:
+							udoDry(0);//########### 烘干
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//下一步
+							break;
+						
+						case 7:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence5);
+							break;
+						case 8:
+							udoDry(1);//########### 烘干
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//下一步
+							break;
+						case 9:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence5);
+							break;
+						case 10:
+							udoDry(0);//########### 烘干
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//下一步
 							break;
