@@ -286,6 +286,8 @@ int main(void)
 	//watchdog_init();
 	allOutClose();
 	
+	STM32F1_UART3SendDataS("123",3);
+	
 	//-------------------------------
 	//startup system delay-----------
 	STM32_Delay_ms(10000);
@@ -329,10 +331,6 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		pdxbXuXu=dxbXuXu;
 		//ø¥√≈π∑
 		//watchdog_action();
-		//
-		sceMotor1_do();
-		sceMotor2_do();
-		sceMotorDemo_do();
 		//
 		TouchKey_Scan();
 		//---------------------

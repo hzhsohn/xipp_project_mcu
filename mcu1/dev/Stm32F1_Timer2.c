@@ -51,6 +51,11 @@ void TIM2_IRQHandler(void)
 	{
 		BS_MADAMADA_STATE(0);
 	}
+	
+	//
+	sceMotor1_do();
+	sceMotor2_do();
+	sceMotorDemo_do();
 	//---------------------------
 	TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
 }

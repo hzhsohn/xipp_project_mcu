@@ -1,5 +1,5 @@
 Dependencies for Project 'xipp', Target 'Target 1': (DO NOT MODIFY !)
-F (.\user\main.c)(0x5B969BEA)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\user\main.c)(0x5B992093)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (user\system_init.h)(0x5B96956F)
 I (user\stm32f10x_conf.h)(0x5B96956F)
 I (.\libs\inc\stm32f10x_adc.h)(0x5B96956F)
@@ -785,7 +785,7 @@ I (.\libs\inc\stm32f10x_wwdg.h)(0x5B96956F)
 I (.\libs\inc\misc.h)(0x5B96956F)
 I (.\user\global.h)(0x5B96956F)
 I (dev\STM32_Delay.h)(0x5B96956F)
-F (.\dev\Motor_Diver.c)(0x5B969BEA)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\motor_diver.o --omf_browse .\objects\motor_diver.crf --depend .\objects\motor_diver.d)
+F (.\dev\Motor_Diver.c)(0x5B99204B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\motor_diver.o --omf_browse .\objects\motor_diver.crf --depend .\objects\motor_diver.d)
 I (dev\watchdog.h)(0x5B96956F)
 I (.\user\system_init.h)(0x5B96956F)
 I (.\user\stm32f10x_conf.h)(0x5B96956F)
@@ -1003,7 +1003,7 @@ I (.\libs\inc\stm32f10x_tim.h)(0x5B96956F)
 I (.\libs\inc\stm32f10x_usart.h)(0x5B96956F)
 I (.\libs\inc\stm32f10x_wwdg.h)(0x5B96956F)
 I (.\libs\inc\misc.h)(0x5B96956F)
-F (.\dev\Stm32F1_Timer2.c)(0x5B96956F)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_timer2.o --omf_browse .\objects\stm32f1_timer2.crf --depend .\objects\stm32f1_timer2.d)
+F (.\dev\Stm32F1_Timer2.c)(0x5B991F50)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu1\mcu1\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_timer2.o --omf_browse .\objects\stm32f1_timer2.crf --depend .\objects\stm32f1_timer2.d)
 I (dev\Stm32F1_Timer2.h)(0x5B96956F)
 I (.\user\system_init.h)(0x5B96956F)
 I (.\user\stm32f10x_conf.h)(0x5B96956F)
