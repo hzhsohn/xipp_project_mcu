@@ -28,9 +28,14 @@ Project File Date:  09/11/2018
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'C:\App\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling main.c...
+user\main.c(967): warning:  #111-D: statement is unreachable
+  							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30,ezhCleanSence3);
+user\main.c(985): warning:  #111-D: statement is unreachable
+  							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*40,ezhCleanSence3);
+user\main.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=23224 RO-data=368 RW-data=316 ZI-data=1812  
-".\Objects\xipp.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=23788 RO-data=368 RW-data=316 ZI-data=1812  
+".\Objects\xipp.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -57,11 +62,11 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:4.3.0
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\ARM\startup_stm32f10x_cl.s
       Source file:   Device\Source\ARM\STM32F1xx_OPT.s
-      Source file:   Device\Source\system_stm32f10x.c
+      Source file:   Device\Source\ARM\startup_stm32f10x_cl.s
       Include file:  RTE_Driver\Config\RTE_Device.h
-Build Time Elapsed:  00:00:04
+      Source file:   Device\Source\system_stm32f10x.c
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

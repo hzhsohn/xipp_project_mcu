@@ -22,13 +22,15 @@ int main(void)
 {
 	Code_Init();
 	
+	allClose();
+	
 	//RelayTest();
 	/*sence1();
 	sence2();
 	sence3();
 	sence4();
 	sence5();*/
-
+	
 	while(1)
 	{
 	}

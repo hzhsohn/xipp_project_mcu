@@ -38,7 +38,7 @@ void TIM2_IRQHandler(void)
 	deji_A=!deji_A;
 	MOTOR1_A_STATE(deji_A);
 	
-	if(jaopan || ezhCleanSence2==(g_cCleanCurrentSence&0xf0) || ezhCleanSence3==(g_cCleanCurrentSence&0xf0))
+	if(jaopan || ezhCleanSence2==(g_cCleanCurrentSence&0xf0))
 	{		
 		//变速马达
 		if(bsmamama>100)

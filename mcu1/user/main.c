@@ -911,33 +911,33 @@ void litteSenceRunHuWai(void)
 				static int nCalca=0;
 				switch(ppxxStep)
 					{
+						//---------------------------------------
+						//大便演示
 						case 0:
 							aurtEventUnitSence(ezhCleanSence3,1);
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;	//下一步
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x01;	//下一步
+						
+							udoJiaoPan(1);
 						case 1:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDelay * 60,ezhCleanSence3);
 							break;
 						case 2:
 							udoXuPooCollect(1);//############# 屎尿收集器
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;//下一步
+							nCalca=0;ppxxStep++; 
 							break;
 						case 3:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence3);
 							break;
 						case 4:
 							udoPoPoFlush(1);//########### 大便冲洗
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;	//下一步
+							nCalca=0;ppxxStep++; 
 							break;
 						case 5:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooFlush,ezhCleanSence3);
 							break;
 						case 6:		
 							udoPoPoFlush(0);//########### 大便冲洗
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
+							nCalca=0;ppxxStep++; 
 							break;
 						case 7:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence3);
@@ -945,31 +945,168 @@ void litteSenceRunHuWai(void)
 						case 8:
 							udoXuPooCollect(0);//############# 屎尿收集器
 							udoDry(1);//########### 烘干
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
+							nCalca=0;ppxxStep++; 
 							break;
 						case 9:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*10,ezhCleanSence3);
 							break;
 						case 10:
 							udoDry(0);//########### 烘干
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
+							udoJiaoPan(0); //搅屎停止
+							nCalca=0;ppxxStep++; 
 							break;
+						
+						//---------------------------------------
+						//保暧
 						case 11:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence3);
+							BAONAN_STATE(1);
+							nCalca=0; ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x02;	//下一步
 							break;
 						case 12:
-							udoDry(1);//########### 烘干
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
+							break;
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30,ezhCleanSence3);
 							break;
 						case 13:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*10,ezhCleanSence3);
+							BAONAN_STATE(0);
+							nCalca=0;ppxxStep++; 
 							break;
+						
+						//---------------------------------------
+						//翻身左
 						case 14:
-							udoDry(0);//########### 烘干
+						{
+							unsigned char a[]={0xAF,0x01,0x01,0xFA};
+							STM32F1_UART3SendDataS(a,4);
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//下一步
+						}
+							break;
+						case 15:
+							break;
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*40,ezhCleanSence3);
+							break;
+						
+						case 16:
+						{
+							unsigned char a[]={0xAF,0x01,0x02,0xFA};
+							STM32F1_UART3SendDataS(a,4);
+							nCalca=0;ppxxStep++;
+						}
+							break;
+						case 17:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*40,ezhCleanSence3);
+							break;
+						
+						
+						case 18:
+						{
+							unsigned char a[]={0xAF,0x01,0x03,0xFA};
+							STM32F1_UART3SendDataS(a,4);
+							nCalca=0;ppxxStep++;
+						}
+							break;
+						case 19:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*40,ezhCleanSence3);
+							break;
+						
+						case 20:
+						{
+							unsigned char a[]={0xAF,0x01,0x04,0xFA};
+							STM32F1_UART3SendDataS(a,4);
+							nCalca=0;ppxxStep++;
+						}
+							break;
+						case 21:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*40,ezhCleanSence3);
+							break;
+						
+						
+						case 22:
+						{
+							unsigned char a[]={0xAF,0x01,0x05,0xFA};
+							STM32F1_UART3SendDataS(a,4);
+							nCalca=0;ppxxStep++;
+						}
+							break;
+						case 23:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*40,ezhCleanSence3);
+							break;
+						
+						//---------------------------------------
+						//按摩
+						case 24:							
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x04;	//下一步
+							ANMO1_STATE(1);
+						case 25:
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence7);
+							break;
+						case 26:
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | ppxxStep;
+							ppxxStep++; 
+							ANMO1_STATE(0);
+							break;
+						case 27:
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence7);
+							break;
+						case 28:							
+							nCalca=0;
+							ppxxStep++; 
+							ANMO1_STATE(1);
+						case 29:
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence7);
+							break;
+						case 30:	
+							nCalca=0;
+							ppxxStep++; 
+							ANMO1_STATE(0);
+							break;
+						case 31:
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence7);
+							break;
+						case 32:							
+							nCalca=0;
+							ppxxStep++; 
+							ANMO1_STATE(1);
+						case 33:
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence7);
+							break;
+						case 34:	
+							nCalca=0;
+							ppxxStep++;
+							ANMO1_STATE(0);
+							break;
+						case 35:
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence7);
+							break;
+						
+						//---------------------------------------
+						//脉博检测
+						case 36:	
+							nCalca=0; ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x05;	//下一步
+							if(cHeartJump>100 || cHeartJump<40)
+							{
+								//脉博异常
+								unsigned char a[]={0xAF,0x01,0xEA,0xFA};
+								STM32F1_UART1SendDataS(a,4);
+							}
+							else
+							{
+								//脉博正常
+								unsigned char a[]={0xAF,0x01,0xEB,0xFA};
+								STM32F1_UART1SendDataS(a,4);
+							}
+							break;
+						case 37:
+							senceDelay(&nCalca,&ppxxStep,10,ezhCleanSence7);
+							break;
+						
+						//---------------------------------------
+						//摄像头
+						case 38:	
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x06;	//下一步
+							Motor_demo();
+							break;
+						case 39:
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence7);
 							break;
 						
 						default: //完毕
