@@ -920,6 +920,8 @@ void litteSenceRunHuWai(void)
 							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x01;	//下一步
 							//ppxxStep=24;
 							udoJiaoPan(1);
+							//保暖预先打开
+							BAONAN_STATE(1);
 							break;
 						case 1:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDelay * 60,ezhCleanSence3| 0x01);
@@ -951,7 +953,7 @@ void litteSenceRunHuWai(void)
 							nCalca=0;ppxxStep++; 
 							break;
 						case 9:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*10,ezhCleanSence3| 0x01);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50/*g_tmeSetting.pooDry*10*/,ezhCleanSence3| 0x01);
 							break;
 						case 10:
 							udoDry(0);//########### 烘干
@@ -961,14 +963,14 @@ void litteSenceRunHuWai(void)
 						//---------------------------------------
 						//保暧
 						case 11:
-							BAONAN_STATE(1);
+							//BAONAN_STATE(1);
 							nCalca=0; ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x02;	//下一步
 							break;
 						case 12:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30,ezhCleanSence3| 0x02);
 							break;
 						case 13:
-							BAONAN_STATE(0);
+							//BAONAN_STATE(0);
 							nCalca=0;ppxxStep++;
 							break;
 
@@ -1062,7 +1064,7 @@ void litteSenceRunHuWai(void)
 						case 31:
 							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence3 | 0x04);
 							break;
-						case 32:							
+						case 32:
 							nCalca=0;
 							ppxxStep++; 
 							ANMO1_STATE(1);
@@ -1109,6 +1111,8 @@ void litteSenceRunHuWai(void)
 							break;
 
 						default: //完毕
+							//保暖最后关闭
+							BAONAN_STATE(0);
 							aurtEventUnitSence(ezhCleanSence3,0);
 							allOutClose();
 							g_cCleanCurrentSence=0;  		//场景复位
