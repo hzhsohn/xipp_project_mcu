@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\xipp.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\xipp.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Fri Sep 14 19:39:29 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Fri Sep 14 23:35:28 2018
 <BR><P>
 <H3>Maximum Stack Usage =        176 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1216,6 +1216,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VOLUME_Configuration
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TouchKey_Init
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sensor_Init
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32F1_UART3_Init
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32F1_UART1_Init
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Relay_Init
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;POWER_Configuration
@@ -1299,7 +1300,8 @@ Global Symbols
 <P><STRONG><a name="[71]"></a>STM32F1_UART3_Init</STRONG> (Thumb, 168 bytes, Stack size 32 bytes, stm32f1_uart3_diver.o(i.STM32F1_UART3_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = STM32F1_UART3_Init &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Init
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Cmd
@@ -1605,7 +1607,7 @@ Global Symbols
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRunA
 </UL>
 
-<P><STRONG><a name="[af]"></a>litteSenceRunA</STRONG> (Thumb, 148 bytes, Stack size 8 bytes, main.o(i.litteSenceRunA))
+<P><STRONG><a name="[af]"></a>litteSenceRunA</STRONG> (Thumb, 160 bytes, Stack size 8 bytes, main.o(i.litteSenceRunA))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunA &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelay
@@ -1615,7 +1617,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[ad]"></a>litteSenceRunAnMo</STRONG> (Thumb, 544 bytes, Stack size 8 bytes, main.o(i.litteSenceRunAnMo))
+<P><STRONG><a name="[ad]"></a>litteSenceRunAnMo</STRONG> (Thumb, 592 bytes, Stack size 8 bytes, main.o(i.litteSenceRunAnMo))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunAnMo &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1627,7 +1629,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[b0]"></a>litteSenceRunB</STRONG> (Thumb, 148 bytes, Stack size 8 bytes, main.o(i.litteSenceRunB))
+<P><STRONG><a name="[b0]"></a>litteSenceRunB</STRONG> (Thumb, 160 bytes, Stack size 8 bytes, main.o(i.litteSenceRunB))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunB &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelay
@@ -1637,7 +1639,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[ae]"></a>litteSenceRunBaoNang</STRONG> (Thumb, 164 bytes, Stack size 8 bytes, main.o(i.litteSenceRunBaoNang))
+<P><STRONG><a name="[ae]"></a>litteSenceRunBaoNang</STRONG> (Thumb, 176 bytes, Stack size 8 bytes, main.o(i.litteSenceRunBaoNang))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunBaoNang &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1649,7 +1651,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[b1]"></a>litteSenceRunC</STRONG> (Thumb, 148 bytes, Stack size 8 bytes, main.o(i.litteSenceRunC))
+<P><STRONG><a name="[b1]"></a>litteSenceRunC</STRONG> (Thumb, 160 bytes, Stack size 8 bytes, main.o(i.litteSenceRunC))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunC &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelay
@@ -1659,7 +1661,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[aa]"></a>litteSenceRunChongXi</STRONG> (Thumb, 396 bytes, Stack size 8 bytes, main.o(i.litteSenceRunChongXi))
+<P><STRONG><a name="[aa]"></a>litteSenceRunChongXi</STRONG> (Thumb, 414 bytes, Stack size 8 bytes, main.o(i.litteSenceRunChongXi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunChongXi &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1671,7 +1673,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[ac]"></a>litteSenceRunChuQun</STRONG> (Thumb, 550 bytes, Stack size 8 bytes, main.o(i.litteSenceRunChuQun))
+<P><STRONG><a name="[ac]"></a>litteSenceRunChuQun</STRONG> (Thumb, 592 bytes, Stack size 8 bytes, main.o(i.litteSenceRunChuQun))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunChuQun &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1683,7 +1685,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[ab]"></a>litteSenceRunHongGan</STRONG> (Thumb, 196 bytes, Stack size 8 bytes, main.o(i.litteSenceRunHongGan))
+<P><STRONG><a name="[ab]"></a>litteSenceRunHongGan</STRONG> (Thumb, 202 bytes, Stack size 8 bytes, main.o(i.litteSenceRunHongGan))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunHongGan &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1695,7 +1697,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[a9]"></a>litteSenceRunHuWai</STRONG> (Thumb, 1250 bytes, Stack size 8 bytes, main.o(i.litteSenceRunHuWai))
+<P><STRONG><a name="[a9]"></a>litteSenceRunHuWai</STRONG> (Thumb, 1286 bytes, Stack size 8 bytes, main.o(i.litteSenceRunHuWai))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunHuWai &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32F1_UART3SendDataS
@@ -1710,7 +1712,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[a8]"></a>litteSenceRunPooPoo</STRONG> (Thumb, 552 bytes, Stack size 8 bytes, main.o(i.litteSenceRunPooPoo))
+<P><STRONG><a name="[a8]"></a>litteSenceRunPooPoo</STRONG> (Thumb, 584 bytes, Stack size 8 bytes, main.o(i.litteSenceRunPooPoo))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunPooPoo &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1722,7 +1724,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[a7]"></a>litteSenceRunXuXu</STRONG> (Thumb, 426 bytes, Stack size 8 bytes, main.o(i.litteSenceRunXuXu))
+<P><STRONG><a name="[a7]"></a>litteSenceRunXuXu</STRONG> (Thumb, 450 bytes, Stack size 8 bytes, main.o(i.litteSenceRunXuXu))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = litteSenceRunXuXu &rArr; aurtEventUnitSence &rArr; STM32F1_UART1SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1806,7 +1808,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
 </UL>
 
-<P><STRONG><a name="[da]"></a>senceDelay</STRONG> (Thumb, 66 bytes, Stack size 24 bytes, main.o(i.senceDelay))
+<P><STRONG><a name="[da]"></a>senceDelay</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, main.o(i.senceDelay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = senceDelay &rArr; allOutClose
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allOutClose
