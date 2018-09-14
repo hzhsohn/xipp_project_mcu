@@ -29,6 +29,8 @@ extern Func_Staus bButton6;
 extern Func_Staus bButton7;
 extern Func_Staus bButton8;
 
+extern int jaopan;
+
 //
 extern int g_nMPU_DO;
 //是否自动化操作
@@ -45,12 +47,12 @@ int isOpenDry=0;
 
 #define _unit1(x) 							RELAY7_STATE(x)		//小便转换
 #define _unit2(x) 							RELAY6_STATE(x)		//大便转换
-#define _unit3(x) 							RELAY11_STATE(x)		//床气转换
-#define _unit4(x) 		 					RELAY12_STATE(x)		//裤子气转机
-#define _unit5(x) 							RELAY10_STATE(x)		//加热气转换
+#define _unit3(x) 							RELAY11_STATE(x)	//床气转换
+#define _unit4(x) 		 					RELAY12_STATE(x)	//裤子气转机
+#define _unit5(x) 							RELAY10_STATE(x)	//加热气转换
 #define _unit6(x) 							RELAY1_STATE(x)		//气加热
 #define _unit7(x) 							RELAY9_STATE(x)		//抽吸机
-#define _unit8(x) 				 			RELAY3_STATE(x) 		//抽水机
+#define _unit8(x) 				 			RELAY3_STATE(x) 	//抽水机
 #define _unit9(x) 							RELAY2_STATE(x)		//杀菌发生器
 #define _unit10(x) 				 			RELAY8_STATE(x)		//吹气
 #define _unit11(x)							RELAY13_STATE(x) 	//水加热
@@ -59,7 +61,7 @@ int isOpenDry=0;
 
 //
 #define udoDry(x)						 			_unit5(x);_unit6(x);_unit10(x);isOpenDry=x		//烘干程序
-#define udoSterilization(x) 			_unit5(x);_unit9(x);_unit10(x);_unit13(x)								//杀菌
+#define udoSterilization(x) 			_unit5(x);_unit9(x);_unit10(x);_unit13(x)			//杀菌
 #define udoWaterHeating(x) 				_unit11(x)																		//水加热程序
 #define udoXuXuFlush(x) 					_unit1(x);_unit7(x);_unit8(x)									//小便冲洗
 #define udoPoPoFlush(x) 					_unit2(x);_unit7(x);_unit8(x)									//大便冲洗
@@ -68,6 +70,7 @@ int isOpenDry=0;
 #define udoDeodorization(x) 			_unit7(x);_unit12(x)													//除臭
 #define udoKuZiHuanQi(x) 				 	_unit5(x);_unit10(x) 													//裤子换气
 #define udoXuPooCollect(x) 				_unit7(x);_unit12(x)													//屎屎尿尿收集
+#define udoJiaoPan(x)             jaopan=x																			//搅伴
 
 /**************/
 //传感器逻辑重定义
@@ -133,7 +136,6 @@ int monLimitState2R;
 //按摩状态
 static int anmiCurrentState=0;
 //
-void allOutClose();
 void senceDelay(int*nCalca,int*ppxxStep,int delay_ms,int ezhCleanSencePOS);
 ////////////////////////////////////////////////////////////////
 
@@ -160,6 +162,26 @@ void litteSenceRunA(void);
 void litteSenceRunB(void);
 void litteSenceRunC(void);
 
+
+void allOutClose()
+{	
+	 isCleanRuning=0;
+	 isOpenDry=0;
+	 _unit1(0); 									//小便转换
+	 _unit2(0); 									//大便转换
+	 _unit3(0); 									//床气转换
+	 _unit4(0); 		 							//裤子气转机
+	 _unit5(0); 									//加热气转换
+	 _unit6(0); 									//气加热
+	 _unit7(0); 									//抽吸机
+	 _unit8(0); 				 			 		//抽水机
+	 _unit9(0); 									//杀菌发生器
+	 _unit10(0); 				 					//吹气
+	 _unit11(0);							 		//水加热
+	 _unit12(0); 	 								//净化机
+	 _unit13(0); 									//杀菌气转换
+		jaopan=0;
+}
 ////////////////////////////////////////////////////////////////
 //场景延时
 void senceDelay(int*nCalca,int*ppxxStep,int delay_ms,int ezhCleanSencePOS)
@@ -209,7 +231,7 @@ void aurtEventStatus()
 		cbuf[14]=rTruePressure2&0xff; //床垫气压
 		cbuf[15]=rTruePressure2>>8;
 		
-		cbuf[16]=isWaterTooHot;//如果为1就是有问题,意思就是"他奶奶加热功能不知道哪里有问题.."
+		cbuf[16]=isWaterTooHot;//如果为1就是有问题,意思就是"加热功能不知道哪里有问题.."
 		cbuf[17]=isGasTooHot;
 		
 
@@ -252,23 +274,6 @@ void aurtEventUnitSence(EzhCleanSence i,int isEnable)
 		STM32F1_UART1SendDataS(dst_buf,myDataLen);
 }
 
-void allOutClose()
-{	
-	 isOpenDry=0;
-	 _unit1(0); 									//小便转换
-	 _unit2(0); 									//大便转换
-	 _unit3(0); 									//床气转换
-	 _unit4(0); 		 							//裤子气转机
-	 _unit5(0); 									//加热气转换
-	 _unit6(0); 									//气加热
-	 _unit7(0); 									//抽吸机
-	 _unit8(0); 				 			 		//抽水机
-	 _unit9(0); 									//杀菌发生器
-	 _unit10(0); 				 					//吹气
-	 _unit11(0);							 		//水加热
-	 _unit12(0); 	 								//净化机
-	 _unit13(0); 									//杀菌气转换
-}
 
 char binFlag[4]={0};
 int main(void)
@@ -520,9 +525,9 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 						if(ntmp<20 && ntmp>-20)	//限制突变幅度
 						{
 							isWaterTooHot=0;							
-							if(rWaterTemp > 60*10) //加热器有问题了吧,太高了就是他妈的加热器有问题了.
+							if(rWaterTemp > 60*10) //加热器有问题了吧,太高了就是加热器有问题了.
 							{
-								//水他妈必的太热了.发到串口告诉上位机端,通知护士小妹妹,机器故障了
+								//水太热了.发到串口告诉上位机端,通知护士小妹妹,机器故障了
 								isWaterTooHot=1;
 							}
 							else if(rWaterTemp<g_tmeSetting.waterTemperature*10 && 0==bCleanWaterLow) //默认小于40度就加热
@@ -558,9 +563,9 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 						if(ntmp<20 && ntmp>-20) //限制突变幅度
 						{
 							isGasTooHot=0;							
-							if(rGasTemp > 60*10) //加热器有问题了吧,太高了就是他妈的加热器有问题了.
+							if(rGasTemp > 60*10) //加热器有问题了吧,太高了就是加热器有问题了.
 							{
-								//气温他妈必的太热了.发到串口告诉上位机端,通知护士小妹妹,机器故障了
+								//气温太热了.发到串口告诉上位机端,通知护士小妹妹,机器故障了
 								isGasTooHot=1;
 							}
 							
@@ -795,53 +800,40 @@ void litteSenceRunXuXu()
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//下一步
 						case 1:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.xuxuDelay,ezhCleanSence1);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30/*g_tmeSetting.xuxuDelay*/,ezhCleanSence1);
 							break;
 						case 2:
-							udoXuPooCollect(1);//############# 屎尿收集器
-						
+							udoXuXuFlush(1);//########### 小便冲洗
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//下一步
 							break;
 						case 3:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence1);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence1);
 							break;
 						case 4:
-							udoXuXuFlush(1);//########### 小便冲洗
-				
+							udoXuXuFlush(0);//########### 小便冲洗
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//下一步
+							udoXuPooCollect(1);//############# 屎尿收集器
 							break;
 						case 5:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.xuxuFlush,ezhCleanSence1);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5/*g_tmeSetting.xuxuFlush*/,ezhCleanSence1);
 							break;
 						case 6:
-							udoXuXuFlush(0);//########### 小便冲洗
-						
+							udoXuPooCollect(0);//############# 屎尿收集器
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;//下一步
+							udoDry(1);//########### 烘干
 							break;
 						case 7:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*1,ezhCleanSence1);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50,ezhCleanSence1);
 							break;
-						case 8:						
-							udoXuPooCollect(0);//############# 屎尿收集器
-						
-							udoDry(1);//########### 烘干
-						
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;
-							break;
-						case 9:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.xuxuDry,ezhCleanSence1);
-							break;
-						case 10:							
+						case 8:							
 							udoDry(0);//########### 烘干
-						
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;
-							break;						
-						default: //完毕							
+							ppxxStep++;
+							break;
+						default: //完毕
 							aurtEventUnitSence(ezhCleanSence1,0);
 							allOutClose();
 							g_cCleanCurrentSence=0;  		//场景复位
@@ -859,72 +851,52 @@ void litteSenceRunPooPoo()
 							aurtEventUnitSence(ezhCleanSence2,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;	//下一步
+							udoJiaoPan(1);
 						case 1:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDelay * 60,ezhCleanSence2);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30/*g_tmeSetting.pooDelay * 60*/,ezhCleanSence2);
 							break;
 						case 2:
-							udoXuPooCollect(1);//############# 屎尿收集器
-						
+							udoPoPoFlush(1);//########### 大便冲洗
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;//下一步
 							break;
 						case 3:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence2);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence2);
 							break;
 						case 4:
-							udoPoPoFlush(1);//########### 大便冲洗
-						
+							udoPoPoFlush(0);//########### 大便冲洗
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;	//下一步
+							udoXuPooCollect(1);//############# 屎尿收集器
 							break;
 						case 5:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooFlush,ezhCleanSence2);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*20/*g_tmeSetting.pooFlush*/,ezhCleanSence2);
 							break;
 						case 6:		
-							udoPoPoFlush(0);//########### 大便冲洗
-						
+							udoXuPooCollect(0);//############# 屎尿收集器
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
+							udoPoPoFlush(1);//########### 大便冲洗
 							break;
 						case 7:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence2);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence2);
 							break;
 						case 8:
-							udoXuPooCollect(0);//############# 屎尿收集器
-						
-							udoDry(1);//########### 烘干
-						
+							udoPoPoFlush(0);//########### 大便冲洗
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
+						
+							udoDry(1);//########### 烘干
 							break;
 						case 9:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*10,ezhCleanSence2);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50/*g_tmeSetting.pooDry*10*/,ezhCleanSence2);
 							break;
 						case 10:
 							udoDry(0);//########### 烘干
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
 							break;
-						
-						case 11:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence2);
-							break;
-						
-						case 12:
-							udoXuPooCollect(0);//############# 屎尿收集器
-							udoDry(1);//########### 烘干
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
-							break;
-						case 13:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDry*10,ezhCleanSence2);
-							break;
-						case 14:
-							udoDry(0);//########### 烘干
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
-							break;
-						
+
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence2,0);
 							allOutClose();
@@ -1019,7 +991,7 @@ void litteSenceRunChongXi(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;	//下一步
 						  udoPoPoFlush(1);
 						case 1:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence4);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence4);
 							break;
 						case 2:	
 							udoPoPoFlush(0);
@@ -1028,7 +1000,7 @@ void litteSenceRunChongXi(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//下一步
 							break;
 						case 3:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*20,ezhCleanSence4);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence4);
 							break;
 						case 4:	
 							udoDry(0);
@@ -1059,48 +1031,14 @@ void litteSenceRunHongGan(void)
 						
 							udoDry(1);//########### 烘干
 						case 1:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence5);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50,ezhCleanSence5);
 							break;
 						case 2:
-							
-							udoDry(0);//########### 烘干
-						
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//下一步
-							break;
-						case 3:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence5);
-							break;
-						case 4:
-							udoDry(1);//########### 烘干
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//下一步
-							break;
-						case 5:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence5);
-							break;
-						case 6:
 							udoDry(0);//########### 烘干
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//下一步
 							break;
 						
-						case 7:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence5);
-							break;
-						case 8:
-							udoDry(1);//########### 烘干
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//下一步
-							break;
-						case 9:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence5);
-							break;
-						case 10:
-							udoDry(0);//########### 烘干
-							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//下一步
-							break;
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence5,0);
 							allOutClose();						
@@ -1120,12 +1058,81 @@ void litteSenceRunChuQun(void)
 					{
 						case 0:							
 							aurtEventUnitSence(ezhCleanSence6,1);
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;	//下一步
+
+							_unit5(1);_unit9(1);_unit10(1);_unit13(1);
+						case 1:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence6);
+							break;
+						case 2:
+							_unit7(1);
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
+							break;
+						case 3:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence6);
+							break;
+						case 4:
+							_unit7(0);
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
+							break;
+						case 5:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*45,ezhCleanSence6);
+							break;
+						case 6:
+							_unit7(1);
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
+							break;
+						case 7:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence6);
+							break;
+						case 8:
+							_unit7(0);
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
+							break;
+						case 9:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*45,ezhCleanSence6);
+							break;
+						
+						case 10:
+							_unit7(1);
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
+							break;
+						case 11:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence6);
+							break;
+						case 12:
+							_unit7(0);
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
+							break;
+						
+						case 13:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*33,ezhCleanSence6);
+							break;
+						
+						case 14:
+							_unit5(1);_unit9(1);_unit10(1);_unit13(1);
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
+							break;
+						
+						default: //完毕
+							aurtEventUnitSence(ezhCleanSence6,0);
+							allOutClose();
+							g_cCleanCurrentSence=0;  		//场景复位
+							ppxxStep=0;
+							break;
+					}
+					
+				/*static int nCalca=0;
+				switch(ppxxStep)
+					{
+						case 0:							
+							aurtEventUnitSence(ezhCleanSence6,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;	//下一步
 
 							udoSterilization(1); //########### 除菌
 						case 1:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*20,ezhCleanSence6);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence6);
 							break;
 						case 2:
 							udoSterilization(0); //########### 除菌
@@ -1138,7 +1145,7 @@ void litteSenceRunChuQun(void)
 							g_cCleanCurrentSence=0;  		//场景复位
 							ppxxStep=0;
 							break;
-					}
+					}*/
 }
 
 /********************************
