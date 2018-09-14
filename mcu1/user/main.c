@@ -1085,14 +1085,12 @@ void litteSenceRunHuWai(void)
 							if(cHeartJump>100 || cHeartJump<40)
 							{
 								//Âö²©Òì³£
-								unsigned char a[]={0xAF,0x01,0xEA,0xFA};
-								STM32F1_UART1SendDataS(a,4);
+								aurtEventBtn(0xEA);
 							}
 							else
 							{
 								//Âö²©Õý³£
-								unsigned char a[]={0xAF,0x01,0xEB,0xFA};
-								STM32F1_UART1SendDataS(a,4);
+								aurtEventBtn(0xEB);
 							}
 							break;
 						case 37:
