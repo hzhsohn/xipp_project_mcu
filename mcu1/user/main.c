@@ -991,22 +991,32 @@ void litteSenceRunChongXi(void)
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;	//下一步
 						  udoPoPoFlush(1);
 						case 1:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence4);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence4);
 							break;
 						case 2:	
 							udoPoPoFlush(0);
-						  udoDry(1);
+						  udoXuPooCollect(1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//下一步
 							break;
 						case 3:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence4);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*15,ezhCleanSence4);
 							break;
 						case 4:	
+							udoXuPooCollect(0);
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//下一步
+							udoDry(1);
+							break;
+						case 5:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50,ezhCleanSence4);
+							break;
+						case 6:	
 							udoDry(0);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//下一步
 							break;
+						
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence4,0);
 							allOutClose();						
