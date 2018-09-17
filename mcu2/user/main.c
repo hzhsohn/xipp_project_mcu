@@ -40,21 +40,31 @@ int main(void)
 void sence1()
 {
 		int i=0;
-		RELAY1_STATE(1);
 		RELAY5_STATE(1);
+		for(i=0;i<3000;i++)
+		{ STM32_Delay_ms(DELAY_S); }
+		//
+		RELAY1_STATE(1);
 		RELAY8_STATE(1);
-		for(i=0;i<1000;i++)
-		{
-			STM32_Delay_ms(DELAY_S);
-		}
+		for(i=0;i<30000;i++)
+		{ STM32_Delay_ms(DELAY_S); }
+		//
+		RELAY1_STATE(0);
+		RELAY8_STATE(0);
+		for(i=0;i<10;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
 		RELAY9_STATE(1);
-		RELAY5_STATE(0);
 		RELAY2_STATE(1);
-		
-		for(i=0;i<1000;i++)
-		{
-			STM32_Delay_ms(DELAY_S2);
-		}
+		for(i=0;i<15000;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
+		RELAY9_STATE(0);
+		RELAY2_STATE(0);
+		RELAY5_STATE(0);
+		for(i=0;i<100;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
 		allClose();
 }
 
@@ -62,22 +72,31 @@ void sence1()
 void sence2()
 {
 		int i=0;
-		RELAY3_STATE(1);
 		RELAY5_STATE(1);
+		for(i=0;i<3000;i++)
+		{ STM32_Delay_ms(DELAY_S); }
+		//
+		RELAY3_STATE(1);
 		RELAY12_STATE(1);
-		for(i=0;i<1000;i++)
-		{
-			STM32_Delay_ms(DELAY_S);
-		}
+		for(i=0;i<30000;i++)
+		{ STM32_Delay_ms(DELAY_S); }
+		//
+		RELAY3_STATE(0);
+		RELAY12_STATE(0);
+		for(i=0;i<10;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
 		RELAY13_STATE(1);
-		RELAY5_STATE(0);
 		RELAY4_STATE(1);
-		
-		for(i=0;i<1000;i++)
-		{
-			STM32_Delay_ms(DELAY_S2);
-		}
-		
+		for(i=0;i<15000;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
+		RELAY13_STATE(0);
+		RELAY4_STATE(0);
+		RELAY5_STATE(0);
+		for(i=0;i<100;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
 		allClose();
 }
 
@@ -86,21 +105,30 @@ void sence3()
 {
 		int i=0;
 		RELAY1_STATE(1);
-		RELAY5_STATE(1);
 		RELAY6_STATE(1);
-		for(i=0;i<1000;i++)
-		{
-			STM32_Delay_ms(DELAY_S);
-		}
+		for(i=0;i<3000;i++)
+		{ STM32_Delay_ms(DELAY_S); }
+		//
+		RELAY5_STATE(1);
+		for(i=0;i<30000;i++)
+		{ STM32_Delay_ms(DELAY_S); }
+		//
+		RELAY1_STATE(0);
+		RELAY6_STATE(0);
+		for(i=0;i<10;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
 		RELAY7_STATE(1);
-		RELAY5_STATE(0);
 		RELAY2_STATE(1);
-		
-		for(i=0;i<1000;i++)
-		{
-			STM32_Delay_ms(DELAY_S2);
-		}
-		
+		for(i=0;i<15000;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
+		RELAY7_STATE(0);
+		RELAY2_STATE(0);
+		RELAY5_STATE(0);
+		for(i=0;i<100;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
 		allClose();
 }
 
@@ -109,21 +137,30 @@ void sence4()
 {
 		int i=0;
 		RELAY3_STATE(1);
-		RELAY5_STATE(1);
 		RELAY10_STATE(1);
-		for(i=0;i<1000;i++)
-		{
-			STM32_Delay_ms(DELAY_S);
-		}
+		for(i=0;i<3000;i++)
+		{ STM32_Delay_ms(DELAY_S); }
+		//
+		RELAY5_STATE(1);
+		for(i=0;i<30000;i++)
+		{ STM32_Delay_ms(DELAY_S); }
+		//
+		RELAY3_STATE(0);
+		RELAY10_STATE(0);
+		for(i=0;i<10;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
 		RELAY11_STATE(1);
-		RELAY5_STATE(0);
 		RELAY4_STATE(1);
-		
-		for(i=0;i<1000;i++)
-		{
-			STM32_Delay_ms(DELAY_S2);
-		}
-		
+		for(i=0;i<15000;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
+		RELAY11_STATE(0);
+		RELAY4_STATE(0);
+		RELAY5_STATE(0);
+		for(i=0;i<100;i++)
+		{ STM32_Delay_ms(DELAY_S2); }
+		//
 		allClose();
 }
 
