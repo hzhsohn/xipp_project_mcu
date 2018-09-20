@@ -1049,6 +1049,7 @@ void litteSenceRunHuWai(void)
 							break;
 						case 30602:
 						{
+								//一直等待检测
 								if(dxbPooPoo)
 								{
 									rPoopoDD++;
@@ -1339,7 +1340,7 @@ void litteSenceRunHuWai(void)
 						case 30902:
 							aurtEventUnitShow(30900);
 							nCalca=0; ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x05;	//下一步
-							if(cHeartJump>110 || cHeartJump<40)
+							if(cHeartJump>160 || cHeartJump<35)
 							{
 								//脉博异常
 								aurtEventBtn(0xEA);
@@ -1487,7 +1488,7 @@ void litteSenceRunChuQun(void)
 							aurtEventUnitSence(ezhCleanSence6,1);
 							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;	//下一步
 
-							_unit5(1);_unit9(1);_unit10(1);_unit13(1);
+							_unit5(1);_unit9(1);_unit10(1);/*_unit13(1);*/
 							break;
 						case 1:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence6|ppxxStep);
@@ -1497,28 +1498,28 @@ void litteSenceRunChuQun(void)
 							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
 							break;
 						case 3:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence6|ppxxStep);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence6|ppxxStep);
 							break;
 						case 4:
 							_unit7(0);
 							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
 							break;
 						case 5:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*45,ezhCleanSence6|ppxxStep);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*55,ezhCleanSence6|ppxxStep);
 							break;
 						case 6:
 							_unit7(1);
 							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
 							break;
 						case 7:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence6|ppxxStep);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence6|ppxxStep);
 							break;
 						case 8:
 							_unit7(0);
 							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
 							break;
 						case 9:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*45,ezhCleanSence6|ppxxStep);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*55,ezhCleanSence6|ppxxStep);
 							break;
 						
 						case 10:
@@ -1526,7 +1527,7 @@ void litteSenceRunChuQun(void)
 							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
 							break;
 						case 11:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3,ezhCleanSence6|ppxxStep);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence6|ppxxStep);
 							break;
 						case 12:
 							_unit7(0);
@@ -1534,11 +1535,11 @@ void litteSenceRunChuQun(void)
 							break;
 						
 						case 13:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*33,ezhCleanSence6|ppxxStep);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*55,ezhCleanSence6|ppxxStep);
 							break;
 						
 						case 14:
-							_unit5(1);_unit9(1);_unit10(1);_unit13(1);
+							_unit5(1);_unit9(1);_unit10(1);/*_unit13(1);*/
 							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//下一步
 							break;
 						
