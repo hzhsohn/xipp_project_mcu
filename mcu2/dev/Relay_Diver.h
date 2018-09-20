@@ -62,7 +62,7 @@
 #define RELAY13_STATE(x) (x)?GPIO_SetBits(RELAY13_GPIO,RELAY13_PIN):GPIO_ResetBits(RELAY13_GPIO,RELAY13_PIN)
 
 void Relay_Init(void);
-void allClose();
+void allClose(void);
 
 //¼ÌµçÆ÷Êä³ö²âÊÔ
 void RelayTest(void);//

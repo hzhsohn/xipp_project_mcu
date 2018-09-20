@@ -8,62 +8,67 @@
 #include "watchdog.h"
 #include "flash_rw.h"
 
+void initDev(void);
+void sence1(void);
+void sence2(void);
+void sence3(void);
+void sence4(void);
+void sence5(void);
 
-void sence1();
-void sence2();
-void sence3();
-void sence4();
-void sence5();
-
-#define DELAY_S			10
-#define DELAY_S2		5
+void delay_s(int n)
+{
+		int i=0;
+		for(i=0;i<n*10;i++)
+		{ STM32_Delay_ms(100); }
+}
 
 int main(void)
 {
 	Code_Init();
 	
-	allClose();
-	
-	//RelayTest();
-	/*sence1();
-	sence2();
-	sence3();
-	sence4();
-	sence5();*/
-	
+  initDev();
 	while(1)
-	{
-	}
+	{ }
+}
+
+
+//初始化
+void initDev()
+{
+		allClose();
+	
+		RELAY2_STATE(1);
+		RELAY4_STATE(1);
+		RELAY7_STATE(1);
+		RELAY9_STATE(1);
+		RELAY11_STATE(1);
+		RELAY13_STATE(1);
+		//
+		delay_s(15);
+		//
+		allClose();
 }
 
 //1号充气
 void sence1()
 {
-		int i=0;
 		RELAY5_STATE(1);
-		for(i=0;i<3000;i++)
-		{ STM32_Delay_ms(DELAY_S); }
+		delay_s(3);
 		//
 		RELAY1_STATE(1);
 		RELAY8_STATE(1);
-		for(i=0;i<30000;i++)
-		{ STM32_Delay_ms(DELAY_S); }
+		delay_s(55);
 		//
 		RELAY1_STATE(0);
 		RELAY8_STATE(0);
-		for(i=0;i<10;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
 		//
 		RELAY9_STATE(1);
 		RELAY2_STATE(1);
-		for(i=0;i<15000;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
+		delay_s(15);
 		//
 		RELAY9_STATE(0);
 		RELAY2_STATE(0);
 		RELAY5_STATE(0);
-		for(i=0;i<100;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
 		//
 		allClose();
 }
@@ -71,31 +76,23 @@ void sence1()
 //1号放气
 void sence2()
 {
-		int i=0;
 		RELAY5_STATE(1);
-		for(i=0;i<3000;i++)
-		{ STM32_Delay_ms(DELAY_S); }
+		delay_s(3);
 		//
 		RELAY3_STATE(1);
 		RELAY12_STATE(1);
-		for(i=0;i<30000;i++)
-		{ STM32_Delay_ms(DELAY_S); }
+		delay_s(55);
 		//
 		RELAY3_STATE(0);
 		RELAY12_STATE(0);
-		for(i=0;i<10;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
 		//
 		RELAY13_STATE(1);
 		RELAY4_STATE(1);
-		for(i=0;i<15000;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
+		delay_s(15);
 		//
 		RELAY13_STATE(0);
 		RELAY4_STATE(0);
 		RELAY5_STATE(0);
-		for(i=0;i<100;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
 		//
 		allClose();
 }
@@ -103,31 +100,23 @@ void sence2()
 //2号冲气
 void sence3()
 {
-		int i=0;
 		RELAY1_STATE(1);
 		RELAY6_STATE(1);
-		for(i=0;i<3000;i++)
-		{ STM32_Delay_ms(DELAY_S); }
+		delay_s(3);
 		//
 		RELAY5_STATE(1);
-		for(i=0;i<30000;i++)
-		{ STM32_Delay_ms(DELAY_S); }
+		delay_s(55);
 		//
 		RELAY1_STATE(0);
 		RELAY6_STATE(0);
-		for(i=0;i<10;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
 		//
 		RELAY7_STATE(1);
 		RELAY2_STATE(1);
-		for(i=0;i<15000;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
+		delay_s(15);
 		//
 		RELAY7_STATE(0);
 		RELAY2_STATE(0);
 		RELAY5_STATE(0);
-		for(i=0;i<100;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
 		//
 		allClose();
 }
@@ -135,31 +124,23 @@ void sence3()
 //3号放气
 void sence4()
 {
-		int i=0;
 		RELAY3_STATE(1);
 		RELAY10_STATE(1);
-		for(i=0;i<3000;i++)
-		{ STM32_Delay_ms(DELAY_S); }
+		delay_s(3);
 		//
 		RELAY5_STATE(1);
-		for(i=0;i<30000;i++)
-		{ STM32_Delay_ms(DELAY_S); }
+		delay_s(55);
 		//
 		RELAY3_STATE(0);
 		RELAY10_STATE(0);
-		for(i=0;i<10;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
 		//
 		RELAY11_STATE(1);
 		RELAY4_STATE(1);
-		for(i=0;i<15000;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
+		delay_s(15);
 		//
 		RELAY11_STATE(0);
 		RELAY4_STATE(0);
 		RELAY5_STATE(0);
-		for(i=0;i<100;i++)
-		{ STM32_Delay_ms(DELAY_S2); }
 		//
 		allClose();
 }
