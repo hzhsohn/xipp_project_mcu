@@ -963,7 +963,7 @@ void litteSenceRunHuWai(void)
 							}
 							else
 							{
-								nCalca=0;ppxxStep=30300; 
+								nCalca=0;ppxxStep=30203; 
 							}
 							break;
 						case 30201://污水桶满 
@@ -972,6 +972,11 @@ void litteSenceRunHuWai(void)
 						case 30202://污水重新检测 
 							nCalca=0;ppxxStep=30200; 
 							break;
+						case 30203://污水桶正常
+							aurtEventUnitShow(30203);
+							nCalca=0;ppxxStep=30300; 
+							break;
+						
 						
 						//---------------------------------------
 						//污水桶到位检测
@@ -984,7 +989,7 @@ void litteSenceRunHuWai(void)
 							}
 							else
 							{
-								nCalca=0;ppxxStep=30400; 
+								nCalca=0;ppxxStep=30303; 
 							}
 							break;
 						case 30301://未到位
@@ -992,6 +997,10 @@ void litteSenceRunHuWai(void)
 							break;
 						case 30302://重新检测 
 							nCalca=0;ppxxStep=30300; 
+							break;
+						case 30303://污水桶安装正常
+							aurtEventUnitShow(30303);
+							nCalca=0;ppxxStep=30400; 
 							break;
 						
 						//---------------------------------------
@@ -1005,37 +1014,50 @@ void litteSenceRunHuWai(void)
 							}
 							else
 							{
-								nCalca=0;ppxxStep=30500; 
+								nCalca=0;ppxxStep=30403; 
 							}
 							break;
-						case 30401://未到位
+						case 30401://清水过低
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
 							break;
 						case 30402://重新检测 
 							nCalca=0;ppxxStep=30400; 
+							break;
+						case 30403://清水正常
+							aurtEventUnitShow(30403);
+							nCalca=0;ppxxStep=30500; 
 							break;
 						
 						//---------------------------------------
 						//清水温度检测
 						case 30500:
 							aurtEventUnitShow(30500);
+							nCalca=0;ppxxStep++;
+							break;
+						case 30501:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3| 0x01);
+							break;
+						case 30502:
+							aurtEventUnitShow(30500);
 							if(rTrueWaterTemp<280)//小于28度
 							{
-								aurtEventUnitShow(30501);
-								udoWaterHeating(1);//进入加热
+								aurtEventUnitShow(30502);
 								nCalca=0;ppxxStep++; 
 							}
 							else
-							{
-								udoWaterHeating(0);//关闭加热
-								nCalca=0;ppxxStep=30600; 
+							{								
+								nCalca=0;ppxxStep=30505; 
 							}
 							break;
-						case 30501://水温偏低,加热中
+						case 30503://水温偏低,加热中
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
 							break;
-						case 30502://重新检测 
-							nCalca=0;ppxxStep=30500; 
+						case 30504://重新检测 
+							nCalca=0;ppxxStep=30502; 
+							break;
+						case 30505://水温正常
+							aurtEventUnitShow(30505);
+							nCalca=0;ppxxStep=30600; 
 							break;
 						
 						//---------------------------------------
@@ -1126,6 +1148,8 @@ void litteSenceRunHuWai(void)
 						case 30622:
 							udoDry(0);//########### 烘干
 							udoJiaoPan(0); //搅屎停止
+						
+							aurtEventUnitShow(30622);
 							nCalca=0;ppxxStep=30700; 
 							break;
 						
@@ -1163,6 +1187,8 @@ void litteSenceRunHuWai(void)
 							break;
 						case 30658:							
 							udoDry(0);//########### 烘干
+							
+							aurtEventUnitShow(30658);
 							nCalca=0;ppxxStep=30700;
 							break;
 
@@ -1240,26 +1266,9 @@ void litteSenceRunHuWai(void)
 							break;
 						case 30715:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*85,ezhCleanSence3| 0x03);
-							break;
-						case 30716://提示翻身
-						{
+							break;						
+						case 30716://完成
 							aurtEventUnitShow(30716);
-							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//下一步
-						}
-						case 30717:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
-							break;
-						case 30718:
-						{
-							unsigned char a[]={0xAF,0x01,0x05,0xFA};
-							STM32F1_UART3SendDataS(a,4);
-							nCalca=0;ppxxStep++;
-						}
-							break;
-						case 30719:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*85,ezhCleanSence3| 0x03);
-							break;
-						case 30720:
 							nCalca=0;ppxxStep=3800;
 						break;
 
@@ -1323,6 +1332,7 @@ void litteSenceRunHuWai(void)
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*87,ezhCleanSence3 | 0x04);
 							break;
 						case 30814:
+							aurtEventUnitShow(30814);
 							nCalca=0;ppxxStep=30900;
 						break;
 
@@ -1338,7 +1348,6 @@ void litteSenceRunHuWai(void)
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
 							break;
 						case 30902:
-							aurtEventUnitShow(30900);
 							nCalca=0; ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x05;	//下一步
 							if(cHeartJump>160 || cHeartJump<35)
 							{
@@ -1366,9 +1375,10 @@ void litteSenceRunHuWai(void)
 							Motor_demo();
 							break;
 						case 31001:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30,ezhCleanSence3 | 0x06);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*20,ezhCleanSence3 | 0x06);
 							break;
 						case 31002:
+							aurtEventUnitShow(31002);
 							nCalca=0;ppxxStep=31100;
 						break;
 						
@@ -1379,7 +1389,7 @@ void litteSenceRunHuWai(void)
 							nCalca=0; ppxxStep++;
 							break;
 						case 31101:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*8,ezhCleanSence3);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3);
 							break;
 						case 31102:
 							nCalca=0;ppxxStep++;
