@@ -133,6 +133,9 @@ int monLimitState1R;
 int monLimitState2L;
 int monLimitState2R;
 
+//是否在体验模式
+int isDemoTest=0;
+
 //按摩状态
 static int anmiCurrentState=0;
 //
@@ -274,6 +277,21 @@ void aurtEventUnitSence(EzhCleanSence i,int isEnable)
 		STM32F1_UART1SendDataS(dst_buf,myDataLen);
 }
 
+//显示信息指令
+void aurtEventUnitShow(int i)
+{
+		uchar dst_buf[50]={0};
+		int myDataLen=0;
+		unsigned char cbuf[5]={0};
+		cbuf[0]=0x03;
+		cbuf[1]=i&0xff;
+		cbuf[2]=(i>>8)&0xff;
+		cbuf[3]=(i>>16)&0xff;
+		cbuf[4]=(i>>24)&0xff;
+		myDataLen = miniDataCreate(5,cbuf,dst_buf);
+		STM32F1_UART1SendDataS(dst_buf,myDataLen);
+}
+
 
 char binFlag[4]={0};
 int main(void)
@@ -290,8 +308,6 @@ int main(void)
 	//看门狗
 	//watchdog_init();
 	allOutClose();
-	
-	STM32F1_UART3SendDataS("123",3);
 	
 	//-------------------------------
 	//startup system delay-----------
@@ -352,12 +368,14 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		{
 			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
+					isDemoTest=1;//打开体验模式标志
 					aurtEventBtn(1);
 					g_cCleanCurrentSence=ezhCleanSence3;
 					isCleanRuning=1;
 			}
 			else
 			{
+					isDemoTest=0;//打开体验模式标志
 					g_cCleanCurrentSence=0;
 					isCleanRuning=0;
 					allOutClose();
@@ -454,68 +472,59 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					bButton8 = _Disable;
 		}	
 
-		//A33POWER_STATE(TOUCHKEY_8_STATE());
-		//------------------------------------------------------------------
-		//检测有无尿拉下来		
-		//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //限制如果水温不够不操作
+		if(0==isDemoTest)
 		{
-					if(dxbXuXu)
+					//------------------------------------------------------------------
+					//检测有无尿拉下来		
+					//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //限制如果水温不够不操作
 					{
-						rXuxuDD++;
-						if(rXuxuDD>2000)
-						{
-								if(0==g_cCleanCurrentSence && g_isAutomation)
+								if(dxbXuXu)
 								{
-									aurtEventBtn(0x50);
-									g_cCleanCurrentSence=ezhCleanSence1;
-									isCleanRuning=1;
+									rXuxuDD++;
+									if(rXuxuDD>2000)
+									{
+											if(0==g_cCleanCurrentSence && g_isAutomation)
+											{
+												aurtEventBtn(0x50);
+												g_cCleanCurrentSence=ezhCleanSence1;
+												isCleanRuning=1;
+											}
+											rXuxuDD=0;
+									}
 								}
-								rXuxuDD=0;
-						}
-					}
-					else
-					{
-							rXuxuDD=0;
-					}
-		}
-		//------------------------------------------------------------------
-		//检测有没有屎掉下来
-		//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10)  //限制如果水温不够不操作
-		{
-					if(dxbPooPoo)
-					{
-						rPoopoDD++;
-						if(rPoopoDD>2000)
-						{
-								if(0==g_cCleanCurrentSence && g_isAutomation)//场景执行中
+								else
 								{
-									aurtEventBtn(0x51);
-									g_cCleanCurrentSence=ezhCleanSence2;
-									isCleanRuning=1;
+										rXuxuDD=0;
 								}
-								rPoopoDD=0;
-						}
 					}
-					else
+					//------------------------------------------------------------------
+					//检测有没有屎掉下来
+					//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10)  //限制如果水温不够不操作
 					{
-						rPoopoDD=0;
+								if(dxbPooPoo)
+								{
+									rPoopoDD++;
+									if(rPoopoDD>2000)
+									{
+											if(0==g_cCleanCurrentSence && g_isAutomation)//场景执行中
+											{
+												aurtEventBtn(0x51);
+												g_cCleanCurrentSence=ezhCleanSence2;
+												isCleanRuning=1;
+											}
+											rPoopoDD=0;
+									}
+								}
+								else
+								{
+									rPoopoDD=0;
+								}
 					}
 		}
 
 		//---------------------//
 		if(kk>=10 && xiii>=xiiiLimit && xiii2>=xiiiLimit) //限制0.1秒执行一次,且步进电机不能有动作
 		{
-					//---------------------//
-					//陀螺任务,做翻身检测,不知道有啥个伦用
-					switch(g_nMPU_DO)
-					{
-					case 0:
-						break;
-					case 1://左
-						break;
-					case 2://右
-						break;
-					}
 					//------------------------------------------------------------------
 					//水温加热
 					rWaterTemp=DS18B20_Get_Temp();
@@ -675,7 +684,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					}
 
 					//------------------------------------------------------------------
-					//污水到位
+					//污水不到位
 					if(cgqSewageSuitable)
 					{
 							bSewageSuitable=1;
@@ -909,183 +918,391 @@ void litteSenceRunPooPoo()
 }
 
 void litteSenceRunHuWai(void)
-{
+{		
 				static int nCalca=0;
 				switch(ppxxStep)
 					{
-						//---------------------------------------
-						//大便演示
 						case 0:
 							aurtEventUnitSence(ezhCleanSence3,1);
-							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x01;	//下一步
-							//ppxxStep=24;
-							udoJiaoPan(1);
+							nCalca=0;ppxxStep=30100; g_cCleanCurrentSence=ezhCleanSence3;	//下一步
+							break;
+						
+						//---------------------------------------
+						//保暧
+						case 30100:
+							aurtEventUnitShow(30100);
 							//保暖预先打开
 							BAONAN_STATE(1);
+							nCalca=0; ppxxStep++;
 							break;
-						case 1:
+						case 30101:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
+							break;
+						case 30102:
+							nCalca=0;ppxxStep=30200;
+							break;
+						
+						//---------------------------------------
+						//污水满检测
+						case 30200:
+							aurtEventUnitShow(30200);
+							if(cgqSewageHeight)
+							{
+								aurtEventUnitShow(30201);
+								nCalca=0;ppxxStep++; 
+							}
+							else
+							{
+								nCalca=0;ppxxStep=30300; 
+							}
+							break;
+						case 30201://污水桶满 
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
+							break;
+						case 30202://污水重新检测 
+							nCalca=0;ppxxStep=30200; 
+							break;
+						
+						//---------------------------------------
+						//污水桶到位检测
+						case 30300:
+							aurtEventUnitShow(30300);
+							if(cgqSewageSuitable)
+							{									
+								aurtEventUnitShow(30301);
+								nCalca=0;ppxxStep++; 
+							}
+							else
+							{
+								nCalca=0;ppxxStep=30400; 
+							}
+							break;
+						case 30301://未到位
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
+							break;
+						case 30302://重新检测 
+							nCalca=0;ppxxStep=30300; 
+							break;
+						
+						//---------------------------------------
+						//清水低检测
+						case 30400:
+							aurtEventUnitShow(30400);
+							if(cgqCleanWaterLow)
+							{
+								aurtEventUnitShow(30401);
+								nCalca=0;ppxxStep++; 
+							}
+							else
+							{
+								nCalca=0;ppxxStep=30500; 
+							}
+							break;
+						case 30401://未到位
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
+							break;
+						case 30402://重新检测 
+							nCalca=0;ppxxStep=30400; 
+							break;
+						
+						//---------------------------------------
+						//清水温度检测
+						case 30500:
+							aurtEventUnitShow(30500);
+							if(rTrueWaterTemp<280)//小于28度
+							{
+								aurtEventUnitShow(30501);
+								udoWaterHeating(1);//进入加热
+								nCalca=0;ppxxStep++; 
+							}
+							else
+							{
+								udoWaterHeating(0);//关闭加热
+								nCalca=0;ppxxStep=30600; 
+							}
+							break;
+						case 30501://水温偏低,加热中
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
+							break;
+						case 30502://重新检测 
+							nCalca=0;ppxxStep=30500; 
+							break;
+						
+						//---------------------------------------
+						//大小便演示
+						case 30600:
+							aurtEventUnitShow(30600);
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x01;	//下一步
+							break;
+						case 30601:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x01);
+							break;
+						case 30602:
+							做到呢度判断 
+							break;
+
+						//--------- 大便
+						case 30610:
+							aurtEventUnitShow(30610);
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x01;	//下一步
+							break;
+						case 30611:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x01);
+							break;
+						case 30612:
+							udoJiaoPan(1);
+							nCalca=0;ppxxStep++; 
+							break;
+						case 30613:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDelay * 60,ezhCleanSence3| 0x01);
 							break;
-						case 2:
+						case 30614:
 							udoXuPooCollect(1);//############# 屎尿收集器
 							nCalca=0;ppxxStep++; 
 							break;
-						case 3:
+						case 30615:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence3| 0x01);
 							break;
-						case 4:
+						case 30616:
 							udoPoPoFlush(1);//########### 大便冲洗
-							nCalca=0;ppxxStep++; 
+							nCalca=0;ppxxStep++;
 							break;
-						case 5:
+						case 30617:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooFlush,ezhCleanSence3| 0x01);
 							break;
-						case 6:		
+						case 30618:		
 							udoPoPoFlush(0);//########### 大便冲洗
 							nCalca=0;ppxxStep++; 
 							break;
-						case 7:
+						case 30619:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence3| 0x01);
 							break;
-						case 8:
+						case 30620:
 							udoXuPooCollect(0);//############# 屎尿收集器
 							udoDry(1);//########### 烘干
-							nCalca=0;ppxxStep++; 
+							nCalca=0;ppxxStep++;
 							break;
-						case 9:
+						case 30621:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50/*g_tmeSetting.pooDry*10*/,ezhCleanSence3| 0x01);
 							break;
-						case 10:
+						case 30622:
 							udoDry(0);//########### 烘干
 							udoJiaoPan(0); //搅屎停止
+							nCalca=0;ppxxStep=30700; 
+							break;
+						
+						
+						//--------- 小便
+						case 30650:
+							aurtEventUnitShow(30650);
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3;	//下一步
+							break;
+						case 30651:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3);
+							break;
+						case 30652:
+							udoXuXuFlush(1);//########### 小便冲洗
 							nCalca=0;ppxxStep++; 
 							break;
-						//---------------------------------------
-						//保暧
-						case 11:
-							//BAONAN_STATE(1);
-							nCalca=0; ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x02;	//下一步
+						case 30653:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
 							break;
-						case 12:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30,ezhCleanSence3| 0x02);
+						case 30654:
+							udoXuXuFlush(0);//########### 小便冲洗
+							udoXuPooCollect(1);//############# 屎尿收集器
+							nCalca=0;ppxxStep++; 
 							break;
-						case 13:
-							//BAONAN_STATE(0);
+						case 30655:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
+							break;
+						case 30656:
+							udoXuPooCollect(0);//############# 屎尿收集器
+							udoDry(1);//########### 烘干
 							nCalca=0;ppxxStep++;
+							break;
+						case 30657:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50,ezhCleanSence3);
+							break;
+						case 30658:							
+							udoDry(0);//########### 烘干
+							nCalca=0;ppxxStep=30700;
 							break;
 
 						//---------------------------------------
 						//翻身
-						case 14:
+						case 30700://提示翻身
 						{
-							unsigned char a[]={0xAF,0x01,0x01,0xFA};
-							STM32F1_UART3SendDataS(a,4);
+							aurtEventUnitShow(30700);
 							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//下一步
 						}
 							break;
-						case 15:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*13,ezhCleanSence3| 0x03);
+						case 30701:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
 							break;
-						
-						case 16:
+						case 30702:
+						{
+							unsigned char a[]={0xAF,0x01,0x01,0xFA};
+							STM32F1_UART3SendDataS(a,4);
+							nCalca=0;ppxxStep++;
+						}
+							break;
+						case 30703:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*85,ezhCleanSence3| 0x03);
+							break;
+						case 30704://提示翻身
+						{
+							aurtEventUnitShow(30704);
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//下一步
+						}
+						case 30705:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
+							break;
+						case 30706:
 						{
 							unsigned char a[]={0xAF,0x01,0x02,0xFA};
 							STM32F1_UART3SendDataS(a,4);
 							nCalca=0;ppxxStep++;
 						}
 							break;
-						case 17:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*13,ezhCleanSence3| 0x03);
+						case 30707:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*85,ezhCleanSence3| 0x03);
 							break;
-						
-						case 18:
+						case 30708://提示翻身
+						{
+							aurtEventUnitShow(30708);
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//下一步
+						}
+						case 30709:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
+							break;
+						case 30710:
 						{
 							unsigned char a[]={0xAF,0x01,0x03,0xFA};
 							STM32F1_UART3SendDataS(a,4);
 							nCalca=0;ppxxStep++;
 						}
 							break;
-						case 19:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*13,ezhCleanSence3| 0x03);
+						case 30711:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*85,ezhCleanSence3| 0x03);
 							break;
-						
-						case 20:
+						case 30712://提示翻身
+						{
+							aurtEventUnitShow(30712);
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//下一步
+						}
+						case 30713:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
+							break;
+						case 30714:
 						{
 							unsigned char a[]={0xAF,0x01,0x04,0xFA};
 							STM32F1_UART3SendDataS(a,4);
 							nCalca=0;ppxxStep++;
 						}
 							break;
-						case 21:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*13,ezhCleanSence3| 0x03);
+						case 30715:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*85,ezhCleanSence3| 0x03);
 							break;
-						
-						case 22:
+						case 30716://提示翻身
+						{
+							aurtEventUnitShow(30716);
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//下一步
+						}
+						case 30717:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
+							break;
+						case 30718:
 						{
 							unsigned char a[]={0xAF,0x01,0x05,0xFA};
 							STM32F1_UART3SendDataS(a,4);
 							nCalca=0;ppxxStep++;
 						}
 							break;
-						case 23:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30,ezhCleanSence3| 0x03);
+						case 30719:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*85,ezhCleanSence3| 0x03);
 							break;
-						
+						case 30720:
+							nCalca=0;ppxxStep=3800;
+						break;
+
+
 						//---------------------------------------
 						//按摩
-						case 24:							
+						case 30800:
+						{
+							aurtEventUnitShow(30800);
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//下一步
+						}
+							break;
+						case 30801:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
+							break;
+						case 30802:							
 							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x04;	//下一步
 							ANMO1_STATE(1);
 							break;
-						case 25:
+						case 30803:
 							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence3 | 0x04);
 							break;
-						case 26:
+						case 30804:
 							nCalca=0;
 							ppxxStep++; 
 							ANMO1_STATE(0);
 							break;
-						case 27:
+						case 30805:
 							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence3 | 0x04);
 							break;
-						case 28:							
+						case 30806:							
 							nCalca=0;
 							ppxxStep++; 
 							ANMO1_STATE(1);
 							break;
-						case 29:
+						case 30807:
 							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence3 | 0x04);
 							break;
-						case 30:	
+						case 30808:	
 							nCalca=0;
 							ppxxStep++; 
 							ANMO1_STATE(0);
 							break;
-						case 31:
+						case 30809:
 							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence3 | 0x04);
 							break;
-						case 32:
+						case 30810:
 							nCalca=0;
 							ppxxStep++; 
 							ANMO1_STATE(1);
 							break;
-						case 33:
+						case 30811:
 							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence3 | 0x04);
 							break;
-						case 34:	
+						case 30812:	
 							nCalca=0;
 							ppxxStep++;
 							ANMO1_STATE(0);
 							break;
-						case 35:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30,ezhCleanSence3 | 0x04);
+						case 30813:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*87,ezhCleanSence3 | 0x04);
 							break;
-						
+						case 30814:
+							nCalca=0;ppxxStep=30900;
+						break;
+
 						//---------------------------------------
 						//脉博检测
-						case 36:	
+						case 30900:
+						{
+							aurtEventUnitShow(30900);
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//下一步
+						}
+							break;
+						case 30901:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
+							break;
+						case 30902:
+							aurtEventUnitShow(30900);
 							nCalca=0; ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x05;	//下一步
-							if(cHeartJump>100 || cHeartJump<40)
+							if(cHeartJump>110 || cHeartJump<40)
 							{
 								//脉博异常
 								aurtEventBtn(0xEA);
@@ -1096,20 +1313,41 @@ void litteSenceRunHuWai(void)
 								aurtEventBtn(0xEB);
 							}
 							break;
-						case 37:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence3 | 0x05);
+						case 30903:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3 | 0x05);
 							break;
+						case 30904:
+							nCalca=0;ppxxStep=31000;
+						break;
 						
 						//---------------------------------------
 						//摄像头
-						case 38:	
+						case 31000:
+							aurtEventUnitShow(31000);
 							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x06;	//下一步
 							Motor_demo();
 							break;
-						case 39:
+						case 31001:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30,ezhCleanSence3 | 0x06);
 							break;
+						case 31002:
+							nCalca=0;ppxxStep=31100;
+						break;
+						
+						//---------------------------------------
+						//提示护理体验结束
+						case 31100:
+							aurtEventUnitShow(31100);
+							nCalca=0; ppxxStep++;
+							break;
+						case 31101:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*8,ezhCleanSence3);
+							break;
+						case 31102:
+							nCalca=0;ppxxStep++;
+						break;
 
+						//---------------------------------------
 						default: //完毕
 							//保暖最后关闭
 							BAONAN_STATE(0);
