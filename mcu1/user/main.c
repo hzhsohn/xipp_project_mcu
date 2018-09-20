@@ -133,6 +133,10 @@ int monLimitState1R;
 int monLimitState2L;
 int monLimitState2R;
 
+//上电工作延时
+int g_delaywork=0;
+int g_delayworkCount=0;
+
 //是否在体验模式
 int isDemoTest=0;
 
@@ -348,6 +352,12 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 	//-------------------
 	while(1)
 	{
+		//上电工作延时
+		if(0==g_delaywork)
+		{
+			continue;
+		}
+		
 		pdxbPooPoo=dxbPooPoo;
 		pdxbXuXu=dxbXuXu;
 		//看门狗
@@ -1038,7 +1048,34 @@ void litteSenceRunHuWai(void)
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x01);
 							break;
 						case 30602:
-							做到呢度判断 
+						{
+								if(dxbPooPoo)
+								{
+									rPoopoDD++;
+									if(rPoopoDD>10)
+									{
+											//跳到大便去
+											nCalca=0;ppxxStep=30610;
+											rPoopoDD=0;
+									}
+								}
+								else
+								{
+									rPoopoDD=0;
+								}
+								if(dxbXuXu)
+								{
+									rXuxuDD++;
+									if(rXuxuDD>10)
+									{
+											//跳到小便去
+											nCalca=0;ppxxStep=30650;
+											rXuxuDD=0;
+									}
+								}
+								else
+								{ rXuxuDD=0; }
+							}
 							break;
 
 						//--------- 大便
