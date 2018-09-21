@@ -9,8 +9,18 @@ int kk_1ms=0;
 u16_t sCount1ms;
 int kkUart1count=0;
 extern int g_uart1len;
-
+extern int g_delaywork;
 void aurtEventStatus();
+
+extern Func_Staus bButton1;
+extern Func_Staus bButton2;
+extern Func_Staus bButton3;
+extern Func_Staus bButton4;
+extern Func_Staus bButton5;
+extern Func_Staus bButton6;
+extern Func_Staus bButton7;
+extern Func_Staus bButton8;
+
 
 void Stm32F1_Timer3Init(void)
 {
@@ -73,6 +83,17 @@ void TIM3_IRQHandler(void)
 		{
 					aurtEventStatus();
 					kk2=0;
+			
+					bButton1=_Disable;
+					bButton2=_Disable;
+					bButton3=_Disable;
+					bButton4=_Disable;
+					bButton5=_Disable;
+					bButton6=_Disable;
+					bButton7=_Disable;
+					bButton8=_Disable;
+
+					g_delaywork=1;
 		}
 	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);

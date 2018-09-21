@@ -135,7 +135,6 @@ int monLimitState2R;
 
 //上电工作延时
 int g_delaywork=0;
-int g_delayworkCount=0;
 
 //是否在体验模式
 int isDemoTest=0;
@@ -170,9 +169,8 @@ void litteSenceRunB(void);
 void litteSenceRunC(void);
 
 
-void allOutClose()
-{	
-	 isCleanRuning=0;
+void allSenceClose()
+{
 	 isOpenDry=0;
 	 _unit1(0); 									//小便转换
 	 _unit2(0); 									//大便转换
@@ -188,6 +186,11 @@ void allOutClose()
 	 _unit12(0); 	 								//净化机
 	 _unit13(0); 									//杀菌气转换
 		jaopan=0;
+}
+void allOutClose()
+{	
+	 isCleanRuning=0;
+	 allSenceClose();
 }
 ////////////////////////////////////////////////////////////////
 //场景延时
@@ -376,6 +379,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		//8待机开关
 		if(bButton1 )
 		{
+			ppxxStep=0;
 			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
 					isDemoTest=1;//打开体验模式标志
@@ -395,6 +399,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		}
 		if(bButton2 )
 		{
+			ppxxStep=0;
 			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
 					aurtEventBtn(2);
@@ -412,6 +417,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		}
 		if(bButton3 )
 		{
+			ppxxStep=0;
 			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
 					aurtEventBtn(3);
@@ -429,6 +435,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		}
 		if(bButton4 )
 		{
+			ppxxStep=0;
 			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
 					aurtEventBtn(4);
@@ -446,6 +453,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		}		
 		if(bButton5 /*&& 0==g_cCleanCurrentSence*/)
 		{
+					ppxxStep=0;
 					aurtEventBtn(5);
 					g_cCleanCurrentSence=ezhCleanSence7;
 					isCleanRuning=1;
@@ -455,6 +463,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		}	
 		if(bButton6 )
 		{
+			ppxxStep=0;
 			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
 					aurtEventBtn(6);
@@ -472,12 +481,14 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		}
 		if(bButton7 && 0==g_cCleanCurrentSence)
 		{
+					ppxxStep=0;
 					aurtEventBtn(7);
 					bButton7 = _Disable;
 		}	
 		
 		if(bButton8 && 0==g_cCleanCurrentSence)
 		{
+					ppxxStep=0;
 					aurtEventBtn(8);
 					bButton8 = _Disable;
 		}	
@@ -496,6 +507,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 											if(0==g_cCleanCurrentSence && g_isAutomation)
 											{
 												aurtEventBtn(0x50);
+												ppxxStep=0;
 												g_cCleanCurrentSence=ezhCleanSence1;
 												isCleanRuning=1;
 											}
@@ -519,6 +531,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 											if(0==g_cCleanCurrentSence && g_isAutomation)//场景执行中
 											{
 												aurtEventBtn(0x51);
+												ppxxStep=0;
 												g_cCleanCurrentSence=ezhCleanSence2;
 												isCleanRuning=1;
 											}
@@ -613,44 +626,49 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 
 					//------------------------------------------------------------------
 					//裤档气压
-					rPressureTmp = Get_Adc_Average(10);
-					ntmp=rPressureTmp-rPressure;
-					if(ntmp<60 && ntmp>-60) //限制突变幅度
+					if( 0==g_cCleanCurrentSence )
 					{
-						if(rPressureTmp<g_tmeSetting.crotchPressure*100)
-						{
-							if(g_cCleanCurrentSence==0)
-							{		udoKuZiCongQi(1);}
-						}
-						else
-						{
-							if(g_cCleanCurrentSence==0)
-							{		udoKuZiCongQi(0);}
-						}
-						rTruePressure1=rPressureTmp;
-						isCheckDZCQSensorErr=0;
+							rPressureTmp = Get_Adc_Average(10);
+							ntmp=rPressureTmp-rPressure;
+							if(ntmp<60 && ntmp>-60) //限制突变幅度
+							{
+								if(rPressureTmp<g_tmeSetting.crotchPressure*100)
+								{
+									if(g_cCleanCurrentSence==0)
+									{		udoKuZiCongQi(1);}
+								}
+								else
+								{
+									if(g_cCleanCurrentSence==0)
+									{		udoKuZiCongQi(0);}
+								}
+								rTruePressure1=rPressureTmp;
+								isCheckDZCQSensorErr=0;
+							}
+							else
+							{
+								isCheckDZCQSensorErr++;						
+								if(isCheckDZCQSensorErr>10) //传感数据有毛病关掉继电器
+								{
+									if(g_cCleanCurrentSence==0)
+									{	udoKuZiCongQi(0);}
+								}
+							}
+							rPressure=rPressureTmp;
 					}
-					else
-					{
-						isCheckDZCQSensorErr++;						
-						if(isCheckDZCQSensorErr>10) //传感数据有毛病关掉继电器
-						{
-							if(g_cCleanCurrentSence==0)
-							{	udoKuZiCongQi(0);}
-						}
-					}
-					rPressure=rPressureTmp;
 					
 					//------------------------------------------------------------------
-					//床垫气压
-					rPressure2Tmp= Get_Adc2_Average(10);
+					//床垫气压,功能已经废掉
+					/*rPressure2Tmp= Get_Adc2_Average(10);
 					ntmp=rPressure2Tmp-rPressure2;
 					if(ntmp<60 && ntmp>-60) //限制突变幅度
 					{
 						if(rPressure2Tmp<g_tmeSetting.bedPressure*100)
 						{
 							if(g_cCleanCurrentSence==0)
-							{	udoBedCongQi(1);}
+							{
+								udoBedCongQi(1);
+							}
 						}
 						else
 						{
@@ -669,7 +687,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 							{	udoBedCongQi(0);}
 						}
 					}
-					rPressure2=rPressure2Tmp;
+					rPressure2=rPressure2Tmp;*/
 
 					//------------------------------------------------------------------
 					//污水满
@@ -726,72 +744,50 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 void LitteSenceRun()
 {
 		if(ezhCleanSence1==(g_cCleanCurrentSence&0xf0) && g_isAutomation) //尿
-		{
-				if(0==(g_cCleanCurrentSence&0x0f))
-				{ppxxStep=0;}				
+		{			
 				litteSenceRunXuXu();
 		}
 		else if(ezhCleanSence2==(g_cCleanCurrentSence&0xf0) && g_isAutomation) //屎
-		{
-				if(0==(g_cCleanCurrentSence&0x0f))
-				{ppxxStep=0;}				
+		{			
 				litteSenceRunPooPoo();
 		}
 		else if(ezhCleanSence3==(g_cCleanCurrentSence&0xf0))
 		{
-				if(0==(g_cCleanCurrentSence&0x0f))
-				{ppxxStep=0;}
-				 litteSenceRunHuWai();
+				litteSenceRunHuWai();
 		}
 		else if(ezhCleanSence4==(g_cCleanCurrentSence&0xf0))
 		{
-				if(0==(g_cCleanCurrentSence&0x0f))
-				{ppxxStep=0;}
 				litteSenceRunChongXi();
 		}
 		else if(ezhCleanSence5==(g_cCleanCurrentSence&0xf0))
 		{
-				if(0==(g_cCleanCurrentSence&0x0f))
-				{ppxxStep=0;}
 				litteSenceRunHongGan();
 		}
 		else if(ezhCleanSence6==(g_cCleanCurrentSence&0xf0))
 		{
-				if(0==(g_cCleanCurrentSence&0x0f))
-				{ppxxStep=0;}
 				litteSenceRunChuQun();
 		}
 		else if(ezhCleanSence7==(g_cCleanCurrentSence&0xf0))
 		{
-				if(0==(g_cCleanCurrentSence&0x0f))
-				{ppxxStep=0;}
 				litteSenceRunAnMo();
 		}
 		else if(ezhCleanSence8==(g_cCleanCurrentSence&0xf0))
 		{
-				if(0==(g_cCleanCurrentSence&0x0f))
-				{ppxxStep=0;}
 				litteSenceRunBaoNang();
 				
 		}
 		else if(ezhCleanSenceA==(g_cCleanCurrentSence&0xf0))
 		{
-				if(0==(g_cCleanCurrentSence&0x0f))
-				{ppxxStep=0;}
 				litteSenceRunA();
 				
 		}
 		else if(ezhCleanSenceB==(g_cCleanCurrentSence&0xf0))
 		{
-				if(0==(g_cCleanCurrentSence&0x0f))
-				{ppxxStep=0;}
 				litteSenceRunB();
 				
 		}
 		else if(ezhCleanSenceC==(g_cCleanCurrentSence&0xf0))
 		{
-				if(0==(g_cCleanCurrentSence&0x0f))
-				{ppxxStep=0;}
 				litteSenceRunC();
 		}
 		
@@ -814,7 +810,8 @@ void litteSenceRunXuXu()
 					static int nCalca=0;	
 					switch(ppxxStep)
 					{
-						case 0:
+						case 0:				
+							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence1,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//下一步
@@ -867,7 +864,8 @@ void litteSenceRunPooPoo()
 				static int nCalca=0;
 				switch(ppxxStep)
 					{
-						case 0:
+						case 0:				
+							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence2,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;	//下一步
@@ -932,7 +930,8 @@ void litteSenceRunHuWai(void)
 				static int nCalca=0;
 				switch(ppxxStep)
 					{
-						case 0:
+						case 0:				
+							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence3,1);
 							nCalca=0;ppxxStep=30100; g_cCleanCurrentSence=ezhCleanSence3;	//下一步
 							break;
@@ -1412,6 +1411,7 @@ void litteSenceRunChongXi(void)
 				switch(ppxxStep)
 					{
 						case 0:							
+							allSenceClose();				
 							aurtEventUnitSence(ezhCleanSence4,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;	//下一步
@@ -1461,7 +1461,8 @@ void litteSenceRunHongGan(void)
 				static int nCalca=0;
 				switch(ppxxStep)
 					{
-						case 0:
+						case 0:				
+							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence5,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;	//下一步
@@ -1494,7 +1495,8 @@ void litteSenceRunChuQun(void)
 				static int nCalca=0;
 				switch(ppxxStep)
 					{
-						case 0:							
+						case 0:					
+							allSenceClose();						
 							aurtEventUnitSence(ezhCleanSence6,1);
 							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;	//下一步
 
@@ -1597,7 +1599,8 @@ void litteSenceRunAnMo(void)
 				static int nCalca=0;
 				switch(ppxxStep)
 					{
-						case 0:							
+						case 0:				
+							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence7,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
@@ -1685,7 +1688,8 @@ void litteSenceRunAnMo(void)
 				static int nCalca=0;
 				switch(ppxxStep)
 					{
-						case 0:							
+						case 0:			
+							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence7,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//下一步
@@ -1721,6 +1725,7 @@ void litteSenceRunBaoNang(void)
 				switch(ppxxStep)
 					{
 						case 0:
+							allSenceClose();			
 							aurtEventUnitSence(ezhCleanSence8,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//下一步
@@ -1754,6 +1759,7 @@ void litteSenceRunA(void)
 				switch(ppxxStep)
 					{
 						case 0:
+							allOutClose();			
 							aurtEventUnitSence(ezhCleanSenceA,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceA | ppxxStep;	//下一步
@@ -1783,6 +1789,7 @@ void litteSenceRunB(void)
 				switch(ppxxStep)
 					{
 						case 0:
+							allSenceClose();			
 							aurtEventUnitSence(ezhCleanSenceB,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceB | ppxxStep;	//下一步
@@ -1812,6 +1819,7 @@ void litteSenceRunC(void)
 				switch(ppxxStep)
 					{
 						case 0:
+							allSenceClose();			
 							aurtEventUnitSence(ezhCleanSenceC,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceC | ppxxStep;	//下一步
