@@ -39,7 +39,7 @@ unsigned char g_isAutomation=1;
 unsigned char g_cCleanCurrentSence=0;  
 
 //场景时间调度
-#define DEF_TIME_MS_DELAY		50
+#define DEF_TIME_MS_DELAY		100
 
 /**************/
 //继电器逻辑重定义
