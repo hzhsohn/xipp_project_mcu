@@ -102,6 +102,9 @@ int rPoopoDD=0;
 int rXuxuDD=0;
 int pdxbPooPoo;
 int pdxbXuXu;
+//
+int isTextPOPO=0;
+int isTextXUXU=0;
 
 //角度 
 extern unsigned char jiaodu[2];
@@ -141,6 +144,7 @@ int isDemoTest=0;
 
 //按摩状态
 static int anmiCurrentState=0;
+static int baonianCurrentState=0;
 //
 void senceDelay(int*nCalca,int*ppxxStep,int delay_ms,int ezhCleanSencePOS);
 ////////////////////////////////////////////////////////////////
@@ -190,7 +194,10 @@ void allSenceClose()
 void allOutClose()
 {	
 	 isCleanRuning=0;
+		isDemoTest=0;
 	 allSenceClose();
+		isTextPOPO=0;
+		isTextXUXU=0;
 }
 ////////////////////////////////////////////////////////////////
 //场景延时
@@ -463,20 +470,12 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		}	
 		if(bButton6 )
 		{
-			ppxxStep=0;
-			if(!isCleanRuning && 0==g_cCleanCurrentSence)
-			{
+					ppxxStep=0;
 					aurtEventBtn(6);
 					g_cCleanCurrentSence=ezhCleanSence8;
 					isCleanRuning=1;
-			}
-			else
-			{
-					g_cCleanCurrentSence=0;
-					isCleanRuning=0;
-					allOutClose();
-					aurtEventBtn(0);
-			}
+					baonianCurrentState=!baonianCurrentState;
+					ppxxStep=0; //复位场景
 					bButton6 = _Disable;
 		}
 		if(bButton7 && 0==g_cCleanCurrentSence)
@@ -626,7 +625,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 
 					//------------------------------------------------------------------
 					//裤档气压
-					if( 0==g_cCleanCurrentSence )
+					/*if( 0==g_cCleanCurrentSence )
 					{
 							rPressureTmp = Get_Adc_Average(10);
 							ntmp=rPressureTmp-rPressure;
@@ -655,7 +654,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 								}
 							}
 							rPressure=rPressureTmp;
-					}
+					}*/
 					
 					//------------------------------------------------------------------
 					//床垫气压,功能已经废掉
@@ -939,13 +938,13 @@ void litteSenceRunHuWai(void)
 						//---------------------------------------
 						//保暧
 						case 30100:
-							aurtEventUnitShow(30100);
+							//aurtEventUnitShow(30100);
 							//保暖预先打开
-							BAONAN_STATE(1);
+							//BAONAN_STATE(1);
 							nCalca=0; ppxxStep++;
 							break;
 						case 30101:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
+							senceDelay(&nCalca,&ppxxStep,1,ezhCleanSence3);
 							break;
 						case 30102:
 							nCalca=0;ppxxStep=30200;
@@ -1070,6 +1069,8 @@ void litteSenceRunHuWai(void)
 							break;
 						case 30602:
 						{
+							if(0==isTextPOPO)
+							{
 								//一直等待检测
 								if(dxbPooPoo)
 								{
@@ -1079,12 +1080,17 @@ void litteSenceRunHuWai(void)
 											//跳到大便去
 											nCalca=0;ppxxStep=30610;
 											rPoopoDD=0;
+											isTextPOPO=1;
 									}
 								}
 								else
 								{
 									rPoopoDD=0;
 								}
+							}
+							
+							if(0==isTextXUXU)
+							{
 								if(dxbXuXu)
 								{
 									rXuxuDD++;
@@ -1093,11 +1099,19 @@ void litteSenceRunHuWai(void)
 											//跳到小便去
 											nCalca=0;ppxxStep=30650;
 											rXuxuDD=0;
+											isTextXUXU=1;
 									}
 								}
 								else
 								{ rXuxuDD=0; }
 							}
+							
+							if(isTextXUXU && isTextPOPO)
+							{
+								//跳到下一个场景去
+								nCalca=0;ppxxStep=30700;
+							}
+						}
 							break;
 
 						//--------- 大便
@@ -1149,7 +1163,7 @@ void litteSenceRunHuWai(void)
 							udoJiaoPan(0); //搅屎停止
 						
 							aurtEventUnitShow(30622);
-							nCalca=0;ppxxStep=30700; 
+							nCalca=0;ppxxStep=30600; 
 							break;
 						
 						
@@ -1188,7 +1202,7 @@ void litteSenceRunHuWai(void)
 							udoDry(0);//########### 烘干
 							
 							aurtEventUnitShow(30658);
-							nCalca=0;ppxxStep=30700;
+							nCalca=0;ppxxStep=30600;
 							break;
 
 						//---------------------------------------
@@ -1277,14 +1291,14 @@ void litteSenceRunHuWai(void)
 						case 30800:
 						{
 							aurtEventUnitShow(30800);
-							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//下一步
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 ;	//下一步
 						}
 							break;
 						case 30801:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3);
 							break;
 						case 30802:							
-							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x04;	//下一步
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3;	//下一步
 							ANMO1_STATE(1);
 							break;
 						case 30803:
@@ -1328,13 +1342,68 @@ void litteSenceRunHuWai(void)
 							ANMO1_STATE(0);
 							break;
 						case 30813:
-							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*87,ezhCleanSence3 | 0x04);
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*1,ezhCleanSence3 | 0x04);
 							break;
+						//---------------------------------------
+						//按摩保暖						
 						case 30814:
-							aurtEventUnitShow(30814);
+							nCalca=0;ppxxStep++;
+						break;
+						case 30815:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3);
+							break;
+						case 30816:							
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3;	//下一步
+							BAONAN_STATE(1);
+							break;
+						case 30817:
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence3 | 0x04);
+							break;
+						case 30818:
+							nCalca=0;
+							ppxxStep++; 
+							BAONAN_STATE(0);
+							break;
+						case 30819:
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence3 | 0x04);
+							break;
+						case 30820:							
+							nCalca=0;
+							ppxxStep++; 
+							BAONAN_STATE(1);
+							break;
+						case 30821:
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence3 | 0x04);
+							break;
+						case 30822:	
+							nCalca=0;
+							ppxxStep++; 
+							BAONAN_STATE(0);
+							break;
+						case 30823:
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence3 | 0x04);
+							break;
+						case 30824:
+							nCalca=0;
+							ppxxStep++; 
+							BAONAN_STATE(1);
+							break;
+						case 30825:
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence3 | 0x04);
+							break;
+						case 30826:	
+							nCalca=0;
+							ppxxStep++;
+							BAONAN_STATE(0);
+							break;
+						case 30827:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*90,ezhCleanSence3 | 0x04);
+							break;
+						
+						case 30828://按摩完成
+							aurtEventUnitShow(30828);
 							nCalca=0;ppxxStep=30900;
 						break;
-
 						//---------------------------------------
 						//脉博检测
 						case 30900:
@@ -1397,7 +1466,7 @@ void litteSenceRunHuWai(void)
 						//---------------------------------------
 						default: //完毕
 							//保暖最后关闭
-							BAONAN_STATE(0);
+							//BAONAN_STATE(0);
 							aurtEventUnitSence(ezhCleanSence3,0);
 							allOutClose();
 							g_cCleanCurrentSence=0;  		//场景复位
@@ -1652,6 +1721,9 @@ void litteSenceRunAnMo(void)
 						case 11:
 							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence7|ppxxStep);
 							break;
+						case 12:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30,ezhCleanSence7|ppxxStep);
+							break;
 							/*
 						//-----------------------------------------------
 							//延时
@@ -1721,26 +1793,121 @@ void litteSenceRunAnMo(void)
 *********************************/
 void litteSenceRunBaoNang(void)
 {
+				
+	if(baonianCurrentState)
+		{
 				static int nCalca=0;
 				switch(ppxxStep)
 					{
-						case 0:
-							allSenceClose();			
+						case 0:				
+							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence8,1);
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//下一步
 							BAONAN_STATE(1);
 							break;
 						case 1:
-							senceDelay(&nCalca,&ppxxStep,10,ezhCleanSence8|ppxxStep);
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence8|ppxxStep);
 							break;
-						case 2:		
+						case 2:
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//下一步
 							BAONAN_STATE(0);
 							break;
 						case 3:
-							senceDelay(&nCalca,&ppxxStep,300,ezhCleanSence8|ppxxStep);
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence8|ppxxStep);
+							break;
+						//-----------------------------------------------	
+						case 4:							
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//下一步
+							BAONAN_STATE(1);
+							break;
+						case 5:
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence8|ppxxStep);
+							break;
+						case 6:	
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//下一步
+							BAONAN_STATE(0);
+							break;
+						case 7:
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence8|ppxxStep);
+							break;
+						//-----------------------------------------------	
+							
+						case 8:							
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//下一步
+							BAONAN_STATE(1);
+							break;
+						case 9:
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence8|ppxxStep);
+							break;
+						case 10:	
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//下一步
+							BAONAN_STATE(0);
+							break;
+						case 11:
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence8|ppxxStep);
+							break;
+						case 12:
+							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30,ezhCleanSence8|ppxxStep);
+							break;
+							/*
+						//-----------------------------------------------
+							//延时
+							case 12:
+							if(nCalca>500)
+							{
+									nCalca=0;
+									ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;
+							}
+							else
+							{
+									if(0==isCleanRuning)//中断
+									{
+										//中断信号
+										BAONAN_STATE(1);
+										STM32_Delay_ms(200);
+										BAONAN_STATE(0);
+										//
+										g_cCleanCurrentSence=0;nCalca=0;allOutClose();
+									}
+									nCalca++;
+							}
+							break;*/
+						default: //完毕
+							aurtEventUnitSence(ezhCleanSence8,0);
+							allOutClose();						
+							g_cCleanCurrentSence=0;  		//场景复位
+							ppxxStep=0;
+							break;
+					}
+		}
+		else 
+		{
+				static int nCalca=0;
+				switch(ppxxStep)
+					{
+						case 0:			
+							allSenceClose();
+							aurtEventUnitSence(ezhCleanSence8,1);
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//下一步
+							BAONAN_STATE(1);
+							break;
+						case 1:
+							senceDelay(&nCalca,&ppxxStep,15,ezhCleanSence8|ppxxStep);
+							break;
+						case 2:	
+							nCalca=0;
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//下一步
+							BAONAN_STATE(0);
+							break;
+						case 3:
+							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence8|ppxxStep);
 							break;
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence8,0);
@@ -1749,6 +1916,7 @@ void litteSenceRunBaoNang(void)
 							ppxxStep=0;
 							break;
 					}
+		}
 }
 
 //--------------------------------------------------------------------------
