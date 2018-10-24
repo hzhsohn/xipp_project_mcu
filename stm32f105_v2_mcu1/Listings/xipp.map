@@ -255,9 +255,9 @@ Section Cross References
     motor_diver.o(i.sceMotor2_do) refers to motor_diver.o(.data) for nCalca
     motor_diver.o(i.sceMotorDemo_do) refers to stm32f10x_gpio.o(i.GPIO_ReadInputDataBit) for GPIO_ReadInputDataBit
     motor_diver.o(i.sceMotorDemo_do) refers to stm32_delay.o(i.STM32_Delay_ms) for STM32_Delay_ms
-    motor_diver.o(i.sceMotorDemo_do) refers to motor_diver.o(i.Motor1_do) for Motor1_do
     motor_diver.o(i.sceMotorDemo_do) refers to motor_diver.o(i.Motor2_do) for Motor2_do
     motor_diver.o(i.sceMotorDemo_do) refers to motor_diver.o(i.Mon2blockTurnLeft) for Mon2blockTurnLeft
+    motor_diver.o(i.sceMotorDemo_do) refers to motor_diver.o(i.Motor1_do) for Motor1_do
     motor_diver.o(i.sceMotorDemo_do) refers to motor_diver.o(.data) for motor_demo_do
     motor_diver.o(i.sceMotorDemo_do) refers to main.o(.data) for monLimitState1L
     stm32f10x_wwdg.o(i.WWDG_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
@@ -1165,19 +1165,19 @@ Image Symbol Table
     i.sceMotor1_do                           0x08003794   Section        0  motor_diver.o(i.sceMotor1_do)
     i.sceMotor2_do                           0x080038b4   Section        0  motor_diver.o(i.sceMotor2_do)
     i.sceMotorDemo_do                        0x080046bc   Section        0  motor_diver.o(i.sceMotorDemo_do)
-    i.senceDelayToNext                       0x080048c0   Section        0  main.o(i.senceDelayToNext)
-    i.senceNext                              0x080048fc   Section        0  main.o(i.senceNext)
-    i.sendTimeCfg                            0x08004908   Section        0  stm32f1_uart1.o(i.sendTimeCfg)
-    i.setFlashData                           0x08004958   Section        0  main.o(i.setFlashData)
-    i.zhSCM_GPIOConfig                       0x08004a00   Section        0  key.o(i.zhSCM_GPIOConfig)
-    i.zhSCM_initKeyState                     0x08004b0c   Section        0  key.o(i.zhSCM_initKeyState)
-    i.zhSCM_keyState                         0x08004b12   Section        0  key.o(i.zhSCM_keyState)
-    x$fpl$dfix                               0x08004b88   Section       94  dfix.o(x$fpl$dfix)
-    x$fpl$dflt                               0x08004be6   Section       46  dflt_clz.o(x$fpl$dflt)
-    x$fpl$dmul                               0x08004c14   Section      340  dmul.o(x$fpl$dmul)
-    x$fpl$dnaninf                            0x08004d68   Section      156  dnaninf.o(x$fpl$dnaninf)
-    x$fpl$dretinf                            0x08004e04   Section       12  dretinf.o(x$fpl$dretinf)
-    x$fpl$usenofp                            0x08004e10   Section        0  usenofp.o(x$fpl$usenofp)
+    i.senceDelayToNext                       0x0800487c   Section        0  main.o(i.senceDelayToNext)
+    i.senceNext                              0x080048b8   Section        0  main.o(i.senceNext)
+    i.sendTimeCfg                            0x080048c4   Section        0  stm32f1_uart1.o(i.sendTimeCfg)
+    i.setFlashData                           0x08004914   Section        0  main.o(i.setFlashData)
+    i.zhSCM_GPIOConfig                       0x080049bc   Section        0  key.o(i.zhSCM_GPIOConfig)
+    i.zhSCM_initKeyState                     0x08004ac8   Section        0  key.o(i.zhSCM_initKeyState)
+    i.zhSCM_keyState                         0x08004ace   Section        0  key.o(i.zhSCM_keyState)
+    x$fpl$dfix                               0x08004b44   Section       94  dfix.o(x$fpl$dfix)
+    x$fpl$dflt                               0x08004ba2   Section       46  dflt_clz.o(x$fpl$dflt)
+    x$fpl$dmul                               0x08004bd0   Section      340  dmul.o(x$fpl$dmul)
+    x$fpl$dnaninf                            0x08004d24   Section      156  dnaninf.o(x$fpl$dnaninf)
+    x$fpl$dretinf                            0x08004dc0   Section       12  dretinf.o(x$fpl$dretinf)
+    x$fpl$usenofp                            0x08004dcc   Section        0  usenofp.o(x$fpl$usenofp)
     .data                                    0x20000000   Section      172  main.o(.data)
     anmiCurrentState                         0x2000008c   Data           4  main.o(.data)
     baonianCurrentState                      0x20000090   Data           4  main.o(.data)
@@ -1490,25 +1490,25 @@ Image Symbol Table
     miniDataGet                              0x080036ef   Thumb Code   164  mini-data.o(i.miniDataGet)
     sceMotor1_do                             0x08003795   Thumb Code   254  motor_diver.o(i.sceMotor1_do)
     sceMotor2_do                             0x080038b5   Thumb Code  3570  motor_diver.o(i.sceMotor2_do)
-    sceMotorDemo_do                          0x080046bd   Thumb Code   482  motor_diver.o(i.sceMotorDemo_do)
-    senceDelayToNext                         0x080048c1   Thumb Code    52  main.o(i.senceDelayToNext)
-    senceNext                                0x080048fd   Thumb Code    12  main.o(i.senceNext)
-    sendTimeCfg                              0x08004909   Thumb Code    74  stm32f1_uart1.o(i.sendTimeCfg)
-    setFlashData                             0x08004959   Thumb Code   156  main.o(i.setFlashData)
-    zhSCM_GPIOConfig                         0x08004a01   Thumb Code   252  key.o(i.zhSCM_GPIOConfig)
-    zhSCM_initKeyState                       0x08004b0d   Thumb Code     6  key.o(i.zhSCM_initKeyState)
-    zhSCM_keyState                           0x08004b13   Thumb Code   116  key.o(i.zhSCM_keyState)
-    __aeabi_d2iz                             0x08004b89   Thumb Code     0  dfix.o(x$fpl$dfix)
-    _dfix                                    0x08004b89   Thumb Code    94  dfix.o(x$fpl$dfix)
-    __aeabi_i2d                              0x08004be7   Thumb Code     0  dflt_clz.o(x$fpl$dflt)
-    _dflt                                    0x08004be7   Thumb Code    46  dflt_clz.o(x$fpl$dflt)
-    __aeabi_dmul                             0x08004c15   Thumb Code     0  dmul.o(x$fpl$dmul)
-    _dmul                                    0x08004c15   Thumb Code   332  dmul.o(x$fpl$dmul)
-    __fpl_dnaninf                            0x08004d69   Thumb Code   156  dnaninf.o(x$fpl$dnaninf)
-    __fpl_dretinf                            0x08004e05   Thumb Code    12  dretinf.o(x$fpl$dretinf)
-    Region$$Table$$Base                      0x08004e10   Number         0  anon$$obj.o(Region$$Table)
-    __I$use$fp                               0x08004e10   Number         0  usenofp.o(x$fpl$usenofp)
-    Region$$Table$$Limit                     0x08004e30   Number         0  anon$$obj.o(Region$$Table)
+    sceMotorDemo_do                          0x080046bd   Thumb Code   414  motor_diver.o(i.sceMotorDemo_do)
+    senceDelayToNext                         0x0800487d   Thumb Code    52  main.o(i.senceDelayToNext)
+    senceNext                                0x080048b9   Thumb Code    12  main.o(i.senceNext)
+    sendTimeCfg                              0x080048c5   Thumb Code    74  stm32f1_uart1.o(i.sendTimeCfg)
+    setFlashData                             0x08004915   Thumb Code   156  main.o(i.setFlashData)
+    zhSCM_GPIOConfig                         0x080049bd   Thumb Code   252  key.o(i.zhSCM_GPIOConfig)
+    zhSCM_initKeyState                       0x08004ac9   Thumb Code     6  key.o(i.zhSCM_initKeyState)
+    zhSCM_keyState                           0x08004acf   Thumb Code   116  key.o(i.zhSCM_keyState)
+    __aeabi_d2iz                             0x08004b45   Thumb Code     0  dfix.o(x$fpl$dfix)
+    _dfix                                    0x08004b45   Thumb Code    94  dfix.o(x$fpl$dfix)
+    __aeabi_i2d                              0x08004ba3   Thumb Code     0  dflt_clz.o(x$fpl$dflt)
+    _dflt                                    0x08004ba3   Thumb Code    46  dflt_clz.o(x$fpl$dflt)
+    __aeabi_dmul                             0x08004bd1   Thumb Code     0  dmul.o(x$fpl$dmul)
+    _dmul                                    0x08004bd1   Thumb Code   332  dmul.o(x$fpl$dmul)
+    __fpl_dnaninf                            0x08004d25   Thumb Code   156  dnaninf.o(x$fpl$dnaninf)
+    __fpl_dretinf                            0x08004dc1   Thumb Code    12  dretinf.o(x$fpl$dretinf)
+    Region$$Table$$Base                      0x08004dcc   Number         0  anon$$obj.o(Region$$Table)
+    __I$use$fp                               0x08004dcc   Number         0  usenofp.o(x$fpl$usenofp)
+    Region$$Table$$Limit                     0x08004dec   Number         0  anon$$obj.o(Region$$Table)
     g_isAutomation                           0x20000000   Data           1  main.o(.data)
     g_cCleanCurrentSence                     0x20000001   Data           1  main.o(.data)
     isOpenDry                                0x20000004   Data           4  main.o(.data)
@@ -1591,9 +1591,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000151
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00004f50, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00004f0c, Max: 0x00040000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00004e30, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00004dec, Max: 0x00040000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1770,22 +1770,22 @@ Memory Map of the image
     0x08003792   0x00000002   PAD
     0x08003794   0x00000120   Code   RO         2158    i.sceMotor1_do      motor_diver.o
     0x080038b4   0x00000e08   Code   RO         2159    i.sceMotor2_do      motor_diver.o
-    0x080046bc   0x00000204   Code   RO         2160    i.sceMotorDemo_do   motor_diver.o
-    0x080048c0   0x0000003c   Code   RO           20    i.senceDelayToNext  main.o
-    0x080048fc   0x0000000c   Code   RO           22    i.senceNext         main.o
-    0x08004908   0x00000050   Code   RO         2641    i.sendTimeCfg       stm32f1_uart1.o
-    0x08004958   0x000000a8   Code   RO           23    i.setFlashData      main.o
-    0x08004a00   0x0000010c   Code   RO         2505    i.zhSCM_GPIOConfig  key.o
-    0x08004b0c   0x00000006   Code   RO         2506    i.zhSCM_initKeyState  key.o
-    0x08004b12   0x00000074   Code   RO         2507    i.zhSCM_keyState    key.o
-    0x08004b86   0x00000002   PAD
-    0x08004b88   0x0000005e   Code   RO         2960    x$fpl$dfix          fz_ws.l(dfix.o)
-    0x08004be6   0x0000002e   Code   RO         2965    x$fpl$dflt          fz_ws.l(dflt_clz.o)
-    0x08004c14   0x00000154   Code   RO         2970    x$fpl$dmul          fz_ws.l(dmul.o)
-    0x08004d68   0x0000009c   Code   RO         2973    x$fpl$dnaninf       fz_ws.l(dnaninf.o)
-    0x08004e04   0x0000000c   Code   RO         2975    x$fpl$dretinf       fz_ws.l(dretinf.o)
-    0x08004e10   0x00000000   Code   RO         2977    x$fpl$usenofp       fz_ws.l(usenofp.o)
-    0x08004e10   0x00000020   Data   RO         3130    Region$$Table       anon$$obj.o
+    0x080046bc   0x000001c0   Code   RO         2160    i.sceMotorDemo_do   motor_diver.o
+    0x0800487c   0x0000003c   Code   RO           20    i.senceDelayToNext  main.o
+    0x080048b8   0x0000000c   Code   RO           22    i.senceNext         main.o
+    0x080048c4   0x00000050   Code   RO         2641    i.sendTimeCfg       stm32f1_uart1.o
+    0x08004914   0x000000a8   Code   RO           23    i.setFlashData      main.o
+    0x080049bc   0x0000010c   Code   RO         2505    i.zhSCM_GPIOConfig  key.o
+    0x08004ac8   0x00000006   Code   RO         2506    i.zhSCM_initKeyState  key.o
+    0x08004ace   0x00000074   Code   RO         2507    i.zhSCM_keyState    key.o
+    0x08004b42   0x00000002   PAD
+    0x08004b44   0x0000005e   Code   RO         2960    x$fpl$dfix          fz_ws.l(dfix.o)
+    0x08004ba2   0x0000002e   Code   RO         2965    x$fpl$dflt          fz_ws.l(dflt_clz.o)
+    0x08004bd0   0x00000154   Code   RO         2970    x$fpl$dmul          fz_ws.l(dmul.o)
+    0x08004d24   0x0000009c   Code   RO         2973    x$fpl$dnaninf       fz_ws.l(dnaninf.o)
+    0x08004dc0   0x0000000c   Code   RO         2975    x$fpl$dretinf       fz_ws.l(dretinf.o)
+    0x08004dcc   0x00000000   Code   RO         2977    x$fpl$usenofp       fz_ws.l(usenofp.o)
+    0x08004dcc   0x00000020   Data   RO         3130    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x000008b8, Max: 0x00010000, ABSOLUTE)
@@ -1826,7 +1826,7 @@ Image component sizes
       4884        468          0        172         14     310477   main.o
        238          0          0          0          0       1991   mini-data.o
        172         22          0          0          0       1901   misc.o
-      5532        374          0         20          0       8368   motor_diver.o
+      5464        368          0         20          0       8260   motor_diver.o
       1044         42          0          0          0       3341   outputdrive.o
         64         26        336          0       1536        820   startup_stm32f10x_cl.o
        220         26          0          4          0       7333   stm32_delay.o
@@ -1846,7 +1846,7 @@ Image component sizes
        396         32          0         20          0       2333   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-     18646       1476        368        288       1848     392414   Object Totals
+     18578       1470        368        288       1848     392306   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          6          0          0          2          2          0   (incl. Padding)
 
@@ -1903,15 +1903,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     19648       1512        368        288       1944     386894   Grand Totals
-     19648       1512        368        288       1944     386894   ELF Image Totals
-     19648       1512        368        288          0          0   ROM Totals
+     19580       1506        368        288       1944     386786   Grand Totals
+     19580       1506        368        288       1944     386786   ELF Image Totals
+     19580       1506        368        288          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                20016 (  19.55kB)
+    Total RO  Size (Code + RO Data)                19948 (  19.48kB)
     Total RW  Size (RW Data + ZI Data)              2232 (   2.18kB)
-    Total ROM Size (Code + RO Data + RW Data)      20304 (  19.83kB)
+    Total ROM Size (Code + RO Data + RW Data)      20236 (  19.76kB)
 
 ==============================================================================
 

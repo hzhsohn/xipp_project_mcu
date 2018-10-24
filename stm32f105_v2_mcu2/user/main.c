@@ -25,18 +25,20 @@ unsigned char g_cCleanCurrentSence=0;
 //场景时间调度
 #define DEF_TIME_MS_DELAY		100
 
-#define _unit1(x) 							RELAY1_STATE(x)			//按摩保暖电源
-#define _unit2(x) 							RELAY2_STATE(x)			//左充气  常闭阀门
-#define _unit3(x) 							RELAY3_STATE(x)			//左放气  常闭阀门
-#define _unit4(x) 		 					RELAY4_STATE(x)			//右充气  常闭阀门
-#define _unit5(x) 							RELAY5_STATE(x)			//右放气  常闭阀门
-#define _unit6(x) 							RELAY6_STATE(x)			//背囊充  常闭阀门
-#define _unit7(x) 							RELAY7_STATE(x)			//背囊放  常闭阀门
-#define _unit8(x) 				 			RELAY8_STATE(x) 		//床垫充气  常闭阀门
-#define _unit9(x) 							RELAY9_STATE(x)			//放气  常闭阀门
-#define _unit10(x) 				 			RELAY10_STATE(x)		//充气关  球形阀门
-#define _unit11(x)							RELAY11_STATE(x) 		//充气开  球形阀门
-#define _unit12(x) 	 						RELAY12_STATE(x)		//预留
+#define _unit16(x) 							RELAY1_STATE(x)			//按摩保暖电源
+#define _unit17(x) 							RELAY2_STATE(x)			//左充气  常闭阀门
+#define _unit18(x) 							RELAY3_STATE(x)			//左放气  常闭阀门
+#define _unit19(x) 		 					RELAY4_STATE(x)			//右充气  常闭阀门
+#define _unit20(x) 							RELAY5_STATE(x)			//右放气  常闭阀门
+#define _unit21(x) 							RELAY6_STATE(x)			//背囊充  常闭阀门
+#define _unit22(x) 							RELAY7_STATE(x)			//背囊放  常闭阀门
+#define _unit23(x) 				 			RELAY8_STATE(x) 		//床垫充气  常闭阀门
+#define _unit24(x) 							RELAY9_STATE(x)			//放气  常闭阀门
+#define _unit25(x) 				 			RELAY10_STATE(x)		//充气关  球形阀门
+#define _unit26(x)							RELAY11_STATE(x) 		//充气开  球形阀门
+#define _unit27(x) 	 						RELAY12_STATE(x)		//预留
+
+#define _unit10(x) 	 						RELAY13_STATE(x)		//充气
 
 /**************/
 //传感器逻辑重定义
@@ -76,22 +78,25 @@ void LitteSenceRun(void);
 */
 void litteSenceRun1(void);
 void litteSenceRun2(void);
+void litteSenceRun3(void);
+void litteSenceRun4(void);
 
 //关闭所有输出
 void allSenceClose()
 {
-	 _unit1(0); 								
-	 _unit2(0); 					
-	 _unit3(0); 					
-	 _unit4(0); 		 					
-	 _unit5(0); 						
-	 _unit6(0); 							
-	 _unit7(0); 							
-	 _unit8(0); 				 	
-	 _unit9(0); 								
-	 _unit10(0); 
-	 _unit11(0);
-	 _unit12(0);
+	 _unit16(0);
+	 _unit17(0);
+	 _unit18(0);
+	 _unit19(0);
+	 _unit20(0);
+	 _unit21(0);
+	 _unit22(0);
+	 _unit23(0);
+	 _unit24(0);
+	 _unit25(0);
+	 _unit26(0);
+	 _unit27(0);
+	 _unit10(0);
 }
 
 //中断场景
@@ -189,27 +194,29 @@ int main(void)
 	zhSCM_initKeyState(&btn2);
 	zhSCM_initKeyState(&btn3);
 	zhSCM_initKeyState(&btn4);
-		
+	
+	//-----------------------------------------
+	//获取FALSH数据
+	setFlashData();
+  //-----------------------------------------
+	
 	STM32_Delay_init();
 	STM32F1_UART1_Init(19200);  //对接MCU1
 	//STM32F1_UART2_Init(230400);
 	//STM32F1_UART3_Init(9600);
 	
-	Adc_Init();
-	Adc2_Init();	
-	Motor_Init();
+	//Adc_Init();
+	//Adc2_Init();	
+	//Motor_Init();
 	Stm32F1_Timer2Init();
 	Stm32F1_Timer3Init();
 	InputDriveInit();
+	zhSCM_GPIOConfig(); 
+
 	OutputDriveInit();
 
-	//-----------------------------------------
-	//获取FALSH数据
-	setFlashData();
-  //-----------------------------------------
-
 	//测试继电子器逻辑	
-	#if 0
+	#if 1
 			allOutClose();
 			RelayTest();
 			allOutClose();
@@ -418,6 +425,14 @@ void LitteSenceRun()
 		{			
 				litteSenceRun2();
 		}
+		else if(ezhCleanSence3==(g_cCleanCurrentSence))
+		{			
+				litteSenceRun3();
+		}
+		else if(ezhCleanSence4==(g_cCleanCurrentSence))
+		{			
+				litteSenceRun4();
+		}
 		else
 		{
 				//没有场景
@@ -431,7 +446,7 @@ void LitteSenceRun()
 ----运行场景----
 
 ***********************************************************/
-void litteSenceRun1()
+void litteSenceRun1(void)
 {					
 					static int nCalca=0;	
 					switch(ppxxStep)
@@ -439,10 +454,36 @@ void litteSenceRun1()
 						case 0:				
 							allSenceClose();
 							g_cCleanCurrentSence=ezhCleanSence1;
+							senceNext(&nCalca,&ppxxStep);
 							break;
-						case 1:							
+						case 1:	
 							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5);
 							break;
+						case 2:
+							_unit26(1);
+							_unit10(1);		//MCU1
+							_unit17(1);
+							senceNext(&nCalca,&ppxxStep);
+							break;
+						case 3:	
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*55);
+							break;
+						case 4:
+							_unit26(0);
+							_unit10(0);		//MCU1
+							_unit17(0);
+							_unit25(1);
+							senceNext(&nCalca,&ppxxStep);
+							break;
+						case 5:	
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*15);
+							break;
+						case 6:
+							_unit25(0);
+							senceNext(&nCalca,&ppxxStep);
+							break;
+						
+							
 						default: //完毕
 							allOutClose();
 							g_cCleanCurrentSence=0;  		//场景复位
@@ -451,7 +492,7 @@ void litteSenceRun1()
 					}
 }
 
-void litteSenceRun2()
+void litteSenceRun2(void)
 {				
 				static int nCalca=0;
 				switch(ppxxStep)
@@ -459,10 +500,26 @@ void litteSenceRun2()
 					case 0:				
 						allSenceClose();
 						g_cCleanCurrentSence=ezhCleanSence2;
+						senceNext(&nCalca,&ppxxStep);
 						break;
 					case 1:
 						senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3);
 						break;
+					case 2:
+							_unit24(1);
+							_unit10(1);		//MCU1
+							_unit18(1);
+						senceNext(&nCalca,&ppxxStep);
+							break;
+					case 3:	
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*55);
+							break;
+					case 4:
+							_unit24(0);
+							_unit10(0);		//MCU1
+							_unit18(0);
+					senceNext(&nCalca,&ppxxStep);
+							break;
 					default: //完毕
 						allOutClose();
 						g_cCleanCurrentSence=0;  		//场景复位
@@ -472,7 +529,7 @@ void litteSenceRun2()
 }
 
 
-void litteSenceRun3()
+void litteSenceRun3(void)
 {				
 				static int nCalca=0;
 				switch(ppxxStep)
@@ -480,10 +537,37 @@ void litteSenceRun3()
 					case 0:				
 						allSenceClose();
 						g_cCleanCurrentSence=ezhCleanSence2;
+						senceNext(&nCalca,&ppxxStep);
 						break;
 					case 1:
 						senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3);
 						break;
+					case 2:
+							_unit26(1);
+							_unit10(1);		//MCU1
+							_unit19(1);
+						senceNext(&nCalca,&ppxxStep);
+							break;
+						case 3:	
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*55);
+							break;
+						case 4:
+							_unit26(0);
+							_unit10(0);		//MCU1
+							_unit19(0);
+							_unit25(1);
+							senceNext(&nCalca,&ppxxStep);
+							break;
+						case 5:	
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*15);
+							break;
+						case 6:
+							_unit25(0);
+							senceNext(&nCalca,&ppxxStep);
+							break;
+					
+					
+					
 					default: //完毕
 						allOutClose();
 						g_cCleanCurrentSence=0;  		//场景复位
@@ -492,7 +576,7 @@ void litteSenceRun3()
 				}
 }
 
-void litteSenceRun4()
+void litteSenceRun4(void)
 {				
 				static int nCalca=0;
 				switch(ppxxStep)
@@ -500,10 +584,37 @@ void litteSenceRun4()
 					case 0:				
 						allSenceClose();
 						g_cCleanCurrentSence=ezhCleanSence2;
+						senceNext(&nCalca,&ppxxStep);
 						break;
 					case 1:
 						senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3);
 						break;
+					case 2:
+							_unit24(1);
+							_unit10(1);		//MCU1
+							_unit20(1);
+						senceNext(&nCalca,&ppxxStep);
+							break;
+						case 3:	
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*55);
+							break;
+						case 4:
+							_unit24(0);
+							_unit10(0);		//MCU1
+							_unit20(0);
+							_unit25(1);
+							senceNext(&nCalca,&ppxxStep);
+							break;
+						case 5:	
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*15);
+							break;
+						case 6:
+							_unit25(0);
+							senceNext(&nCalca,&ppxxStep);
+							break;
+					
+					
+					
 					default: //完毕
 						allOutClose();
 						g_cCleanCurrentSence=0;  		//场景复位

@@ -6,7 +6,7 @@ void POWER_Configuration(void);
 void OutputDriveInit(void)
 {
 	 Relay_Init();
-	 POWER_Configuration();
+	 //POWER_Configuration();
 }
 
 
@@ -94,6 +94,13 @@ void Relay_Init(void)
   GPIO_Init(RELAY12_GPIO, &GPIO_MyStruct);
 	RELAY12_STATE(0);
 
+
+	/*RELAY13*/
+	GPIO_MyStruct.GPIO_Pin = RELAY13_PIN;
+  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+  GPIO_Init(RELAY13_GPIO, &GPIO_MyStruct);
+	RELAY13_STATE(0);
 }
 
 
@@ -128,93 +135,98 @@ void RelayTest()
 	RELAY10_STATE(0);
 	RELAY11_STATE(0);
 	RELAY12_STATE(0);
+	RELAY13_STATE(0);
 	//-------------------------------------------------
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY1_STATE(1); 
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY2_STATE(1); 	
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
-	
 	RELAY3_STATE(1); 
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
-	
 	RELAY4_STATE(1);
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY5_STATE(1); 	
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY6_STATE(1); 
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
-	
 	RELAY7_STATE(1); 	
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY8_STATE(1); 
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY9_STATE(1); 		
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY10_STATE(1);	
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY11_STATE(1); 
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}
 	
 	RELAY12_STATE(1); 		
 	tmeCal=0;
-	while(tmeCal<1600000)
+	while(tmeCal<3600000)
+	{
+		tmeCal++;
+	}
+	
+	RELAY13_STATE(1); 		
+	tmeCal=0;
+	while(tmeCal<3600000)
 	{
 		tmeCal++;
 	}

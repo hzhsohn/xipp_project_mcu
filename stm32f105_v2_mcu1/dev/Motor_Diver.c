@@ -910,7 +910,7 @@ void sceMotorDemo_do(void)
 							}
 							else
 							{
-								Motor1_do(3);
+								Motor2_do(3);
 							}
 							break;
 						case 2:
@@ -925,25 +925,10 @@ void sceMotorDemo_do(void)
 							}
 							else
 							{
-								Motor2_do(3);
-							}
-							break;
-						case 3:
-							if(0==monLimitState2R)
-							{
-								int i=0;
-								current_demo_step=4;
-								for(i=0;i<100;i++)
-								{
-									STM32_Delay_ms(20);
-								}
-							}
-							else
-							{
 								Motor2_do(4);
 							}
 							break;
-						case 4:
+						case 3:
 						{
 							int i=0;
 							Motor2_do(0);//Í£Ö¹µç»ú
@@ -953,20 +938,9 @@ void sceMotorDemo_do(void)
 							{
 								Mon2blockTurnLeft();
 							}
-							current_demo_step=5;
+							current_demo_step=4;
 						}
 							break;
-						case 5:
-							if(0==monLimitState1R)
-							{
-								motor_demo_do=0;
-								current_demo_step=0;
-							}
-							else
-							{
-								Motor1_do(4);
-							}
-						break;
 					}
 		}
 		else if(2==motor_demo_do)

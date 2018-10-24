@@ -43,13 +43,13 @@ void TIM2_IRQHandler(void)
 		if(bsmamama>100)
 		{
 			bsmamama=0;
-			BS_MADAMADA_STATE(deji_A);
+			//BS_MADAMADA_STATE(deji_A);
 		}
 		bsmamama++;
 	}
 	else
 	{
-		BS_MADAMADA_STATE(0);
+	//	BS_MADAMADA_STATE(0);
 	}
 	
 	//
