@@ -43,25 +43,6 @@ void zhSCM_GPIOConfig(void)
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
   GPIO_Init(TOUCHKEY_4_GPIO, &GPIO_MyStruct);
 	
-	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_5_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(TOUCHKEY_5_GPIO, &GPIO_MyStruct);
-	
-	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_6_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(TOUCHKEY_6_GPIO, &GPIO_MyStruct);
-	
-	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_7_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(TOUCHKEY_7_GPIO, &GPIO_MyStruct);
-	
-	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_8_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(TOUCHKEY_8_GPIO, &GPIO_MyStruct);
 }
 /*******************************************************************************
 * 函数名       : zhSCM_initKeyState
@@ -81,13 +62,14 @@ void zhSCM_initKeyState(EzhKeyState *status)
 * 输出结果      : 无
 * 返回值        : 无
 *******************************************************************************/
+
+		
 EzhKeyEvent zhSCM_keyState(EzhKeyState *status,GPIO_TypeDef *GPIOx,u16 GPIO_Pin_x)
 {
 		int keyPort=0;
 		EzhKeyEvent event;
 		//读取GPIOA的I/O电平
-		keyPort=GPIO_ReadInputData(GPIOx); 
-		keyPort=keyPort&GPIO_Pin_x;
+		keyPort=GPIO_ReadInputDataBit(GPIOx,GPIO_Pin_x); 
 		keyPort=!keyPort;
 		switch(*status)
 		{

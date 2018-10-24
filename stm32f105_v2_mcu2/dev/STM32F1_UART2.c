@@ -1,4 +1,16 @@
 #include "Stm32f1_uart2.h"
+#include "mini-data.h"
+#include "flash_rw.h"
+
+//--------------------------------------------
+//接收缓存
+u8 uart2Data;
+uchar g_cache2[128]={0};
+unsigned short g_uart2len=0;
+TzhMiniData g_ocCmd2;
+uchar g_isGetCmdOk2;
+int g_timeoverUart2=0;
+
 //****************************************************************************
 //*函数功能：
 //*参数：
@@ -43,7 +55,6 @@ void STM32F1_UART2_Init(u32_t lBaudRate)
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;   //浮空输入
     GPIO_Init(GPIOA, &GPIO_InitStructure);//初始化 GPIOA.3
 
-
     USART_InitStructure.USART_BaudRate          =   lBaudRate;
     USART_InitStructure.USART_WordLength        =   USART_WordLength_8b;
     USART_InitStructure.USART_StopBits          =   USART_StopBits_1;
@@ -58,47 +69,50 @@ void STM32F1_UART2_Init(u32_t lBaudRate)
     //开启中断
     USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);//开启中断
     //使能串口
-    USART_Cmd(USART2, ENABLE);//使能串口
-
+    USART_Cmd(USART2, ENABLE);
 }
 
-unsigned char u2Re_buf[11],u2Counter=0;
-extern unsigned char cHeartJump;
-int hhjCount=0;
-unsigned char cOldHeartJump;
+
 void USART2_IRQHandler(void)
 {
     if (USART_GetITStatus(USART2,USART_IT_RXNE)!=RESET)
     {
-				u2Re_buf[u2Counter]=USART_ReceiveData(USART2);
-				if(u2Counter==0&&u2Re_buf[0]!=0xF0) return;
+				uart2Data = USART_ReceiveData(USART1);
 				
-
-				u2Counter++;				
-				if(u2Counter==7) 
+			  //周期计数复位
+			  g_timeoverUart2=0;
+			
+				if(g_uart2len+1>128){ g_uart2len=0; }
+				g_cache2[g_uart2len]=uart2Data;
+				g_uart2len++;
+				if(0xFA==uart2Data)
 				{
-						if(u2Counter==0&&u2Re_buf[1]!=0xF0) return; 					
-					  u2Counter=0;
-						//平均3次
-						if(0 && hhjCount<3 && cOldHeartJump>0)
-						{
-							if(0==u2Re_buf[5])
-							{
-								cHeartJump=cOldHeartJump;
-								hhjCount++;
-							}
-							else
-							{
-								cHeartJump=u2Re_buf[5];
-								cOldHeartJump=cHeartJump;
-							}
-						}
-						else
-						{
-							cHeartJump=u2Re_buf[5];
-							cOldHeartJump=cHeartJump;
-							hhjCount=0;
-						}
-				}
+						 int tmp;
+					_nnc:
+						 tmp=miniDataGet(g_cache2,g_uart2len,&g_ocCmd2,&g_isGetCmdOk2);
+						 //
+						 if(g_isGetCmdOk2)
+						 {
+								//周期计数复位
+								g_timeoverUart2=0;
+								//
+							  switch(g_ocCmd2.parameter[0])
+								{
+									case 0x00:
+										
+										break;
+								}
+						 }
+						 if(tmp>0)
+						 {
+								int n;
+								g_uart2len-=tmp;
+								for(n=0;n<g_uart2len;n++)
+								{
+									g_cache2[n]=g_cache2[tmp+n]; 
+								}
+								goto _nnc;
+						 }
+				 }
     }
 }

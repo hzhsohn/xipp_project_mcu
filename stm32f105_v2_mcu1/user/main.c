@@ -178,19 +178,41 @@ void allOutClose()
 }
 ////////////////////////////////////////////////////////////////
 //场景延时
-void senceDelay(int*nCalca,int*ppxxStep,int jmpValue,int delay_ms,int ezhCleanSencePOS)
+void senceDelayToValue(int*nCalca,int*ppxxStep,int jmpValue,int delay_ms)
 {
 	if((*nCalca) > delay_ms) 
 	{
 			*nCalca=0;
-			(*ppxxStep)++; g_cCleanCurrentSence=ezhCleanSencePOS;
+			(*ppxxStep)++;
 	}
 	else
 	{
 			if(0==isCleanRuning)//中断
 			{g_cCleanCurrentSence=0;(*nCalca)=0;allOutClose();}
-			(*nCalca)+=jmpValue;
+			(*nCalca)=jmpValue;
 	}
+}
+
+void senceDelayToNext(int*nCalca,int*ppxxStep,int delay_ms)
+{
+	if((*nCalca) > delay_ms) 
+	{
+			*nCalca=0;
+			(*ppxxStep)++; 
+	}
+	else
+	{
+			if(0==isCleanRuning)//中断
+			{g_cCleanCurrentSence=0;(*nCalca)=0;allOutClose();}
+			(*nCalca)++;
+	}
+}
+
+void senceNext(int*nCalca,int*ppxxStep)
+{
+			*nCalca=0;
+			(*ppxxStep)++;
+
 }
 ////////////////////////////////////////////////////////////////
 
@@ -319,22 +341,22 @@ void setFlashData()
 int main(void)
 {
 	EzhKeyEvent ev;
-  EzhKeyState GPIOAStatus1;
-	EzhKeyState GPIOAStatus2;
-	EzhKeyState GPIOAStatus3;
-	EzhKeyState GPIOAStatus4;
-	EzhKeyState GPIOAStatus5;
-	EzhKeyState GPIOAStatus6;
-	EzhKeyState GPIOAStatus7;
-	EzhKeyState GPIOAStatus8;
-  zhSCM_initKeyState(&GPIOAStatus1);
-	zhSCM_initKeyState(&GPIOAStatus2);
-	zhSCM_initKeyState(&GPIOAStatus3);
-	zhSCM_initKeyState(&GPIOAStatus4);
-	zhSCM_initKeyState(&GPIOAStatus5);
-	zhSCM_initKeyState(&GPIOAStatus6);
-	zhSCM_initKeyState(&GPIOAStatus7);
-	zhSCM_initKeyState(&GPIOAStatus8);
+  EzhKeyState btn1;
+	EzhKeyState btn2;
+	EzhKeyState btn3;
+	EzhKeyState btn4;
+	EzhKeyState btn5;
+	EzhKeyState btn6;
+	EzhKeyState btn7;
+	EzhKeyState btn8;
+  zhSCM_initKeyState(&btn1);
+	zhSCM_initKeyState(&btn2);
+	zhSCM_initKeyState(&btn3);
+	zhSCM_initKeyState(&btn4);
+	zhSCM_initKeyState(&btn5);
+	zhSCM_initKeyState(&btn6);
+	zhSCM_initKeyState(&btn7);
+	zhSCM_initKeyState(&btn8);
 		
 	STM32_Delay_init();
 	STM32F1_UART1_Init(115200);
@@ -350,6 +372,7 @@ int main(void)
 	Stm32F1_Timer3Init();
 	InputDriveInit();
 	OutputDriveInit();
+	zhSCM_GPIOConfig();
 
 	//-----------------------------------------
 	//获取FALSH数据
@@ -376,7 +399,7 @@ int main(void)
 		//
 		//---------------------
 		//按键1		护卫键
-		ev=zhSCM_keyState(&GPIOAStatus1,TOUCHKEY_1_GPIO,TOUCHKEY_1_PIN);
+		ev=zhSCM_keyState(&btn1,TOUCHKEY_1_GPIO,TOUCHKEY_1_PIN);
     switch(ev)
     {
 			case ZH_KEY_EVENT_NONE:
@@ -391,7 +414,8 @@ int main(void)
 					if(!isCleanRuning && 0==g_cCleanCurrentSence)
 					{
 							aurtEventBtn(1);
-							g_cCleanCurrentSence=ezhCleanSence3;
+							//g_cCleanCurrentSence=ezhCleanSence3;
+										g_cCleanCurrentSence=ezhCleanSence1;
 							isCleanRuning=1;
 					}
 					else
@@ -405,7 +429,7 @@ int main(void)
        break;
     }
 		//按键2		冲洗键
-		ev=zhSCM_keyState(&GPIOAStatus2,TOUCHKEY_2_GPIO,TOUCHKEY_2_PIN);
+		ev=zhSCM_keyState(&btn2,TOUCHKEY_2_GPIO,TOUCHKEY_2_PIN);
     switch(ev)
     {
 			case ZH_KEY_EVENT_NONE:
@@ -420,7 +444,8 @@ int main(void)
 					if(!isCleanRuning && 0==g_cCleanCurrentSence)
 					{
 							aurtEventBtn(2);
-							g_cCleanCurrentSence=ezhCleanSence4;
+							//g_cCleanCurrentSence=ezhCleanSence4;
+										g_cCleanCurrentSence=ezhCleanSence2;
 							isCleanRuning=1;
 					}
 					else
@@ -434,7 +459,7 @@ int main(void)
         break;
     }
 		//按键3		烘干键
-		ev=zhSCM_keyState(&GPIOAStatus1,TOUCHKEY_3_GPIO,TOUCHKEY_3_PIN);
+		ev=zhSCM_keyState(&btn3,TOUCHKEY_3_GPIO,TOUCHKEY_3_PIN);
     switch(ev)
     {
 			case ZH_KEY_EVENT_NONE:
@@ -463,7 +488,7 @@ int main(void)
         break;
     }
 		//按键4		除菌键
-		ev=zhSCM_keyState(&GPIOAStatus2,TOUCHKEY_4_GPIO,TOUCHKEY_4_PIN);
+		ev=zhSCM_keyState(&btn4,TOUCHKEY_4_GPIO,TOUCHKEY_4_PIN);
     switch(ev)
     {
 			case ZH_KEY_EVENT_NONE:
@@ -493,7 +518,7 @@ int main(void)
     }
 		
 		//按键5		按摩键
-		ev=zhSCM_keyState(&GPIOAStatus1,TOUCHKEY_5_GPIO,TOUCHKEY_5_PIN);
+		ev=zhSCM_keyState(&btn5,TOUCHKEY_5_GPIO,TOUCHKEY_5_PIN);
     switch(ev)
     {
 			case ZH_KEY_EVENT_NONE:
@@ -514,7 +539,7 @@ int main(void)
         break;
     }
 		//按键6		保暖键
-		ev=zhSCM_keyState(&GPIOAStatus2,TOUCHKEY_6_GPIO,TOUCHKEY_6_PIN);
+		ev=zhSCM_keyState(&btn6,TOUCHKEY_6_GPIO,TOUCHKEY_6_PIN);
     switch(ev)
     {
 			case ZH_KEY_EVENT_NONE:
@@ -536,7 +561,7 @@ int main(void)
     }
 		
 		//按键7		设置链
-		ev=zhSCM_keyState(&GPIOAStatus1,TOUCHKEY_7_GPIO,TOUCHKEY_7_PIN);
+		ev=zhSCM_keyState(&btn7,TOUCHKEY_7_GPIO,TOUCHKEY_7_PIN);
     switch(ev)
     {
 			case ZH_KEY_EVENT_NONE:
@@ -553,7 +578,7 @@ int main(void)
         break;
     }
 		//按键8		待机开关
-		ev=zhSCM_keyState(&GPIOAStatus2,TOUCHKEY_8_GPIO,TOUCHKEY_8_PIN);
+		ev=zhSCM_keyState(&btn8,TOUCHKEY_8_GPIO,TOUCHKEY_8_PIN);
     switch(ev)
     {
 			case ZH_KEY_EVENT_NONE:
@@ -806,74 +831,82 @@ void litteSenceRunXuXu()
 						case 0:				
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence1,1);
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*5,ezhCleanSence1);
+							g_cCleanCurrentSence=ezhCleanSence1;
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 1:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5);
+							break;
+						case 2:
 							_unit4(1);
 							_unit11(1);
 							_unit5(1);
-							break;
-						case 2:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*3,ezhCleanSence2);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 3:
-							_unit5(0);
-							_unit6(1);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3);
 							break;
 						case 4:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*4,ezhCleanSence2|ppxxStep);
+							_unit5(0);
+							_unit6(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 5:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4);
+							break;
+						case 6:
 							_unit6(0);
 							_unit11(0);
 							_unit15(1);
 							_unit9(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
-						case 6:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*6,ezhCleanSence2);
+						case 7:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*6);
 							break;
-						case 7:		
+						case 8:		
 							_unit15(0);
 							_unit9(0);
 							_unit11(1);
 							_unit6(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
-						case 8:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*6,ezhCleanSence2);
+						case 9:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*6);
 							break;
-						case 9:		
+						case 10:		
 							_unit11(0);
 							_unit6(0);
 							_unit2(1);
 							_unit12(1);
 							_unit10(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
-						case 10:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*50,ezhCleanSence2);
+						case 11:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50);
 							break;
-						case 11:		
+						case 12:		
 							_unit2(0);
 							_unit12(0);
 							_unit10(0);
 							_unit4(0);
+							senceNext(&nCalca,&ppxxStep);
 							break;
-						case 12:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*2,ezhCleanSence2);
+						case 13:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*2);
 							break;
-						case 13:		
+						case 14:		
 							_unit3(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
-						case 14:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*15,ezhCleanSence2);
+						case 15:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*15);
 							break;
-						case 15:		
+						case 16:		
 							_unit3(0);
+							senceNext(&nCalca,&ppxxStep);
 							break;
-						
-						
-						
-						
-						
+									
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence1,0);
 							allOutClose();
@@ -891,28 +924,32 @@ void litteSenceRunPooPoo()
 						case 0:				
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence2,1);
+							g_cCleanCurrentSence=ezhCleanSence2;
 							_unit4(1);
 							_unit11(1);
 							_unit5(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 1:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*3,ezhCleanSence2);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3);
 							break;
 						case 2:
 							_unit5(0);
 							_unit6(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 3:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*4,ezhCleanSence2|ppxxStep);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4);
 							break;
 						case 4:
 							_unit6(0);
 							_unit11(0);
 							_unit15(1);
 							_unit9(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 5:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*6,ezhCleanSence2);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*6);
 							break;
 						case 6:		
 							_unit15(0);
@@ -920,9 +957,10 @@ void litteSenceRunPooPoo()
 							_unit11(1);
 							_unit6(1);
 							_unit7(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 7:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*6,ezhCleanSence2);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*6);
 							break;
 						case 8:		
 							_unit11(0);
@@ -931,30 +969,33 @@ void litteSenceRunPooPoo()
 							_unit2(1);
 							_unit12(1);
 							_unit10(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 9:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*50,ezhCleanSence2);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50);
 							break;
 						case 10:		
 							_unit2(0);
 							_unit12(0);
 							_unit10(0);
 							_unit4(0);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 11:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*2,ezhCleanSence2);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*2);
 							break;
 						case 12:		
 							_unit3(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 13:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*15,ezhCleanSence2);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*15);
 							break;
 						case 14:		
 							_unit3(0);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						
-
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence2,0);
 							allOutClose();
@@ -972,10 +1013,11 @@ void litteSenceRunHuWai(void)
 						case 0:				
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence3,1);
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*10,ezhCleanSence3);
+							g_cCleanCurrentSence=ezhCleanSence3;
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 1:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*10,ezhCleanSence3);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10);
 							break;
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence3,0);
@@ -993,13 +1035,11 @@ void litteSenceRunChongXi(void)
 						case 0:							
 							allSenceClose();				
 							aurtEventUnitSence(ezhCleanSence4,1);
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*10,ezhCleanSence4);
+							g_cCleanCurrentSence=ezhCleanSence4;
+							senceNext(&nCalca,&ppxxStep);
 							break;
-						case 1:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*10,ezhCleanSence4);
-							break;
-						case 2:	
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*10,ezhCleanSence4);
+						case 1:	
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10);
 							break;						
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence4,0);
@@ -1021,31 +1061,35 @@ void litteSenceRunHongGan(void)
 						case 0:				
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence5,1);
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*1,ezhCleanSence5);
+							g_cCleanCurrentSence=ezhCleanSence5;
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 1:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*1);
+							break;
+						case 2:
 							_unit2(1);
 							_unit12(1);
 							_unit10(1);
-							break;
-						case 2:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*50,ezhCleanSence5);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 3:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50);
+							break;
+						case 4:
 							_unit2(0);
 							_unit12(0);
 							_unit10(0);
 							_unit1(1);
-							break;
-						case 4:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*15,ezhCleanSence5);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 5:
-							_unit1(0);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*15);
 							break;
-						
-						
-						
+						case 6:
+							_unit1(0);
+							senceNext(&nCalca,&ppxxStep);
+							break;
 						
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence5,0);
@@ -1067,61 +1111,72 @@ void litteSenceRunChuQun(void)
 						case 0:					
 							allSenceClose();						
 							aurtEventUnitSence(ezhCleanSence6,1);
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*3,ezhCleanSence6);
+							g_cCleanCurrentSence=ezhCleanSence6;
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 1:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3);
+							break;
+						case 2:
 							_unit12(1);
 							_unit8(1);
 							_unit2(1);
 							_unit10(1);
 							_unit4(1);
-							break;
-						case 2:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*5,ezhCleanSence5);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 3:
-							_unit15(1);
-							_unit9(1);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5);
 							break;
 						case 4:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*3,ezhCleanSence5);
+							_unit15(1);
+							_unit9(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 5:
-							_unit15(0);
-							_unit9(0);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3);
 							break;
 						case 6:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*50,ezhCleanSence5);
+							_unit15(0);
+							_unit9(0);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 7:
-							_unit15(1);
-							_unit9(1);
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50);
 							break;
 						case 8:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*3,ezhCleanSence5);
-							break;
-						case 9:
-							_unit15(0);
-							_unit9(0);
-							break;
-						case 10:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*50,ezhCleanSence5);
-							break;
-						case 11:
 							_unit15(1);
 							_unit9(1);
+							senceNext(&nCalca,&ppxxStep);
 							break;
-						case 12:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*3,ezhCleanSence5);
+						case 9:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3);
 							break;
-						case 13:
+						case 10:
 							_unit15(0);
 							_unit9(0);
+							senceNext(&nCalca,&ppxxStep);
+							break;
+						case 11:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50);
+							break;
+						case 12:
+							_unit15(1);
+							_unit9(1);
+							senceNext(&nCalca,&ppxxStep);
+							break;
+						case 13:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*3);
 							break;
 						case 14:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*50,ezhCleanSence5);
+							_unit15(0);
+							_unit9(0);
+							senceNext(&nCalca,&ppxxStep);
 							break;
-						case15:
+						case 15:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50);
+							break;
+						case 16:
 							_unit2(0);
 							_unit4(0);
 							_unit3(1);
@@ -1129,15 +1184,16 @@ void litteSenceRunChuQun(void)
 							_unit12(0);
 							_unit8(0);
 							_unit10(0);
-							break;
-						case 16:
-							senceDelay(&nCalca,&ppxxStep,1,DEF_TIME_MS_DELAY*15,ezhCleanSence5);
+							senceNext(&nCalca,&ppxxStep);
 							break;
 						case 17:
+							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*15);
+							break;
+						case 18:
 							_unit3(0);
 							_unit1(0);
+							senceNext(&nCalca,&ppxxStep);
 							break;
-						
 						
 						default: //完毕
 							aurtEventUnitSence(ezhCleanSence6,0);

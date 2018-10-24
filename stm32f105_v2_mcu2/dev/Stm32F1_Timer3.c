@@ -2,14 +2,14 @@
 #include "InputDrive.h"
 #include "Motor_Diver.h"
 
-int kk=0;
-int kk2=0;
 int kk_1ms=0;
 u16_t sCount1ms;
-int kkUart1count=0;
+
+extern int g_timeoverUart1;
 extern int g_uart1len;
 
-void aurtEventStatus();
+extern int g_timeoverUart2;
+extern int g_uart2len;
 
 void Stm32F1_Timer3Init(void)
 {
@@ -50,26 +50,21 @@ Func_Staus CountToOneSecond(void)
 //-------------------------------------------------*/
 void TIM3_IRQHandler(void)
 {
-
-	kk++;
-	kk2++;	
 	kk_1ms++;
-	kkUart1count++;
+	g_timeoverUart1++;
 	
 	//周期计数复位
-	 if(kkUart1count>500)
-	 {
-		 g_uart1len=0;
-		 kkUart1count=0;
-	 }
-	 
-	//------------------------------------------------------------------
-	//上传数据
-	if(kk2>200)
+	if(g_timeoverUart1>500)
 	{
-			aurtEventStatus();
-			kk2=0;
+			g_uart1len=0;
+			g_timeoverUart1=0;
 	}
+	if(g_timeoverUart2>500)
+	{
+			g_uart2len=0;
+			g_timeoverUart2=0;
+	}
+
 	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
 }

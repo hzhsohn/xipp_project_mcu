@@ -86,8 +86,7 @@ EzhKeyEvent zhSCM_keyState(EzhKeyState *status,GPIO_TypeDef *GPIOx,u16 GPIO_Pin_
 		int keyPort=0;
 		EzhKeyEvent event;
 		//读取GPIOA的I/O电平
-		keyPort=GPIO_ReadInputData(GPIOx); 
-		keyPort=keyPort&GPIO_Pin_x;
+		keyPort=GPIO_ReadInputDataBit(GPIOx,GPIO_Pin_x); 
 		keyPort=!keyPort;
 		switch(*status)
 		{

@@ -3,6 +3,22 @@
 #include "flash_rw.h"
 #include "Motor_Diver.h"
 
+//------------------------------------------------------
+//接收缓存
+u8 uart1Data;
+uchar g_cache[128]={0};
+unsigned short g_uart1len=0;
+TzhMiniData g_ocCmd;
+uchar g_isGetCmdOk;
+int g_timeoverUart1=0;
+//
+extern TagTimeingSetting g_tmeSetting;
+//
+//中断当前动作
+extern int isCleanRuning;
+//
+extern unsigned char g_cCleanCurrentSence;  
+
 //****************************************************************************
 //*函数功能：
 //*参数：
@@ -67,22 +83,6 @@ void STM32F1_UART1_Init(u32_t lBaudRate)
 
 
 
-//------------------------------------------------------
-//接收缓存
-uchar g_cache[128]={0};
-unsigned short g_uart1len=0;
-TzhMiniData g_ocCmd;
-uchar g_isGetCmdOk;
-extern unsigned char g_isAutomation;
-extern TagTimeingSetting g_tmeSetting;
-//
-extern int kkUart1count;
-//中断当前动作
-extern int isCleanRuning;
-
-//
-extern unsigned char g_cCleanCurrentSence;  
-
 //发送时间参数
 void sendTimeCfg()
 {
@@ -105,11 +105,10 @@ void USART1_IRQHandler(void)
 {
     if (USART_GetITStatus(USART1,USART_IT_RXNE)!=RESET)
     {
-				u8 uart1Data;
 				uart1Data = USART_ReceiveData(USART1);
 				
 			  //周期计数复位
-			  kkUart1count=0;
+			  g_timeoverUart1=0;
 			
 				if(g_uart1len+1>128){ g_uart1len=0; }
 				g_cache[g_uart1len]=uart1Data;
@@ -123,71 +122,13 @@ void USART1_IRQHandler(void)
 						 if(g_isGetCmdOk)
 						 {
 								//周期计数复位
-								kkUart1count=0;
+								g_timeoverUart1=0;
 								
 							  switch(g_ocCmd.parameter[0])
 								{
-									case 0x90:
-											//Motor1_do_intpr_cmd(1);
-											Motor_demo_up();
+									case 0x00:
 										break;
 									case 0x91:
-											//Motor1_do_intpr_cmd(2);
-											Motor_demo_down();
-										break;
-									case 0x92:
-											Motor2_do_intpr_cmd(1);
-										break;
-									case 0x93:
-											Motor2_do_intpr_cmd(2);
-										break;
-									case 0xD0:
-									case 0x94:				//摄像头演示模式
-											Motor_demo();
-										break;
-									case 0xD1:
-											if(0==g_cCleanCurrentSence)
-											{
-												//aurtEventBtn(0x60);
-												g_cCleanCurrentSence=ezhCleanSenceA;
-												isCleanRuning=1;
-											}
-										break;
-									case 0xD2:
-											if(0==g_cCleanCurrentSence)
-											{
-												//aurtEventBtn(0x60);
-												g_cCleanCurrentSence=ezhCleanSenceB;
-												isCleanRuning=1;
-											}
-										break;
-									case 0xD3:
-											if(0==g_cCleanCurrentSence)
-											{
-												//aurtEventBtn(0x60);
-												g_cCleanCurrentSence=ezhCleanSenceC;
-												isCleanRuning=1;
-											}
-										break;
-									case 0xA0: //启用自动化
-											g_isAutomation=g_ocCmd.parameter[1]?1:0;
-										break;
-									case 0xA1: //参数获取
-											sendTimeCfg();
-										break;
-									case 0xA2: //设置参数
-									{
-											int i=0;
-											char *pstr=(char *)&g_tmeSetting;
-											for(i=0;i<sizeof(TagTimeingSetting);i++)
-											{
-												pstr[i]=(char)g_ocCmd.parameter[1+i];
-											}
-											FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
-									}
-										break;
-									case 0xA3: //中断当前
-										isCleanRuning=0;
 										break;
 								}
 						 }

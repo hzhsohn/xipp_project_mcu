@@ -35,3 +35,6 @@
 .\objects\stm32f1_uart2.o: .\libs\inc\stm32f10x_wwdg.h
 .\objects\stm32f1_uart2.o: .\libs\inc\misc.h
 .\objects\stm32f1_uart2.o: .\user\global.h
+.\objects\stm32f1_uart2.o: .\user\mini-data.h
+.\objects\stm32f1_uart2.o: dev\flash_rw.h
+.\objects\stm32f1_uart2.o: dev\STM32_Delay.h

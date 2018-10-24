@@ -2,17 +2,17 @@
 #include "Motor_Diver.h"
 #include "STM32_Delay.h"
 
-extern int xiiiLimit;
-extern int xiii;
-extern int xiii2;
-extern int Motor1_do_step;
-extern int Motor2_do_step;
-extern int motor1_p_or_n;
-extern int motor2_p_or_n;
-extern int monLimitState1L;
-extern int monLimitState1R;
-extern int monLimitState2L;
-extern int monLimitState2R;
+int xiiiLimit;
+int xiii;
+int xiii2;
+int Motor1_do_step;
+int Motor2_do_step;
+int motor1_p_or_n;
+int motor2_p_or_n;
+int monLimitState1L;
+int monLimitState1R;
+int monLimitState2L;
+int monLimitState2R;
 //
 int motor_demo_do=0;
 int current_demo_step=0;
