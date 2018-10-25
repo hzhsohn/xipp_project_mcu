@@ -35,4 +35,9 @@ typedef enum _EzhCleanSence{
 void STM32F1_UART1SendData(u8_t nData);
 void STM32F1_UART1SendDataS(u8_t* nData,u8_t nNum);
 void STM32F1_UART1_Init(u32_t lBaudRate);
+
+//¼ÌµçÆ÷½»»¥¿ØÖÆ
+void uartSendUartRelay(unsigned char i,char isOn);
+
+
 #endif

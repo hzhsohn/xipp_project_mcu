@@ -38,3 +38,4 @@
 .\objects\stm32f1_uart2.o: .\user\mini-data.h
 .\objects\stm32f1_uart2.o: dev\flash_rw.h
 .\objects\stm32f1_uart2.o: dev\STM32_Delay.h
+.\objects\stm32f1_uart2.o: dev\OutputDrive.h

@@ -1,6 +1,8 @@
 #include "Stm32f1_uart2.h"
 #include "mini-data.h"
 #include "flash_rw.h"
+#include "OutputDrive.h"
+#include "system_init.h"
 
 //--------------------------------------------
 //接收缓存
@@ -11,6 +13,9 @@ TzhMiniData g_ocCmd2;
 uchar g_isGetCmdOk2;
 int g_timeoverUart2=0;
 
+//继电器处理
+void uartRelayProc(unsigned char i,char isOn);
+	
 //****************************************************************************
 //*函数功能：
 //*参数：
@@ -72,7 +77,6 @@ void STM32F1_UART2_Init(u32_t lBaudRate)
     USART_Cmd(USART2, ENABLE);
 }
 
-
 void USART2_IRQHandler(void)
 {
     if (USART_GetITStatus(USART2,USART_IT_RXNE)!=RESET)
@@ -99,7 +103,7 @@ void USART2_IRQHandler(void)
 							  switch(g_ocCmd2.parameter[0])
 								{
 									case 0x00:
-										
+											uartRelayProc(g_ocCmd2.parameter[1],g_ocCmd2.parameter[2]);
 										break;
 								}
 						 }
@@ -115,4 +119,71 @@ void USART2_IRQHandler(void)
 						 }
 				 }
     }
+}
+
+void uartRelayProc(unsigned char i,char isOn)
+{
+	switch(i)
+	{
+		//继电器处理
+		case 1: 
+				_unit1(isOn);
+			break;
+		case 2:
+				_unit2(isOn);
+			break;
+		case 3:
+				_unit3(isOn);
+			break;
+		case 4:
+				_unit4(isOn);
+			break;
+		case 5:
+				_unit5(isOn);
+			break;
+		case 6:
+				_unit6(isOn);
+			break;
+		case 7:
+				_unit7(isOn);
+			break;
+		case 8:
+				_unit8(isOn);
+			break;
+		case 9:
+				_unit9(isOn);
+			break;
+		case 10:
+				_unit10(isOn);
+			break;
+		case 11:
+				_unit11(isOn);
+			break;
+		case 12:
+				_unit12(isOn);
+			break;
+		case 13:
+				_unit13(isOn);
+			break;
+		case 14:
+				_unit14(isOn);
+			break;
+		case 15:
+				_unit15(isOn);
+			break;
+	}
+}
+
+//发送控制继电器
+void uartSendUartRelay(unsigned char i,char isOn)
+{
+		uchar dst_buf[32]={0};
+		int myDataLen=0;
+		unsigned char cbuf[24]={0};
+		cbuf[0]=0x00;
+		cbuf[1]=i;
+		cbuf[2]=isOn;
+		
+		myDataLen = miniDataCreate(3,cbuf,dst_buf);
+		STM32F1_UART2SendDataS(dst_buf,myDataLen);
 }
