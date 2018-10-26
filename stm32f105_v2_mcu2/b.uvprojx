@@ -533,6 +533,16 @@
               <FilePath>.\dev\STM32F1_ADC2.c</FilePath>
             </File>
             <File>
+              <FileName>STM32F1_ADC3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dev\STM32F1_ADC3.c</FilePath>
+            </File>
+            <File>
+              <FileName>STM32F1_ADC4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dev\STM32F1_ADC4.c</FilePath>
+            </File>
+            <File>
               <FileName>InputDrive.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\dev\InputDrive.c</FilePath>

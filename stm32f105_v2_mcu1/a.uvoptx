@@ -176,9 +176,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>413</LineNumber>
+          <LineNumber>638</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134230070</Address>
+          <Address>134230944</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -187,39 +187,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>E:\work\澶栧寘\鑱氬痉\xipp_project_mcu\stm32f105_v2_mcu1\user\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\413</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>503</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134230364</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\work\澶栧寘\鑱氬痉\xipp_project_mcu\stm32f105_v2_mcu1\user\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\503</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>532</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134230454</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\work\澶栧寘\鑱氬痉\xipp_project_mcu\stm32f105_v2_mcu1\user\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\532</Expression>
+          <Expression>\\xipp\user/main.c\638</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -262,6 +230,11 @@
           <count>7</count>
           <WinNumber>1</WinNumber>
           <ItemText>btn8</ItemText>
+        </Ww>
+        <Ww>
+          <count>8</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>rTrueWaterTemp</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

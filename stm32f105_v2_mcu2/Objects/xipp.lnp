@@ -25,6 +25,8 @@
 ".\objects\stm32f1_uart3.o"
 ".\objects\stm32f1_adc1.o"
 ".\objects\stm32f1_adc2.o"
+".\objects\stm32f1_adc3.o"
+".\objects\stm32f1_adc4.o"
 ".\objects\inputdrive.o"
 ".\objects\startup_stm32f10x_cl.o"
 ".\objects\system_stm32f10x.o"

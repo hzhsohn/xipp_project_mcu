@@ -1,4 +1,4 @@
-#include "Stm32f1_ADC2.h"
+#include "Stm32f1_ADC4.h"
 #include "STM32_Delay.h"
 
 //****************************************************************************
@@ -6,7 +6,7 @@
 //*参数：
 //*返还：
 //****************************************************************************
-void Adc2_Init(void)
+void Adc4_Init(void)
 {         
         ADC_InitTypeDef ADC_InitStructure; 
         GPIO_InitTypeDef GPIO_InitStructure;
@@ -15,7 +15,7 @@ void Adc2_Init(void)
         RCC_ADCCLKConfig(RCC_PCLK2_Div6);   //设置ADC分频因子6 72M/6=12,ADC最大时间不能超过14M
 
         //PA1 作为模拟通道输入引脚                         
-        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
         GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;                //模拟输入引脚
         GPIO_Init(GPIOC, &GPIO_InitStructure);        
 
@@ -35,25 +35,25 @@ void Adc2_Init(void)
         ADC_StartCalibration(ADC1);         //开启AD校准
         while(ADC_GetCalibrationStatus(ADC1));         //等待校准结束
 
-//        ADC_SoftwareStartConvCmd(ADC1, ENABLE);                //使能指定的ADC1的软件转换启动功能
+//      ADC_SoftwareStartConvCmd(ADC1, ENABLE);                //使能指定的ADC1的软件转换启动功能
 
 }    
-u16 Get_Adc11()   
+u16 Get_Adc4()   
 {
-        //设置指定ADC的规则组通道，一个序列，采样时间
-        ADC_RegularChannelConfig(ADC1, ADC_Channel_11, 2, ADC_SampleTime_239Cycles5 );        //ADC1,ADC通道,采样时间为239.5周期                                      
+          //设置指定ADC的规则组通道，一个序列，采样时间
+        ADC_RegularChannelConfig(ADC1, ADC_Channel_13, 2, ADC_SampleTime_239Cycles5 );        //ADC1,ADC通道,采样时间为239.5周期                                      
         ADC_SoftwareStartConvCmd(ADC1, ENABLE);                //使能指定的ADC1的软件转换启动功能        
         while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC ));//等待转换结束
         return ADC_GetConversionValue(ADC1);        //返回最近一次ADC1规则组的转换结果
 } 
    
-u16 Get_Adc2_Average(u8 times)
+u16 Get_Adc4_Average(u8 times)
 {
         u32 temp_val1=0;
         u8 t1;
         for(t1=0;t1<times;t1++)
         {
-                        temp_val1+=Get_Adc11();
+                        temp_val1+=Get_Adc4();
                 STM32_Delay_ms(5);
         }
         return temp_val1/times;

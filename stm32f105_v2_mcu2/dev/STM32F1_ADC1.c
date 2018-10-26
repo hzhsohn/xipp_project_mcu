@@ -11,13 +11,13 @@ void Adc_Init(void)
         ADC_InitTypeDef ADC_InitStructure; 
         GPIO_InitTypeDef GPIO_InitStructure;
 
-        RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC |RCC_APB2Periph_ADC1        , ENABLE );          //使能ADC1通道时钟
+        RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD |RCC_APB2Periph_ADC1        , ENABLE );          //使能ADC1通道时钟
         RCC_ADCCLKConfig(RCC_PCLK2_Div6);   //设置ADC分频因子6 72M/6=12,ADC最大时间不能超过14M
 
         //PA1 作为模拟通道输入引脚                         
-        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;
         GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;                //模拟输入引脚
-        GPIO_Init(GPIOC, &GPIO_InitStructure);        
+        GPIO_Init(GPIOD, &GPIO_InitStructure);        
 
         ADC_DeInit(ADC1);  //复位ADC1 
 
@@ -38,9 +38,9 @@ void Adc_Init(void)
 //        ADC_SoftwareStartConvCmd(ADC1, ENABLE);                //使能指定的ADC1的软件转换启动功能
 
 }    
-u16 Get_Adc13(u8 ch)   
+u16 Get_Adc13()   
 {
-          //设置指定ADC的规则组通道，一个序列，采样时间
+        //设置指定ADC的规则组通道，一个序列，采样时间
         ADC_RegularChannelConfig(ADC1, ADC_Channel_13, 2, ADC_SampleTime_239Cycles5 );        //ADC1,ADC通道,采样时间为239.5周期                                      
         ADC_SoftwareStartConvCmd(ADC1, ENABLE);                //使能指定的ADC1的软件转换启动功能        
         while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC ));//等待转换结束
@@ -53,7 +53,7 @@ u16 Get_Adc_Average(u8 times)
         u8 t1;
         for(t1=0;t1<times;t1++)
         {
-                        temp_val1+=Get_Adc13(ADC_Channel_13);
+                        temp_val1+=Get_Adc13();
                 STM32_Delay_ms(5);
         }
         return temp_val1/times;

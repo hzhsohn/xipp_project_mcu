@@ -1,12 +1,12 @@
 #include "OutputDrive.h"
 
 void Relay_Init(void);
-void POWER_Configuration(void);
+void MADA_Configuration(void);
 
 void OutputDriveInit(void)
 {
 	 Relay_Init();
-	 //POWER_Configuration();
+	 MADA_Configuration();
 }
 
 
@@ -103,20 +103,45 @@ void Relay_Init(void)
 	RELAY13_STATE(0);
 }
 
+#define MADA_1A 				GPIOE
+#define MADA_1A_PIN  	GPIO_Pin_8
+#define MADA_1B 				GPIOE
+#define MADA_1B_PIN  	GPIO_Pin_7
 
-void POWER_Configuration(void)
+#define MADA_2A 				GPIOB
+#define MADA_2A_PIN  	GPIO_Pin_2
+#define MADA_2B 				GPIOB
+#define MADA_2B_PIN  	GPIO_Pin_1
+
+void MADA_Configuration(void)
 {
 		GPIO_InitTypeDef GPIO_MyStruct;
 	
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD,ENABLE);
-
-		
-		//变速马达
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_15;
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOE,ENABLE);
+		//
+		GPIO_MyStruct.GPIO_Pin = MADA_1A_PIN;
 		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOD, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOD,GPIO_Pin_15);
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_Init(MADA_1A, &GPIO_MyStruct);
+		MADA1A_STATE(0);
+		//
+		GPIO_MyStruct.GPIO_Pin = MADA_1B_PIN;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_Init(MADA_1B, &GPIO_MyStruct);
+		MADA1B_STATE(0);
+		//
+		GPIO_MyStruct.GPIO_Pin = MADA_2A_PIN;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_Init(MADA_2A, &GPIO_MyStruct);
+		MADA2A_STATE(0);
+		//
+		GPIO_MyStruct.GPIO_Pin = MADA_2B_PIN;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_Init(MADA_2B, &GPIO_MyStruct);
+		MADA2B_STATE(0);
 }
 
 void RelayTest()
