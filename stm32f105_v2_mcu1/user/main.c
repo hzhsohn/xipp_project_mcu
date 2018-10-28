@@ -72,7 +72,7 @@ int isTextXUXU=0;
 //角度 
 extern unsigned char jiaodu[2];
 //脉博
-unsigned char cHeartJump=0;
+extern unsigned char cHeartJump;
 //污水满
 char bSewageHeight=0;
 //清水太少
@@ -343,8 +343,8 @@ int main(void)
 		
 	STM32_Delay_init();
 	STM32F1_UART1_Init(115200);
-	STM32F1_UART2_Init(230400);
-	STM32F1_UART3_Init(9600);
+	STM32F1_UART2_Init(19200);
+	STM32F1_UART3_Init(230400);
 	
 	DS18B20_Init();
 	DS18B20_Init1();

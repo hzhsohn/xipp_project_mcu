@@ -463,11 +463,6 @@
               <FilePath>.\dev\ds18b20_1.c</FilePath>
             </File>
             <File>
-              <FileName>Motor_Diver.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\dev\Motor_Diver.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f10x_wwdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\dev\stm32f10x_wwdg.c</FilePath>

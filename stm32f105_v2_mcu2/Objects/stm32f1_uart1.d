@@ -38,5 +38,4 @@
 .\objects\stm32f1_uart1.o: .\user\mini-data.h
 .\objects\stm32f1_uart1.o: dev\flash_rw.h
 .\objects\stm32f1_uart1.o: dev\STM32_Delay.h
-.\objects\stm32f1_uart1.o: dev\Motor_Diver.h
 .\objects\stm32f1_uart1.o: dev\OutputDrive.h

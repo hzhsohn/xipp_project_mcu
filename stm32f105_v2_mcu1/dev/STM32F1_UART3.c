@@ -72,11 +72,43 @@ void STM32F1_UART3_Init(u32_t lBaudRate)
 
 
 //---------------------------------------
+unsigned char u2Re_buf[11],u2Counter=0;
+unsigned char cHeartJump;
+int hhjCount=0;
+unsigned char cOldHeartJump=0;
 //
 void USART3_IRQHandler(void)
 {
     if (USART_GetITStatus(USART3,USART_IT_RXNE)!=RESET)
     {
-				USART_ReceiveData(USART3);
+				u2Re_buf[u2Counter]=USART_ReceiveData(USART3);
+				if(u2Counter==0&&u2Re_buf[0]!=0xF0) return;				
+
+				u2Counter++;				
+				if(u2Counter==7) 
+				{
+						if(u2Counter==0&&u2Re_buf[1]!=0xF0) return; 					
+					  u2Counter=0;
+						//Æ½¾ù3´Î
+						if(0 && hhjCount<3 && cOldHeartJump>0)
+						{
+							if(0==u2Re_buf[5])
+							{
+								cHeartJump=cOldHeartJump;
+								hhjCount++;
+							}
+							else
+							{
+								cHeartJump=u2Re_buf[5];
+								cOldHeartJump=cHeartJump;
+							}
+						}
+						else
+						{
+							cHeartJump=u2Re_buf[5];
+							cOldHeartJump=cHeartJump;
+							hhjCount=0;
+						}
+				}
     }
 }

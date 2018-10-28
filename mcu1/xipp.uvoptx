@@ -178,7 +178,7 @@
           <Type>0</Type>
           <LineNumber>405</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237256</Address>
+          <Address>134237650</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -194,7 +194,7 @@
           <Type>0</Type>
           <LineNumber>423</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237268</Address>
+          <Address>134237720</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -210,7 +210,7 @@
           <Type>0</Type>
           <LineNumber>445</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237292</Address>
+          <Address>134237802</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -226,7 +226,7 @@
           <Type>0</Type>
           <LineNumber>473</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237418</Address>
+          <Address>134237928</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -242,7 +242,7 @@
           <Type>0</Type>
           <LineNumber>483</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237480</Address>
+          <Address>134237990</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -355,6 +355,16 @@
           <count>16</count>
           <WinNumber>1</WinNumber>
           <ItemText>monLimitState1R</ItemText>
+        </Ww>
+        <Ww>
+          <count>17</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>rPressure2Tmp</ItemText>
+        </Ww>
+        <Ww>
+          <count>18</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>rTruePressure2</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow2>

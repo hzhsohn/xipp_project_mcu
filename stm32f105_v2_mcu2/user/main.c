@@ -9,7 +9,6 @@
 #include "Stm32f1_ADC2.h"
 #include "Stm32f1_ADC3.h"
 #include "Stm32f1_ADC4.h"
-#include "Motor_Diver.h"
 #include "ds18b20_1.h"
 #include "watchdog.h"
 #include "flash_rw.h"
@@ -44,8 +43,10 @@ TagTimeingSetting g_tmeSetting={0};
 int isCleanRuning=0;
 int ppxxStep=0;
 
-//气压获取处理
+//基本处理
+void btnEvent(void);
 void qiqiqiYayaya(void);
+
 //场景
 void senceDelayToValue(int*nCalca,int*ppxxStep,int jmpValue,int delay_ms);
 void senceDelayToNext(int*nCalca,int*ppxxStep,int delay_ms);
@@ -60,6 +61,14 @@ void litteSenceRun1(void);
 void litteSenceRun2(void);
 void litteSenceRun3(void);
 void litteSenceRun4(void);
+
+//---------------------
+//按键控制
+EzhKeyEvent ev;
+EzhKeyState btn1;
+EzhKeyState btn2;
+EzhKeyState btn3;
+EzhKeyState btn4;
 
 //关闭所有输出
 void allSenceClose()
@@ -165,16 +174,6 @@ void setFlashData()
 
 int main(void)
 {
-	EzhKeyEvent ev;
-  EzhKeyState btn1;
-	EzhKeyState btn2;
-	EzhKeyState btn3;
-	EzhKeyState btn4;
-  zhSCM_initKeyState(&btn1);
-	zhSCM_initKeyState(&btn2);
-	zhSCM_initKeyState(&btn3);
-	zhSCM_initKeyState(&btn4);
-	
 	//-----------------------------------------
 	//获取FALSH数据
 	setFlashData();
@@ -197,24 +196,32 @@ int main(void)
 	zhSCM_GPIOConfig(); 
 
 	OutputDriveInit();
+/*
+	//电机
+	MADA1A_STATE(1);
+	MADA1B_STATE(0);
+	
+	MADA1A_STATE(0);
+	MADA1B_STATE(1);
 
-//电机
-MADA1A_STATE(0);
-MADA1B_STATE(0);
-MADA1A_STATE(1);
-MADA1B_STATE(0);
-MADA1A_STATE(1);
+	MADA1A_STATE(0);
+	MADA1B_STATE(0);
+	
+	//---------------------	
+	MADA2A_STATE(1);
+	MADA2B_STATE(0);
+	
+	MADA2A_STATE(0);
+	MADA2B_STATE(1);
 
-MADA2A_STATE(0);
-MADA2B_STATE(0);
-MADA2A_STATE(1);
-MADA2B_STATE(0);
-MADA2B_STATE(1);
+	MADA2A_STATE(0);
+	MADA2B_STATE(0);
+*/
 
-MADA1A_STATE(1);
-MADA1B_STATE(1);
-MADA2A_STATE(1);
-MADA2B_STATE(1);
+	zhSCM_initKeyState(&btn1);
+	zhSCM_initKeyState(&btn2);
+	zhSCM_initKeyState(&btn3);
+	zhSCM_initKeyState(&btn4);
 
 	//测试继电子器逻辑	
 	#if 0
@@ -231,7 +238,25 @@ MADA2B_STATE(1);
 		//看门狗
 		//watchdog_action();
 		//
-		//---------------------
+		btnEvent();
+
+		//------------------------------------------------------------------
+		//气压处理
+		qiqiqiYayaya();
+
+		//------------------------------------------------------------------
+		//场景功能
+		if(kk_1ms)
+		{
+					LitteSenceRun();
+					kk_1ms=0;
+		}
+	}
+}
+
+void btnEvent(void)
+{
+//---------------------
 		//按键1		左翻身
 		ev=zhSCM_keyState(&btn1,TOUCHKEY_1_GPIO,TOUCHKEY_1_PIN);
     switch(ev)
@@ -341,26 +366,13 @@ MADA2B_STATE(1);
 			}
         break;
     }
-
-		//------------------------------------------------------------------
-		//气压处理
-		qiqiqiYayaya();
-
-		//------------------------------------------------------------------
-		//场景功能
-		if(kk_1ms)
-		{
-					LitteSenceRun();
-					kk_1ms=0;
-		}
-	}
 }
 void qiqiqiYayaya(void)
 {
 				int ntmp;
 	
 				//气压1	
-				/*rPressureTmp[0]=Get_Adc1_Average(10);
+				rPressureTmp[0]=Get_Adc2_Average(10);
 				ntmp=rPressureTmp[0]-rPressure[0];
 				if(ntmp<60 && ntmp>-60) //限制突变幅度
 				{
@@ -376,7 +388,7 @@ void qiqiqiYayaya(void)
 					}
 				}
 				rPressure[0]=rPressureTmp[0];
-*/
+
 				//------------------------------------------------------------------
 				//气压2
 				rPressureTmp[1]=Get_Adc2_Average(10);
@@ -502,8 +514,7 @@ void litteSenceRun1(void)
 							_unit25(0);
 							senceNext(&nCalca,&ppxxStep);
 							break;
-						
-							
+													
 						default: //完毕
 							allOutClose();
 							g_cCleanCurrentSence=0;  		//场景复位

@@ -1,5 +1,5 @@
 Dependencies for Project 'a', Target 'Target 1': (DO NOT MODIFY !)
-F (.\user\main.c)(0x5BD12CB2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\stm32f105_v2_mcu1\RTE-I E:\work\外包\聚德\xipp_project_mcu\stm32f105_v2_mcu1\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\user\main.c)(0x5BD5A2D4)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\stm32f105_v2_mcu1\RTE-I E:\work\外包\聚德\xipp_project_mcu\stm32f105_v2_mcu1\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (user\system_init.h)(0x5BD12C58)
 I (user\stm32f10x_conf.h)(0x5BA391C9)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BA391C9)
@@ -809,7 +809,7 @@ I (.\user\mini-data.h)(0x5BA391C9)
 I (dev\flash_rw.h)(0x5BA391C9)
 I (dev\STM32_Delay.h)(0x5BA391C9)
 I (dev\OutputDrive.h)(0x5BD03990)
-F (.\dev\STM32F1_UART3.c)(0x5BCEB740)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\stm32f105_v2_mcu1\RTE-I E:\work\外包\聚德\xipp_project_mcu\stm32f105_v2_mcu1\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_uart3.o --omf_browse .\objects\stm32f1_uart3.crf --depend .\objects\stm32f1_uart3.d)
+F (.\dev\STM32F1_UART3.c)(0x5BD5A203)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\stm32f105_v2_mcu1\RTE-I E:\work\外包\聚德\xipp_project_mcu\stm32f105_v2_mcu1\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_uart3.o --omf_browse .\objects\stm32f1_uart3.crf --depend .\objects\stm32f1_uart3.d)
 I (dev\Stm32f1_uart3.h)(0x5BA391C9)
 I (.\user\system_init.h)(0x5BD12C58)
 I (.\user\stm32f10x_conf.h)(0x5BA391C9)

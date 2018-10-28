@@ -45,7 +45,6 @@
 .\objects\main.o: .\dev\Stm32f1_ADC2.h
 .\objects\main.o: .\dev\Stm32f1_ADC3.h
 .\objects\main.o: .\dev\Stm32f1_ADC4.h
-.\objects\main.o: .\dev\Motor_Diver.h
 .\objects\main.o: .\dev\ds18b20_1.h
 .\objects\main.o: .\dev\watchdog.h
 .\objects\main.o: .\dev\flash_rw.h

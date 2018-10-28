@@ -36,6 +36,5 @@
 .\objects\stm32f1_timer2.o: .\libs\inc\misc.h
 .\objects\stm32f1_timer2.o: .\user\global.h
 .\objects\stm32f1_timer2.o: dev\InputDrive.h
-.\objects\stm32f1_timer2.o: dev\Motor_Diver.h
 .\objects\stm32f1_timer2.o: dev\OutputDrive.h
 .\objects\stm32f1_timer2.o: dev\STM32F1_UART1.h

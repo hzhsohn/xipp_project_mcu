@@ -11,7 +11,6 @@
 ".\objects\stm32_delay.o"
 ".\objects\ds18b20.o"
 ".\objects\ds18b20_1.o"
-".\objects\motor_diver.o"
 ".\objects\stm32f10x_wwdg.o"
 ".\objects\watchdog.o"
 ".\objects\stm32f10x_iwdg.o"

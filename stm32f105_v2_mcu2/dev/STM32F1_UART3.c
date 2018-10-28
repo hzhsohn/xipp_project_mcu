@@ -2,7 +2,6 @@
 #include "stdio.h"
 #include "mini-data.h"
 #include "stdlib.h"
-#include "Motor_Diver.h"
 
 //****************************************************************************
 //*º¯Êý¹¦ÄÜ£º

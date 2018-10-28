@@ -658,7 +658,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					
 					//------------------------------------------------------------------
 					//床垫气压,功能已经废掉
-					/*rPressure2Tmp= Get_Adc2_Average(10);
+					rPressure2Tmp= Get_Adc2_Average(10);
 					ntmp=rPressure2Tmp-rPressure2;
 					if(ntmp<60 && ntmp>-60) //限制突变幅度
 					{
@@ -686,7 +686,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 							{	udoBedCongQi(0);}
 						}
 					}
-					rPressure2=rPressure2Tmp;*/
+					rPressure2=rPressure2Tmp;
 
 					//------------------------------------------------------------------
 					//污水满

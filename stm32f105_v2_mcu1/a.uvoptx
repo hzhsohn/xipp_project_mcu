@@ -176,18 +176,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>638</LineNumber>
+          <LineNumber>90</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134230944</Address>
+          <Address>134226786</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\work\澶栧寘\鑱氬痉\xipp_project_mcu\stm32f105_v2_mcu1\user\main.c</Filename>
+          <Filename>E:\work\澶栧寘\鑱氬痉\xipp_project_mcu\stm32f105_v2_mcu1\dev\STM32F1_UART3.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\638</Expression>
+          <Expression>\\xipp\dev/STM32F1_UART3.c\90</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>84</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134226738</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\work\澶栧寘\鑱氬痉\xipp_project_mcu\stm32f105_v2_mcu1\dev\STM32F1_UART3.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\xipp\dev/STM32F1_UART3.c\84</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
