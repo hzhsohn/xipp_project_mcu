@@ -22,12 +22,24 @@ Dialog DLL:      TCM.DLL V1.14.9.0
  
 <h2>Project:</h2>
 E:\work\Íâ°ü\¾ÛµÂ\xipp_project_mcu\stm32f105_v2_mcu2\b.uvprojx
-Project File Date:  10/26/2018
+Project File Date:  10/28/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-".\Objects\xipp.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+user\main.c(400): warning:  #68-D: integer conversion resulted in a change of sign
+  						rTruePressure[0]=-1;
+user\main.c(419): warning:  #68-D: integer conversion resulted in a change of sign
+  						rTruePressure[1]=-1;
+user\main.c(438): warning:  #68-D: integer conversion resulted in a change of sign
+  						rTruePressure[2]=-1;
+user\main.c(457): warning:  #68-D: integer conversion resulted in a change of sign
+  						rTruePressure[3]=-1;
+user\main.c: 4 warnings, 0 errors
+linking...
+Program Size: Code=9284 RO-data=368 RW-data=136 ZI-data=1944  
+".\Objects\xipp.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -58,7 +70,7 @@ Package Vendor: Keil
       Source file:   Device\Source\ARM\startup_stm32f10x_cl.s
       Source file:   Device\Source\system_stm32f10x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

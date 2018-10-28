@@ -2,11 +2,13 @@
 
 void Relay_Init(void);
 void MADA_Configuration(void);
+void ANMO_Configuration(void);
 
 void OutputDriveInit(void)
 {
 	 Relay_Init();
 	 MADA_Configuration();
+	 ANMO_Configuration();
 }
 
 
@@ -255,4 +257,41 @@ void RelayTest()
 	{
 		tmeCal++;
 	}
+}
+
+void ANMO_Configuration(void)
+{
+		GPIO_InitTypeDef GPIO_MyStruct;
+	
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOE,ENABLE);
+		//
+		GPIO_MyStruct.GPIO_Pin = BAINA_PIN;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_Init(BAINA, &GPIO_MyStruct);
+		BAINA_STATE(0);
+		//
+		GPIO_MyStruct.GPIO_Pin = BAINA_PIN;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_Init(ANMO4, &GPIO_MyStruct);
+		ANMO4_STATE(0);
+		//
+		GPIO_MyStruct.GPIO_Pin = BAINA_PIN;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_Init(ANMO3, &GPIO_MyStruct);
+		ANMO3_STATE(0);
+		//
+		GPIO_MyStruct.GPIO_Pin = BAINA_PIN;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_Init(ANMO2, &GPIO_MyStruct);
+		ANMO2_STATE(0);
+		//
+		GPIO_MyStruct.GPIO_Pin = BAINA_PIN;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_Init(ANMO1, &GPIO_MyStruct);
+		ANMO1_STATE(0);
 }

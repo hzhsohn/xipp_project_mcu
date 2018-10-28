@@ -75,9 +75,24 @@
 #define MADA2B_STATE(x) (!x)>0?GPIO_SetBits(MADA_2B,MADA_2B_PIN):GPIO_ResetBits(MADA_2B,MADA_2B_PIN)
 
 //----------------------------------------
-//变速马达
-#define BS_MADAMADA_STATE(x) (x)?GPIO_SetBits(GPIOD,GPIO_Pin_15):GPIO_ResetBits(GPIOD,GPIO_Pin_15)
+//保暖
 
+#define  	BAINA				GPIOC
+#define		BAINA_PIN		GPIO_Pin_6
+#define		ANMO4				GPIOA
+#define		ANMO4_PIN		GPIO_Pin_7
+#define		ANMO3				GPIOC
+#define		ANMO3_PIN		GPIO_Pin_4
+#define		ANMO2				GPIOC
+#define		ANMO2_PIN		GPIO_Pin_5
+#define		ANMO1				GPIOB
+#define		ANMO1_PIN		GPIO_Pin_0
+
+#define BAINA_STATE(x) (!x)?GPIO_SetBits(BAINA,BAINA_PIN):GPIO_ResetBits(BAINA,BAINA_PIN)
+#define ANMO4_STATE(x) (!x)?GPIO_SetBits(ANMO4,ANMO4_PIN):GPIO_ResetBits(ANMO4,ANMO4_PIN)
+#define ANMO3_STATE(x) (!x)?GPIO_SetBits(ANMO3,ANMO3_PIN):GPIO_ResetBits(ANMO3,ANMO3_PIN)
+#define ANMO2_STATE(x) (!x)?GPIO_SetBits(ANMO2,ANMO2_PIN):GPIO_ResetBits(ANMO2,ANMO2_PIN)
+#define ANMO1_STATE(x) (!x)?GPIO_SetBits(ANMO1,ANMO1_PIN):GPIO_ResetBits(ANMO1,ANMO1_PIN)
 
 //初始化
 void OutputDriveInit(void);

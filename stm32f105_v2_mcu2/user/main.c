@@ -218,10 +218,18 @@ int main(void)
 	MADA2B_STATE(0);
 */
 
-	zhSCM_initKeyState(&btn1);
-	zhSCM_initKeyState(&btn2);
-	zhSCM_initKeyState(&btn3);
-	zhSCM_initKeyState(&btn4);
+//--------------------
+RELAY1_STATE(1);
+BAINA_STATE(1);
+ANMO4_STATE(1);
+ANMO3_STATE(1);
+ANMO2_STATE(1);
+ANMO1_STATE(1);
+BAINA_STATE(0);
+ANMO4_STATE(0);
+ANMO3_STATE(0);
+ANMO2_STATE(0);
+ANMO1_STATE(0);
 
 	//测试继电子器逻辑	
 	#if 0
@@ -233,6 +241,11 @@ int main(void)
 	//看门狗
 	//watchdog_init();
 	
+	zhSCM_initKeyState(&btn1);
+	zhSCM_initKeyState(&btn2);
+	zhSCM_initKeyState(&btn3);
+	zhSCM_initKeyState(&btn4);
+
 	while(1)
 	{
 		//看门狗
