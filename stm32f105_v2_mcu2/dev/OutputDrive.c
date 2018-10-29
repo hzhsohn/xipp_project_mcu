@@ -100,7 +100,7 @@ void Relay_Init(void)
 	/*RELAY13*/
 	GPIO_MyStruct.GPIO_Pin = RELAY13_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
   GPIO_Init(RELAY13_GPIO, &GPIO_MyStruct);
 	RELAY13_STATE(0);
 }
@@ -267,31 +267,31 @@ void ANMO_Configuration(void)
 		//
 		GPIO_MyStruct.GPIO_Pin = BAINA_PIN;
 		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
 		GPIO_Init(BAINA, &GPIO_MyStruct);
 		BAINA_STATE(0);
 		//
 		GPIO_MyStruct.GPIO_Pin = BAINA_PIN;
 		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
 		GPIO_Init(ANMO4, &GPIO_MyStruct);
 		ANMO4_STATE(0);
 		//
 		GPIO_MyStruct.GPIO_Pin = BAINA_PIN;
 		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
 		GPIO_Init(ANMO3, &GPIO_MyStruct);
 		ANMO3_STATE(0);
 		//
 		GPIO_MyStruct.GPIO_Pin = BAINA_PIN;
 		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
 		GPIO_Init(ANMO2, &GPIO_MyStruct);
 		ANMO2_STATE(0);
 		//
 		GPIO_MyStruct.GPIO_Pin = BAINA_PIN;
 		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
 		GPIO_Init(ANMO1, &GPIO_MyStruct);
 		ANMO1_STATE(0);
 }

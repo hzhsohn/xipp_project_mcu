@@ -64,7 +64,11 @@
 #define TOUCHKEY_4_GPIO 				    		GPIOC
 #define TOUCHKEY_4_PIN  				    		GPIO_Pin_10
 
+#define TOUCHKEY_5_GPIO 				    		GPIOA
+#define TOUCHKEY_5_PIN  				    		GPIO_Pin_6
 
+#define TOUCHKEY_6_GPIO 				    		GPIOA
+#define TOUCHKEY_6_PIN  				    		GPIO_Pin_0
 
 /*******************************************************************************
 * ÀàÐÍ         : °´¼ü

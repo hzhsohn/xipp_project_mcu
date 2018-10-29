@@ -176,9 +176,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>222</LineNumber>
+          <LineNumber>600</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134225708</Address>
+          <Address>134225308</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -187,7 +187,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>E:\work\澶栧寘\鑱氬痉\xipp_project_mcu\stm32f105_v2_mcu2\user\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\xipp\user/main.c\222</Expression>
+          <Expression>\\xipp\user/main.c\600</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
@@ -231,6 +231,16 @@
           <count>4</count>
           <WinNumber>1</WinNumber>
           <ItemText>\\xipp\user/main.c\rPressure[0]</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>a</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>b</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

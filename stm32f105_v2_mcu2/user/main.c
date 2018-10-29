@@ -24,11 +24,17 @@ extern int kk_1ms;
 unsigned char g_cCleanCurrentSence=0;  
 
 //场景时间调度
-#define DEF_TIME_MS_DELAY		100
+#define DEF_TIME_MS_DELAY		10
 
 /**************/
 //传感器逻辑重定义
 #define cgqWST1  					SENSOR1_STATE()?1:0 //污水桶满
+
+#define cgqWST2  					SENSOR2_STATE()?0:1 //桶盖
+#define cgqWST3  					SENSOR3_STATE()?0:1 //
+
+#define cgqWST4  					SENSOR4_STATE()?0:1 //出入
+#define cgqWST5  					SENSOR5_STATE()?0:1 //
 
 //气压
 u16 rPressure[4]={0};
@@ -69,6 +75,8 @@ EzhKeyState btn1;
 EzhKeyState btn2;
 EzhKeyState btn3;
 EzhKeyState btn4;
+EzhKeyState btn5;
+EzhKeyState btn6;
 
 //关闭所有输出
 void allSenceClose()
@@ -196,55 +204,51 @@ int main(void)
 	zhSCM_GPIOConfig(); 
 
 	OutputDriveInit();
-/*
-	//电机
-	MADA1A_STATE(1);
-	MADA1B_STATE(0);
-	
-	MADA1A_STATE(0);
-	MADA1B_STATE(1);
+	/*
+		//-------------------
+		//电机
+		MADA1A_STATE(1);
+		MADA1B_STATE(0);
 
-	MADA1A_STATE(0);
-	MADA1B_STATE(0);
-	
-	//---------------------	
-	MADA2A_STATE(1);
-	MADA2B_STATE(0);
-	
-	MADA2A_STATE(0);
-	MADA2B_STATE(1);
+		MADA1A_STATE(0);
+		MADA1B_STATE(1);
 
-	MADA2A_STATE(0);
-	MADA2B_STATE(0);
+		MADA1A_STATE(0);
+		MADA1B_STATE(0);
+
+		//-------------------
+		//
+		MADA2A_STATE(1);
+		MADA2B_STATE(0);
+
+		MADA2A_STATE(0);
+		MADA2B_STATE(1);
+
+		MADA2A_STATE(0);
+		MADA2B_STATE(0);
+	*/
+	//--------------------
+	/*//保暖按摩
+	RELAY1_STATE(1);
+	BAINA_STATE(1);
+	BAINA_STATE(0);
 */
-
-//--------------------
-RELAY1_STATE(1);
-BAINA_STATE(1);
-ANMO4_STATE(1);
-ANMO3_STATE(1);
-ANMO2_STATE(1);
-ANMO1_STATE(1);
-BAINA_STATE(0);
-ANMO4_STATE(0);
-ANMO3_STATE(0);
-ANMO2_STATE(0);
-ANMO1_STATE(0);
-
 	//测试继电子器逻辑	
 	#if 0
 			allOutClose();
 			RelayTest();
 			allOutClose();
-	#endif 
-	
+	#endif
+
 	//看门狗
 	//watchdog_init();
-	
+
 	zhSCM_initKeyState(&btn1);
 	zhSCM_initKeyState(&btn2);
 	zhSCM_initKeyState(&btn3);
 	zhSCM_initKeyState(&btn4);
+	zhSCM_initKeyState(&btn5);
+	zhSCM_initKeyState(&btn6);
 
 	while(1)
 	{
@@ -253,9 +257,19 @@ ANMO1_STATE(0);
 		//
 		btnEvent();
 
+		//传感器
+		if(cgqWST1)
+		{
+			int a=0;
+		}
+		else
+		{
+			int a =0;
+		}
+		
 		//------------------------------------------------------------------
 		//气压处理
-		qiqiqiYayaya();
+ 		qiqiqiYayaya();
 
 		//------------------------------------------------------------------
 		//场景功能
@@ -277,10 +291,6 @@ void btnEvent(void)
 			case ZH_KEY_EVENT_NONE:
 				break;
       case ZH_KEY_EVENT_DOWN:
-				break;
-      case ZH_KEY_EVENT_PRESS:
-				break;
-      case ZH_KEY_EVENT_UP:
 			{
 					ppxxStep=0;
 					if(!isCleanRuning && 0==g_cCleanCurrentSence)
@@ -295,6 +305,10 @@ void btnEvent(void)
 							allOutClose();
 					}
 			}
+				break;
+      case ZH_KEY_EVENT_PRESS:
+				break;
+      case ZH_KEY_EVENT_UP:
        break;
     }
 		//按键2		右翻身
@@ -304,10 +318,6 @@ void btnEvent(void)
 			case ZH_KEY_EVENT_NONE:
 				break;
       case ZH_KEY_EVENT_DOWN:
-        break;
-      case ZH_KEY_EVENT_PRESS:
-        break;
-      case ZH_KEY_EVENT_UP:
 			{
 					ppxxStep=0;
 					if(!isCleanRuning && 0==g_cCleanCurrentSence)
@@ -323,20 +333,20 @@ void btnEvent(void)
 					}
 			}
         break;
+      case ZH_KEY_EVENT_PRESS:
+        break;
+      case ZH_KEY_EVENT_UP:
+        break;
     }
 		
-		//按键3		恢复
+		//按键3		
 		ev=zhSCM_keyState(&btn3,TOUCHKEY_3_GPIO,TOUCHKEY_3_PIN);
     switch(ev)
     {
 			case ZH_KEY_EVENT_NONE:
 				break;
       case ZH_KEY_EVENT_DOWN:
-				break;
-      case ZH_KEY_EVENT_PRESS:
-				break;
-      case ZH_KEY_EVENT_UP:
-			{
+			{				
 					ppxxStep=0;
 					if(!isCleanRuning && 0==g_cCleanCurrentSence)
 					{
@@ -350,6 +360,12 @@ void btnEvent(void)
 							allOutClose();
 					}
 			}
+				break;
+      case ZH_KEY_EVENT_PRESS:
+				break;
+      case ZH_KEY_EVENT_UP:
+			{
+			}
         break;
     }
 		//按键4		恢复
@@ -359,11 +375,23 @@ void btnEvent(void)
 			case ZH_KEY_EVENT_NONE:
 				break;
       case ZH_KEY_EVENT_DOWN:
+			{				
+						static int b=0;
+						b=!b;
+						RELAY1_STATE(1);
+						BAINA_STATE(b);
+						ANMO4_STATE(b);
+						ANMO3_STATE(b);
+						ANMO2_STATE(b);
+						ANMO1_STATE(b);
+			}
 				break;
       case ZH_KEY_EVENT_PRESS:
 				break;
       case ZH_KEY_EVENT_UP:
 			{
+				
+				/*
 					ppxxStep=0;
 					if(!isCleanRuning && 0==g_cCleanCurrentSence)
 					{
@@ -375,10 +403,88 @@ void btnEvent(void)
 							g_cCleanCurrentSence=0;
 							isCleanRuning=0;
 							allOutClose();
-					}
+					}*/
 			}
         break;
     }
+		
+		//--------------------------------------
+		//马桶按键
+		//按键5
+		ev=zhSCM_keyState(&btn5,TOUCHKEY_5_GPIO,TOUCHKEY_5_PIN);
+    switch(ev)
+    {
+			case ZH_KEY_EVENT_NONE:
+			{
+				
+				int a=cgqWST2;
+				int b=cgqWST3;
+				
+					if(a || b)
+					{
+						MADA1A_STATE(0);
+						MADA1B_STATE(0);
+					}
+			}
+				break;
+      case ZH_KEY_EVENT_DOWN:
+			{
+					static int b=0;
+					b=!b;
+					if(b)
+					{
+						MADA1A_STATE(1);
+						MADA1B_STATE(0);
+					}
+					else
+					{
+						MADA1A_STATE(0);
+						MADA1B_STATE(1);
+					}
+			}
+				break;
+      case ZH_KEY_EVENT_PRESS:
+				break;
+      case ZH_KEY_EVENT_UP:
+        break;
+    }
+		//按键6
+		ev=zhSCM_keyState(&btn6,TOUCHKEY_6_GPIO,TOUCHKEY_6_PIN);
+    switch(ev)
+    {
+			case ZH_KEY_EVENT_NONE:
+			{
+				int a=cgqWST4;
+				int b=cgqWST5;
+					if(a || b)
+					{
+						MADA2A_STATE(0);
+						MADA2B_STATE(0);
+					}
+			}
+				break;
+      case ZH_KEY_EVENT_DOWN:
+			{
+					static int b=0;
+					b=!b;
+					if(b)
+					{
+						MADA2A_STATE(1);
+						MADA2B_STATE(0);
+					}
+					else
+					{
+						MADA2A_STATE(0);
+						MADA2B_STATE(1);
+					}
+			}
+				break;
+      case ZH_KEY_EVENT_PRESS:
+				break;
+      case ZH_KEY_EVENT_UP:
+        break;
+    }
+		
 }
 void qiqiqiYayaya(void)
 {
@@ -484,7 +590,6 @@ void LitteSenceRun()
 				g_cCleanCurrentSence=0;
 		}
 }
-
 
 /*********************************************************
 
@@ -620,7 +725,7 @@ void litteSenceRun3(void)
 
 void litteSenceRun4(void)
 {				
-				static int nCalca=0;
+				/*static int nCalca=0;
 				switch(ppxxStep)
 				{
 					case 0:				
@@ -660,5 +765,5 @@ void litteSenceRun4(void)
 						g_cCleanCurrentSence=0;  		//场景复位
 						ppxxStep=0;
 						break;
-				}
+				}*/
 }

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\xipp.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\xipp.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Sun Oct 28 20:58:16 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Mon Oct 29 18:15:47 2018
 <BR><P>
 <H3>Maximum Stack Usage =        112 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -716,10 +716,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WriteByte
 </UL>
 
-<P><STRONG><a name="[ac]"></a>FLASH_ReadByte</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, flash_rw.o(i.FLASH_ReadByte))
+<P><STRONG><a name="[ad]"></a>FLASH_ReadByte</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, flash_rw.o(i.FLASH_ReadByte))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = FLASH_ReadByte
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setFlashData
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setFlashData
 </UL>
 
 <P><STRONG><a name="[75]"></a>FLASH_Unlock</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_flash.o(i.FLASH_Unlock))
@@ -744,13 +744,13 @@ Global Symbols
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ClearFlag
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setFlashData
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setFlashData
 </UL>
 
 <P><STRONG><a name="[63]"></a>GPIO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, stm32f10x_gpio.o(i.GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zhSCM_GPIOConfig
+<BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zhSCM_GPIOConfig
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32F1_UART1_Init
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InputDriveInit
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adc_Init
@@ -762,27 +762,27 @@ Global Symbols
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ANMO_Configuration
 </UL>
 
-<P><STRONG><a name="[ad]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadInputDataBit))
+<P><STRONG><a name="[a6]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadInputDataBit))
 <BR><BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zhSCM_keyState
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;btnEvent
 </UL>
 
 <P><STRONG><a name="[8c]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun4
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
+<BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun2
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun1
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;btnEvent
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allSenceClose
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uartRelayProc
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Relay_Init
 </UL>
 
 <P><STRONG><a name="[64]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_SetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun4
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
+<BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun2
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun1
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;btnEvent
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allSenceClose
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uartRelayProc
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Relay_Init
@@ -807,7 +807,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32_Delay_ms
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Adc11
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qiqiqiYayaya
+<BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qiqiqiYayaya
 </UL>
 
 <P><STRONG><a name="[7f]"></a>Get_Adc3</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, stm32f1_adc3.o(i.Get_Adc3))
@@ -827,7 +827,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32_Delay_ms
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Adc3
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qiqiqiYayaya
+<BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qiqiqiYayaya
 </UL>
 
 <P><STRONG><a name="[81]"></a>Get_Adc4</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, stm32f1_adc4.o(i.Get_Adc4))
@@ -847,10 +847,10 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32_Delay_ms
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Adc4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qiqiqiYayaya
+<BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qiqiqiYayaya
 </UL>
 
-<P><STRONG><a name="[83]"></a>InputDriveInit</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, inputdrive.o(i.InputDriveInit))
+<P><STRONG><a name="[83]"></a>InputDriveInit</STRONG> (Thumb, 144 bytes, Stack size 8 bytes, inputdrive.o(i.InputDriveInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = InputDriveInit &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
@@ -860,7 +860,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[84]"></a>LitteSenceRun</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, main.o(i.LitteSenceRun))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = LitteSenceRun &rArr; litteSenceRun4 &rArr; senceDelayToNext &rArr; allOutClose &rArr; allSenceClose
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = LitteSenceRun &rArr; litteSenceRun3 &rArr; senceDelayToNext &rArr; allOutClose &rArr; allSenceClose
 </UL>
 <BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun4
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
@@ -911,7 +911,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[62]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zhSCM_GPIOConfig
+<BR><BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zhSCM_GPIOConfig
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32F1_UART1_Init
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InputDriveInit
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adc_Init
@@ -1104,8 +1104,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allSenceClose
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelayToNext
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun4
+<BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelayToNext
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun2
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun1
@@ -1118,93 +1117,85 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun4
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
+<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun2
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun1
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allOutClose
 </UL>
 
-<P><STRONG><a name="[a4]"></a>btnEvent</STRONG> (Thumb, 368 bytes, Stack size 8 bytes, main.o(i.btnEvent))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = btnEvent &rArr; zhSCM_keyState
+<P><STRONG><a name="[a4]"></a>btnEvent</STRONG> (Thumb, 788 bytes, Stack size 16 bytes, main.o(i.btnEvent))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = btnEvent &rArr; zhSCM_keyState
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zhSCM_keyState
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allOutClose
 </UL>
 <BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[85]"></a>litteSenceRun1</STRONG> (Thumb, 214 bytes, Stack size 8 bytes, main.o(i.litteSenceRun1))
+<P><STRONG><a name="[85]"></a>litteSenceRun1</STRONG> (Thumb, 210 bytes, Stack size 8 bytes, main.o(i.litteSenceRun1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = litteSenceRun1 &rArr; senceDelayToNext &rArr; allOutClose &rArr; allSenceClose
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceNext
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelayToNext
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceNext
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelayToNext
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allSenceClose
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allOutClose
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[86]"></a>litteSenceRun2</STRONG> (Thumb, 164 bytes, Stack size 8 bytes, main.o(i.litteSenceRun2))
+<P><STRONG><a name="[86]"></a>litteSenceRun2</STRONG> (Thumb, 162 bytes, Stack size 8 bytes, main.o(i.litteSenceRun2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = litteSenceRun2 &rArr; senceDelayToNext &rArr; allOutClose &rArr; allSenceClose
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceNext
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelayToNext
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceNext
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelayToNext
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allSenceClose
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allOutClose
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[87]"></a>litteSenceRun3</STRONG> (Thumb, 214 bytes, Stack size 8 bytes, main.o(i.litteSenceRun3))
+<P><STRONG><a name="[87]"></a>litteSenceRun3</STRONG> (Thumb, 210 bytes, Stack size 8 bytes, main.o(i.litteSenceRun3))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = litteSenceRun3 &rArr; senceDelayToNext &rArr; allOutClose &rArr; allSenceClose
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceNext
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelayToNext
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceNext
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelayToNext
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allSenceClose
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allOutClose
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[88]"></a>litteSenceRun4</STRONG> (Thumb, 210 bytes, Stack size 8 bytes, main.o(i.litteSenceRun4))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = litteSenceRun4 &rArr; senceDelayToNext &rArr; allOutClose &rArr; allSenceClose
-</UL>
-<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceNext
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelayToNext
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allSenceClose
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allOutClose
-</UL>
-<BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
+<P><STRONG><a name="[88]"></a>litteSenceRun4</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, main.o(i.litteSenceRun4))
+<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[56]"></a>main</STRONG> (Thumb, 194 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[56]"></a>main</STRONG> (Thumb, 142 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = main &rArr; STM32F1_UART1_Init &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zhSCM_initKeyState
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zhSCM_GPIOConfig
+<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zhSCM_initKeyState
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zhSCM_GPIOConfig
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stm32F1_Timer3Init
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stm32F1_Timer2Init
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32_Delay_init
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32F1_UART1_Init
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OutputDriveInit
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InputDriveInit
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adc_Init
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adc4_Init
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adc3_Init
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adc2_Init
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setFlashData
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qiqiqiYayaya
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setFlashData
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qiqiqiYayaya
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;btnEvent
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
@@ -1218,7 +1209,7 @@ Global Symbols
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[ab]"></a>qiqiqiYayaya</STRONG> (Thumb, 324 bytes, Stack size 8 bytes, main.o(i.qiqiqiYayaya))
+<P><STRONG><a name="[ac]"></a>qiqiqiYayaya</STRONG> (Thumb, 324 bytes, Stack size 8 bytes, main.o(i.qiqiqiYayaya))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = qiqiqiYayaya &rArr; Get_Adc4_Average &rArr; Get_Adc4 &rArr; ADC_RegularChannelConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Adc4_Average
@@ -1228,34 +1219,32 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a7]"></a>senceDelayToNext</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, main.o(i.senceDelayToNext))
+<P><STRONG><a name="[a8]"></a>senceDelayToNext</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, main.o(i.senceDelayToNext))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = senceDelayToNext &rArr; allOutClose &rArr; allSenceClose
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;allOutClose
 </UL>
-<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun4
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
+<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun2
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun1
 </UL>
 
-<P><STRONG><a name="[a6]"></a>senceNext</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(i.senceNext))
-<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun4
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
+<P><STRONG><a name="[a7]"></a>senceNext</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(i.senceNext))
+<BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun3
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun2
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRun1
 </UL>
 
-<P><STRONG><a name="[a8]"></a>setFlashData</STRONG> (Thumb, 112 bytes, Stack size 8 bytes, main.o(i.setFlashData))
+<P><STRONG><a name="[a9]"></a>setFlashData</STRONG> (Thumb, 112 bytes, Stack size 8 bytes, main.o(i.setFlashData))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = setFlashData &rArr; FLASH_WriteByte &rArr; FLASH_ProgramHalfWord &rArr; FLASH_WaitForLastOperation
 </UL>
 <BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WriteByte
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ReadByte
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ReadByte
 </UL>
 <BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a0]"></a>uartRelayProc</STRONG> (Thumb, 462 bytes, Stack size 16 bytes, stm32f1_uart1.o(i.uartRelayProc))
+<P><STRONG><a name="[a0]"></a>uartRelayProc</STRONG> (Thumb, 342 bytes, Stack size 16 bytes, stm32f1_uart1.o(i.uartRelayProc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = uartRelayProc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1264,7 +1253,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[a9]"></a>zhSCM_GPIOConfig</STRONG> (Thumb, 152 bytes, Stack size 8 bytes, key.o(i.zhSCM_GPIOConfig))
+<P><STRONG><a name="[aa]"></a>zhSCM_GPIOConfig</STRONG> (Thumb, 204 bytes, Stack size 8 bytes, key.o(i.zhSCM_GPIOConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = zhSCM_GPIOConfig &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
@@ -1273,14 +1262,14 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[aa]"></a>zhSCM_initKeyState</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, key.o(i.zhSCM_initKeyState))
+<P><STRONG><a name="[ab]"></a>zhSCM_initKeyState</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, key.o(i.zhSCM_initKeyState))
 <BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[a5]"></a>zhSCM_keyState</STRONG> (Thumb, 116 bytes, Stack size 24 bytes, key.o(i.zhSCM_keyState))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = zhSCM_keyState
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;btnEvent
 </UL>
