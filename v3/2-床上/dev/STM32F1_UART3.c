@@ -75,7 +75,6 @@ void STM32F1_UART3_Init(u32_t lBaudRate)
     USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);//开启中断
     //使能串口
     USART_Cmd(USART3, ENABLE);//使能串口
-
 }
 
 

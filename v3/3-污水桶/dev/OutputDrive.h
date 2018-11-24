@@ -65,28 +65,6 @@
 #define RELAY14_STATE(x) (!x)>0?GPIO_SetBits(RELAY14_GPIO,RELAY14_PIN):GPIO_ResetBits(RELAY14_GPIO,RELAY14_PIN)
 #define RELAY15_STATE(x) (!x)>0?GPIO_SetBits(RELAY15_GPIO,RELAY15_PIN):GPIO_ResetBits(RELAY15_GPIO,RELAY15_PIN)
 
-
-//--------------------------------------------------------------------------------------------
-#define LED1_OFF 		GPIO_ResetBits(GPIOE , GPIO_Pin_13)
-#define LED1_ON 		GPIO_SetBits(GPIOE , GPIO_Pin_13)
-#define LED1_RE 		GPIO_WriteBit(GPIOE , GPIO_Pin_13,(BitAction)(1-GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_13)));
-
-#define LED2_OFF 		GPIO_ResetBits(GPIOE , GPIO_Pin_14)
-#define LED2_ON 		GPIO_SetBits(GPIOE , GPIO_Pin_14)
-#define LED2_RE 		GPIO_WriteBit(GPIOE , GPIO_Pin_14,(BitAction)(1-GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_14)));
-
-#define LED3_OFF 		GPIO_ResetBits(GPIOE , GPIO_Pin_15)
-#define LED3_ON 		GPIO_SetBits(GPIOE , GPIO_Pin_15)
-#define LED3_RE 		GPIO_WriteBit(GPIOE , GPIO_Pin_15,(BitAction)(1-GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_15)));
-
-#define ANMO1_STATE(x) 	(!x)>0?GPIO_SetBits(GPIOB,GPIO_Pin_6):GPIO_ResetBits(GPIOB,GPIO_Pin_6)
-#define BAONAN_STATE(x) (!x)>0?GPIO_SetBits(GPIOB,GPIO_Pin_7):GPIO_ResetBits(GPIOB,GPIO_Pin_7)
-#define A33POWER_STATE(x) (!x)>0?GPIO_SetBits(GPIOD,GPIO_Pin_7):GPIO_ResetBits(GPIOD,GPIO_Pin_7)
-
-//变速马达
-#define BS_MADAMADA_STATE(x) (x)?GPIO_SetBits(GPIOD,GPIO_Pin_15):GPIO_ResetBits(GPIOD,GPIO_Pin_15)
-
-
 //初始化
 void OutputDriveInit(void);
 

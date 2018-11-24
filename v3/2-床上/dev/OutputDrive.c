@@ -1,18 +1,10 @@
 #include "OutputDrive.h"
 
 void Relay_Init(void);
-void POWER_Configuration(void);
-void VOLUME_Configuration(void);
-void LED_Configuration(void);
-void ANMO_Configuration(void);
 
 void OutputDriveInit(void)
 {
 	 Relay_Init();
-	 POWER_Configuration();
-	 VOLUME_Configuration();
-	 LED_Configuration();
-	 ANMO_Configuration();
 }
 
 
@@ -121,106 +113,6 @@ void Relay_Init(void)
   GPIO_Init(RELAY15_GPIO, &GPIO_MyStruct);
 	RELAY15_STATE(0);
 }
-
-void POWER_Configuration(void)
-{
-		GPIO_InitTypeDef GPIO_MyStruct;
-	
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE,ENABLE);
-
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_2;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOE, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOE,GPIO_Pin_2);
-	
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_3;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOE, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOE,GPIO_Pin_3);
-	
-	//-------------------------------------------------
-	//A33开关机
-	/*	GPIO_MyStruct.GPIO_Pin = GPIO_Pin_7;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOD, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOD,GPIO_Pin_7);*/
-		
-		
-		//变速马达
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_15;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOD, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOD,GPIO_Pin_15);
-}
-
-void VOLUME_Configuration(void)
-{
-		GPIO_InitTypeDef GPIO_MyStruct;
-	
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
-
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_4;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOB, &GPIO_MyStruct);
-		GPIO_ResetBits(GPIOB,GPIO_Pin_4);
-	
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_5;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOB, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOB,GPIO_Pin_5);
-}
-
-void ANMO_Configuration(void)
-{
-		GPIO_InitTypeDef GPIO_MyStruct;
-	
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
-
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_6;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOB, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOB,GPIO_Pin_6);
-	
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_7;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOB, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOB,GPIO_Pin_7);
-}
-
-
-void LED_Configuration(void)
-{
-		GPIO_InitTypeDef GPIO_MyStruct;
-	
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE,ENABLE);
-
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_13;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOE, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOE,GPIO_Pin_13);
-
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_14;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOE, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOE,GPIO_Pin_14);
-
-		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_15;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(GPIOE, &GPIO_MyStruct);
-		GPIO_SetBits(GPIOE,GPIO_Pin_15);
-}
-
 
 void RelayTest()
 {

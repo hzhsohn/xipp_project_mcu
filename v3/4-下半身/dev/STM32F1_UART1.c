@@ -1,7 +1,6 @@
 #include "Stm32f1_uart1.h"
 #include "mini-data.h"
 #include "flash_rw.h"
-#include "Motor_Diver.h"
 
 //------------------------------------------------------
 //接收缓存
@@ -127,67 +126,7 @@ void USART1_IRQHandler(void)
 								
 							  switch(g_ocCmd.parameter[0])
 								{
-									case 0x90:
-											//Motor1_do_intpr_cmd(1);
-											Motor_demo_up();
-										break;
-									case 0x91:
-											//Motor1_do_intpr_cmd(2);
-											Motor_demo_down();
-										break;
-									case 0x92:
-											Motor2_do_intpr_cmd(1);
-										break;
-									case 0x93:
-											Motor2_do_intpr_cmd(2);
-										break;
-									case 0xD0:
-									case 0x94:				//摄像头演示模式
-											Motor_demo();
-										break;
-									case 0xD1:
-											if(0==g_cCleanCurrentSence)
-											{
-												//aurtEventBtn(0x60);
-												g_cCleanCurrentSence=ezhCleanSenceA;
-												isCleanRuning=1;
-											}
-										break;
-									case 0xD2:
-											if(0==g_cCleanCurrentSence)
-											{
-												//aurtEventBtn(0x60);
-												g_cCleanCurrentSence=ezhCleanSenceB;
-												isCleanRuning=1;
-											}
-										break;
-									case 0xD3:
-											if(0==g_cCleanCurrentSence)
-											{
-												//aurtEventBtn(0x60);
-												g_cCleanCurrentSence=ezhCleanSenceC;
-												isCleanRuning=1;
-											}
-										break;
-									case 0xA0: //启用自动化
-											g_isAutomation=g_ocCmd.parameter[1]?1:0;
-										break;
-									case 0xA1: //参数获取
-											sendTimeCfg();
-										break;
-									case 0xA2: //设置参数
-									{
-											int i=0;
-											char *pstr=(char *)&g_tmeSetting;
-											for(i=0;i<sizeof(TagTimeingSetting);i++)
-											{
-												pstr[i]=(char)g_ocCmd.parameter[1+i];
-											}
-											FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
-									}
-										break;
-									case 0xA3: //中断当前
-										isCleanRuning=0;
+									case 0x00:
 										break;
 								}
 						 }
@@ -203,4 +142,4 @@ void USART1_IRQHandler(void)
 						 }
 				 }
 		 }
-	}
+}
