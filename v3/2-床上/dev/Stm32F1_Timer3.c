@@ -1,11 +1,5 @@
 #include "Stm32F1_Timer3.h"
 #include "InputDrive.h"
-#include "Motor_Diver.h"
-
-int kk=0;
-int kk2=0;
-int kk_1ms=0;
-u16_t sCount1ms;
 
 extern int g_timeoverUart1;
 extern int g_uart1len;
@@ -13,7 +7,8 @@ extern int g_uart1len;
 extern int g_timeoverUart2;
 extern int g_uart2len;
 
-void aurtEventStatus();
+extern int g_timeoverUart3;
+extern int g_uart3len;
 
 void Stm32F1_Timer3Init(void)
 {
@@ -33,32 +28,16 @@ void Stm32F1_Timer3Init(void)
 	NVIC_Init(&MyTimerIrConfig);
 	TIM_ITConfig(TIM3,TIM_IT_Update,ENABLE);
 }
-/*--------------------------------------------------
-//
-//-------------------------------------------------*/
-Func_Staus CountToOneSecond(void)
-{
-	if (sCount1ms<100)
-	{
-		sCount1ms++;
-	}
-	else
-	{
-		sCount1ms=0;
-		return _Enable;
-	}
-	return _Disable;
-}
+
 /*--------------------------------------------------
 //
 //-------------------------------------------------*/
 void TIM3_IRQHandler(void)
 {
 
-	kk++;
-	kk2++;	
-	kk_1ms++;
 	g_timeoverUart1++;
+	g_timeoverUart2++;
+	g_timeoverUart3++;
 	
 	//周期计数复位
 	if(g_timeoverUart1>500)
@@ -71,13 +50,12 @@ void TIM3_IRQHandler(void)
 			g_uart2len=0;
 			g_timeoverUart2=0;
 	}
-	//------------------------------------------------------------------
-	//上传数据
-	if(kk2>200)
+	if(g_timeoverUart3>500)
 	{
-			aurtEventStatus();
-			kk2=0;
+			g_uart3len=0;
+			g_timeoverUart3=0;
 	}
+
 	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
 }
