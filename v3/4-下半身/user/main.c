@@ -21,7 +21,7 @@
 #define cgqWaterLow  				SENSOR2_STATE()?0:1 //清水低
 
 //--
-//温度
+//水温度
 int ntmp;
 s16 rWaterTemperature=0,rWaterTemp=0;
 s16 rTrueWaterTemp=0;
