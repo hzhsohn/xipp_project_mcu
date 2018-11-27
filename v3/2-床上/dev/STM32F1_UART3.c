@@ -99,13 +99,18 @@ void USART3_IRQHandler(void)
 						 //
 						 if(g_isGetCmdOk3)
 						 {
+							  int a=0;
+								int b=0;
+								unsigned char *pdata=NULL;
 								//周期计数复位
 								g_timeoverUart3=0;
 								//
-							  switch(g_ocCmd3.parameter[0])
+								a=g_ocCmd3.parameter[0];
+								b=g_ocCmd3.parameter[1];
+								pdata=&g_ocCmd3.parameter[2];
+								//
+								if(2==a)
 								{
-									case 0x00:
-										break;
 								}
 						 }
 						 if(tmp>0)
@@ -114,10 +119,36 @@ void USART3_IRQHandler(void)
 								g_uart3len-=tmp;
 								for(n=0;n<g_uart3len;n++)
 								{
-									g_cache3[n]=g_cache3[tmp+n]; 
+									g_cache3[n]=g_cache3[tmp+n];
 								}
 								goto _nnc;
 						 }
 				 }
     }
 }
+
+//发送,通信统一用10个字节
+void uart3Send(unsigned char i,unsigned char f,char*data,int datalen)
+{
+		uchar dst_buf[32]={0};
+		int myDataLen=0;
+		unsigned char cbuf[24]={0};
+		
+		if(datalen!=8)
+		{return;}
+		
+		cbuf[0]=i; //位置 0-5 ,0代表本机
+		cbuf[1]=f; //功能 
+		cbuf[2]=data[0];
+		cbuf[3]=data[1];
+		cbuf[4]=data[2];
+		cbuf[5]=data[3];
+		cbuf[6]=data[4];
+		cbuf[7]=data[5];
+		cbuf[8]=data[6];
+		cbuf[9]=data[7];
+		
+		myDataLen = miniDataCreate(10,cbuf,dst_buf);
+		STM32F1_UART3SendDataS(dst_buf,myDataLen);
+}
+

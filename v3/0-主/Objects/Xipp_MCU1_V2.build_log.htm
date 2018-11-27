@@ -27,11 +27,13 @@ Project File Date:  11/24/2018
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling Stm32F1_Timer3.c...
-compiling STM32F1_UART1.c...
+compiling STM32F1_UART3.c...
+dev\STM32F1_UART3.c(104): warning:  #550-D: variable "pdata" was set but never used
+  								unsigned char *pdata=NULL;
+dev\STM32F1_UART3.c: 1 warning, 0 errors
 linking...
-Program Size: Code=5336 RO-data=368 RW-data=84 ZI-data=2092  
-".\Objects\Xipp_MCU1_V2.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=5348 RO-data=368 RW-data=84 ZI-data=2092  
+".\Objects\Xipp_MCU1_V2.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -62,7 +64,7 @@ Package Vendor: Keil
       Source file:   Device\Source\ARM\startup_stm32f10x_cl.s
       Source file:   Device\Source\system_stm32f10x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

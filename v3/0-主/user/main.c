@@ -65,7 +65,7 @@ void setFlashData()
 			g_tmeSetting.airTemperature=50;  		//最低烘干温度   	单位摄氏度
 			g_tmeSetting.mpuLeft=30;  					//
 			g_tmeSetting.mpuRight=30;  					//
-				
+
 			FLASH_WriteByte(STARTADDRFLAG,(uint8_t*)binFlag,4);
 			FLASH_WriteByte(STARTADDR,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
 
@@ -84,13 +84,11 @@ int main(void)
 	InputDriveInit();
 	zhSCM_GPIOConfig();
  
-	
 	//-----------------------------------------
 	//获取FALSH数据
 	setFlashData();
   //-----------------------------------------
 
-	
 	//看门狗
 	//watchdog_init();
 	
