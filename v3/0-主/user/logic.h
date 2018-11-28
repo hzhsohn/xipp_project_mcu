@@ -4,9 +4,16 @@
 extern "C"{
 #endif
 
+//
+void sendLogic(void);
 void recvLogic(int a,int b,unsigned char* data);
+void addLogicCmd(unsigned char*data,int dataLen);
+int getCmdCount(void);
 	
 //部分获取传感器数据
+void dev_status(void);
+	
+//
 void s1_001(unsigned char*data);
 void s2_001(unsigned char*data);
 void s3_001(unsigned char*data);

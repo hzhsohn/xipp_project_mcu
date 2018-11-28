@@ -1,5 +1,6 @@
 #include "Stm32F1_Timer3.h"
 #include "InputDrive.h"
+#include "logic.h"
 
 extern int g_timeoverUart1;
 extern int g_uart1len;
@@ -9,6 +10,12 @@ extern int g_uart2len;
 
 extern int g_timeoverUart3;
 extern int g_uart3len;
+
+int g_intervalSend=0;
+//最后执行时间
+int g_interValLastExc=0;
+//
+extern 
 
 
 void Stm32F1_Timer3Init(void)
@@ -35,6 +42,8 @@ void TIM3_IRQHandler(void)
 	g_timeoverUart1++;
 	g_timeoverUart2++;
 	g_timeoverUart3++;
+	g_intervalSend++;
+	g_interValLastExc++;
 	
 	//周期计数复位
 	if(g_timeoverUart1>500)
@@ -47,6 +56,30 @@ void TIM3_IRQHandler(void)
 			g_uart2len=0;
 			g_timeoverUart2=0;
 	}
+	if(g_timeoverUart3>500)
+	{
+			g_uart3len=0;
+			g_timeoverUart3=0;
+	}
+	
+	//搜索硬件状态指令
+	if(g_intervalSend>50)
+	{
+			if(0==getCmdCount())
+			{
+				dev_status();
+			}
+			//加入搜索
+			g_intervalSend=0;
+	}
+	
+	//执行间隔
+	if(g_interValLastExc>50)
+	{
+			sendLogic();
+			g_interValLastExc=0;
+	}
+	
 	
 	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);

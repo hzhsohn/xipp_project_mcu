@@ -9,7 +9,7 @@
 #include "Stm32F1_Timer2.h"
 #include "Stm32F1_Timer3.h"
 #include "key.h"
-
+#include "logic.h"
 
 //是否自动化操作
 unsigned char g_isAutomation=1;
@@ -77,7 +77,7 @@ int main(void)
 	STM32_Delay_init();
 	STM32F1_UART1_Init(115200);
 	STM32F1_UART2_Init(19200);
-	STM32F1_UART3_Init(230400);
+	STM32F1_UART3_Init(9600);
 	
 	Stm32F1_Timer2Init();
 	Stm32F1_Timer3Init();
@@ -91,6 +91,50 @@ int main(void)
 
 	//看门狗
 	//watchdog_init();
+	
+	addLogicCmd("123456789",10);
+	addLogicCmd("223456789",10);
+	addLogicCmd("323456789",10);
+	addLogicCmd("423456789",10);
+	addLogicCmd("523456789",10);
+	addLogicCmd("623456789",10);
+	addLogicCmd("723456789",10);
+	addLogicCmd("823456789",10);
+	addLogicCmd("923456789",10);
+	addLogicCmd("103456789",10);
+	addLogicCmd("113456789",10);
+	addLogicCmd("123456789",10);
+	addLogicCmd("133456789",10);
+	addLogicCmd("143456789",10);
+	addLogicCmd("153456789",10);
+	addLogicCmd("163456789",10);
+	addLogicCmd("173456789",10);
+	addLogicCmd("183456789",10);
+	addLogicCmd("193456789",10);
+	addLogicCmd("203456789",10);
+	addLogicCmd("A13456789",10);
+	addLogicCmd("B23456789",10);
+	addLogicCmd("C23456789",10);
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
+	sendLogic();
 	
 	while(1)
 	{

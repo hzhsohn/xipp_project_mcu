@@ -45,3 +45,4 @@
 .\objects\main.o: .\dev\Stm32F1_Timer2.h
 .\objects\main.o: .\dev\Stm32F1_Timer3.h
 .\objects\main.o: .\dev\key.h
+.\objects\main.o: user\logic.h

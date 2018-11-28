@@ -27,7 +27,6 @@ void STM32F1_UART3SendDataS(u8_t* nData,u8_t nNum)
 {	
 	u8_t nCnt;
 	for (nCnt=0;nCnt<nNum;nCnt++)
-
 	{
     int n=10000;
 		USART_SendData(USART3, *(nData+nCnt));                  //向串口 3 发送数据
@@ -131,7 +130,7 @@ void USART3_IRQHandler(void)
 }
 
 //发送,通信统一用10个字节
-void uart3Send(unsigned char i,unsigned char f,char*data,int datalen)
+void uart3Send(unsigned char i,unsigned char f,unsigned char*data,int datalen)
 {
 		uchar dst_buf[32]={0};
 		int myDataLen=0;

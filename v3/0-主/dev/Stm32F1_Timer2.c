@@ -14,7 +14,7 @@ void Stm32F1_Timer2Init(void)
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2,ENABLE);
 	TIM_TimeBaseInit(TIM2,&MyTimerConfig);
 	TIM_Cmd(TIM2,ENABLE);
-	/*ÖÐ¶Ï*/
+	
 	MyTimerIrConfig.NVIC_IRQChannel = TIM2_IRQn;
 	MyTimerIrConfig.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&MyTimerIrConfig);
@@ -25,7 +25,7 @@ void Stm32F1_Timer2Init(void)
 //-------------------------------------------------*/
 void TIM2_IRQHandler(void)
 {
-
+	
 	//---------------------------
 	TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
 }
