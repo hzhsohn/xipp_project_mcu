@@ -102,6 +102,11 @@ int main(void)
 	//watchdog_init();
 	allClose();
 	
+	//Motor2_do_intpr_cmd(1);
+	//Motor2_do_intpr_cmd(2);
+	Motor2_do_intpr_cmd(3);
+	//Motor2_do_intpr_cmd(4);
+	
 	while(1)
 	{
 		//ø¥√≈π∑

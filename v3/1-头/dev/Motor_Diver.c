@@ -401,6 +401,10 @@ void sceMotor2_do(void)
 		static int dododyesLeft=10;
 		static int dododyes=10;
 		static int nCalca=0;
+	
+	
+		if(0==motor2_p_or_n)
+		{return ;}
 
 		monLimitState2L=MOTOR2_L_LIMIT_STATE();
 		monLimitState2R=MOTOR2_R_LIMIT_STATE();
@@ -512,7 +516,7 @@ void sceMotor2_do(void)
 							break;
 						case 15:
 							nCalca=0;
-							Motor2_do_step++;	//??ò?2?
+							Motor2_do_step++;	//
 							MOTOR2_A_STATE(1);
 							MOTOR2_B_STATE(0);
 							MOTOR2_C_STATE(0);
@@ -535,7 +539,7 @@ void sceMotor2_do(void)
 					{
 						case 1:
 							nCalca=0;
-							Motor2_do_step++;	//??ò?2?							
+							Motor2_do_step++;	//
 MOTOR2_A_STATE(1);
 MOTOR2_B_STATE(0);
 MOTOR2_C_STATE(0);

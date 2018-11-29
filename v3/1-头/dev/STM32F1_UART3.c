@@ -3,6 +3,8 @@
 #include "mini-data.h"
 #include "stdlib.h"
 
+//
+void recvLogic(int a,int b,unsigned char* data);
 //--------------------------------------------
 //接收缓存
 u8 uart3Data;
@@ -112,14 +114,7 @@ void USART3_IRQHandler(void)
 								//
 								if(a==1)
 								{
-										switch(b)
-										{
-											case 0x00: //获取传感器
-											{
-													
-											}
-											break;
-										}
+										recvLogic(a,b,pdata);
 								}
 						 }
 						 if(tmp>0)
@@ -146,7 +141,7 @@ void uart3Send(unsigned char i,unsigned char f,char*data,int datalen)
 		if(datalen!=8)
 		{return;}
 		
-		cbuf[0]=i; //位置 0-5 ,0代表本机
+		cbuf[0]=i; //位置 0-5 ,1代表本机
 		cbuf[1]=f; //功能
 		cbuf[2]=data[0];
 		cbuf[3]=data[1];
@@ -161,4 +156,14 @@ void uart3Send(unsigned char i,unsigned char f,char*data,int datalen)
 		STM32F1_UART3SendDataS(dst_buf,myDataLen);
 }
 
-
+void recvLogic(int a,int b,unsigned char* data)
+{
+		switch(b)
+		{
+			case 0x00: //获取传感器
+			{
+					
+			}
+			break;
+		}
+}

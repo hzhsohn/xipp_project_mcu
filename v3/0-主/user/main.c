@@ -76,7 +76,7 @@ int main(void)
 		
 	STM32_Delay_init();
 	STM32F1_UART1_Init(115200);
-	STM32F1_UART2_Init(19200);
+	STM32F1_UART2_Init(115200);
 	STM32F1_UART3_Init(9600);
 	
 	Stm32F1_Timer2Init();
