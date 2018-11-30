@@ -144,7 +144,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>/</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -181,34 +180,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>107</LineNumber>
+          <LineNumber>99</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134224872</Address>
+          <Address>134223974</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\work\澶栧寘\鑱氬痉\xipp_project_mcu\v3\1-澶?user\main.c</Filename>
+          <Filename>E:\work\澶栧寘\鑱氬痉\xipp_project_mcu\v3\1-澶?dev\STM32F1_UART3.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Xipp_MCU1_V2\user/main.c\107</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>90</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134224852</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\work\澶栧寘\鑱氬痉\xipp_project_mcu\v3\1-澶?user\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Xipp_MCU1_V2\user/main.c\90</Expression>
+          <Expression>\\Xipp_MCU1_V2\dev/STM32F1_UART3.c\99</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
