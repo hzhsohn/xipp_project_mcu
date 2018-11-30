@@ -3,6 +3,8 @@
 #include "mini-data.h"
 #include "stdlib.h"
 
+//
+void recvLogic(int a,int b,unsigned char* data);
 //--------------------------------------------
 //接收缓存
 u8 uart3Data;
@@ -75,6 +77,7 @@ void STM32F1_UART3_Init(u32_t lBaudRate)
     USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);//开启中断
     //使能串口
     USART_Cmd(USART3, ENABLE);//使能串口
+
 }
 
 
@@ -99,7 +102,7 @@ void USART3_IRQHandler(void)
 						 //
 						 if(g_isGetCmdOk3)
 						 {
-							  int a=0;
+								int a=0;
 								int b=0;
 								unsigned char *pdata=NULL;
 								//周期计数复位
@@ -109,8 +112,9 @@ void USART3_IRQHandler(void)
 								b=g_ocCmd3.parameter[1];
 								pdata=&g_ocCmd3.parameter[2];
 								//
-								if(3==a)
+								if(a==3)
 								{
+										recvLogic(a,b,pdata);
 								}
 						 }
 						 if(tmp>0)
@@ -128,7 +132,7 @@ void USART3_IRQHandler(void)
 }
 
 //发送,通信统一用10个字节
-void uart3Send(unsigned char i,unsigned char f,char*data,int datalen)
+void uart3Send(unsigned char f,char*data,int datalen)
 {
 		uchar dst_buf[32]={0};
 		int myDataLen=0;
@@ -137,8 +141,8 @@ void uart3Send(unsigned char i,unsigned char f,char*data,int datalen)
 		if(datalen!=8)
 		{return;}
 		
-		cbuf[0]=i; //位置 0-5 ,0代表本机
-		cbuf[1]=f; //功能 
+		cbuf[0]=3; //位置 0-5 ,3代表本机
+		cbuf[1]=f; //功能
 		cbuf[2]=data[0];
 		cbuf[3]=data[1];
 		cbuf[4]=data[2];
@@ -152,4 +156,20 @@ void uart3Send(unsigned char i,unsigned char f,char*data,int datalen)
 		STM32F1_UART3SendDataS(dst_buf,myDataLen);
 }
 
+void uart3SendNull(unsigned char f)
+{
+		char buf[]={0,0,0,0,0,0,0,0};
+		uart3Send(f,buf,8);
+}
 
+void recvLogic(int a,int b,unsigned char* data)
+{
+		switch(b)
+		{
+			case 0x00: //获取传感器
+			{
+					uart3SendNull(0x10);
+			}
+			break;
+		}
+}

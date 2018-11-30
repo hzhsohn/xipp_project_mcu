@@ -11,8 +11,6 @@ TzhMiniData g_ocCmd;
 uchar g_isGetCmdOk;
 int g_timeoverUart1=0;
 //
-extern unsigned char g_isAutomation;
-extern TagTimeingSetting g_tmeSetting;
 //
 //中断当前动作
 extern int isCleanRuning;
@@ -81,25 +79,6 @@ void STM32F1_UART1_Init(u32_t lBaudRate)
     USART_Cmd(USART1, ENABLE);//使能串口
 }
 
-
-
-//发送时间参数
-void sendTimeCfg()
-{
-		int i=0;
-		char *pstr;
-		uchar dst_buf[55]={0};
-		int myDataLen=0;
-		unsigned char cbuf[50]={0};
-		cbuf[0]=0xB1;
-		pstr=(char *)&g_tmeSetting;
-		for(i=0;i<sizeof(TagTimeingSetting);i++)
-		{
-			cbuf[i+1]=pstr[i];
-		}
-		myDataLen = miniDataCreate(sizeof(TagTimeingSetting)+1,cbuf,dst_buf);
-		STM32F1_UART1SendDataS(dst_buf,myDataLen);
-}
 
 void USART1_IRQHandler(void)
 {

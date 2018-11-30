@@ -28,6 +28,7 @@ void Motor_Init(void)
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
   GPIO_Init(MOTOR1_A_GPIO, &GPIO_MyStruct);
 	MOTOR1_A_STATE(0);
+	
 	GPIO_MyStruct.GPIO_Pin = MOTOR1_B_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;

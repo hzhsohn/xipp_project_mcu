@@ -132,7 +132,7 @@ void USART3_IRQHandler(void)
 }
 
 //发送,通信统一用10个字节
-void uart3Send(unsigned char i,unsigned char f,char*data,int datalen)
+void uart3Send(unsigned char f,char*data,int datalen)
 {
 		uchar dst_buf[32]={0};
 		int myDataLen=0;
@@ -141,7 +141,7 @@ void uart3Send(unsigned char i,unsigned char f,char*data,int datalen)
 		if(datalen!=8)
 		{return;}
 		
-		cbuf[0]=i; //位置 0-5 ,1代表本机
+		cbuf[0]=1; //位置 0-5 ,1代表本机
 		cbuf[1]=f; //功能
 		cbuf[2]=data[0];
 		cbuf[3]=data[1];
@@ -156,13 +156,19 @@ void uart3Send(unsigned char i,unsigned char f,char*data,int datalen)
 		STM32F1_UART3SendDataS(dst_buf,myDataLen);
 }
 
+void uart3SendNull(unsigned char f)
+{
+		char buf[]={0,0,0,0,0,0,0,0};
+		uart3Send(f,buf,8);
+}
+
 void recvLogic(int a,int b,unsigned char* data)
 {
 		switch(b)
 		{
 			case 0x00: //获取传感器
 			{
-					
+					uart3SendNull(0x10);
 			}
 			break;
 		}

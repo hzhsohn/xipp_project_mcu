@@ -63,7 +63,7 @@ void TIM3_IRQHandler(void)
 	}
 	
 	//搜索硬件状态指令
-	if(g_intervalSend>50)
+	if(g_intervalSend>500)
 	{
 			if(0==getCmdCount())
 			{
