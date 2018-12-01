@@ -86,7 +86,7 @@ void USART3_IRQHandler(void)
 {
     if (USART_GetITStatus(USART3,USART_IT_RXNE)!=RESET)
     {
-				uart3Data = USART_ReceiveData(USART1);
+				uart3Data = USART_ReceiveData(USART3);
 				
 			  //周期计数复位
 			  g_timeoverUart3=0;
@@ -112,10 +112,7 @@ void USART3_IRQHandler(void)
 								b=g_ocCmd3.parameter[1];
 								pdata=&g_ocCmd3.parameter[2];
 								//
-								if(0==a)
-								{
-										recvLogic(a,b,pdata);
-								}
+								recvLogic(a,b,pdata);
 						 }
 						 if(tmp>0)
 						 {

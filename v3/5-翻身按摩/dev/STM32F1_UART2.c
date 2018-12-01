@@ -81,7 +81,7 @@ void USART2_IRQHandler(void)
 {
     if (USART_GetITStatus(USART2,USART_IT_RXNE)!=RESET)
     {
-				uart2Data = USART_ReceiveData(USART1);
+				uart2Data = USART_ReceiveData(USART2);
 				
 			  //周期计数复位
 			  g_timeoverUart2=0;
