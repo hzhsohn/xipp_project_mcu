@@ -3,6 +3,12 @@
 #include "stm32f10x_conf.h"
 #include "global.h"
 
+typedef struct _TagUpData485{
+	unsigned char shi;				//是否拉屎
+	unsigned char niao;				//是否拉尿
+	unsigned char PiGuWenDu;  //屁股的温度
+	unsigned char miaibo;			//脉博
+}TagUpData485;
 
 #define _unit1(x) 							RELAY1_STATE(x)			//
 #define _unit2(x) 							RELAY2_STATE(x)			//
@@ -19,7 +25,5 @@
 #define _unit13(x) 							RELAY13_STATE(x)		//
 #define _unit14(x) 	 						RELAY14_STATE(x)		//
 #define _unit15(x) 							RELAY15_STATE(x)		//
-
-
 
 #endif

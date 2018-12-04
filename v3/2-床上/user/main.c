@@ -15,6 +15,9 @@
 #include "key.h"
 #include "OutputDrive.h"
 
+//提交的数据
+TagUpData485 ud485;
+
 //大小便检测
 #define dxbPooPoo  				SENSOR4_STATE()?0:1    //屎
 #define dxbXuXu	  				SENSOR5_STATE()?0:1    //尿
@@ -43,9 +46,6 @@ int pdxbXuXu;
 //
 int isTextPOPO=0;
 int isTextXUXU=0;
-
-//脉博
-extern unsigned char cHeartJump;
 
 //
 void delay_s(int n)
@@ -128,41 +128,37 @@ int main(void)
 				//		
 				//------------------------------------------------------------------
 				//检测有无尿拉下来		
-				//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //限制如果水温不够不操作
+				if(dxbXuXu)
 				{
-							if(dxbXuXu)
-							{
-								rXuxuDD++;
-								if(rXuxuDD>2000)
-								{
-										rXuxuDD=0;
-								}
-							}
-							else
-							{
-									rXuxuDD=0;
-							}
+					rXuxuDD++;
+					if(rXuxuDD>2000)
+					{
+							rXuxuDD=0;
+							ud485.niao=1;
+					}
+				}
+				else
+				{
+						rXuxuDD=0;
 				}
 				//------------------------------------------------------------------
 				//检测有没有屎掉下来
-				//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10)  //限制如果水温不够不操作
+				if(dxbPooPoo)
 				{
-							if(dxbPooPoo)
-							{
-								rPoopoDD++;
-								if(rPoopoDD>2000)
-								{
-										rPoopoDD=0;
-								}
-							}
-							else
-							{
-								rPoopoDD=0;
-							}
+					rPoopoDD++;
+					if(rPoopoDD>2000)
+					{
+							rPoopoDD=0;
+							ud485.shi=1;
+					}
+				}
+				else
+				{
+					rPoopoDD=0;
 				}
 
 				//------------------------------------------------------------------
-				//水温加热
+				//当前温度
 				rWaterTemp=DS18B20_Get_Temp();
 				if(rWaterTemp<2000 && rWaterTemp> -200) //限制位
 				{
@@ -177,16 +173,13 @@ int main(void)
 							}								
 							rTrueWaterTemp=rWaterTemp;
 							isCheckWaterSensorErr=0;
+							ud485.PiGuWenDu=rTrueWaterTemp*0.1f;
 					}
 					rWaterTemperature=rWaterTemp;
 				}
 				else
 				{
-						isCheckWaterSensorErr++;						
-						if(isCheckWaterSensorErr>10) //传感数据毛病太多关掉加热继电器
-						{
-							//传感器有毛病了.
-						}
+						isCheckWaterSensorErr++;
 				}
 
 				//-------------------------------------------------------------------
@@ -200,6 +193,7 @@ int main(void)
 							isGasTooHot=0;							
 							if(rGasTemp > 60*10) //加热器有问题了吧,太高了就是加热器有问题了.
 							{
+								_unit12(0); //关掉气加热单元
 								//气温太热了.发到串口告诉上位机端,通知护士小妹妹,机器故障了
 								isGasTooHot=1;
 							}

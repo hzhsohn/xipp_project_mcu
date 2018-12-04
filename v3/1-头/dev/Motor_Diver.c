@@ -21,33 +21,7 @@ void Motor_Init(void)
 {
 	GPIO_InitTypeDef GPIO_MyStruct;
 	/*时钟使能*/
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOB|RCC_APB2Periph_GPIOC,ENABLE);
-	/*MOTOR1*/
-	GPIO_MyStruct.GPIO_Pin = MOTOR1_A_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-  GPIO_Init(MOTOR1_A_GPIO, &GPIO_MyStruct);
-	MOTOR1_A_STATE(0);
-	
-	GPIO_MyStruct.GPIO_Pin = MOTOR1_B_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-  GPIO_Init(MOTOR1_B_GPIO, &GPIO_MyStruct);
-	MOTOR1_B_STATE(0);
-	
-		GPIO_MyStruct.GPIO_Pin = MOTOR1_C_PIN;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(MOTOR1_C_GPIO, &GPIO_MyStruct);
-		MOTOR1_C_STATE(0);
-	
-	/*
-		GPIO_MyStruct.GPIO_Pin = MOTOR1_D_PIN;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(MOTOR1_D_GPIO, &GPIO_MyStruct);
-		MOTOR1_D_STATE(0);
-		*/
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOE,ENABLE);
 	
 	/*MOTOR2*/
 	GPIO_MyStruct.GPIO_Pin = MOTOR2_A_PIN;
@@ -61,29 +35,18 @@ void Motor_Init(void)
   GPIO_Init(MOTOR2_B_GPIO, &GPIO_MyStruct);
 	MOTOR2_B_STATE(0);
 
-		GPIO_MyStruct.GPIO_Pin = MOTOR2_C_PIN;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(MOTOR2_C_GPIO, &GPIO_MyStruct);
-		MOTOR2_C_STATE(0);
-		GPIO_MyStruct.GPIO_Pin = MOTOR2_D_PIN;
-		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_Init(MOTOR2_B_GPIO, &GPIO_MyStruct);
-		MOTOR2_D_STATE(0);
+	GPIO_MyStruct.GPIO_Pin = MOTOR2_C_PIN;
+	GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_Init(MOTOR2_C_GPIO, &GPIO_MyStruct);
+	MOTOR2_C_STATE(0);
+	GPIO_MyStruct.GPIO_Pin = MOTOR2_D_PIN;
+	GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_Init(MOTOR2_B_GPIO, &GPIO_MyStruct);
+	MOTOR2_D_STATE(0);
 
 	//输入
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
-	GPIO_MyStruct.GPIO_Pin = MOTOR1_L_LIMIT_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(MOTOR1_L_LIMIT_GPIO, &GPIO_MyStruct);
-	
-	GPIO_MyStruct.GPIO_Pin = MOTOR1_R_LIMIT_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(MOTOR1_R_LIMIT_GPIO, &GPIO_MyStruct);
-	
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD,ENABLE);
 	GPIO_MyStruct.GPIO_Pin = MOTOR2_L_LIMIT_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
@@ -343,57 +306,6 @@ void Mon2blockTurnRight(void)
 							{ nCalca++; }
 								break;
 						}
-		}
-}
-
-void sceMotor1_do(void)
-{
-		monLimitState1L=MOTOR1_L_LIMIT_STATE();
-		monLimitState1R=MOTOR1_R_LIMIT_STATE();
-
-		if(1==motor1_p_or_n && 1==monLimitState1L)
-		{
-				if(xiii<xiiiLimit)
-				{
-						xiii++;
-						MOTOR1_B_STATE(1);
-						MOTOR1_C_STATE(1);
-				}
-				else
-				{
-						MOTOR1_C_STATE(0);
-						motor1_p_or_n=0;
-				}
-		}
-		else if(2==motor1_p_or_n && 1==monLimitState1R)
-		{
-				if(xiii<xiiiLimit)
-				{
-						xiii++;
-						MOTOR1_B_STATE(0);
-						MOTOR1_C_STATE(1);
-				}
-				else
-				{
-						MOTOR1_C_STATE(0);
-						motor1_p_or_n=0;
-				}
-		}
-		else if(3==motor1_p_or_n && 1==monLimitState1L)
-		{
-						MOTOR1_B_STATE(1);
-						MOTOR1_C_STATE(1);
-		}
-		else if(4==motor1_p_or_n && 1==monLimitState1R)
-		{
-						MOTOR1_B_STATE(0);
-						MOTOR1_C_STATE(1);
-		}
-		else
-		{
-					//关掉线圈套的任何通电行为
-					MOTOR1_C_STATE(0);
-					motor1_p_or_n=0;
 		}
 }
 
@@ -897,8 +809,6 @@ void sceMotorDemo_do(void)
 {
 		if(1==motor_demo_do)
 		{
-					monLimitState1L=MOTOR1_L_LIMIT_STATE();
-					monLimitState1R=MOTOR1_R_LIMIT_STATE();
 					monLimitState2L=MOTOR2_L_LIMIT_STATE();
 					monLimitState2R=MOTOR2_R_LIMIT_STATE();
 					switch(current_demo_step)
@@ -948,68 +858,26 @@ void sceMotorDemo_do(void)
 							break;
 					}
 		}
-		else if(2==motor_demo_do)
-		{
-					monLimitState1L=MOTOR1_L_LIMIT_STATE();
-					monLimitState1R=MOTOR1_R_LIMIT_STATE();
-					monLimitState2L=MOTOR2_L_LIMIT_STATE();
-					monLimitState2R=MOTOR2_R_LIMIT_STATE();
-					switch(current_demo_step)
-					{
-						case 1:
-							if(0==monLimitState1L)
-							{
-								current_demo_step=2;
-							}
-							else
-							{
-								Motor1_do(3);
-							}
-							break;
-						case 2:
-							motor_demo_do=0;
-							current_demo_step=0;
-						break;
-					}
-		}
-		else if(3==motor_demo_do)
-		{
-					monLimitState1L=MOTOR1_L_LIMIT_STATE();
-					monLimitState1R=MOTOR1_R_LIMIT_STATE();
-					monLimitState2L=MOTOR2_L_LIMIT_STATE();
-					monLimitState2R=MOTOR2_R_LIMIT_STATE();
-					switch(current_demo_step)
-					{
-						case 1:
-							if(0==monLimitState1R)
-							{
-								current_demo_step=2;
-							}
-							else
-							{
-								Motor1_do(4);
-							}
-						break;
-						case 2:
-							motor_demo_do=0;
-							current_demo_step=0;
-							break;
-					}
-		}
-}
-
-void Motor1_do_intpr_cmd(int p_or_n)
-{
-			Motor1_do(p_or_n);
-			motor_demo_do=0;
-			current_demo_step=0;
+		
 }
 
 void Motor2_do_intpr_cmd(int p_or_n)
 {
-			Motor2_do(p_or_n);
-			motor_demo_do=0;
-			current_demo_step=0;
+			if(0==p_or_n)
+			{
+				  //关掉线圈套的任何通电行为
+					MOTOR2_A_STATE(0);
+					MOTOR2_B_STATE(0);
+					MOTOR2_C_STATE(0);
+					MOTOR2_D_STATE(0);
+					motor2_p_or_n=0;
+			}
+			else
+			{
+					Motor2_do(p_or_n);
+					motor_demo_do=0;
+					current_demo_step=0;
+			}
 }
 
 /*
@@ -1017,14 +885,6 @@ void Motor2_do_intpr_cmd(int p_or_n)
 1,2 步进一段
 3,4 一直到检测位
 */
-void Motor1_do(int p_or_n)
-{
-		if(motor1_p_or_n==p_or_n)
-		{return;}
-		motor1_p_or_n=p_or_n;
-		Motor1_do_step=1;
-		xiii=0;
-}
 void Motor2_do(int p_or_n)
 {
 		if(motor2_p_or_n==p_or_n)

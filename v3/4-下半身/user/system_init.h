@@ -4,39 +4,29 @@
 #include "global.h"
 
 
-typedef struct _TagTimeingSetting{
-		unsigned char pooDelay;				//À­Êººó¶àÉÙÃëÆô¶¯ ,µ¥Î»·ÖÖÓ
-		unsigned char xuxuDelay;			//À­Êººó¶àÉÙÃëÆô¶¯ ,µ¥Î»Ãë
-		unsigned char pooFlush;				//ÊºÊº³åÏ´  ,µ¥Î»Ãë
-		unsigned char xuxuFlush;			//ÄòÄò³åÏ´  µ¥Î» Ãë
-		unsigned char pooDry;      		//ÊºÊººæ¸ÉÊ±¼ä µ¥Î» ·ÖÖÓ
-		unsigned char xuxuDry;				//ÄòÄòºæ¸ÉÊ±¼ä µ¥Î» ·ÖÖÓ
-		unsigned char pooSterilize;		//ÊºÊºÏû¶¾Ê±¼ä µ¥Î» Ãë
-		unsigned char xuxuSterilize;	//ÄòÄòÏû¶¾Ê±¼ä µ¥Î» Ãë
-	  unsigned char crotchPressure;	//¿ãµµÆøÑ¹ µ¥Î» 100µçÑ¹±äÊı
-		unsigned char bedPressure;   	//´²µæµÄÆøÑ¹  µ¥Î» 100µçÑ¹±äÊı
-		unsigned char waterTemperature;//×îµÍË®ÎÂ   µ¥Î»ÉãÊÏ¶È
-		unsigned char airTemperature;  //×îµÍºæ¸ÉÎÂ¶È   µ¥Î»ÉãÊÏ¶È
-		unsigned char mpuLeft; 				//×ó½Ç
-		unsigned char mpuRight;  			//ÓÒ½Ç
-}TagTimeingSetting;
+typedef struct _TagUpData485{
+	unsigned char key;
+	unsigned char shuiWen;
+	unsigned char shuiGuoDi; //1æ°´ä½ä½,2æ°´ä½é«˜
+}TagUpData485;
 
 
-#define _unit1(x) 							RELAY1_STATE(x)			//´µÆø·§¹Ø  ÇòĞÎ·§ÃÅ
-#define _unit2(x) 							RELAY2_STATE(x)			//´µÆø·§¿ª  ÇòĞÎ·§ÃÅ
-#define _unit3(x) 							RELAY3_STATE(x)			//ÅÅĞ¹·§¹Ø  ÇòĞÎ·§ÃÅ
-#define _unit4(x) 		 					RELAY4_STATE(x)			//ÅÅĞ¹·§¿ª  ÇòĞÎ·§ÃÅ
-#define _unit5(x) 							RELAY5_STATE(x)			//³åË®·§1  ³£±Õ·§ÃÅÄò
-#define _unit6(x) 							RELAY6_STATE(x)			//³åË®·§2  ³£±Õ·§ÃÅ³å¶·
-#define _unit7(x) 							RELAY7_STATE(x)			//³åË®·§3  ³£±Õ·§ÃÅ³åPP
-#define _unit8(x) 				 			RELAY8_STATE(x) 		//É±¾úÆ÷
-#define _unit9(x) 							RELAY9_STATE(x)			//¾»»¯³éË®
-#define _unit10(x) 				 			RELAY10_STATE(x)		//´µÆø±Ã
-#define _unit11(x)							RELAY11_STATE(x) 		//Ö÷³éË®»ú
-#define _unit12(x) 	 						RELAY12_STATE(x)		//Æø¼ÓÈÈÆ÷
-#define _unit13(x) 							RELAY13_STATE(x)		//Ë®¼ÓÈÈÆ÷  16A
-#define _unit14(x) 	 						RELAY14_STATE(x)		//Ô¤Áô  220V
-#define _unit15(x) 							RELAY15_STATE(x)		//³éÎü»ú  220V
+
+#define _unit1(x) 							RELAY1_STATE(x)			//å¹æ°”é˜€å…³  çƒå½¢é˜€é—¨
+#define _unit2(x) 							RELAY2_STATE(x)			//å¹æ°”é˜€å¼€  çƒå½¢é˜€é—¨
+#define _unit3(x) 							RELAY3_STATE(x)			//æ’æ³„é˜€å…³  çƒå½¢é˜€é—¨
+#define _unit4(x) 		 					RELAY4_STATE(x)			//æ’æ³„é˜€å¼€  çƒå½¢é˜€é—¨
+#define _unit5(x) 							RELAY5_STATE(x)			//å†²æ°´é˜€1  å¸¸é—­é˜€é—¨å°¿
+#define _unit6(x) 							RELAY6_STATE(x)			//å†²æ°´é˜€2  å¸¸é—­é˜€é—¨å†²æ–—
+#define _unit7(x) 							RELAY7_STATE(x)			//å†²æ°´é˜€3  å¸¸é—­é˜€é—¨å†²PP
+#define _unit8(x) 				 			RELAY8_STATE(x) 		//æ€èŒå™¨
+#define _unit9(x) 							RELAY9_STATE(x)			//å‡€åŒ–æŠ½æ°´
+#define _unit10(x) 				 			RELAY10_STATE(x)		//å¹æ°”æ³µ
+#define _unit11(x)							RELAY11_STATE(x) 		//ä¸»æŠ½æ°´æœº
+#define _unit12(x) 	 						RELAY12_STATE(x)		//æ°”åŠ çƒ­å™¨
+#define _unit13(x) 							RELAY13_STATE(x)		//æ°´åŠ çƒ­å™¨  16A
+#define _unit14(x) 	 						RELAY14_STATE(x)		//é¢„ç•™  220V
+#define _unit15(x) 							RELAY15_STATE(x)		//æŠ½å¸æœº  220V
 
 
 

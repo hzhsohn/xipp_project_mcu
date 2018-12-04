@@ -38,27 +38,6 @@ void delay_s(int n)
 		{ STM32_Delay_ms(100); }
 }
 
-//关闭所有输出
-void allClose()
-{
-		//
-	 _unit1(0); 								
-	 _unit2(0); 					
-	 _unit3(0); 					
-	 _unit4(0); 		 					
-	 _unit5(0); 						
-	 _unit6(0); 							
-	 _unit7(0); 							
-	 _unit8(0); 				 	
-	 _unit9(0); 								
-	 _unit10(0); 				 		
-	 _unit11(0);					
-	 _unit12(0); 	 						
-	 _unit13(0);
-	 _unit14(0); 
-	 _unit15(0); 	
-}
-
 void setFlashData()
 {
 	char binFlag[4]={0};
@@ -76,42 +55,39 @@ void setFlashData()
 }
 int main(void)
 {
-		
-	STM32_Delay_init();
-	STM32F1_UART1_Init(115200);
-	STM32F1_UART2_Init(19200);
-	STM32F1_UART3_Init(9600);
-	
-	//DS18B20_Init();
-	//DS18B20_Init1();
-	//Adc_Init();
-	//Adc2_Init();	
-	Motor_Init();
-	Stm32F1_Timer2Init();
-	Stm32F1_Timer3Init();
-	//InputDriveInit();
-	OutputDriveInit();
-	//zhSCM_GPIOConfig();
- 
-	//-----------------------------------------
-	//获取FALSH数据
-	setFlashData();
-  //-----------------------------------------
+			STM32_Delay_init();
+			STM32F1_UART1_Init(115200);
+			STM32F1_UART2_Init(19200);
+			STM32F1_UART3_Init(9600);
+			
+			//DS18B20_Init();
+			//DS18B20_Init1();
+			//Adc_Init();
+			//Adc2_Init();	
+			Motor_Init();
+			Stm32F1_Timer2Init();
+			Stm32F1_Timer3Init();
+			//InputDriveInit();
+			//zhSCM_GPIOConfig();
+			OutputDriveInit();
+		 
+			//-----------------------------------------
+			//获取FALSH数据
+			setFlashData();
+			//-----------------------------------------
 
-	//看门狗
-	//watchdog_init();
-	allClose();
-	
-	//Motor2_do_intpr_cmd(1);
-	//Motor2_do_intpr_cmd(2);
-	Motor2_do_intpr_cmd(3);
-	//Motor2_do_intpr_cmd(4);
-	
-	while(1)
-	{
-		//看门狗
-		//watchdog_action();
-		//
-		
-	}
+			//看门狗
+			//watchdog_init();
+			
+			//音响
+			GPIO_SetBits(GPIOB,GPIO_Pin_4);
+			GPIO_SetBits(GPIOB,GPIO_Pin_5);
+			
+			while(1)
+			{
+				//看门狗
+				//watchdog_action();
+				//
+				
+			}
 }

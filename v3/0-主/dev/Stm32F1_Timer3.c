@@ -67,7 +67,7 @@ void TIM3_IRQHandler(void)
 	{
 			if(0==getCmdCount())
 			{
-				dev_status();
+				//dev_status();
 			}
 			//加入搜索
 			g_intervalSend=0;

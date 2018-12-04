@@ -38,3 +38,4 @@
 .\objects\logic.o: .\user\global.h
 .\objects\logic.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\logic.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\logic.o: user\logic.h

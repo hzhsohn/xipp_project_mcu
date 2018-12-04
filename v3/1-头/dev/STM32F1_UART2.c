@@ -103,7 +103,6 @@ void USART2_IRQHandler(void)
 							  switch(g_ocCmd2.parameter[0])
 								{
 									case 0x00:
-											uartRelayProc(g_ocCmd2.parameter[1],g_ocCmd2.parameter[2]);
 										break;
 								}
 						 }
@@ -119,59 +118,6 @@ void USART2_IRQHandler(void)
 						 }
 				 }
     }
-}
-
-void uartRelayProc(unsigned char i,char isOn)
-{
-	switch(i)
-	{
-		//继电器处理
-		case 1: 
-				_unit1(isOn);
-			break;
-		case 2:
-				_unit2(isOn);
-			break;
-		case 3:
-				_unit3(isOn);
-			break;
-		case 4:
-				_unit4(isOn);
-			break;
-		case 5:
-				_unit5(isOn);
-			break;
-		case 6:
-				_unit6(isOn);
-			break;
-		case 7:
-				_unit7(isOn);
-			break;
-		case 8:
-				_unit8(isOn);
-			break;
-		case 9:
-				_unit9(isOn);
-			break;
-		case 10:
-				_unit10(isOn);
-			break;
-		case 11:
-				_unit11(isOn);
-			break;
-		case 12:
-				_unit12(isOn);
-			break;
-		case 13:
-				_unit13(isOn);
-			break;
-		case 14:
-				_unit14(isOn);
-			break;
-		case 15:
-				_unit15(isOn);
-			break;
-	}
 }
 
 //发送控制继电器

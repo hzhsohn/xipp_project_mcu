@@ -15,18 +15,21 @@
 #include "key.h"
 #include "OutputDrive.h"
 
+//
+TagUpData485 ud485;
+
 /**************/
-//´«¸ĞÆ÷Âß¼­ÖØ¶¨Òå
+//ä¼ æ„Ÿå™¨é€»è¾‘é‡å®šä¹‰
 #define cgqWaterHeight  					SENSOR1_STATE()?1:0 //
-#define cgqWaterLow  				SENSOR2_STATE()?0:1 //ÇåË®µÍ
+#define cgqWaterLow  							SENSOR2_STATE()?0:1 //æ¸…æ°´ä½
 
 //--
-//Ë®ÎÂ¶È
+//æ°´æ¸©åº¦
 int ntmp;
 s16 rWaterTemperature=0,rWaterTemp=0;
 s16 rTrueWaterTemp=0;
 int isWaterTooHot=0;
-int isCheckWaterSensorErr=0; //Ë®ÎÂ·À´íÎóÏŞÖÆ
+int isCheckWaterSensorErr=0; //æ°´æ¸©é˜²é”™è¯¯é™åˆ¶
 
 //
 void delay_s(int n)
@@ -88,37 +91,33 @@ int main(void)
 	zhSCM_GPIOConfig();
 	
 	//-----------------------------------------
-	//»ñÈ¡FALSHÊı¾İ
+	//è·å–FALSHæ•°æ®
 	setFlashData();
   //-----------------------------------------
 
-	//
-	 _unit1(1); 								
-	 _unit2(1); 					
-	 _unit3(1); 					
-	 _unit4(1); 		 					
-	 _unit5(1); 						
-	 _unit6(1); 							
-	 _unit7(1); 							
-	 _unit8(1); 				 	
-	 _unit9(1); 								
-	 _unit10(1); 				 		
-	 _unit11(1);					
-	 _unit12(1); 	 						
-	 _unit13(1);
-	 _unit14(1); 
-	 _unit15(1); 
-	
-	//¿´ÃÅ¹·
+	//çœ‹é—¨ç‹—
 	//watchdog_init();
 	
 	while(1)
 	{
-				//¿´ÃÅ¹·
+				//çœ‹é—¨ç‹—
 				//watchdog_action();
 				//
+				if(cgqWaterHeight)
+				{
+					ud485.shuiGuoDi=2;
+				}
+				else if(cgqWaterLow)
+				{
+					ud485.shuiGuoDi=1;
+				}
+				else
+				{
+					ud485.shuiGuoDi=0;
+				}
+				//
 				//---------------------
-				//°´¼ü1		»¤ÎÀ¼ü
+				//æŒ‰é”®1		æŠ¤å«é”®
 				ev=zhSCM_keyState(&btn1,TOUCHKEY_1_GPIO,TOUCHKEY_1_PIN);
 				switch(ev)
 				{
@@ -130,11 +129,11 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-							
+							ud485.key=1;
 					}
 					 break;
 				}
-				//°´¼ü2		³åÏ´¼ü
+				//æŒ‰é”®2		å†²æ´—é”®
 				ev=zhSCM_keyState(&btn2,TOUCHKEY_2_GPIO,TOUCHKEY_2_PIN);
 				switch(ev)
 				{
@@ -146,11 +145,11 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-							
+							ud485.key=2;
 					}
 						break;
 				}
-				//°´¼ü3		ºæ¸É¼ü
+				//æŒ‰é”®3		çƒ˜å¹²é”®
 				ev=zhSCM_keyState(&btn3,TOUCHKEY_3_GPIO,TOUCHKEY_3_PIN);
 				switch(ev)
 				{
@@ -162,11 +161,11 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-							
+							ud485.key=3;
 					}
 						break;
 				}
-				//°´¼ü4		³ı¾ú¼ü
+				//æŒ‰é”®4		é™¤èŒé”®
 				ev=zhSCM_keyState(&btn4,TOUCHKEY_4_GPIO,TOUCHKEY_4_PIN);
 				switch(ev)
 				{
@@ -177,10 +176,11 @@ int main(void)
 					case ZH_KEY_EVENT_PRESS:
 						break;
 					case ZH_KEY_EVENT_UP:
+						ud485.key=4;
 						break;
 				}
 				
-				//°´¼ü5		°´Ä¦¼ü
+				//æŒ‰é”®5		æŒ‰æ‘©é”®
 				ev=zhSCM_keyState(&btn5,TOUCHKEY_5_GPIO,TOUCHKEY_5_PIN);
 				switch(ev)
 				{
@@ -191,9 +191,12 @@ int main(void)
 					case ZH_KEY_EVENT_PRESS:
 						break;
 					case ZH_KEY_EVENT_UP:
+					{
+						ud485.key=5;
+					}
 						break;
 				}
-				//°´¼ü6		±£Å¯¼ü
+				//æŒ‰é”®6		ä¿æš–é”®
 				ev=zhSCM_keyState(&btn6,TOUCHKEY_6_GPIO,TOUCHKEY_6_PIN);
 				switch(ev)
 				{
@@ -204,10 +207,11 @@ int main(void)
 					case ZH_KEY_EVENT_PRESS:
 						break;
 					case ZH_KEY_EVENT_UP:
+						ud485.key=6;
 						break;
 				}
 				
-				//°´¼ü7		ÉèÖÃÁ´
+				//æŒ‰é”®7		è®¾ç½®é“¾
 				ev=zhSCM_keyState(&btn7,TOUCHKEY_7_GPIO,TOUCHKEY_7_PIN);
 				switch(ev)
 				{
@@ -219,10 +223,11 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
+						ud485.key=7;
 					}
 						break;
 				}
-				//°´¼ü8		´ı»ú¿ª¹Ø
+				//æŒ‰é”®8		å¾…æœºå¼€å…³
 				ev=zhSCM_keyState(&btn8,TOUCHKEY_8_GPIO,TOUCHKEY_8_PIN);
 				switch(ev)
 				{
@@ -234,36 +239,38 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
+						ud485.key=8;
 					}
 						break;
 				}
 
 				//------------------------------------------------------------------
-				//Ë®ÎÂ¼ÓÈÈ
+				//æ°´æ¸©åŠ çƒ­
 				rWaterTemp=DS18B20_Get_Temp();
-				if(rWaterTemp<2000 && rWaterTemp> -200) //ÏŞÖÆÎ»
+				if(rWaterTemp<2000 && rWaterTemp> -200) //é™åˆ¶ä½
 				{
 					int ntmp=0;
 					ntmp=rWaterTemp-rWaterTemperature;
-					if(ntmp<20 && ntmp>-20)	//ÏŞÖÆÍ»±ä·ù¶È
+					if(ntmp<20 && ntmp>-20)	//é™åˆ¶çªå˜å¹…åº¦
 					{
 							isWaterTooHot=0;							
-							if(rWaterTemp > 60*10) //¼ÓÈÈÆ÷ÓĞÎÊÌâÁË°É,Ì«¸ßÁË¾ÍÊÇ¼ÓÈÈÆ÷ÓĞÎÊÌâÁË.
+							if(rWaterTemp > 60*10) //åŠ çƒ­å™¨æœ‰é—®é¢˜äº†å§,å¤ªé«˜äº†å°±æ˜¯åŠ çƒ­å™¨æœ‰é—®é¢˜äº†.
 							{
-									//Ë®Ì«ÈÈÁË.·¢µ½´®¿Ú¸æËßÉÏÎ»»ú¶Ë,Í¨Öª»¤Ê¿Ğ¡ÃÃÃÃ,»úÆ÷¹ÊÕÏÁË
+									//æ°´å¤ªçƒ­äº†.å‘åˆ°ä¸²å£å‘Šè¯‰ä¸Šä½æœºç«¯,é€šçŸ¥æŠ¤å£«å°å¦¹å¦¹,æœºå™¨æ•…éšœäº†
 									isWaterTooHot=1;
 							}
 							rTrueWaterTemp=rWaterTemp;
 							isCheckWaterSensorErr=0;
+							ud485.shuiWen=rTrueWaterTemp*0.1f;
 					}
 					rWaterTemperature=rWaterTemp;
 				}
 				else
 				{
 						isCheckWaterSensorErr++;						
-						if(isCheckWaterSensorErr>10) //´«¸ĞÊı¾İÃ«²¡Ì«¶à¹Øµô¼ÓÈÈ¼ÌµçÆ÷
+						if(isCheckWaterSensorErr>10) //ä¼ æ„Ÿæ•°æ®æ¯›ç—…å¤ªå¤šå…³æ‰åŠ çƒ­ç»§ç”µå™¨
 						{
-							//´«¸ĞÆ÷ÓĞÃ«²¡ÁË.¹Øµô¼ÌµçÆ÷
+							//ä¼ æ„Ÿå™¨æœ‰æ¯›ç—…äº†.å…³æ‰ç»§ç”µå™¨
 				
 						}
 				}

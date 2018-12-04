@@ -2,11 +2,12 @@
 #include "stdio.h"
 #include "mini-data.h"
 #include "stdlib.h"
+#include "Motor_Diver.h"
 
 //
 void recvLogic(int a,int b,unsigned char* data);
 //--------------------------------------------
-//½ÓÊÕ»º´æ
+//æ¥æ”¶ç¼“å­˜
 u8 uart3Data;
 uchar g_cache3[128]={0};
 unsigned short g_uart3len=0;
@@ -15,13 +16,13 @@ uchar g_isGetCmdOk3;
 int g_timeoverUart3=0;
 
 //****************************************************************************
-//*º¯Êı¹¦ÄÜ£º
-//*²ÎÊı£º
-//*·µ»¹£º
+//*å‡½æ•°åŠŸèƒ½ï¼š
+//*å‚æ•°ï¼š
+//*è¿”è¿˜ï¼š
 //****************************************************************************
 void STM32F1_UART3SendData(u8_t nData)
 {
-    USART_SendData(USART3, nData);                  //Ïò´®¿Ú 3 ·¢ËÍÊı¾İ
+    USART_SendData(USART3, nData);                  //å‘ä¸²å£ 3 å‘é€æ•°æ®
     while(USART_GetFlagStatus(USART3,USART_FLAG_TC)!=SET);
 }
 void STM32F1_UART3SendDataS(u8_t* nData,u8_t nNum)
@@ -31,16 +32,16 @@ void STM32F1_UART3SendDataS(u8_t* nData,u8_t nNum)
 
 	{
     int n=10000;
-		USART_SendData(USART3, *(nData+nCnt));                  //Ïò´®¿Ú 3 ·¢ËÍÊı¾İ
+		USART_SendData(USART3, *(nData+nCnt));                  //å‘ä¸²å£ 3 å‘é€æ•°æ®
 		while(USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET && n--); 
 	}
 
 }
 
 //****************************************************************************
-//*º¯Êı¹¦ÄÜ£ºESP8266³õÊ¼»¯
-//*²ÎÊı£ºlBound-²¨ÌØÂÊ
-//*·µ»¹£º
+//*å‡½æ•°åŠŸèƒ½ï¼šESP8266åˆå§‹åŒ–
+//*å‚æ•°ï¼šlBound-æ³¢ç‰¹ç‡
+//*è¿”è¿˜ï¼š
 //****************************************************************************
 void STM32F1_UART3_Init(u32_t lBaudRate)
 {
@@ -53,12 +54,12 @@ void STM32F1_UART3_Init(u32_t lBaudRate)
     /* Configure USART Tx as alternate function push-pull */
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;//ISART3_TX PB10
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;//¸´ÓÃÍÆÍìÊä³ö
-    GPIO_Init(GPIOB, &GPIO_InitStructure);//³õÊ¼»¯ 
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;//å¤ç”¨æ¨æŒ½è¾“å‡º
+    GPIO_Init(GPIOB, &GPIO_InitStructure);//åˆå§‹åŒ– 
 	
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;//USART3_RX  PB11
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;   //¸¡¿ÕÊäÈë
-    GPIO_Init(GPIOB, &GPIO_InitStructure);//³õÊ¼»¯ 
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;   //æµ®ç©ºè¾“å…¥
+    GPIO_Init(GPIOB, &GPIO_InitStructure);//åˆå§‹åŒ– 
 	
     USART_InitStructure.USART_BaudRate          =   lBaudRate;
     USART_InitStructure.USART_WordLength        =   USART_WordLength_8b;
@@ -73,10 +74,10 @@ void STM32F1_UART3_Init(u32_t lBaudRate)
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
-    //¿ªÆôÖĞ¶Ï
-    USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);//¿ªÆôÖĞ¶Ï
-    //Ê¹ÄÜ´®¿Ú
-    USART_Cmd(USART3, ENABLE);//Ê¹ÄÜ´®¿Ú
+    //å¼€å¯ä¸­æ–­
+    USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);//å¼€å¯ä¸­æ–­
+    //ä½¿èƒ½ä¸²å£
+    USART_Cmd(USART3, ENABLE);//ä½¿èƒ½ä¸²å£
 
 }
 
@@ -88,7 +89,7 @@ void USART3_IRQHandler(void)
     {
 				uart3Data = USART_ReceiveData(USART3);
 				
-			  //ÖÜÆÚ¼ÆÊı¸´Î»
+			  //å‘¨æœŸè®¡æ•°å¤ä½
 			  g_timeoverUart3=0;
 			
 				if(g_uart3len+1>128){ g_uart3len=0; }
@@ -105,7 +106,7 @@ void USART3_IRQHandler(void)
 								int a=0;
 								int b=0;
 								unsigned char *pdata=NULL;
-								//ÖÜÆÚ¼ÆÊı¸´Î»
+								//å‘¨æœŸè®¡æ•°å¤ä½
 								g_timeoverUart3=0;
 								//
 								a=g_ocCmd3.parameter[0];
@@ -131,45 +132,51 @@ void USART3_IRQHandler(void)
     }
 }
 
-//·¢ËÍ,Í¨ĞÅÍ³Ò»ÓÃ10¸ö×Ö½Ú
+//å‘é€
 void uart3Send(unsigned char f,char*data,int datalen)
 {
-		uchar dst_buf[32]={0};
+		int i=0;
+		uchar dst_buf[36]={0};
 		int myDataLen=0;
-		unsigned char cbuf[24]={0};
+		unsigned char cbuf[30]={0};
+				
+		cbuf[0]=1; //ä½ç½® 0-5 ,1ä»£è¡¨æœ¬æœº
+		cbuf[1]=f; //åŠŸèƒ½
 		
-		if(datalen!=8)
-		{return;}
-		
-		cbuf[0]=1; //Î»ÖÃ 0-5 ,1´ú±í±¾»ú
-		cbuf[1]=f; //¹¦ÄÜ
-		cbuf[2]=data[0];
-		cbuf[3]=data[1];
-		cbuf[4]=data[2];
-		cbuf[5]=data[3];
-		cbuf[6]=data[4];
-		cbuf[7]=data[5];
-		cbuf[8]=data[6];
-		cbuf[9]=data[7];
-		
-		myDataLen = miniDataCreate(10,cbuf,dst_buf);
+		if(data)
+		{
+				for(i=0;i<datalen;i++)
+				{
+					cbuf[i+2]=data[i];
+				}
+		}
+
+		myDataLen = miniDataCreate(2+datalen,cbuf,dst_buf);
 		STM32F1_UART3SendDataS(dst_buf,myDataLen);
 }
 
 void uart3SendNull(unsigned char f)
 {
-		char buf[]={0,0,0,0,0,0,0,0};
-		uart3Send(f,buf,8);
+		uart3Send(f,NULL,0);
 }
 
 void recvLogic(int a,int b,unsigned char* data)
 {
 		switch(b)
 		{
-			case 0x00: //»ñÈ¡´«¸ĞÆ÷
+			case 0x00: //è·å–ä¼ æ„Ÿå™¨
 			{
 					uart3SendNull(0x10);
 			}
+			break;
+			case 0xA0:
+					Motor2_do_intpr_cmd(0);
+			break;
+			case 0xA1:
+					Motor2_do_intpr_cmd(3);
+			break;
+			case 0xA2:
+					Motor2_do_intpr_cmd(4);
 			break;
 		}
 }

@@ -29,7 +29,6 @@ void Stm32F1_Timer2Init(void)
 void TIM2_IRQHandler(void)
 {
 	//
-	sceMotor1_do();
 	sceMotor2_do();
 	sceMotorDemo_do();
 	//---------------------------
