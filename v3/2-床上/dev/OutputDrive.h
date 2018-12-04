@@ -4,8 +4,8 @@
 #include "system_init.h"
 
 
-#define RELAY1_GPIO 	GPIOB
-#define RELAY1_PIN  	GPIO_Pin_12
+#define RELAY1_GPIO 	GPIOD
+#define RELAY1_PIN  	GPIO_Pin_15
 
 #define RELAY2_GPIO 	GPIOB
 #define RELAY2_PIN  	GPIO_Pin_13

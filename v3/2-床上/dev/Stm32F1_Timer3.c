@@ -57,6 +57,10 @@ void TIM3_IRQHandler(void)
 	}
 
 	//---------------------------
+	//继电器操作
+	
+	
+	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
 }
 

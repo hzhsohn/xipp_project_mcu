@@ -172,12 +172,12 @@ void recvLogic(int a,int b,unsigned char* data)
 			{				
 					//获取秒数
 					unsigned char t=data[0];
-					
+					g_run.jiaoPanTime=t;
 			}
 			break;
 			case 0xA1: //搅伴关
 			{
-					
+					g_run.jiaoPanTime=-1;
 			}
 			break;
 			case 0xA2: //加热风1开
@@ -186,11 +186,13 @@ void recvLogic(int a,int b,unsigned char* data)
 					unsigned char t=data[0];
 					//工作温度
 					unsigned char w=data[1];
-					
+					g_run.JiaReTime1=t;
+					g_run.JiaReWenDu1=w;
 			}
 			break;
 			case 0xA3: //加热风1关
 			{
+					g_run.JiaReTime1=-1;
 			}
 			break;
 			case 0xA4: //加热风2开
@@ -199,11 +201,13 @@ void recvLogic(int a,int b,unsigned char* data)
 					unsigned char t=data[0];
 					//工作温度
 					unsigned char w=data[1];
-					
+					g_run.JiaReTime2=t;
+					g_run.JiaReWenDu2=w;
 			}
 			break;
 			case 0xA5: //加热风2关
 			{
+					g_run.JiaReTime2=-1;
 			}
 			break;
 		}

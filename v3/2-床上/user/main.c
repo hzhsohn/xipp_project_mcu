@@ -55,27 +55,6 @@ void delay_s(int n)
 		{ STM32_Delay_ms(100); }
 }
 
-//关闭所有输出
-void allClose()
-{
-		//
-	 _unit1(0); 								
-	 _unit2(0); 					
-	 _unit3(0); 					
-	 _unit4(0); 		 					
-	 _unit5(0); 						
-	 _unit6(0); 							
-	 _unit7(0); 							
-	 _unit8(0); 				 	
-	 _unit9(0); 								
-	 _unit10(0); 				 		
-	 _unit11(0);					
-	 _unit12(0); 	 						
-	 _unit13(0);
-	 _unit14(0); 
-	 _unit15(0); 	
-}
-
 ////////////////////////////////////////////////////////////////
 
 void setFlashData()
