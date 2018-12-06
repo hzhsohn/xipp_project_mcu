@@ -5,16 +5,16 @@
 
 
 #define RELAY1_GPIO 	GPIOB
-#define RELAY1_PIN  	GPIO_Pin_12
+#define RELAY1_PIN  	GPIO_Pin_1
 
 #define RELAY2_GPIO 	GPIOB
-#define RELAY2_PIN  	GPIO_Pin_13
+#define RELAY2_PIN  	GPIO_Pin_2
 
-#define RELAY3_GPIO 	GPIOB
-#define RELAY3_PIN  	GPIO_Pin_14
+#define RELAY3_GPIO 	GPIOE
+#define RELAY3_PIN  	GPIO_Pin_7
 
-#define RELAY4_GPIO 	GPIOB
-#define RELAY4_PIN  	GPIO_Pin_15
+#define RELAY4_GPIO 	GPIOE
+#define RELAY4_PIN  	GPIO_Pin_8
 
 #define RELAY5_GPIO 	GPIOD
 #define RELAY5_PIN  	GPIO_Pin_10

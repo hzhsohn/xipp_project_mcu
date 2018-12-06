@@ -2,6 +2,7 @@
 #include "stdio.h"
 #include "mini-data.h"
 #include "stdlib.h"
+#include "a.h"
 
 //
 void recvLogic(int a,int b,unsigned char* data);
@@ -165,18 +166,18 @@ void recvLogic(int a,int b,unsigned char* data)
 		{
 			case 0x00: //获取传感器
 			{
-					uart3SendNull(0x10);
+					uart3Send(0x10,(char*)&ud485,sizeof(TagUpData485));
 			}
 			break;
 			//-----------------------------------------
 			case 0xA0: //开盖桶出来
 			{	
-					
+					openGuiZi();
 			}
 			break;
 			case 0xA1: //桶进去关盖
 			{
-					
+					closeGuiZi();
 			}
 			break;
 			//-----------------------------------------

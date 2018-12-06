@@ -50,3 +50,4 @@
 .\objects\main.o: .\dev\Stm32F1_Timer3.h
 .\objects\main.o: .\dev\key.h
 .\objects\main.o: .\dev\OutputDrive.h
+.\objects\main.o: user\a.h

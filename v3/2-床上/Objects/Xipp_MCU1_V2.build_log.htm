@@ -22,12 +22,18 @@ Dialog DLL:      TCM.DLL V1.14.9.0
  
 <h2>Project:</h2>
 E:\work\外包\聚德\xipp_project_mcu\v3\2-床上\a.uvprojx
-Project File Date:  11/24/2018
+Project File Date:  12/05/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-".\Objects\Xipp_MCU1_V2.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+user\main.c(77): warning:  #177-D: variable "res" was declared but never referenced
+  	int res;
+user\main.c: 1 warning, 0 errors
+linking...
+Program Size: Code=9696 RO-data=368 RW-data=168 ZI-data=2200  
+".\Objects\Xipp_MCU1_V2.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -58,7 +64,7 @@ Package Vendor: Keil
       Source file:   Device\Source\ARM\startup_stm32f10x_cl.s
       Source file:   Device\Source\system_stm32f10x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

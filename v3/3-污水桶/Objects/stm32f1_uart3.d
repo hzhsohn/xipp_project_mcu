@@ -38,3 +38,4 @@
 .\objects\stm32f1_uart3.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\stm32f1_uart3.o: .\user\mini-data.h
 .\objects\stm32f1_uart3.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\stm32f1_uart3.o: .\user\a.h

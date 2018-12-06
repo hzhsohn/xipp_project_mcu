@@ -1,5 +1,6 @@
 #include "Stm32F1_Timer3.h"
 #include "InputDrive.h"
+#include "OutputDrive.h"
 
 extern int g_timeoverUart1;
 extern int g_uart1len;
@@ -34,7 +35,6 @@ void Stm32F1_Timer3Init(void)
 //-------------------------------------------------*/
 void TIM3_IRQHandler(void)
 {
-
 	g_timeoverUart1++;
 	g_timeoverUart2++;
 	g_timeoverUart3++;
@@ -58,7 +58,52 @@ void TIM3_IRQHandler(void)
 
 	//---------------------------
 	//继电器操作
+	if(g_run.jiaoPanTime>0)
+	{
+			_unit1(1);
+	}
+	else
+	{
+			_unit1(0);
+	}
 	
+	if(g_run.JiaReTime1>0 )
+	{
+		 if(g_run.curJiaReWenDu <= g_run.JiaReWenDu1)
+		 {
+			 //开加热
+			 _unit4(1);
+		 }
+		 else
+		 {
+			 _unit4(0);
+		 }
+		 //开风机1
+		 _unit2(1);
+	}
+	else
+	{
+		_unit2(0);
+	}
+	
+	if(g_run.JiaReTime2>0)
+	{
+		if(g_run.curJiaReWenDu <= g_run.JiaReWenDu2)
+		{
+			//开加热
+			_unit5(1);
+		}
+		else
+		{
+			_unit5(0);
+		}
+		//开风机2
+		_unit3(1);
+	}
+	else
+	{
+		_unit3(0);
+	}
 	
 	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);

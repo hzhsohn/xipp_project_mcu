@@ -8,17 +8,19 @@
 #define RELAY1_PIN  	GPIO_Pin_15
 
 #define RELAY2_GPIO 	GPIOB
-#define RELAY2_PIN  	GPIO_Pin_13
+#define RELAY2_PIN  	GPIO_Pin_14
 
 #define RELAY3_GPIO 	GPIOB
-#define RELAY3_PIN  	GPIO_Pin_14
+#define RELAY3_PIN  	GPIO_Pin_15
 
-#define RELAY4_GPIO 	GPIOB
-#define RELAY4_PIN  	GPIO_Pin_15
+#define RELAY4_GPIO 	GPIOC
+#define RELAY4_PIN  	GPIO_Pin_9
 
-#define RELAY5_GPIO 	GPIOD
-#define RELAY5_PIN  	GPIO_Pin_10
-                                                                            
+#define RELAY5_GPIO 	GPIOA
+#define RELAY5_PIN  	GPIO_Pin_8
+
+//--------------------------------------------------------
+                                    
 #define RELAY6_GPIO 	GPIOD
 #define RELAY6_PIN  	GPIO_Pin_11
 
@@ -37,11 +39,11 @@
 #define RELAY11_GPIO 	GPIOC
 #define RELAY11_PIN  	GPIO_Pin_8
 
-#define RELAY12_GPIO 	GPIOC
-#define RELAY12_PIN  	GPIO_Pin_9
+#define RELAY12_GPIO 	GPIOB
+#define RELAY12_PIN  	GPIO_Pin_13
 
-#define RELAY13_GPIO 	GPIOA
-#define RELAY13_PIN  	GPIO_Pin_8
+#define RELAY13_GPIO 	GPIOD
+#define RELAY13_PIN  	GPIO_Pin_10
 
 #define RELAY14_GPIO 	GPIOA
 #define RELAY14_PIN  	GPIO_Pin_15

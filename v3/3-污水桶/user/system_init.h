@@ -3,11 +3,17 @@
 #include "stm32f10x_conf.h"
 #include "global.h"
 
+typedef struct _TagUpData485{
+	unsigned char qiya1_percent; //气压1	
+	unsigned char qiya2_percent; //气压2
+}TagUpData485;
+static TagUpData485 ud485={0};
 
-#define _unit1(x) 							RELAY1_STATE(x)			//
-#define _unit2(x) 							RELAY2_STATE(x)			//
-#define _unit3(x) 							RELAY3_STATE(x)			//
-#define _unit4(x) 		 					RELAY4_STATE(x)			//
+
+#define _unit1(x) 							RELAY1_STATE(x)			//桶盖上下-
+#define _unit2(x) 							RELAY2_STATE(x)			//桶盖上下+
+#define _unit3(x) 							RELAY3_STATE(x)			//桶进出-
+#define _unit4(x) 		 					RELAY4_STATE(x)			//桶进出+
 #define _unit5(x) 							RELAY5_STATE(x)			//
 #define _unit6(x) 							RELAY6_STATE(x)			//
 #define _unit7(x) 							RELAY7_STATE(x)			//

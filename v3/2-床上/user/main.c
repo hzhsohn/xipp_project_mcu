@@ -16,7 +16,7 @@
 #include "OutputDrive.h"
 
 //提交的数据
-TagUpData485 ud485;
+extern TagUpData485 ud485;
 
 //大小便检测
 #define dxbPooPoo  				SENSOR4_STATE()?0:1    //屎
@@ -74,6 +74,7 @@ void setFlashData()
 }
 int main(void)
 {
+	int res;
 	STM32_Delay_init();
 	STM32F1_UART1_Init(115200);
 	STM32F1_UART2_Init(19200);
@@ -87,8 +88,8 @@ int main(void)
 	Stm32F1_Timer3Init();
 	InputDriveInit();
 	OutputDriveInit();
-	//zhSCM_GPIOConfig();
- 	
+	//zhSCM_GPIOConfig(); 	
+	
 	//-----------------------------------------
 	//获取FALSH数据
 	setFlashData();
@@ -97,6 +98,8 @@ int main(void)
 	//看门狗
 	//watchdog_init();
 	
+	
+	
 	while(1)
 	{
 				//看门狗
@@ -104,7 +107,7 @@ int main(void)
 				//
 				pdxbPooPoo=dxbPooPoo;
 				pdxbXuXu=dxbXuXu;
-				//		
+			
 				//------------------------------------------------------------------
 				//检测有无尿拉下来		
 				if(dxbXuXu)
@@ -159,6 +162,11 @@ int main(void)
 				else
 				{
 						isCheckWaterSensorErr++;
+						if(isCheckWaterSensorErr>10) //传感数据有毛病关掉加热继电器
+						{
+								//传感器有毛病了.关掉继电器
+								ud485.PiGuWenDu=0;
+						}
 				}
 
 				//-------------------------------------------------------------------
@@ -178,6 +186,7 @@ int main(void)
 							}
 							rTrueGasTemp=rGasTemp;
 							isCheckGasSensorErr=0;
+							g_run.curJiaReWenDu=rTrueGasTemp*0.1f;
 					}
 					rGasTemperature=rGasTemp;
 				}
@@ -187,7 +196,7 @@ int main(void)
 					if(isCheckGasSensorErr>10) //传感数据有毛病关掉加热继电器
 					{
 							//传感器有毛病了.关掉继电器
-							_unit12(0); //气加热单元
+							g_run.curJiaReWenDu=-1;
 					}
 				}
 		}		

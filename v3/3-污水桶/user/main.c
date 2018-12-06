@@ -14,48 +14,19 @@
 #include "Stm32F1_Timer3.h"
 #include "key.h"
 #include "OutputDrive.h"
+#include "a.h"
 
-//´óĞ¡±ã¼ì²â
-#define dxbPooPoo  				SENSOR4_STATE()?0:1    //Êº
-#define dxbXuXu	  				SENSOR5_STATE()?0:1    //Äò
+extern TagUpData485 ud485;
 
-//--
-//ÎÂ¶È
-int ntmp;
-s16 rWaterTemperature=0,rWaterTemp=0,rGasTemperature=0,rGasTemp=0;
-s16 rTrueWaterTemp=0,rTrueGasTemp=0;
-int isWaterTooHot=0;
-int isGasTooHot=0;
-int isCheckWaterSensorErr=0; //Ë®ÎÂ·À´íÎóÏŞÖÆ
-int isCheckGasSensorErr=0;//Ë®ÎÂ·À´íÎóÏŞÖÆ
-int isCheckBedCQSensorErr=0;//ÆøÑ¹·À´íÎóÏŞÖÆ
-int isCheckDZCQSensorErr=0;	//ÆøÑ¹·À´íÎóÏŞÖÆ
+int ntmp=0;
+int isCheckBedCQSensorErr=0;//æ°”å‹é˜²é”™è¯¯é™åˆ¶
+int isCheckDZCQSensorErr=0;	//æ°”å‹é˜²é”™è¯¯é™åˆ¶
 
-//ÆøÑ¹
+//æ°”å‹
 u16_t rPressure=0,rPressureTmp=0,rPressure2=0,rPressure2Tmp=0,rPressure3=0,rPressure3Tmp=0;
 u16_t rTruePressure1=0,rTruePressure2=0,rTruePressure3=0;
 
-//ÊºÊºÄòÄòµÄ·À¶¶¶¯
-int rPoopoDD=0;
-int rXuxuDD=0;
-int pdxbPooPoo;
-int pdxbXuXu;
-//
-int isTextPOPO=0;
-int isTextXUXU=0;
-
-//Âö²©
-extern unsigned char cHeartJump;
-
-//
-void delay_s(int n)
-{
-		int i=0;
-		for(i=0;i<n*10;i++)
-		{ STM32_Delay_ms(100); }
-}
-
-//¹Ø±ÕËùÓĞÊä³ö
+//å…³é—­æ‰€æœ‰è¾“å‡º
 void allClose()
 {
 		//
@@ -93,13 +64,20 @@ void setFlashData()
 			FLASH_WriteByte(STARTADDRFLAG,(uint8_t*)binFlag,4);
 	}
 }
+
 int main(void)
 {
+	EzhKeyEvent ev;
+  EzhKeyState btn1;
+	EzhKeyState btn2;
+  zhSCM_initKeyState(&btn1);
+	zhSCM_initKeyState(&btn2);
+	
 	STM32_Delay_init();
 	STM32F1_UART1_Init(115200);
 	STM32F1_UART2_Init(19200);
 	STM32F1_UART3_Init(9600);
-	
+
 	DS18B20_Init();
 	DS18B20_Init1();
 	Adc_Init();
@@ -108,114 +86,92 @@ int main(void)
 	Stm32F1_Timer3Init();
 	InputDriveInit();
 	OutputDriveInit();
-	//zhSCM_GPIOConfig();
+	zhSCM_GPIOConfig();
  	
 	//-----------------------------------------
-	//»ñÈ¡FALSHÊı¾İ
+	//è·å–FALSHæ•°æ®
 	setFlashData();
   //-----------------------------------------
 
-	//¿´ÃÅ¹·
+	//çœ‹é—¨ç‹—
 	//watchdog_init();
 	
 	while(1)
 	{
-				//¿´ÃÅ¹·
-				//watchdog_action();
-				//
-				pdxbPooPoo=dxbPooPoo;
-				pdxbXuXu=dxbXuXu;
-				//		
-				//------------------------------------------------------------------
-				//¼ì²âÓĞÎŞÄòÀ­ÏÂÀ´		
-				//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //ÏŞÖÆÈç¹ûË®ÎÂ²»¹»²»²Ù×÷
-				{
-							if(dxbXuXu)
-							{
-								rXuxuDD++;
-								if(rXuxuDD>2000)
-								{
-										rXuxuDD=0;
-								}
-							}
-							else
-							{
-									rXuxuDD=0;
-							}
-				}
-				//------------------------------------------------------------------
-				//¼ì²âÓĞÃ»ÓĞÊºµôÏÂÀ´
-				//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10)  //ÏŞÖÆÈç¹ûË®ÎÂ²»¹»²»²Ù×÷
-				{
-							if(dxbPooPoo)
-							{
-								rPoopoDD++;
-								if(rPoopoDD>2000)
-								{
-										rPoopoDD=0;
-								}
-							}
-							else
-							{
-								rPoopoDD=0;
-							}
-				}
-
-				//------------------------------------------------------------------
-				//Ë®ÎÂ¼ÓÈÈ
-				rWaterTemp=DS18B20_Get_Temp();
-				if(rWaterTemp<2000 && rWaterTemp> -200) //ÏŞÖÆÎ»
-				{
-					ntmp=rWaterTemp-rWaterTemperature;
-					if(ntmp<20 && ntmp>-20)	//ÏŞÖÆÍ»±ä·ù¶È
+					//çœ‹é—¨ç‹—
+					//watchdog_action();
+					
+					//å¼€ç›–
+					ev=zhSCM_keyState(&btn1,TOUCHKEY_1_GPIO,TOUCHKEY_1_PIN);
+					switch(ev)
 					{
-							isWaterTooHot=0;							
-							if(rWaterTemp > 60*10) //¼ÓÈÈÆ÷ÓĞÎÊÌâÁË°É,Ì«¸ßÁË¾ÍÊÇ¼ÓÈÈÆ÷ÓĞÎÊÌâÁË.
-							{
-									//Ë®Ì«ÈÈÁË.·¢µ½´®¿Ú¸æËßÉÏÎ»»ú¶Ë,Í¨Öª»¤Ê¿Ğ¡ÃÃÃÃ,»úÆ÷¹ÊÕÏÁË
-									isWaterTooHot=1;
-							}								
-							rTrueWaterTemp=rWaterTemp;
-							isCheckWaterSensorErr=0;
-					}
-					rWaterTemperature=rWaterTemp;
-				}
-				else
-				{
-						isCheckWaterSensorErr++;						
-						if(isCheckWaterSensorErr>10) //´«¸ĞÊı¾İÃ«²¡Ì«¶à¹Øµô¼ÓÈÈ¼ÌµçÆ÷
+						case ZH_KEY_EVENT_NONE:
+							break;
+						case ZH_KEY_EVENT_DOWN:
+							break;
+						case ZH_KEY_EVENT_PRESS:
+							break;
+						case ZH_KEY_EVENT_UP:
 						{
-							//´«¸ĞÆ÷ÓĞÃ«²¡ÁË.
+							openGuiZi();
 						}
-				}
+						 break;
+					}
+					
+					//å…³ç›–
+					ev=zhSCM_keyState(&btn2,TOUCHKEY_2_GPIO,TOUCHKEY_2_PIN);
+					switch(ev)
+					{
+						case ZH_KEY_EVENT_NONE:
+							break;
+						case ZH_KEY_EVENT_DOWN:
+							break;
+						case ZH_KEY_EVENT_PRESS:
+							break;
+						case ZH_KEY_EVENT_UP:
+						{
+							closeGuiZi();
+						}
+						 break;
+					}
+					
+					//------------------------------------------------------------------
+					//æ°”å‹1
+					rPressureTmp = Get_Adc_Average(10);
+					ntmp=rPressureTmp-rPressure;
+					if(ntmp<60 && ntmp>-60) //é™åˆ¶çªå˜å¹…åº¦
+					{
+						ud485.qiya1_percent=rPressureTmp/4096;
+						rTruePressure1=rPressureTmp;
+						isCheckDZCQSensorErr=0;
+					}
+					else
+					{
+						isCheckDZCQSensorErr++;						
+						if(isCheckDZCQSensorErr>10) //ä¼ æ„Ÿæ•°æ®æœ‰æ¯›ç—…å…³æ‰ç»§ç”µå™¨
+						{
+						}
+					}
+					rPressure=rPressureTmp;
+			
+					//------------------------------------------------------------------
+					//æ°”å‹2
+					rPressure2Tmp= Get_Adc2_Average(10);
+					ntmp=rPressure2Tmp-rPressure2;
+					if(ntmp<60 && ntmp>-60) //é™åˆ¶çªå˜å¹…åº¦
+					{						
+						ud485.qiya2_percent=rPressureTmp/4096;
+						rTruePressure2=rPressure2Tmp;
+						isCheckBedCQSensorErr=0;
+					}
+					else
+					{
+						isCheckBedCQSensorErr++;						
+						if(isCheckBedCQSensorErr>10) //ä¼ æ„Ÿæ•°æ®æ¯›ç—…å¤ªå¤šå…³ç­‰ç»§ç”µå™¨
+						{
+						}
+					}
+					rPressure2=rPressure2Tmp;
+	}
 
-				//-------------------------------------------------------------------
-				//¿ÕÆø¼ÓÈÈ,ÊµÊ±Ìõ¼şÏŞÖÆ
-				rGasTemp=DS18B20_Get_Temp1(); 
-				if(rGasTemp<2000 && rGasTemp> -200) //ÏŞÖÆÎ»
-				{
-					ntmp=rGasTemp-rGasTemperature;
-					if(ntmp<20 && ntmp>-20) //ÏŞÖÆÍ»±ä·ù¶È
-					{
-							isGasTooHot=0;							
-							if(rGasTemp > 60*10) //¼ÓÈÈÆ÷ÓĞÎÊÌâÁË°É,Ì«¸ßÁË¾ÍÊÇ¼ÓÈÈÆ÷ÓĞÎÊÌâÁË.
-							{
-								//ÆøÎÂÌ«ÈÈÁË.·¢µ½´®¿Ú¸æËßÉÏÎ»»ú¶Ë,Í¨Öª»¤Ê¿Ğ¡ÃÃÃÃ,»úÆ÷¹ÊÕÏÁË
-								isGasTooHot=1;
-							}
-							rTrueGasTemp=rGasTemp;
-							isCheckGasSensorErr=0;
-					}
-					rGasTemperature=rGasTemp;
-				}
-				else
-				{
-					isCheckGasSensorErr++;						
-					if(isCheckGasSensorErr>10) //´«¸ĞÊı¾İÓĞÃ«²¡¹Øµô¼ÓÈÈ¼ÌµçÆ÷
-					{
-							//´«¸ĞÆ÷ÓĞÃ«²¡ÁË.¹Øµô¼ÌµçÆ÷
-							_unit12(0); //Æø¼ÓÈÈµ¥Ôª
-					}
-				}
-		}		
 }

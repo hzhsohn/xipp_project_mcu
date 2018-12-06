@@ -397,6 +397,11 @@
               <FileType>5</FileType>
               <FilePath>.\user\system_init.h</FilePath>
             </File>
+            <File>
+              <FileName>a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\user\a.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

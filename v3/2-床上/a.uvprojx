@@ -532,6 +532,16 @@
               <FileType>1</FileType>
               <FilePath>.\dev\InputDrive.c</FilePath>
             </File>
+            <File>
+              <FileName>drive.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dev\drive.c</FilePath>
+            </File>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dev\delay.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

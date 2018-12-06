@@ -11,16 +11,6 @@ void InputDriveInit(void)
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
   GPIO_Init(SENSOR1_GPIO, &GPIO_MyStruct);
 	
-	GPIO_MyStruct.GPIO_Pin = SENSOR2_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(SENSOR2_GPIO, &GPIO_MyStruct);
-	
-	GPIO_MyStruct.GPIO_Pin = SENSOR3_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(SENSOR3_GPIO, &GPIO_MyStruct);
-	
 	GPIO_MyStruct.GPIO_Pin = SENSOR4_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
@@ -30,5 +20,20 @@ void InputDriveInit(void)
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
   GPIO_Init(SENSOR5_GPIO, &GPIO_MyStruct);
+		
+	GPIO_MyStruct.GPIO_Pin = SENSOR6_PIN;
+  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
+  GPIO_Init(SENSOR6_GPIO, &GPIO_MyStruct);
+	
+	GPIO_MyStruct.GPIO_Pin = SENSOR7_PIN;
+  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
+  GPIO_Init(SENSOR7_GPIO, &GPIO_MyStruct);
+	
+	GPIO_MyStruct.GPIO_Pin = SENSOR8_PIN;
+  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
+  GPIO_Init(SENSOR8_GPIO, &GPIO_MyStruct);
 	
 }

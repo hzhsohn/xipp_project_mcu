@@ -33,35 +33,7 @@ void zhSCM_GPIOConfig(void)
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
   GPIO_Init(TOUCHKEY_2_GPIO, &GPIO_MyStruct);
 
-	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_3_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(TOUCHKEY_3_GPIO, &GPIO_MyStruct);
-	
-	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_4_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(TOUCHKEY_4_GPIO, &GPIO_MyStruct);
-	
-	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_5_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(TOUCHKEY_5_GPIO, &GPIO_MyStruct);
-	
-	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_6_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(TOUCHKEY_6_GPIO, &GPIO_MyStruct);
-	
-	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_7_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(TOUCHKEY_7_GPIO, &GPIO_MyStruct);
-	
-	GPIO_MyStruct.GPIO_Pin = TOUCHKEY_8_PIN;
-  GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
-  GPIO_Init(TOUCHKEY_8_GPIO, &GPIO_MyStruct);
+
 }
 /*******************************************************************************
 * º¯ÊýÃû       : zhSCM_initKeyState
