@@ -15,13 +15,7 @@
 #include "key.h"
 #include "OutputDrive.h"
 
-//
-void delay_s(int n)
-{
-		int i=0;
-		for(i=0;i<n*10;i++)
-		{ STM32_Delay_ms(100); }
-}
+
 
 //关闭所有输出
 void allSenceClose()

@@ -1,8 +1,30 @@
 #ifndef __SYSTEM_INIT_H_
 #define __SYSTEM_INIT_H_
-#include "stm32f10x_conf.h"
+#include "system_init.h"
+#include "Stm32f1_uart1.h"
+#include "Stm32f1_uart2.h"
+#include "Stm32f1_uart3.h"
+#include "InputDrive.h"
+#include "mini-data.h"
+#include "ds18b20.h"
+#include "Stm32f1_ADC1.h"
+#include "Stm32f1_ADC2.h"
+#include "ds18b20_1.h"
+#include "watchdog.h"
+#include "flash_rw.h"
+#include "Stm32F1_Timer2.h"
+#include "Stm32F1_Timer3.h"
+#include "key.h"
+#include "OutputDrive.h"
 #include "global.h"
 
+//
+static void delay_s(int n)
+{
+		int i=0;
+		for(i=0;i<n*10;i++)
+		{ STM32_Delay_ms(100); }
+}
 
 #define _unit1(x) 							RELAY1_STATE(x)			//吹气阀关  球形阀门
 #define _unit2(x) 							RELAY2_STATE(x)			//吹气阀开  球形阀门
