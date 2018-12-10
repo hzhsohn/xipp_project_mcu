@@ -70,7 +70,7 @@ void STM32F1_UART3_Init(u32_t lBaudRate)
     USART_Init(USART3,&USART_InitStructure);
 		NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
     NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
-		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
@@ -185,10 +185,12 @@ void recvLogic(int a,int b,unsigned char* data)
 			{				
 					//工作秒数
 					unsigned char t=data[0];
+					g_run.juint1Time=t*100;
 			}
 			break;
 			case 0xA3: //真空泵关
 			{
+					g_run.juint1Time=0;
 			}
 			break;
 			//-----------------------------------------
@@ -196,10 +198,12 @@ void recvLogic(int a,int b,unsigned char* data)
 			{				
 					//工作秒数
 					unsigned char t=data[0];
+					g_run.juint2Time=t*100;
 			}
 			break;
 			case 0xA5: //抽内桶负压阀
 			{
+					g_run.juint2Time=0;
 			}
 			break;			
 			//-----------------------------------------
@@ -207,54 +211,51 @@ void recvLogic(int a,int b,unsigned char* data)
 			{
 					//工作秒数
 					unsigned char t=data[0];
+					g_run.juint3Time=t*100;
 			}
 			break;			
 			case 0xA7: //抽外桶负压阀
-			{				
+			{
+					g_run.juint3Time=0;
 			}
 			break;			
 			//-----------------------------------------
-			case 0xA8: //正压阀开
+			case 0xA8: //净化放气阀开
 			{				
 					//工作秒数
 					unsigned char t=data[0];
+					g_run.juint4Time=t*100;
 			}
 			break;
-			case 0xA9:	//正压阀关
+			case 0xA9:	//净化放气阀关
 			{
+					g_run.juint4Time=0;
 			}
 			break;
 			//-----------------------------------------
-			case 0xAA: //抽小便阀开
+			case 0xAA: //气囊放气阀开
 			{				
 					//工作秒数
 					unsigned char t=data[0];
+					g_run.juint5Time=t*100;
 			}
 			break;
-			case 0xAB:	//抽小便阀关
+			case 0xAB:	//气囊放气阀关
 			{
+					g_run.juint5Time=0;
 			}
 			break;
 			//-----------------------------------------
-			case 0xAC: //净化放气阀
+			case 0xAC: //进气阀开
 			{				
 					//工作秒数
 					unsigned char t=data[0];
+					g_run.juint6Time=t*100;
 			}
 			break;
-			case 0xAD:	//净化放气阀关
+			case 0xAD:	//进气阀关
 			{
-			}
-			break;
-			//-----------------------------------------
-			case 0xAE: //进气阀开
-			{				
-					//工作秒数
-					unsigned char t=data[0];
-			}
-			break;
-			case 0xAF:	//进气阀关
-			{
+					g_run.juint6Time=0;
 			}
 			break;
 		}

@@ -60,6 +60,7 @@ void TIM3_IRQHandler(void)
 	//继电器操作
 	if(g_run.jiaoPanTime>0)
 	{
+			g_run.jiaoPanTime--;
 			_unit1(1);
 	}
 	else
@@ -69,6 +70,7 @@ void TIM3_IRQHandler(void)
 	
 	if(g_run.JiaReTime1>0 )
 	{
+		 g_run.JiaReTime1--;
 		 if(g_run.curJiaReWenDu <= g_run.JiaReWenDu1)
 		 {
 			 //开加热
@@ -88,6 +90,7 @@ void TIM3_IRQHandler(void)
 	
 	if(g_run.JiaReTime2>0)
 	{
+		g_run.JiaReTime2--;
 		if(g_run.curJiaReWenDu <= g_run.JiaReWenDu2)
 		{
 			//开加热

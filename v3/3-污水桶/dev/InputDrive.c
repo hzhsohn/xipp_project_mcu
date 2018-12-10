@@ -4,7 +4,7 @@ void InputDriveInit(void)
 {
 	GPIO_InitTypeDef GPIO_MyStruct;
 	/* ±÷” πƒ‹*/
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOE|RCC_APB2Periph_GPIOD,ENABLE);
 	
 	GPIO_MyStruct.GPIO_Pin = SENSOR1_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;

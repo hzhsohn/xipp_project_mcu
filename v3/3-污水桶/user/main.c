@@ -13,6 +13,7 @@
 #include "Stm32F1_Timer2.h"
 #include "Stm32F1_Timer3.h"
 #include "key.h"
+#include "InputDrive.h"
 #include "OutputDrive.h"
 #include "a.h"
 
@@ -34,12 +35,12 @@ void allClose()
 	 _unit2(0); 					
 	 _unit3(0); 					
 	 _unit4(0); 		 					
-	 _unit5(0); 						
-	 _unit6(0); 							
-	 _unit7(0); 							
-	 _unit8(0); 				 	
-	 _unit9(0); 								
-	 _unit10(0); 				 		
+	 _junit1(0); 						
+	 _junit2(0); 							
+	 _junit3(0); 							
+	 _junit4(0); 				 	
+	 _junit5(0); 								
+	 _junit6(0); 				 		
 	 _unit11(0);					
 	 _unit12(0); 	 						
 	 _unit13(0);
@@ -74,8 +75,8 @@ int main(void)
 	zhSCM_initKeyState(&btn2);
 	
 	STM32_Delay_init();
-	STM32F1_UART1_Init(115200);
-	STM32F1_UART2_Init(19200);
+	//STM32F1_UART1_Init(115200);
+	//STM32F1_UART2_Init(19200);
 	STM32F1_UART3_Init(9600);
 
 	DS18B20_Init();
@@ -100,6 +101,9 @@ int main(void)
 	{
 					//看门狗
 					//watchdog_action();
+		
+					//污水桶状态
+					ud485.water_full=SENSOR1_STATE();
 					
 					//开盖
 					ev=zhSCM_keyState(&btn1,TOUCHKEY_1_GPIO,TOUCHKEY_1_PIN);

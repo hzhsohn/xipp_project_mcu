@@ -40,6 +40,8 @@ void openGuiZi(void)
 				for(m=0;m<1000;m++);
 			//
 			while(SENSOR6_STATE());
+			_unit1(0);
+			_unit2(0);
 			
 			//
 			if(!SENSOR7_STATE())
@@ -48,6 +50,9 @@ void openGuiZi(void)
 				_unit4(0);
 				while(SENSOR8_STATE());
 			}
+			
+			_unit3(0);
+			_unit4(0);
 }
 
 void closeGuiZi(void)
@@ -58,13 +63,17 @@ void closeGuiZi(void)
 				_unit4(1);
 				while(SENSOR7_STATE());
 			}
+		  _unit3(0);
+			_unit4(0);			
 			
 			if(!SENSOR5_STATE())
 			{
 				_unit1(0);
 				_unit2(1);
 				while(SENSOR4_STATE());
-			}
+			}			
+			_unit1(0);
+			_unit2(0);
 }
 
 

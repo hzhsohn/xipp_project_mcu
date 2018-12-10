@@ -4,22 +4,35 @@
 #include "global.h"
 
 typedef struct _TagUpData485{
-	unsigned char qiya1_percent; //ÆøÑ¹1	
-	unsigned char qiya2_percent; //ÆøÑ¹2
+	unsigned char water_full;			//æ±¡æ°´æ˜¯å¦æ»¡
+	unsigned char qiya1_percent; 	//æ°”å‹1	
+	unsigned char qiya2_percent; 	//æ°”å‹2
 }TagUpData485;
 static TagUpData485 ud485={0};
 
+typedef struct _TagTimeRun{
+	int juint1Time;
+	int juint2Time;
+	int juint3Time;
+	int juint4Time;
+	int juint5Time;
+	int juint6Time;
+}TagTimeRun;
+static TagTimeRun g_run={0};
 
-#define _unit1(x) 							RELAY1_STATE(x)			//Í°¸ÇÉÏÏÂ-
-#define _unit2(x) 							RELAY2_STATE(x)			//Í°¸ÇÉÏÏÂ+
-#define _unit3(x) 							RELAY3_STATE(x)			//Í°½ø³ö-
-#define _unit4(x) 		 					RELAY4_STATE(x)			//Í°½ø³ö+
-#define _unit5(x) 							RELAY5_STATE(x)			//
-#define _unit6(x) 							RELAY6_STATE(x)			//
-#define _unit7(x) 							RELAY7_STATE(x)			//
-#define _unit8(x) 				 			RELAY8_STATE(x) 		//
-#define _unit9(x) 							RELAY9_STATE(x)			//
-#define _unit10(x) 				 			RELAY10_STATE(x)		//
+
+#define _unit1(x) 							RELAY1_STATE(x)			//æ¡¶ç›–ä¸Šä¸‹-
+#define _unit2(x) 							RELAY2_STATE(x)			//æ¡¶ç›–ä¸Šä¸‹+
+#define _unit3(x) 							RELAY3_STATE(x)			//æ¡¶è¿›å‡º-
+#define _unit4(x) 		 					RELAY4_STATE(x)			//æ¡¶è¿›å‡º+
+
+#define _junit1(x) 							RELAY5_STATE(x)			//
+#define _junit2(x) 							RELAY6_STATE(x)			//
+#define _junit3(x) 							RELAY7_STATE(x)			//
+#define _junit4(x) 				 			RELAY8_STATE(x) 		//
+#define _junit5(x) 							RELAY9_STATE(x)			//
+#define _junit6(x) 				 			RELAY10_STATE(x)		//
+
 #define _unit11(x)							RELAY11_STATE(x) 		//
 #define _unit12(x) 	 						RELAY12_STATE(x)		//
 #define _unit13(x) 							RELAY13_STATE(x)		//

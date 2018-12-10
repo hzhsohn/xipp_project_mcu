@@ -169,6 +169,8 @@ void recvLogic(int a,int b,unsigned char* data)
 			case 0x00: //获取传感器
 			{
 					 uart3Send(0x10,(char*)&ud485,sizeof(TagUpData485));
+					 //传感器复位
+				   ud485.key=0;
 			}
 			break;
 			//-----------------------------------------
@@ -176,11 +178,13 @@ void recvLogic(int a,int b,unsigned char* data)
 			{					
 					//工作秒数
 					unsigned char t=data[0];
+					g_run.juint1Time=t*100;
+					
 			}
 			break;
-			case 0xA1: //抽             水机关
+			case 0xA1: //抽水机关
 			{
-					
+					g_run.juint1Time=0;
 			}
 			break;
 			//-----------------------------------------
@@ -188,10 +192,12 @@ void recvLogic(int a,int b,unsigned char* data)
 			{				
 					//工作秒数
 					unsigned char t=data[0];
+					g_run.juint2Time=t*100;
 			}
 			break;
 			case 0xA3: //水加热关
 			{
+					g_run.juint2Time=0;
 			}
 			break;
 			//-----------------------------------------
@@ -199,10 +205,12 @@ void recvLogic(int a,int b,unsigned char* data)
 			{				
 					//工作秒数
 					unsigned char t=data[0];
+					g_run.juint3Time=t*100;
 			}
 			break;
 			case 0xA5: //大便斗冲水阀关
 			{
+					g_run.juint3Time=0;
 			}
 			break;			
 			//-----------------------------------------
@@ -210,10 +218,12 @@ void recvLogic(int a,int b,unsigned char* data)
 			{
 					//工作秒数
 					unsigned char t=data[0];
+					g_run.juint4Time=t*100;
 			}
 			break;			
 			case 0xA7: //清洁冲水阀关
-			{				
+			{
+					g_run.juint4Time=0;
 			}
 			break;			
 			//-----------------------------------------
@@ -221,10 +231,12 @@ void recvLogic(int a,int b,unsigned char* data)
 			{				
 					//工作秒数
 					unsigned char t=data[0];
+					g_run.juint5Time=t*100;
 			}
 			break;
 			case 0xA9:	//小便斗冲水阀
 			{
+					g_run.juint5Time=0;
 			}
 			break;
 			

@@ -1,5 +1,6 @@
 #include "Stm32F1_Timer3.h"
 #include "InputDrive.h"
+#include "OutputDrive.h"
 
 extern int g_timeoverUart1;
 extern int g_uart1len;
@@ -56,6 +57,67 @@ void TIM3_IRQHandler(void)
 			g_timeoverUart3=0;
 	}
 
+	//---------------------------
+	//继电器操作
+	if(g_run.juint1Time>0)
+	{
+			g_run.juint1Time--;
+			_junit1(1);
+	}
+	else
+	{
+			_junit1(0);
+	}
+	
+	if(g_run.juint2Time>0)
+	{
+			g_run.juint2Time--;
+			_junit2(1);
+	}
+	else
+	{
+			_junit2(0);
+	}
+	
+	if(g_run.juint3Time>0)
+	{
+			g_run.juint3Time--;
+			_junit3(1);
+	}
+	else
+	{
+			_junit3(0);
+	}
+	
+	if(g_run.juint4Time>0)
+	{
+			g_run.juint4Time--;
+			_junit4(1);
+	}
+	else
+	{
+			_junit4(0);
+	}
+	
+	if(g_run.juint5Time>0)
+	{
+			g_run.juint5Time--;
+			_junit5(1);
+	}
+	else
+	{
+			_junit5(0);
+	}
+	
+	if(g_run.juint6Time>0)
+	{
+			g_run.juint6Time--;
+			_junit6(1);
+	}
+	else
+	{
+			_junit6(0);
+	}
 	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
 }

@@ -155,7 +155,7 @@ int main(void)
 							}								
 							rTrueWaterTemp=rWaterTemp;
 							isCheckWaterSensorErr=0;
-							ud485.PiGuWenDu=rTrueWaterTemp*0.1f;
+							ud485.PiGuWenDu=rTrueWaterTemp;
 					}
 					rWaterTemperature=rWaterTemp;
 				}
@@ -186,7 +186,7 @@ int main(void)
 							}
 							rTrueGasTemp=rGasTemp;
 							isCheckGasSensorErr=0;
-							g_run.curJiaReWenDu=rTrueGasTemp*0.1f;
+							g_run.curJiaReWenDu=rTrueGasTemp;
 					}
 					rGasTemperature=rGasTemp;
 				}
