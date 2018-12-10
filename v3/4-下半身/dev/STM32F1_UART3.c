@@ -4,6 +4,7 @@
 #include "stdlib.h"
 
 extern TagUpData485 ud485;
+extern TagTimeRun g_run;
 
 //
 void recvLogic(int a,int b,unsigned char* data);

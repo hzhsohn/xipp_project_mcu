@@ -72,7 +72,7 @@ typedef enum _EzhKeyState{
 typedef enum _EzhKeyEvent{
    ZH_KEY_EVENT_NONE,
    ZH_KEY_EVENT_DOWN,
-   ZH_KEY_EVENT_PRESS,
+   ZH_KEY_EVENT_PRESS, 
    ZH_KEY_EVENT_UP
 }EzhKeyEvent;
 

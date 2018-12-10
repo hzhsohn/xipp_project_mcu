@@ -9,8 +9,6 @@ typedef struct _TagUpData485{
 	unsigned char PiGuWenDu;  //屁股的温度
 	unsigned char miaibo;			//脉博
 }TagUpData485;
-//提交的数据
-static TagUpData485 ud485={0};
 
 typedef struct _TagTimeRun{
 	int jiaoPanTime;
@@ -20,7 +18,6 @@ typedef struct _TagTimeRun{
 	int JiaReWenDu2;
 	int curJiaReWenDu;
 }TagTimeRun;
-static TagTimeRun g_run={0};
 
 #define _unit1(x) 											RELAY1_STATE(x)			//搅拌
 #define _unit2(x) 											RELAY2_STATE(x)			//风机1

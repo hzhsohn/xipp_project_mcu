@@ -5,19 +5,19 @@
 
 
 #define RELAY1_GPIO 	GPIOB
-#define RELAY1_PIN  	GPIO_Pin_12
+#define RELAY1_PIN  	GPIO_Pin_14
 
-#define RELAY2_GPIO 	GPIOB
-#define RELAY2_PIN  	GPIO_Pin_13
+#define RELAY2_GPIO 	GPIOA
+#define RELAY2_PIN  	GPIO_Pin_8
 
-#define RELAY3_GPIO 	GPIOB
-#define RELAY3_PIN  	GPIO_Pin_14
+#define RELAY3_GPIO 	GPIOD
+#define RELAY3_PIN  	GPIO_Pin_10
 
-#define RELAY4_GPIO 	GPIOB
-#define RELAY4_PIN  	GPIO_Pin_15
+#define RELAY4_GPIO 	GPIOD
+#define RELAY4_PIN  	GPIO_Pin_11
 
 #define RELAY5_GPIO 	GPIOD
-#define RELAY5_PIN  	GPIO_Pin_10
+#define RELAY5_PIN  	GPIO_Pin_12
                                                                             
 #define RELAY6_GPIO 	GPIOD
 #define RELAY6_PIN  	GPIO_Pin_11
@@ -54,6 +54,7 @@
 #define RELAY3_STATE(x) (!x)>0?GPIO_SetBits(RELAY3_GPIO,RELAY3_PIN):GPIO_ResetBits(RELAY3_GPIO,RELAY3_PIN)
 #define RELAY4_STATE(x) (!x)>0?GPIO_SetBits(RELAY4_GPIO,RELAY4_PIN):GPIO_ResetBits(RELAY4_GPIO,RELAY4_PIN)
 #define RELAY5_STATE(x) (!x)>0?GPIO_SetBits(RELAY5_GPIO,RELAY5_PIN):GPIO_ResetBits(RELAY5_GPIO,RELAY5_PIN)
+
 #define RELAY6_STATE(x) (!x)>0?GPIO_SetBits(RELAY6_GPIO,RELAY6_PIN):GPIO_ResetBits(RELAY6_GPIO,RELAY6_PIN)
 #define RELAY7_STATE(x) (!x)>0?GPIO_SetBits(RELAY7_GPIO,RELAY7_PIN):GPIO_ResetBits(RELAY7_GPIO,RELAY7_PIN)
 #define RELAY8_STATE(x) (!x)>0?GPIO_SetBits(RELAY8_GPIO,RELAY8_PIN):GPIO_ResetBits(RELAY8_GPIO,RELAY8_PIN)

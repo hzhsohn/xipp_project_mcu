@@ -8,7 +8,6 @@ typedef struct _TagUpData485{
 	unsigned char qiya1_percent; 	//气压1	
 	unsigned char qiya2_percent; 	//气压2
 }TagUpData485;
-static TagUpData485 ud485={0};
 
 typedef struct _TagTimeRun{
 	int juint1Time;
@@ -18,8 +17,6 @@ typedef struct _TagTimeRun{
 	int juint5Time;
 	int juint6Time;
 }TagTimeRun;
-static TagTimeRun g_run={0};
-
 
 #define _unit1(x) 							RELAY1_STATE(x)			//桶盖上下-
 #define _unit2(x) 							RELAY2_STATE(x)			//桶盖上下+

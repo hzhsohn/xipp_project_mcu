@@ -1,6 +1,6 @@
 Dependencies for Project 'a', Target 'Target 1': (DO NOT MODIFY !)
 F (.\user\main.c)(0x5C065428)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (user\system_init.h)(0x5C0652C7)
+I (user\system_init.h)(0x5C0E57F5)
 I (user\stm32f10x_conf.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BD05C0D)
 I (D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5825386C)
@@ -50,11 +50,11 @@ I (user\logic.h)(0x5C064071)
 F (.\user\mini-data.c)(0x5BD05C0E)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\mini-data.o --omf_browse .\objects\mini-data.crf --depend .\objects\mini-data.d)
 I (user\mini-data.h)(0x5BD05C0E)
 F (.\user\global.h)(0x5BD05C0E)()
-F (.\user\system_init.h)(0x5C0652C7)()
+F (.\user\system_init.h)(0x5C0E57F5)()
 F (.\user\logic.c)(0x5C0643F1)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\logic.o --omf_browse .\objects\logic.crf --depend .\objects\logic.d)
 I (user\mini-data.h)(0x5BD05C0E)
 I (.\dev\Stm32f1_uart3.h)(0x5BFE532F)
-I (.\user\system_init.h)(0x5C0652C7)
+I (.\user\system_init.h)(0x5C0E57F5)
 I (.\user\stm32f10x_conf.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BD05C0D)
 I (D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5825386C)
@@ -325,7 +325,7 @@ I (.\libs\inc\misc.h)(0x5BD05C0D)
 F (.\libs\inc\conf.h)(0x5BD05C0D)()
 F (.\dev\STM32_Delay.c)(0x5BD05C0D)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32_delay.o --omf_browse .\objects\stm32_delay.crf --depend .\objects\stm32_delay.d)
 I (dev\STM32_Delay.h)(0x5BD05C0D)
-I (.\user\system_init.h)(0x5C0652C7)
+I (.\user\system_init.h)(0x5C0E57F5)
 I (.\user\stm32f10x_conf.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BD05C0D)
 I (D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5825386C)
@@ -395,7 +395,7 @@ I (.\libs\inc\stm32f10x_wwdg.h)(0x5BD05C0E)
 I (.\libs\inc\misc.h)(0x5BD05C0D)
 F (.\dev\watchdog.c)(0x5BD05C0D)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\watchdog.o --omf_browse .\objects\watchdog.crf --depend .\objects\watchdog.d)
 I (dev\watchdog.h)(0x5BD05C0D)
-I (.\user\system_init.h)(0x5C0652C7)
+I (.\user\system_init.h)(0x5C0E57F5)
 I (.\user\stm32f10x_conf.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BD05C0D)
 I (D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5825386C)
@@ -467,7 +467,7 @@ I (.\libs\inc\stm32f10x_wwdg.h)(0x5BD05C0E)
 I (.\libs\inc\misc.h)(0x5BD05C0D)
 F (.\dev\Stm32F1_Timer2.c)(0x5C0652D6)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_timer2.o --omf_browse .\objects\stm32f1_timer2.crf --depend .\objects\stm32f1_timer2.d)
 I (dev\Stm32F1_Timer2.h)(0x5BD05C0D)
-I (.\user\system_init.h)(0x5C0652C7)
+I (.\user\system_init.h)(0x5C0E57F5)
 I (.\user\stm32f10x_conf.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BD05C0D)
 I (D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5825386C)
@@ -505,7 +505,7 @@ I (dev\InputDrive.h)(0x5BD05C0D)
 I (dev\STM32F1_UART1.h)(0x5BD05C0D)
 F (.\dev\Stm32F1_Timer3.c)(0x5C06551A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_timer3.o --omf_browse .\objects\stm32f1_timer3.crf --depend .\objects\stm32f1_timer3.d)
 I (dev\Stm32F1_Timer3.h)(0x5BD05C0D)
-I (.\user\system_init.h)(0x5C0652C7)
+I (.\user\system_init.h)(0x5C0E57F5)
 I (.\user\stm32f10x_conf.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BD05C0D)
 I (D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5825386C)
@@ -543,7 +543,7 @@ I (dev\InputDrive.h)(0x5BD05C0D)
 I (.\user\logic.h)(0x5C064071)
 F (.\dev\key.c)(0x5BFE3E3A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\key.o --omf_browse .\objects\key.crf --depend .\objects\key.d)
 I (dev\key.h)(0x5BD195BA)
-I (.\user\system_init.h)(0x5C0652C7)
+I (.\user\system_init.h)(0x5C0E57F5)
 I (.\user\stm32f10x_conf.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BD05C0D)
 I (D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5825386C)
@@ -612,11 +612,11 @@ I (.\libs\inc\stm32f10x_usart.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_wwdg.h)(0x5BD05C0E)
 I (.\libs\inc\misc.h)(0x5BD05C0D)
 I (dev\STM32_Delay.h)(0x5BD05C0D)
-I (.\user\system_init.h)(0x5C0652C7)
+I (.\user\system_init.h)(0x5C0E57F5)
 I (.\user\global.h)(0x5BD05C0E)
 F (.\dev\STM32F1_UART1.c)(0x5C026109)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_uart1.o --omf_browse .\objects\stm32f1_uart1.crf --depend .\objects\stm32f1_uart1.d)
 I (dev\Stm32f1_uart1.h)(0x5BD05C0D)
-I (.\user\system_init.h)(0x5C0652C7)
+I (.\user\system_init.h)(0x5C0E57F5)
 I (.\user\stm32f10x_conf.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BD05C0D)
 I (D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5825386C)
@@ -655,7 +655,7 @@ I (dev\flash_rw.h)(0x5BD05C0D)
 I (dev\STM32_Delay.h)(0x5BD05C0D)
 F (.\dev\STM32F1_UART2.c)(0x5C0260FE)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_uart2.o --omf_browse .\objects\stm32f1_uart2.crf --depend .\objects\stm32f1_uart2.d)
 I (dev\Stm32f1_uart2.h)(0x5BD172DC)
-I (.\user\system_init.h)(0x5C0652C7)
+I (.\user\system_init.h)(0x5C0E57F5)
 I (.\user\stm32f10x_conf.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BD05C0D)
 I (D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5825386C)
@@ -694,7 +694,7 @@ I (dev\flash_rw.h)(0x5BD05C0D)
 I (dev\STM32_Delay.h)(0x5BD05C0D)
 F (.\dev\STM32F1_UART3.c)(0x5C063BE1)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_uart3.o --omf_browse .\objects\stm32f1_uart3.crf --depend .\objects\stm32f1_uart3.d)
 I (dev\Stm32f1_uart3.h)(0x5BFE532F)
-I (.\user\system_init.h)(0x5C0652C7)
+I (.\user\system_init.h)(0x5C0E57F5)
 I (.\user\stm32f10x_conf.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BD05C0D)
 I (D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5825386C)
@@ -734,7 +734,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x56FE42DE)
 I (.\user\logic.h)(0x5C064071)
 F (.\dev\InputDrive.c)(0x5BD05C0D)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE-I E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\inputdrive.o --omf_browse .\objects\inputdrive.crf --depend .\objects\inputdrive.d)
 I (dev\InputDrive.h)(0x5BD05C0D)
-I (.\user\system_init.h)(0x5C0652C7)
+I (.\user\system_init.h)(0x5C0E57F5)
 I (.\user\stm32f10x_conf.h)(0x5BD05C0E)
 I (.\libs\inc\stm32f10x_adc.h)(0x5BD05C0D)
 I (D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5825386C)

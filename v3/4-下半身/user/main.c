@@ -17,6 +17,7 @@
 
 //
 TagUpData485 ud485;
+TagTimeRun g_run={0};
 
 /**************/
 //传感器逻辑重定义
@@ -90,11 +91,12 @@ int main(void)
 	OutputDriveInit();
 	zhSCM_GPIOConfig();
 	
+	RELAY1_STATE(1);
 	//-----------------------------------------
 	//获取FALSH数据
 	setFlashData();
   //-----------------------------------------
-
+	
 	//看门狗
 	//watchdog_init();
 	

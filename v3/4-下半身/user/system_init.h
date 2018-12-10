@@ -17,7 +17,6 @@ typedef struct _TagTimeRun{
 	int juint4Time;
 	int juint5Time;
 }TagTimeRun;
-static TagTimeRun g_run={0};
 
 #define _junit1(x) 							RELAY1_STATE(x)			//抽水机
 #define _junit2(x) 							RELAY2_STATE(x)			//水加热

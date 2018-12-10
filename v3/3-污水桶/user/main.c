@@ -17,7 +17,9 @@
 #include "OutputDrive.h"
 #include "a.h"
 
-extern TagUpData485 ud485;
+
+TagUpData485 ud485={0};
+TagTimeRun g_run={0};
 
 int ntmp=0;
 int isCheckBedCQSensorErr=0;//气压防错误限制

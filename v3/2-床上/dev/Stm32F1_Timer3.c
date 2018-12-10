@@ -11,6 +11,10 @@ extern int g_uart2len;
 extern int g_timeoverUart3;
 extern int g_uart3len;
 
+
+extern TagUpData485 ud485;
+extern TagTimeRun g_run;
+
 void Stm32F1_Timer3Init(void)
 {
 	NVIC_InitTypeDef MyTimerIrConfig;

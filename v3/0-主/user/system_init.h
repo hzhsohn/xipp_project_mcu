@@ -3,22 +3,49 @@
 #include "stm32f10x_conf.h"
 #include "global.h"
 
+//S2
+typedef struct _TagUpData485_S2{
+	unsigned char shi;				//æ˜¯å¦æ‹‰å±
+	unsigned char niao;				//æ˜¯å¦æ‹‰å°¿
+	unsigned char PiGuWenDu;  //å±è‚¡çš„æ¸©åº¦
+	unsigned char miaibo;			//è„‰åš
+}TagUpData485_S2;
+
+//S3
+typedef struct _TagUpData485_S3{
+	unsigned char water_full;			//æ±¡æ°´æ˜¯å¦æ»¡
+	unsigned char qiya1_percent; 	//æ°”å‹1	
+	unsigned char qiya2_percent; 	//æ°”å‹2
+}TagUpData485_S3;
+
+//S4
+typedef struct _TagUpData485_S4{
+	unsigned char key;
+	unsigned char shuiWen;
+	unsigned char shuiGuoDi; //1æ°´ä½ä½,2æ°´ä½é«˜
+}TagUpData485_S4;
+
+//S5
+typedef struct _TagUpData485_S5{
+	unsigned char qiwen; //æ°”æ¸©å¤šå°‘åº¦
+}TagUpData485_S5;
+
 
 typedef struct _TagTimeingSetting{
-		unsigned char pooDelay;				//À­Êººó¶àÉÙÃëÆô¶¯ ,µ¥Î»·ÖÖÓ
-		unsigned char xuxuDelay;			//À­Êººó¶àÉÙÃëÆô¶¯ ,µ¥Î»Ãë
-		unsigned char pooFlush;				//ÊºÊº³åÏ´  ,µ¥Î»Ãë
-		unsigned char xuxuFlush;			//ÄòÄò³åÏ´  µ¥Î» Ãë
-		unsigned char pooDry;      		//ÊºÊººæ¸ÉÊ±¼ä µ¥Î» ·ÖÖÓ
-		unsigned char xuxuDry;				//ÄòÄòºæ¸ÉÊ±¼ä µ¥Î» ·ÖÖÓ
-		unsigned char pooSterilize;		//ÊºÊºÏû¶¾Ê±¼ä µ¥Î» Ãë
-		unsigned char xuxuSterilize;	//ÄòÄòÏû¶¾Ê±¼ä µ¥Î» Ãë
-	  unsigned char crotchPressure;	//¿ãµµÆøÑ¹ µ¥Î» 100µçÑ¹±äÊı
-		unsigned char bedPressure;   	//´²µæµÄÆøÑ¹  µ¥Î» 100µçÑ¹±äÊı
-		unsigned char waterTemperature;//×îµÍË®ÎÂ   µ¥Î»ÉãÊÏ¶È
-		unsigned char airTemperature;  //×îµÍºæ¸ÉÎÂ¶È   µ¥Î»ÉãÊÏ¶È
-		unsigned char mpuLeft; 				//×ó½Ç
-		unsigned char mpuRight;  			//ÓÒ½Ç
+		unsigned char pooDelay;				//æ‹‰å±åå¤šå°‘ç§’å¯åŠ¨ ,å•ä½åˆ†é’Ÿ
+		unsigned char xuxuDelay;			//æ‹‰å±åå¤šå°‘ç§’å¯åŠ¨ ,å•ä½ç§’
+		unsigned char pooFlush;				//å±å±å†²æ´—  ,å•ä½ç§’
+		unsigned char xuxuFlush;			//å°¿å°¿å†²æ´—  å•ä½ ç§’
+		unsigned char pooDry;      		//å±å±çƒ˜å¹²æ—¶é—´ å•ä½ åˆ†é’Ÿ
+		unsigned char xuxuDry;				//å°¿å°¿çƒ˜å¹²æ—¶é—´ å•ä½ åˆ†é’Ÿ
+		unsigned char pooSterilize;		//å±å±æ¶ˆæ¯’æ—¶é—´ å•ä½ ç§’
+		unsigned char xuxuSterilize;	//å°¿å°¿æ¶ˆæ¯’æ—¶é—´ å•ä½ ç§’
+	  unsigned char crotchPressure;	//è£¤æ¡£æ°”å‹ å•ä½ 100ç”µå‹å˜æ•°
+		unsigned char bedPressure;   	//åºŠå«çš„æ°”å‹  å•ä½ 100ç”µå‹å˜æ•°
+		unsigned char waterTemperature;//æœ€ä½æ°´æ¸©   å•ä½æ‘„æ°åº¦
+		unsigned char airTemperature;  //æœ€ä½çƒ˜å¹²æ¸©åº¦   å•ä½æ‘„æ°åº¦
+		unsigned char mpuLeft; 				//å·¦è§’
+		unsigned char mpuRight;  			//å³è§’
 }TagTimeingSetting;
 
 

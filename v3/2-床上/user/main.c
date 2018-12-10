@@ -16,7 +16,9 @@
 #include "OutputDrive.h"
 
 //提交的数据
-extern TagUpData485 ud485;
+TagUpData485 ud485;
+TagTimeRun g_run;
+
 
 //大小便检测
 #define dxbPooPoo  				SENSOR4_STATE()?0:1    //屎
@@ -97,8 +99,6 @@ int main(void)
 
 	//看门狗
 	//watchdog_init();
-	
-	
 	
 	while(1)
 	{
