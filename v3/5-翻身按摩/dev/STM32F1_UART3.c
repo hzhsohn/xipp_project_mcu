@@ -115,7 +115,7 @@ void USART3_IRQHandler(void)
 								b=g_ocCmd3.parameter[1];
 								pdata=&g_ocCmd3.parameter[2];
 								//
-								if(a==2)
+								if(a==5)
 								{
 										recvLogic(a,b,pdata);
 								}

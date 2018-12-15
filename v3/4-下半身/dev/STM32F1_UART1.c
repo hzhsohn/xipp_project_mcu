@@ -88,8 +88,8 @@ void USART1_IRQHandler(void)
 				
 			  //周期计数复位
 			  g_timeoverUart1=0;
-			
-				if(g_uart1len+1>128){ g_uart1len=0; }
+
+				if(g_uart1len+1>128){ g_uart1len=0;}
 				g_cache[g_uart1len]=uart1Data;
 				g_uart1len++;
 				if(0xFA==uart1Data)

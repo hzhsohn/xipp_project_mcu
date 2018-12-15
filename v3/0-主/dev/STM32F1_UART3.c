@@ -129,27 +129,26 @@ void USART3_IRQHandler(void)
 }
 
 //发送,通信统一用10个字节
-void uart3Send(unsigned char i,unsigned char f,unsigned char*data,int datalen)
+void uart3Send(unsigned char k,unsigned char f,unsigned char*data,int datalen)
 {
-		uchar dst_buf[32]={0};
+		int i=0;
+		uchar dst_buf[36]={0};
 		int myDataLen=0;
-		unsigned char cbuf[24]={0};
+		unsigned char cbuf[30]={0};
+				
+		cbuf[0]=k; 
+		cbuf[1]=f;
 		
-		if(datalen!=8)
-		{return;}
-		
-		cbuf[0]=i; //位置 0-5 ,0代表本机
-		cbuf[1]=f; //功能 
-		cbuf[2]=data[0];
-		cbuf[3]=data[1];
-		cbuf[4]=data[2];
-		cbuf[5]=data[3];
-		cbuf[6]=data[4];
-		cbuf[7]=data[5];
-		cbuf[8]=data[6];
-		cbuf[9]=data[7];
-		
-		myDataLen = miniDataCreate(10,cbuf,dst_buf);
-		STM32F1_UART3SendDataS(dst_buf,myDataLen);
+		if(data)
+		{
+				for(i=0;i<datalen;i++)
+				{
+					cbuf[i+2]=data[i];
+				}
+		}
+	
+		myDataLen = miniDataCreate(2+datalen,cbuf,dst_buf);
+		GPIO_SetBits(GPIOD,GPIO_Pin_10);
+		STM32F1_UART3SendDataS(dst_buf,myDataLen);		
+		GPIO_ResetBits(GPIOD,GPIO_Pin_10);	
 }
-

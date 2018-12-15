@@ -35,16 +35,16 @@ void recvLogic(int a,int b,unsigned char* data)
 				s1_000(b, data);
 			break;
 			case 0x02:
-			//	s2_000(b, data);
+				s2_000(b, data);
 			break;
 			case 0x03:
-			//	s3_000(b, data);
+				s3_000(b, data);
 			break;
 			case 0x04:
-			//	s4_000(b, data);
+				s4_000(b, data);
 			break;
 			case 0x05:
-			//	s5_000(b, data);
+				s5_000(b, data);
 			break;
 		}
 }
@@ -81,36 +81,31 @@ void dev_status(void)
 		{
 			case 0:
 			{
-		unsigned char data[]={	1,0,0,0,0,
-														0,0,0,0,0};
+		unsigned char data[]={	1,0};
 				addLogicCmd(data,10);
 			}
 				break;
 			case 1:
 			{
-		unsigned char data[]={	2,0,0,0,0,
-														0,0,0,0,0};
+		unsigned char data[]={	2,0};
 				addLogicCmd(data,10);
 			}
 				break;
 			case 2:
 			{
-		unsigned char data[]={	3,0,0,0,0,
-														0,0,0,0,0};
+		unsigned char data[]={	3,0};
 				addLogicCmd(data,10);
 			}
 				break;
 			case 3:
 			{
-		unsigned char data[]={	4,0,0,0,0,
-														0,0,0,0,0};
+		unsigned char data[]={	4,0};
 				addLogicCmd(data,10);
 			}
 				break;
 			case 4:
 			{
-		unsigned char data[]={	5,0,0,0,0,
-														0,0,0,0,0};
+		unsigned char data[]={	5,0};
 				addLogicCmd(data,10);
 			}
 				break;
@@ -134,7 +129,57 @@ void s3_000(int b,unsigned char*data)
 }
 void s4_000(int b,unsigned char*data)
 {
-		
+		switch(b)
+		{
+			case 0x10:
+			{
+				TagUpData485_S4*p=(TagUpData485_S4*)data;
+				switch(p->key)
+				{
+					case 1:
+					{
+							uart3Send(0xFF,0xF1,NULL,0);
+					}
+						break;
+					case 2:
+					{
+							uart3Send(0xFF,0xF2,NULL,0);
+					}
+						break;
+					case 3:
+					{
+							uart3Send(0xFF,0xF3,NULL,0);
+					}
+						break;
+					case 4:
+					{
+							uart3Send(0xFF,0xF4,NULL,0);
+					}	
+						break;
+					case 5:
+					{
+							uart3Send(0xFF,0xF5,NULL,0);
+					}
+						break;
+					case 6:
+					{
+							uart3Send(0xFF,0xF6,NULL,0);
+					}
+						break;
+					case 7:
+					{
+							uart3Send(0xFF,0xF7,NULL,0);
+					}
+						break;
+					case 8:
+					{
+							uart3Send(0xFF,0xF8,NULL,0);
+					}
+						break;
+				}
+			}
+				break;
+		}
 }
 void s5_000(int b,unsigned char*data)
 {

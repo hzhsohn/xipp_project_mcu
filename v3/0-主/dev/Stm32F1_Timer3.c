@@ -15,7 +15,6 @@ int g_intervalSend=0;
 //最后执行时间
 int g_interValLastExc=0;
 //
-extern 
 
 
 void Stm32F1_Timer3Init(void)
@@ -63,7 +62,7 @@ void TIM3_IRQHandler(void)
 	}
 	
 	//搜索硬件状态指令
-	if(g_intervalSend>200)
+	if(g_intervalSend>10)
 	{
 			if(0==getCmdCount())
 			{
@@ -74,7 +73,7 @@ void TIM3_IRQHandler(void)
 	}
 	
 	//执行间隔
-	if(g_interValLastExc>50)
+	if(g_interValLastExc>1)
 	{
 			sendLogic();
 			g_interValLastExc=0;

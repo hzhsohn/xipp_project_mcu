@@ -11,11 +11,11 @@
 #include "key.h"
 #include "logic.h"
 
-//ÊÇ·ñ×Ô¶¯»¯²Ù×÷
+//æ˜¯å¦è‡ªåŠ¨åŒ–æ“ä½œ
 unsigned char g_isAutomation=1;
 unsigned char g_cCleanCurrentSence=0;  
 
-//¹¤×÷Ê±¼äÉèÖÃ
+//å·¥ä½œæ—¶é—´è®¾ç½®
 TagTimeingSetting g_tmeSetting={0};
 
 //
@@ -50,19 +50,19 @@ void setFlashData()
 			binFlag[2]='c';
 			binFlag[3]='d';
 
-			//³õÊ¼»¯FLASHÄÚÈİ
-			g_tmeSetting.pooDelay=1;					  //À­Êººó¶àÉÙÃëÆô¶¯ ,µ¥Î»·ÖÖÓ
-			g_tmeSetting.xuxuDelay=10;				  //À­Êººó¶àÉÙÃëÆô¶¯ ,µ¥Î»Ãë
-			g_tmeSetting.pooFlush=30;					  //ÊºÊº³åÏ´  ,	µ¥Î»Ãë
-			g_tmeSetting.xuxuFlush=10;				  //ÄòÄò³åÏ´  	µ¥Î» Ãë
-			g_tmeSetting.pooDry=2;      		  	//ÊºÊººæ¸ÉÊ±¼ä µ¥Î» ·ÖÖÓ
-			g_tmeSetting.xuxuDry=1;					  	//ÄòÄòºæ¸ÉÊ±¼ä µ¥Î» ·ÖÖÓ
-			g_tmeSetting.pooSterilize=10;			  //ÊºÊºÏû¶¾Ê±¼ä µ¥Î» Ãë
-			g_tmeSetting.xuxuSterilize=10;		  //ÄòÄòÏû¶¾Ê±¼ä µ¥Î» Ãë
-			g_tmeSetting.crotchPressure=13;			//¿ãµµÆøÑ¹ µ¥Î» 100µçÑ¹±äÊı
-			g_tmeSetting.bedPressure=13;   			//´²µæµÄÆøÑ¹  µ¥Î» 100µçÑ¹±äÊı
-			g_tmeSetting.waterTemperature=38;		//×îµÍË®ÎÂ   			µ¥Î»ÉãÊÏ¶È
-			g_tmeSetting.airTemperature=50;  		//×îµÍºæ¸ÉÎÂ¶È   	µ¥Î»ÉãÊÏ¶È
+			//åˆå§‹åŒ–FLASHå†…å®¹
+			g_tmeSetting.pooDelay=1;					  //æ‹‰å±åå¤šå°‘ç§’å¯åŠ¨ ,å•ä½åˆ†é’Ÿ
+			g_tmeSetting.xuxuDelay=10;				  //æ‹‰å±åå¤šå°‘ç§’å¯åŠ¨ ,å•ä½ç§’
+			g_tmeSetting.pooFlush=30;					  //å±å±å†²æ´—  ,	å•ä½ç§’
+			g_tmeSetting.xuxuFlush=10;				  //å°¿å°¿å†²æ´—  	å•ä½ ç§’
+			g_tmeSetting.pooDry=2;      		  	//å±å±çƒ˜å¹²æ—¶é—´ å•ä½ åˆ†é’Ÿ
+			g_tmeSetting.xuxuDry=1;					  	//å°¿å°¿çƒ˜å¹²æ—¶é—´ å•ä½ åˆ†é’Ÿ
+			g_tmeSetting.pooSterilize=10;			  //å±å±æ¶ˆæ¯’æ—¶é—´ å•ä½ ç§’
+			g_tmeSetting.xuxuSterilize=10;		  //å°¿å°¿æ¶ˆæ¯’æ—¶é—´ å•ä½ ç§’
+			g_tmeSetting.crotchPressure=13;			//è£¤æ¡£æ°”å‹ å•ä½ 100ç”µå‹å˜æ•°
+			g_tmeSetting.bedPressure=13;   			//åºŠå«çš„æ°”å‹  å•ä½ 100ç”µå‹å˜æ•°
+			g_tmeSetting.waterTemperature=38;		//æœ€ä½æ°´æ¸©   			å•ä½æ‘„æ°åº¦
+			g_tmeSetting.airTemperature=50;  		//æœ€ä½çƒ˜å¹²æ¸©åº¦   	å•ä½æ‘„æ°åº¦
 			g_tmeSetting.mpuLeft=30;  					//
 			g_tmeSetting.mpuRight=30;  					//
 
@@ -77,25 +77,37 @@ int main(void)
 	STM32_Delay_init();
 	STM32F1_UART1_Init(115200);
 	STM32F1_UART2_Init(115200);
-	STM32F1_UART3_Init(9600);
+	STM32F1_UART3_Init(19200);
 
 	Stm32F1_Timer2Init();
 	Stm32F1_Timer3Init();
 	InputDriveInit();
 	zhSCM_GPIOConfig();
  
+	//485é€šè®¯åˆå§‹åŒ–
+	{
+		GPIO_InitTypeDef GPIO_MyStruct;
+	
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD,ENABLE);
+
+		GPIO_MyStruct.GPIO_Pin = GPIO_Pin_10;
+		GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+		GPIO_Init(GPIOD, &GPIO_MyStruct);
+			GPIO_ResetBits(GPIOD,GPIO_Pin_10);	 
+			//GPIO_SetBits(GPIOD,GPIO_Pin_10);
+	}
 	//-----------------------------------------
-	//»ñÈ¡FALSHÊı¾İ
+	//è·å–FALSHæ•°æ®
 	setFlashData();
   //-----------------------------------------
 
-	//¿´ÃÅ¹·
+	//çœ‹é—¨ç‹—
 	//watchdog_init();
 
 	while(1)
 	{
-		//¿´ÃÅ¹·
-		//watchdog_action();
-		
+		//çœ‹é—¨ç‹—
+		//watchdog_action();		
 	}
 }

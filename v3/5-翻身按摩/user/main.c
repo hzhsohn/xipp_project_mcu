@@ -80,7 +80,7 @@ int main(void)
 	STM32_Delay_init();
 	STM32F1_UART1_Init(115200);
 	STM32F1_UART2_Init(19200);
-	STM32F1_UART3_Init(9600);
+	STM32F1_UART3_Init(19200);
 	
 	DS18B20_Init();
 	DS18B20_Init1();
@@ -102,43 +102,6 @@ int main(void)
 	
 	while(1)
 	{
-				//看门狗
-				//watchdog_action();
-				//
-				pdxbPooPoo=dxbPooPoo;
-				pdxbXuXu=dxbXuXu;
-			
-				//------------------------------------------------------------------
-				//检测有无尿拉下来		
-				if(dxbXuXu)
-				{
-					rXuxuDD++;
-					if(rXuxuDD>2000)
-					{
-							rXuxuDD=0;
-							ud485.niao=1;
-					}
-				}
-				else
-				{
-						rXuxuDD=0;
-				}
-				//------------------------------------------------------------------
-				//检测有没有屎掉下来
-				if(dxbPooPoo)
-				{
-					rPoopoDD++;
-					if(rPoopoDD>2000)
-					{
-							rPoopoDD=0;
-							ud485.shi=1;
-					}
-				}
-				else
-				{
-					rPoopoDD=0;
-				}
-
 				//------------------------------------------------------------------
 				//当前温度
 				rWaterTemp=DS18B20_Get_Temp();
@@ -167,37 +130,6 @@ int main(void)
 								//传感器有毛病了.关掉继电器
 								ud485.PiGuWenDu=0;
 						}
-				}
-
-				//-------------------------------------------------------------------
-				//空气加热,实时条件限制
-				rGasTemp=DS18B20_Get_Temp1(); 
-				if(rGasTemp<2000 && rGasTemp> -200) //限制位
-				{
-					ntmp=rGasTemp-rGasTemperature;
-					if(ntmp<20 && ntmp>-20) //限制突变幅度
-					{
-							isGasTooHot=0;							
-							if(rGasTemp > 60*10) //加热器有问题了吧,太高了就是加热器有问题了.
-							{
-								_unit12(0); //关掉气加热单元
-								//气温太热了.发到串口告诉上位机端,通知护士小妹妹,机器故障了
-								isGasTooHot=1;
-							}
-							rTrueGasTemp=rGasTemp;
-							isCheckGasSensorErr=0;
-							g_run.curJiaReWenDu=rTrueGasTemp;
-					}
-					rGasTemperature=rGasTemp;
-				}
-				else
-				{
-					isCheckGasSensorErr++;						
-					if(isCheckGasSensorErr>10) //传感数据有毛病关掉加热继电器
-					{
-							//传感器有毛病了.关掉继电器
-							g_run.curJiaReWenDu=-1;
-					}
 				}
 		}		
 }
