@@ -154,7 +154,10 @@ void uart3Send(unsigned char f,char*data,int datalen)
 		}
 
 		myDataLen = miniDataCreate(2+datalen,cbuf,dst_buf);
+			 
+			GPIO_SetBits(GPIOD,GPIO_Pin_10);
 		STM32F1_UART3SendDataS(dst_buf,myDataLen);
+			GPIO_ResetBits(GPIOD,GPIO_Pin_10);
 }
 
 void uart3SendNull(unsigned char f)
@@ -179,8 +182,7 @@ void recvLogic(int a,int b,unsigned char* data)
 			{					
 					//工作秒数
 					unsigned char t=data[0];
-					g_run.juint1Time=t*100;
-					
+					g_run.juint1Time=t*100;					
 			}
 			break;
 			case 0xA1: //抽水机关

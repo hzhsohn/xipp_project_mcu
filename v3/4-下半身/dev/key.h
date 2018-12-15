@@ -52,8 +52,8 @@
 #include "system_init.h"
 
 
-#define TOUCHKEY_1_GPIO 			    			GPIOC
-#define TOUCHKEY_1_PIN  				    		GPIO_Pin_6
+#define TOUCHKEY_1_GPIO 			    			GPIOB//GPIOC
+#define TOUCHKEY_1_PIN  				    		GPIO_Pin_2//GPIO_Pin_6
 
 #define TOUCHKEY_2_GPIO 			    			GPIOB
 #define TOUCHKEY_2_PIN  				  			GPIO_Pin_0
@@ -61,8 +61,8 @@
 #define TOUCHKEY_3_GPIO 			    			GPIOC
 #define TOUCHKEY_3_PIN  				  			GPIO_Pin_5
 
-#define TOUCHKEY_4_GPIO 				    		GPIOC
-#define TOUCHKEY_4_PIN  				    		GPIO_Pin_0
+#define TOUCHKEY_4_GPIO 				    		GPIOB//GPIOC
+#define TOUCHKEY_4_PIN  				    		GPIO_Pin_1//GPIO_Pin_0
 
 #define TOUCHKEY_5_GPIO 								GPIOA
 #define TOUCHKEY_5_PIN  								GPIO_Pin_7
@@ -74,7 +74,7 @@
 #define TOUCHKEY_7_PIN  								GPIO_Pin_4
 
 #define TOUCHKEY_8_GPIO 								GPIOE
-#define TOUCHKEY_8_PIN  								GPIO_Pin_1
+#define TOUCHKEY_8_PIN  								GPIO_Pin_7//GPIO_Pin_1
 
 
 /*******************************************************************************

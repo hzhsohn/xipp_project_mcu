@@ -1,5 +1,6 @@
 #include "Stm32F1_Timer3.h"
 #include "InputDrive.h"
+#include "OutputDrive.h"
 
 extern int g_timeoverUart1;
 extern int g_uart1len;
@@ -9,6 +10,10 @@ extern int g_uart2len;
 
 extern int g_timeoverUart3;
 extern int g_uart3len;
+
+
+extern TagUpData485 ud485;
+extern TagTimeRun g_run;
 
 void Stm32F1_Timer3Init(void)
 {
@@ -22,7 +27,7 @@ void Stm32F1_Timer3Init(void)
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);
 	TIM_TimeBaseInit(TIM3,&MyTimerConfig);
 	TIM_Cmd(TIM3,ENABLE);
-	
+	/*ÖÐ¶Ï*/
 	MyTimerIrConfig.NVIC_IRQChannel = TIM3_IRQn;
 	MyTimerIrConfig.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&MyTimerIrConfig);
@@ -54,6 +59,59 @@ void TIM3_IRQHandler(void)
 			g_uart3len=0;
 			g_timeoverUart3=0;
 	}
+
+	//---------------------------
+	//继电器操作
+	if(g_run.jiaoPanTime>0)
+	{
+			g_run.jiaoPanTime--;
+			_unit1(1);
+	}
+	else
+	{
+			_unit1(0);
+	}
+	
+	if(g_run.JiaReTime1>0 )
+	{
+		 g_run.JiaReTime1--;
+		 if(g_run.curJiaReWenDu <= g_run.JiaReWenDu1)
+		 {
+			 //开加热
+			 _unit4(1);
+		 }
+		 else
+		 {
+			 _unit4(0);
+		 }
+		 //开风机1
+		 _unit2(1);
+	}
+	else
+	{
+		_unit2(0);
+	}
+	
+	if(g_run.JiaReTime2>0)
+	{
+		g_run.JiaReTime2--;
+		if(g_run.curJiaReWenDu <= g_run.JiaReWenDu2)
+		{
+			//开加热
+			_unit5(1);
+		}
+		else
+		{
+			_unit5(0);
+		}
+		//开风机2
+		_unit3(1);
+	}
+	else
+	{
+		_unit3(0);
+	}
+	
 	//---------------------------
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
 }

@@ -97,8 +97,9 @@ void USART1_IRQHandler(void)
 								g_timeoverUart1=0;
 								
 							  switch(g_ocCmd.parameter[0])
-								{
-									case 0x00:
+								{									
+									case 0x00: //…Ë÷√≤Œ ˝
+										
 										break;
 								}
 						 }

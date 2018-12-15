@@ -4,21 +4,23 @@
 #include "system_init.h"
 
 
-#define RELAY1_GPIO 	GPIOB
-#define RELAY1_PIN  	GPIO_Pin_12
+#define RELAY1_GPIO 	GPIOD
+#define RELAY1_PIN  	GPIO_Pin_15
 
 #define RELAY2_GPIO 	GPIOB
-#define RELAY2_PIN  	GPIO_Pin_13
+#define RELAY2_PIN  	GPIO_Pin_14
 
 #define RELAY3_GPIO 	GPIOB
-#define RELAY3_PIN  	GPIO_Pin_14
+#define RELAY3_PIN  	GPIO_Pin_15
 
-#define RELAY4_GPIO 	GPIOB
-#define RELAY4_PIN  	GPIO_Pin_15
+#define RELAY4_GPIO 	GPIOC
+#define RELAY4_PIN  	GPIO_Pin_9
 
-#define RELAY5_GPIO 	GPIOD
-#define RELAY5_PIN  	GPIO_Pin_10
-                                                                            
+#define RELAY5_GPIO 	GPIOA
+#define RELAY5_PIN  	GPIO_Pin_8
+
+//--------------------------------------------------------
+                                    
 #define RELAY6_GPIO 	GPIOD
 #define RELAY6_PIN  	GPIO_Pin_11
 
@@ -37,11 +39,11 @@
 #define RELAY11_GPIO 	GPIOC
 #define RELAY11_PIN  	GPIO_Pin_8
 
-#define RELAY12_GPIO 	GPIOC
-#define RELAY12_PIN  	GPIO_Pin_9
+#define RELAY12_GPIO 	GPIOB
+#define RELAY12_PIN  	GPIO_Pin_13
 
-#define RELAY13_GPIO 	GPIOA
-#define RELAY13_PIN  	GPIO_Pin_8
+#define RELAY13_GPIO 	GPIOD
+#define RELAY13_PIN  	GPIO_Pin_10
 
 #define RELAY14_GPIO 	GPIOA
 #define RELAY14_PIN  	GPIO_Pin_15
@@ -64,28 +66,6 @@
 #define RELAY13_STATE(x) (!x)>0?GPIO_SetBits(RELAY13_GPIO,RELAY13_PIN):GPIO_ResetBits(RELAY13_GPIO,RELAY13_PIN)
 #define RELAY14_STATE(x) (!x)>0?GPIO_SetBits(RELAY14_GPIO,RELAY14_PIN):GPIO_ResetBits(RELAY14_GPIO,RELAY14_PIN)
 #define RELAY15_STATE(x) (!x)>0?GPIO_SetBits(RELAY15_GPIO,RELAY15_PIN):GPIO_ResetBits(RELAY15_GPIO,RELAY15_PIN)
-
-
-//--------------------------------------------------------------------------------------------
-#define LED1_OFF 		GPIO_ResetBits(GPIOE , GPIO_Pin_13)
-#define LED1_ON 		GPIO_SetBits(GPIOE , GPIO_Pin_13)
-#define LED1_RE 		GPIO_WriteBit(GPIOE , GPIO_Pin_13,(BitAction)(1-GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_13)));
-
-#define LED2_OFF 		GPIO_ResetBits(GPIOE , GPIO_Pin_14)
-#define LED2_ON 		GPIO_SetBits(GPIOE , GPIO_Pin_14)
-#define LED2_RE 		GPIO_WriteBit(GPIOE , GPIO_Pin_14,(BitAction)(1-GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_14)));
-
-#define LED3_OFF 		GPIO_ResetBits(GPIOE , GPIO_Pin_15)
-#define LED3_ON 		GPIO_SetBits(GPIOE , GPIO_Pin_15)
-#define LED3_RE 		GPIO_WriteBit(GPIOE , GPIO_Pin_15,(BitAction)(1-GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_15)));
-
-#define ANMO1_STATE(x) 	(!x)>0?GPIO_SetBits(GPIOB,GPIO_Pin_6):GPIO_ResetBits(GPIOB,GPIO_Pin_6)
-#define BAONAN_STATE(x) (!x)>0?GPIO_SetBits(GPIOB,GPIO_Pin_7):GPIO_ResetBits(GPIOB,GPIO_Pin_7)
-#define A33POWER_STATE(x) (!x)>0?GPIO_SetBits(GPIOD,GPIO_Pin_7):GPIO_ResetBits(GPIOD,GPIO_Pin_7)
-
-//变速马达
-#define BS_MADAMADA_STATE(x) (x)?GPIO_SetBits(GPIOD,GPIO_Pin_15):GPIO_ResetBits(GPIOD,GPIO_Pin_15)
-
 
 //初始化
 void OutputDriveInit(void);

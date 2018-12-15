@@ -3,6 +3,10 @@
 #include "mini-data.h"
 #include "stdlib.h"
 
+
+extern TagUpData485 ud485;
+extern TagTimeRun g_run;
+
 //
 void recvLogic(int a,int b,unsigned char* data);
 //--------------------------------------------
@@ -80,7 +84,6 @@ void STM32F1_UART3_Init(u32_t lBaudRate)
 
 }
 
-
 //---------------------------------------
 void USART3_IRQHandler(void)
 {
@@ -112,7 +115,7 @@ void USART3_IRQHandler(void)
 								b=g_ocCmd3.parameter[1];
 								pdata=&g_ocCmd3.parameter[2];
 								//
-								if(a==5)
+								if(a==2)
 								{
 										recvLogic(a,b,pdata);
 								}
@@ -139,7 +142,7 @@ void uart3Send(unsigned char f,char*data,int datalen)
 		int myDataLen=0;
 		unsigned char cbuf[30]={0};
 				
-		cbuf[0]=5; //位置 0-5 ,5代表本机
+		cbuf[0]=2; //位置 0-5 ,2代表本机
 		cbuf[1]=f; //功能
 		
 		if(data)
@@ -164,8 +167,50 @@ void recvLogic(int a,int b,unsigned char* data)
 		switch(b)
 		{
 			case 0x00: //获取传感器
+			{				
+					uart3Send(0x10,(char*)&ud485,sizeof(TagUpData485));
+			}
+			break;
+			case 0xA0: //搅伴开
+			{				
+					//获取秒数
+					unsigned char t=data[0];
+					g_run.jiaoPanTime=t*100;
+			}
+			break;
+			case 0xA1: //搅伴关
 			{
-					uart3SendNull(0x10);
+					g_run.jiaoPanTime=-1;
+			}
+			break;
+			case 0xA2: //加热风1开
+			{				
+					//工作秒数
+					unsigned char t=data[0];
+					//工作温度
+					unsigned char w=data[1];
+					g_run.JiaReTime1=t*100;
+					g_run.JiaReWenDu1=w*10;
+			}
+			break;
+			case 0xA3: //加热风1关
+			{
+					g_run.JiaReTime1=-1;
+			}
+			break;
+			case 0xA4: //加热风2开
+			{				
+					//获取秒数
+					unsigned char t=data[0];
+					//工作温度
+					unsigned char w=data[1];
+					g_run.JiaReTime2=t*100;
+					g_run.JiaReWenDu2=w*10;
+			}
+			break;
+			case 0xA5: //加热风2关
+			{
+					g_run.JiaReTime2=-1;
 			}
 			break;
 		}

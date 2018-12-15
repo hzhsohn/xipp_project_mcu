@@ -11,7 +11,7 @@
 #define RELAY2_PIN  	GPIO_Pin_8
 
 #define RELAY3_GPIO 	GPIOD
-#define RELAY3_PIN  	GPIO_Pin_10
+#define RELAY3_PIN  	GPIO_Pin_11
 
 #define RELAY4_GPIO 	GPIOD
 #define RELAY4_PIN  	GPIO_Pin_11

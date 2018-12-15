@@ -21,95 +21,48 @@ Target DLL:      Segger\JL2CM3.dll V2.99.20.0
 Dialog DLL:      TCM.DLL V1.14.9.0
  
 <h2>Project:</h2>
-E:\work\外包\聚德\xipp_project_mcu\v3\5-翻身按摩\a.uvprojx
-Project File Date:  11/26/2018
+E:\work\外包\聚德\xipp_project_mcu\v3\2-床上\a.uvprojx
+Project File Date:  12/05/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'Target 1'
-compiling ds18b20.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\STM32_Delay.h(7): error:  #159: declaration is incompatible with previous "STM32_Delay_ms" (declared at line 11 of ".\user\system_init.h")
-  void STM32_Delay_ms(u16_t nms);
-dev\ds18b20.c: 1 warning, 1 error
-compiling STM32_Delay.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\STM32_Delay.h(7): error:  #159: declaration is incompatible with previous "STM32_Delay_ms" (declared at line 11 of ".\user\system_init.h")
-  void STM32_Delay_ms(u16_t nms);
-dev\STM32_Delay.c: 1 warning, 1 error
+Rebuild target 'Target 1'
+compiling mini-data.c...
+compiling stm32f10x_rcc.c...
 compiling main.c...
-user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-.\dev\STM32_Delay.h(7): error:  #159: declaration is incompatible with previous "STM32_Delay_ms" (declared at line 11 of "user\system_init.h")
-  void STM32_Delay_ms(u16_t nms);
-user\main.c: 1 warning, 1 error
-compiling Stm32F1_Timer2.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\Stm32F1_Timer2.c: 1 warning, 0 errors
-compiling watchdog.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\watchdog.c: 1 warning, 0 errors
+user\main.c(79): warning:  #177-D: variable "res" was declared but never referenced
+  	int res;
+user\main.c: 1 warning, 0 errors
+compiling stm32f10x_gpio.c...
+compiling misc.c...
+compiling stm32f10x_tim.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_adc.c...
+compiling stm32f10x_flash.c...
+compiling STM32_Delay.c...
+compiling stm32f10x_wwdg.c...
 compiling ds18b20_1.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\STM32_Delay.h(7): error:  #159: declaration is incompatible with previous "STM32_Delay_ms" (declared at line 11 of ".\user\system_init.h")
-  void STM32_Delay_ms(u16_t nms);
-dev\ds18b20_1.c: 1 warning, 1 error
-compiling key.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\key.c: 1 warning, 0 errors
-compiling flash_rw.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\STM32_Delay.h(7): error:  #159: declaration is incompatible with previous "STM32_Delay_ms" (declared at line 11 of ".\user\system_init.h")
-  void STM32_Delay_ms(u16_t nms);
-dev\flash_rw.c: 1 warning, 1 error
+compiling ds18b20.c...
+compiling watchdog.c...
+compiling stm32f10x_iwdg.c...
+compiling Stm32F1_Timer2.c...
 compiling Stm32F1_Timer3.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\Stm32F1_Timer3.c: 1 warning, 0 errors
-compiling OutputDrive.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\OutputDrive.c: 1 warning, 0 errors
+compiling flash_rw.c...
+compiling key.c...
 compiling STM32F1_UART1.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\STM32_Delay.h(7): error:  #159: declaration is incompatible with previous "STM32_Delay_ms" (declared at line 11 of ".\user\system_init.h")
-  void STM32_Delay_ms(u16_t nms);
-dev\STM32F1_UART1.c: 1 warning, 1 error
 compiling STM32F1_UART2.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\STM32_Delay.h(7): error:  #159: declaration is incompatible with previous "STM32_Delay_ms" (declared at line 11 of ".\user\system_init.h")
-  void STM32_Delay_ms(u16_t nms);
-dev\STM32F1_UART2.c: 1 warning, 1 error
-compiling STM32F1_ADC1.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\STM32_Delay.h(7): error:  #159: declaration is incompatible with previous "STM32_Delay_ms" (declared at line 11 of ".\user\system_init.h")
-  void STM32_Delay_ms(u16_t nms);
-dev\STM32F1_ADC1.c: 1 warning, 1 error
+compiling OutputDrive.c...
 compiling STM32F1_UART3.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\STM32F1_UART3.c: 1 warning, 0 errors
 compiling STM32F1_ADC2.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\STM32_Delay.h(7): error:  #159: declaration is incompatible with previous "STM32_Delay_ms" (declared at line 11 of ".\user\system_init.h")
-  void STM32_Delay_ms(u16_t nms);
-dev\STM32F1_ADC2.c: 1 warning, 1 error
+compiling STM32F1_ADC1.c...
 compiling InputDrive.c...
-.\user\system_init.h(11): warning:  #223-D: function "STM32_Delay_ms" declared implicitly
-  		{ STM32_Delay_ms(100); }
-dev\InputDrive.c: 1 warning, 0 errors
-".\Objects\Xipp_MCU1_V2.axf" - 9 Error(s), 16 Warning(s).
+compiling drive.c...
+assembling startup_stm32f10x_cl.s...
+compiling delay.c...
+compiling system_stm32f10x.c...
+linking...
+Program Size: Code=9128 RO-data=368 RW-data=168 ZI-data=2104  
+".\Objects\Xipp_MCU1_V2.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -126,8 +79,8 @@ Package Vendor: Keil
    * Component: Startup Version: 1.0.0
 
 <h2>Collection of Component include folders:</h2>
-  E:\work\外包\聚德\xipp_project_mcu\v3\5-翻身按摩\RTE
-  E:\work\外包\聚德\xipp_project_mcu\v3\5-翻身按摩\RTE\Device\STM32F105VC
+  E:\work\外包\聚德\xipp_project_mcu\v3\2-床上\RTE
+  E:\work\外包\聚德\xipp_project_mcu\v3\2-床上\RTE\Device\STM32F105VC
   D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
   D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 
@@ -140,8 +93,7 @@ Package Vendor: Keil
       Source file:   Device\Source\ARM\startup_stm32f10x_cl.s
       Source file:   Device\Source\system_stm32f10x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
-Target not created.
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:00:07
 </pre>
 </body>
 </html>

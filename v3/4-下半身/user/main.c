@@ -91,7 +91,6 @@ int main(void)
 	OutputDriveInit();
 	zhSCM_GPIOConfig();
 	
-	RELAY1_STATE(1);
 	//-----------------------------------------
 	//获取FALSH数据
 	setFlashData();

@@ -64,7 +64,8 @@ int main(void)
 			//DS18B20_Init1();
 			//Adc_Init();
 			//Adc2_Init();	
-			Motor_Init();
+			//
+			//Motor_Init();
 			Stm32F1_Timer2Init();
 			Stm32F1_Timer3Init();
 			//InputDriveInit();

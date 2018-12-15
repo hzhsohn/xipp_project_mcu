@@ -35,6 +35,4 @@ typedef struct _TagTimeRun{
 #define _unit14(x) 	 						RELAY14_STATE(x)	
 #define _unit15(x) 							RELAY15_STATE(x)	
 
-
-
 #endif

@@ -156,7 +156,9 @@ void uart3Send(unsigned char f,char*data,int datalen)
 		}
 
 		myDataLen = miniDataCreate(2+datalen,cbuf,dst_buf);
+			GPIO_SetBits(GPIOD,GPIO_Pin_10);
 		STM32F1_UART3SendDataS(dst_buf,myDataLen);
+			GPIO_ResetBits(GPIOD,GPIO_Pin_10);	 
 }
 
 void uart3SendNull(unsigned char f)
