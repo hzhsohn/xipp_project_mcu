@@ -11,19 +11,25 @@ typedef struct _TagUpData485{
 }TagUpData485;
 
 typedef struct _TagTimeRun{
-	int jiaoPanTime;
-	int JiaReTime1;
-	int JiaReWenDu1;
-	int JiaReTime2;
-	int JiaReWenDu2;
-	int curJiaReWenDu;
+	int JiaReTime1;//加热
+	int JiaReWenDu1;//加热
+	int curJiaReWenDu;//当前发热垫温度
+	
+	int AnmoTime;//按摩时间
+	
+	int guan_qiya_percent;//充气
+	
+	int piai_wu_kai;//排污开
+	int piai_wu_guan;//排污开
+	
+	int xiaobian_famen;//小便阀门
 }TagTimeRun;
 
-#define _unit1(x) 											RELAY1_STATE(x)			//搅拌
-#define _unit2(x) 											RELAY2_STATE(x)			//风机1
-#define _unit3(x) 											RELAY3_STATE(x)			//风机2
-#define _unit4(x) 						 					RELAY4_STATE(x)			//加热1
-#define _unit5(x) 											RELAY5_STATE(x)			//加热2
+#define _unit1(x) 											RELAY1_STATE(x)			//
+#define _unit2(x) 											RELAY2_STATE(x)			//
+#define _unit3(x) 											RELAY3_STATE(x)			//
+#define _unit4(x) 						 					RELAY4_STATE(x)			//
+#define _unit5(x) 											RELAY5_STATE(x)			//
 #define _unit6(x) 											RELAY6_STATE(x)			//
 #define _unit7(x) 											RELAY7_STATE(x)			//
 #define _unit8(x) 				 							RELAY8_STATE(x) 		//

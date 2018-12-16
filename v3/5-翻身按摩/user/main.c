@@ -14,40 +14,25 @@
 #include "Stm32F1_Timer3.h"
 #include "key.h"
 #include "OutputDrive.h"
+#include "STM32F1_ADC0.h"
 
-//Ìá½»µÄÊı¾İ
+//æäº¤çš„æ•°æ®
 TagUpData485 ud485;
 TagTimeRun g_run;
 
-
-//´óĞ¡±ã¼ì²â
-#define dxbPooPoo  				SENSOR4_STATE()?0:1    //Êº
-#define dxbXuXu	  				SENSOR5_STATE()?0:1    //Äò
-
 //--
-//ÎÂ¶È
+//æ¸©åº¦
 int ntmp;
-s16 rWaterTemperature=0,rWaterTemp=0,rGasTemperature=0,rGasTemp=0;
-s16 rTrueWaterTemp=0,rTrueGasTemp=0;
+s16 rWaterTemperature=0,rWaterTemp=0;
+s16 rTrueWaterTemp=0;
 int isWaterTooHot=0;
-int isGasTooHot=0;
-int isCheckWaterSensorErr=0; //Ë®ÎÂ·À´íÎóÏŞÖÆ
-int isCheckGasSensorErr=0;//Ë®ÎÂ·À´íÎóÏŞÖÆ
-int isCheckBedCQSensorErr=0;//ÆøÑ¹·À´íÎóÏŞÖÆ
-int isCheckDZCQSensorErr=0;	//ÆøÑ¹·À´íÎóÏŞÖÆ
+int isCheckWaterSensorErr=0; //æ°´æ¸©é˜²é”™è¯¯é™åˆ¶
 
-//ÆøÑ¹
-u16_t rPressure=0,rPressureTmp=0,rPressure2=0,rPressure2Tmp=0,rPressure3=0,rPressure3Tmp=0;
-u16_t rTruePressure1=0,rTruePressure2=0,rTruePressure3=0;
+//æ°”å‹
+u16_t rPressure[10]={0},rPressureTmp[10]={0};
+u16_t rTruePressure1[10]={0};
+int isCheckDZCQSensorErr[10]={0};
 
-//ÊºÊºÄòÄòµÄ·À¶¶¶¯
-int rPoopoDD=0;
-int rXuxuDD=0;
-int pdxbPooPoo;
-int pdxbXuXu;
-//
-int isTextPOPO=0;
-int isTextXUXU=0;
 
 //
 void delay_s(int n)
@@ -76,7 +61,6 @@ void setFlashData()
 }
 int main(void)
 {
-	int res;
 	STM32_Delay_init();
 	STM32F1_UART1_Init(115200);
 	STM32F1_UART2_Init(19200);
@@ -84,8 +68,11 @@ int main(void)
 	
 	DS18B20_Init();
 	DS18B20_Init1();
+	
+	Adc_Init0();
 	Adc_Init();
 	Adc2_Init();
+	
 	Stm32F1_Timer2Init();
 	Stm32F1_Timer3Init();
 	InputDriveInit();
@@ -93,43 +80,68 @@ int main(void)
 	//zhSCM_GPIOConfig(); 	
 	
 	//-----------------------------------------
-	//»ñÈ¡FALSHÊı¾İ
+	//è·å–FALSHæ•°æ®
 	setFlashData();
   //-----------------------------------------
 
-	//¿´ÃÅ¹·
+	//çœ‹é—¨ç‹—
 	//watchdog_init();
 	
 	while(1)
 	{
 				//------------------------------------------------------------------
-				//µ±Ç°ÎÂ¶È
+				//å½“å‰æ¸©åº¦
 				rWaterTemp=DS18B20_Get_Temp();
-				if(rWaterTemp<2000 && rWaterTemp> -200) //ÏŞÖÆÎ»
+				if(rWaterTemp<2000 && rWaterTemp> -200) //é™åˆ¶ä½
 				{
 					ntmp=rWaterTemp-rWaterTemperature;
-					if(ntmp<20 && ntmp>-20)	//ÏŞÖÆÍ»±ä·ù¶È
+					if(ntmp<20 && ntmp>-20)	//é™åˆ¶çªå˜å¹…åº¦
 					{
 							isWaterTooHot=0;							
-							if(rWaterTemp > 60*10) //¼ÓÈÈÆ÷ÓĞÎÊÌâÁË°É,Ì«¸ßÁË¾ÍÊÇ¼ÓÈÈÆ÷ÓĞÎÊÌâÁË.
+							if(rWaterTemp > 60*10) //åŠ çƒ­å™¨æœ‰é—®é¢˜äº†å§,å¤ªé«˜äº†å°±æ˜¯åŠ çƒ­å™¨æœ‰é—®é¢˜äº†.
 							{
-									//Ë®Ì«ÈÈÁË.·¢µ½´®¿Ú¸æËßÉÏÎ»»ú¶Ë,Í¨Öª»¤Ê¿Ğ¡ÃÃÃÃ,»úÆ÷¹ÊÕÏÁË
+									//æ°´å¤ªçƒ­äº†.å‘åˆ°ä¸²å£å‘Šè¯‰ä¸Šä½æœºç«¯,é€šçŸ¥æŠ¤å£«å°å¦¹å¦¹,æœºå™¨æ•…éšœäº†
 									isWaterTooHot=1;
 							}								
 							rTrueWaterTemp=rWaterTemp;
 							isCheckWaterSensorErr=0;
 							ud485.PiGuWenDu=rTrueWaterTemp;
+							g_run.curJiaReWenDu=rTrueWaterTemp;
 					}
 					rWaterTemperature=rWaterTemp;
 				}
 				else
 				{
 						isCheckWaterSensorErr++;
-						if(isCheckWaterSensorErr>10) //´«¸ĞÊı¾İÓĞÃ«²¡¹Øµô¼ÓÈÈ¼ÌµçÆ÷
+						if(isCheckWaterSensorErr>10) //ä¼ æ„Ÿæ•°æ®æœ‰æ¯›ç—…å…³æ‰åŠ çƒ­ç»§ç”µå™¨
 						{
-								//´«¸ĞÆ÷ÓĞÃ«²¡ÁË.¹Øµô¼ÌµçÆ÷
+								//ä¼ æ„Ÿå™¨æœ‰æ¯›ç—…äº†.å…³æ‰ç»§ç”µå™¨
 								ud485.PiGuWenDu=0;
 						}
 				}
-		}		
+			
+				//------------------------------------------------------------------
+				//æ°”å‹1
+				rPressureTmp[0] = Get_Adc_Average0(10);
+				ntmp=rPressureTmp[0]-rPressure[0];
+				if(ntmp<60 && ntmp>-60) //é™åˆ¶çªå˜å¹…åº¦
+				{
+					g_run.guan_qiya_percent=(float)rPressureTmp[0]/4096.0f*100;
+					rTruePressure1[0]=rPressureTmp[0];
+					isCheckDZCQSensorErr[0]=0;
+				}
+				else
+				{
+					isCheckDZCQSensorErr[0]++;						
+					if(isCheckDZCQSensorErr[0]>10) //ä¼ æ„Ÿæ•°æ®æœ‰æ¯›ç—…å…³æ‰ç»§ç”µå™¨
+					{
+					}
+				}
+				rPressure[0]=rPressureTmp[0];
+				
+				//------------------------------------------------------------------
+				//æ°”å‹å…¶å®ƒ
+				//Get_Adc_Average
+		
+		}
 }

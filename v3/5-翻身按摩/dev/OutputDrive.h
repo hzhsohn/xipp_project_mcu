@@ -4,41 +4,49 @@
 #include "system_init.h"
 
 
-#define RELAY1_GPIO 	GPIOD
-#define RELAY1_PIN  	GPIO_Pin_15
+//-----------------------------------------------
+//ä¿æš–
+#define RELAY1_GPIO 	GPIOC
+#define RELAY1_PIN  	GPIO_Pin_6
 
-#define RELAY2_GPIO 	GPIOB
-#define RELAY2_PIN  	GPIO_Pin_14
+#define RELAY2_GPIO 	GPIOC
+#define RELAY2_PIN  	GPIO_Pin_9
+//----------------------------------------------
+//æŒ‰æ‘©
+#define RELAY3_GPIO 	GPIOC
+#define RELAY3_PIN  	GPIO_Pin_8
 
-#define RELAY3_GPIO 	GPIOB
-#define RELAY3_PIN  	GPIO_Pin_15
+#define RELAY4_GPIO 	GPIOD
+#define RELAY4_PIN  	GPIO_Pin_12
 
-#define RELAY4_GPIO 	GPIOC
-#define RELAY4_PIN  	GPIO_Pin_9
-
-#define RELAY5_GPIO 	GPIOA
-#define RELAY5_PIN  	GPIO_Pin_8
-
-//--------------------------------------------------------
+#define RELAY5_GPIO 	GPIOD
+#define RELAY5_PIN  	GPIO_Pin_13
                                     
 #define RELAY6_GPIO 	GPIOD
-#define RELAY6_PIN  	GPIO_Pin_11
+#define RELAY6_PIN  	GPIO_Pin_14
 
 #define RELAY7_GPIO 	GPIOD
-#define RELAY7_PIN  	GPIO_Pin_12
+#define RELAY7_PIN  	GPIO_Pin_15
 
-#define RELAY8_GPIO 	GPIOD
-#define RELAY8_PIN  	GPIO_Pin_13
+//--------------------------------------------------------
+//è‡ªåŠ¨å‚¨æ°”ç½å¼€å…³ 
+#define RELAY8_GPIO 	GPIOE
+#define RELAY8_PIN  	GPIO_Pin_7
 
-#define RELAY9_GPIO 	GPIOD
-#define RELAY9_PIN  	GPIO_Pin_14
+//--------------------------------------------------------
+//æ’æ±¡
+#define RELAY9_GPIO 	GPIOE
+#define RELAY9_PIN  	GPIO_Pin_8
 
-#define RELAY10_GPIO 	GPIOC
-#define RELAY10_PIN  	GPIO_Pin_7
+#define RELAY10_GPIO 	GPIOE
+#define RELAY10_PIN  	GPIO_Pin_9
 
-#define RELAY11_GPIO 	GPIOC
-#define RELAY11_PIN  	GPIO_Pin_8
+//---------------------------------------------------------
+//å°ä¾¿é˜€é—¨
+#define RELAY11_GPIO 	GPIOB
+#define RELAY11_PIN  	GPIO_Pin_2
 
+//---------------------------------------------------------
 #define RELAY12_GPIO 	GPIOB
 #define RELAY12_PIN  	GPIO_Pin_13
 
@@ -67,10 +75,10 @@
 #define RELAY14_STATE(x) (!x)>0?GPIO_SetBits(RELAY14_GPIO,RELAY14_PIN):GPIO_ResetBits(RELAY14_GPIO,RELAY14_PIN)
 #define RELAY15_STATE(x) (!x)>0?GPIO_SetBits(RELAY15_GPIO,RELAY15_PIN):GPIO_ResetBits(RELAY15_GPIO,RELAY15_PIN)
 
-//³õÊ¼»¯
+//åˆå§‹åŒ–
 void OutputDriveInit(void);
 
-//¼ÌµçÆ÷Êä³ö²âÊÔ
+//ç»§ç”µå™¨è¾“å‡ºæµ‹è¯•
 void RelayTest(void);//
 	
 #endif

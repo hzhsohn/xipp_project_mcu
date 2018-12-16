@@ -7,12 +7,11 @@ void OutputDriveInit(void)
 	 Relay_Init();
 }
 
-
 void Relay_Init(void)
 {
 	GPIO_InitTypeDef GPIO_MyStruct;
 	/* ±÷” πƒ‹*/
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOB|RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOD,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOB|RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOD|RCC_APB2Periph_GPIOE,ENABLE);
 	/*RELAY1*/
 	GPIO_MyStruct.GPIO_Pin = RELAY1_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;

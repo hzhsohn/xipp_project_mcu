@@ -11,7 +11,6 @@ extern int g_uart2len;
 extern int g_timeoverUart3;
 extern int g_uart3len;
 
-
 extern TagUpData485 ud485;
 extern TagTimeRun g_run;
 
@@ -61,55 +60,93 @@ void TIM3_IRQHandler(void)
 	}
 
 	//---------------------------
-	//继电器操作
-	if(g_run.jiaoPanTime>0)
-	{
-			g_run.jiaoPanTime--;
-			_unit1(1);
-	}
-	else
-	{
-			_unit1(0);
-	}
-	
+	//发热垫
 	if(g_run.JiaReTime1>0 )
 	{
 		 g_run.JiaReTime1--;
 		 if(g_run.curJiaReWenDu <= g_run.JiaReWenDu1)
 		 {
 			 //开加热
-			 _unit4(1);
+			 _unit1(1);
+			 _unit2(1);
 		 }
 		 else
 		 {
-			 _unit4(0);
+			 _unit1(0);
+			 _unit2(0);
 		 }
-		 //开风机1
-		 _unit2(1);
 	}
 	else
 	{
+		_unit1(0);
 		_unit2(0);
 	}
-	
-	if(g_run.JiaReTime2>0)
+	//---------------------------
+	//按摩
+	if(g_run.AnmoTime>0 )
 	{
-		g_run.JiaReTime2--;
-		if(g_run.curJiaReWenDu <= g_run.JiaReWenDu2)
-		{
-			//开加热
-			_unit5(1);
-		}
-		else
-		{
-			_unit5(0);
-		}
-		//开风机2
+		 g_run.AnmoTime--;		 
 		_unit3(1);
+		_unit4(1);
+		_unit5(1);
+		_unit6(1);
+		_unit7(1);
 	}
 	else
 	{
 		_unit3(0);
+		_unit4(0);
+		_unit5(0);
+		_unit6(0);
+		_unit7(0);
+	}
+	
+	//-----------------------------
+	//自动充气
+	if(g_run.guan_qiya_percent<60)
+	{
+		_unit8(1);
+	}
+	else
+	{
+		_unit8(0);
+	}
+	
+	//-----------------------------
+	//排污开
+	if(g_run.piai_wu_kai>0 )
+	{
+		 g_run.piai_wu_kai--;
+
+		 _unit10(1);
+	}
+	else
+	{
+		_unit10(0);
+	}
+	
+	//-----------------------------
+	//排污关
+	if(g_run.piai_wu_guan>0 )
+	{
+		 g_run.piai_wu_guan--;
+		 _unit9(1);
+	}
+	else
+	{
+		_unit9(0);
+	}
+	
+	//-----------------------------
+	//小便阀门
+	if(g_run.xiaobian_famen>0 )
+	{
+		 g_run.xiaobian_famen--;
+		 _unit11(1);
+	}
+	else
+	{
+		_unit11(0);
 	}
 	
 	//---------------------------

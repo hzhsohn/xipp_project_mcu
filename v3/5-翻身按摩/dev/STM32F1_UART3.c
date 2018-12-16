@@ -171,19 +171,7 @@ void recvLogic(int a,int b,unsigned char* data)
 					uart3Send(0x10,(char*)&ud485,sizeof(TagUpData485));
 			}
 			break;
-			case 0xA0: //搅伴开
-			{				
-					//获取秒数
-					unsigned char t=data[0];
-					g_run.jiaoPanTime=t*100;
-			}
-			break;
-			case 0xA1: //搅伴关
-			{
-					g_run.jiaoPanTime=-1;
-			}
-			break;
-			case 0xA2: //加热风1开
+			case 0xA0: //发热垫加热
 			{				
 					//工作秒数
 					unsigned char t=data[0];
@@ -193,25 +181,47 @@ void recvLogic(int a,int b,unsigned char* data)
 					g_run.JiaReWenDu1=w*10;
 			}
 			break;
-			case 0xA3: //加热风1关
+			case 0xA1: //发热垫加热关
 			{
 					g_run.JiaReTime1=-1;
 			}
 			break;
-			case 0xA4: //加热风2开
+			case 0xA2: //按摩开
 			{				
-					//获取秒数
+					//工作秒数
 					unsigned char t=data[0];
-					//工作温度
-					unsigned char w=data[1];
-					g_run.JiaReTime2=t*100;
-					g_run.JiaReWenDu2=w*10;
+					g_run.AnmoTime=t*100;
 			}
 			break;
-			case 0xA5: //加热风2关
+			case 0xA3: //按摩关
 			{
-					g_run.JiaReTime2=-1;
+					g_run.AnmoTime=-1;
 			}
 			break;
+			case 0xA4: //排污开
+			{				
+					//工作秒数
+					unsigned char t=data[0];
+					g_run.piai_wu_kai=t*100;
+			}
+			break;
+			case 0xA5: //排污关
+			{				
+					//工作秒数
+					unsigned char t=data[0];
+					g_run.piai_wu_guan=t*100;
+			}
+			break;
+			case 0xA6: //小便阀门
+			{				
+					//工作秒数
+					unsigned char t=data[0];
+					g_run.xiaobian_famen=t*100;
+			}
+			break;
+			case 0xA7: //小便阀门中止
+			{
+					g_run.xiaobian_famen=-1;
+			}			
 		}
 }
