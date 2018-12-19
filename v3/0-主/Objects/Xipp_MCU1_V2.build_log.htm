@@ -27,10 +27,13 @@ Project File Date:  11/27/2018
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling Stm32F1_Timer3.c...
+compiling logic.c...
+user\logic.c(30): warning:  #223-D: function "memset" declared implicitly
+  				memset(p,0,sizeof(TzhDoCmd));
+user\logic.c: 1 warning, 0 errors
 linking...
-Program Size: Code=6292 RO-data=368 RW-data=108 ZI-data=2292  
-".\Objects\Xipp_MCU1_V2.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=5916 RO-data=268 RW-data=112 ZI-data=2576  
+".\Objects\Xipp_MCU1_V2.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -48,7 +51,7 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE
-  E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F105VC
+  E:\work\外包\聚德\xipp_project_mcu\v3\0-主\RTE\Device\STM32F103C8
   D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
   D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 
@@ -58,7 +61,7 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:1.0.0
       Source file:   Device\Source\ARM\STM32F1xx_OPT.s
-      Source file:   Device\Source\ARM\startup_stm32f10x_cl.s
+      Source file:   Device\Source\ARM\startup_stm32f10x_md.s
       Source file:   Device\Source\system_stm32f10x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
 Build Time Elapsed:  00:00:01

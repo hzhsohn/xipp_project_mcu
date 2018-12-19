@@ -169,6 +169,8 @@ void recvLogic(int a,int b,unsigned char* data)
 			case 0x00: //获取传感器
 			{				
 					uart3Send(0x10,(char*)&ud485,sizeof(TagUpData485));
+					ud485.niao=0;
+					ud485.shi=0;
 			}
 			break;
 			case 0xA0: //搅伴开

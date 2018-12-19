@@ -56,7 +56,7 @@
 #define TOUCHKEY_1_PIN  				    		GPIO_Pin_6
 
 #define TOUCHKEY_2_GPIO 			    			GPIOA
-#define TOUCHKEY_2_PIN  				  			GPIO_Pin_0
+#define TOUCHKEY_2_PIN  				  			GPIO_Pin_15
 
 
 /*******************************************************************************

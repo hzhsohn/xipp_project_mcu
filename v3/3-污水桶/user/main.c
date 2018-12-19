@@ -81,10 +81,10 @@ int main(void)
 	//STM32F1_UART2_Init(19200);
 	STM32F1_UART3_Init(19200);
 
-	DS18B20_Init();
-	DS18B20_Init1();
+	//DS18B20_Init();
+	//DS18B20_Init1();
 	Adc_Init();
-	Adc2_Init();
+	//Adc2_Init();
 	Stm32F1_Timer2Init();
 	Stm32F1_Timer3Init();
 	InputDriveInit();
@@ -144,40 +144,55 @@ int main(void)
 					//------------------------------------------------------------------
 					//气压1
 					rPressureTmp = Get_Adc_Average(10);
-					ntmp=rPressureTmp-rPressure;
-					if(ntmp<60 && ntmp>-60) //限制突变幅度
+					if(rPressureTmp!=0x0FFF)
 					{
-						ud485.qiya1_percent=rPressureTmp/4096;
-						rTruePressure1=rPressureTmp;
-						isCheckDZCQSensorErr=0;
-					}
-					else
-					{
-						isCheckDZCQSensorErr++;						
-						if(isCheckDZCQSensorErr>10) //传感数据有毛病关掉继电器
+						ntmp=rPressureTmp-rPressure;
+						if(ntmp<60 && ntmp>-60) //限制突变幅度
 						{
+							ud485.qiya1_percent=((float)rPressureTmp/4096.0f)*100.0f;
+							rTruePressure1=rPressureTmp;
+							isCheckDZCQSensorErr=0;
 						}
+						else
+						{
+							isCheckDZCQSensorErr++;						
+							if(isCheckDZCQSensorErr>10) //传感数据有毛病关掉继电器
+							{
+							}
+						}
+						rPressure=rPressureTmp;
 					}
-					rPressure=rPressureTmp;
+					/*else
+					{
+						ud485.qiya1_percent=0;
+					}*/
 			
 					//------------------------------------------------------------------
-					//气压2
+					/*//气压2
 					rPressure2Tmp= Get_Adc2_Average(10);
-					ntmp=rPressure2Tmp-rPressure2;
-					if(ntmp<60 && ntmp>-60) //限制突变幅度
-					{						
-						ud485.qiya2_percent=rPressureTmp/4096;
-						rTruePressure2=rPressure2Tmp;
-						isCheckBedCQSensorErr=0;
+					if(rPressure2Tmp!=0x0FFF)
+					{
+						ntmp=rPressure2Tmp-rPressure2;
+						if(ntmp<60 && ntmp>-60) //限制突变幅度
+						{						
+							ud485.qiya2_percent=((float)rPressure2Tmp/4096.0f)*100.0f;
+							rTruePressure2=rPressure2Tmp;
+							isCheckDZCQSensorErr=0;
+						}
+						else
+						{
+							isCheckDZCQSensorErr++;						
+							if(isCheckDZCQSensorErr>10) //传感数据毛病太多关等继电器
+							{
+							}
+						}
+						rPressure2=rPressure2Tmp;
 					}
 					else
 					{
-						isCheckBedCQSensorErr++;						
-						if(isCheckBedCQSensorErr>10) //传感数据毛病太多关等继电器
-						{
-						}
-					}
-					rPressure2=rPressure2Tmp;
+						ud485.qiya2_percent=0;
+					}*/
+					
 	}
 
 }

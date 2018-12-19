@@ -73,8 +73,8 @@
 #define TOUCHKEY_7_GPIO 								GPIOC
 #define TOUCHKEY_7_PIN  								GPIO_Pin_4
 
-#define TOUCHKEY_8_GPIO 								GPIOE
-#define TOUCHKEY_8_PIN  								GPIO_Pin_1
+//#define TOUCHKEY_8_GPIO 								GPIOE
+//#define TOUCHKEY_8_PIN  								//GPIO_Pin_1
 
 
 /*******************************************************************************

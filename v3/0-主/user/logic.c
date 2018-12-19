@@ -5,10 +5,11 @@
 #include "logic.h"
 
 //循环型执行链表
-unsigned char g_cmdDataList[20][10]={0};
+TzhDoCmd g_cmdDataList[20]={0};
 int g_cmdSendPos=0;//发送游标
 int g_cmdDataPos=0;//发送游戏
 int g_cmdDataCount=0; //链表内记录数量
+int g_cmdLastDoTime=0;
 
 //获取状态
 int g_getdev_status=0;
@@ -18,15 +19,33 @@ void sendLogic(void)
 {
 		if(g_cmdDataCount>0)
 		{
-			unsigned char*buf=g_cmdDataList[g_cmdSendPos];
-			uart3Send(buf[0],buf[1],&buf[2],8);
-			g_cmdSendPos++;
-			g_cmdSendPos%=20;
+			TzhDoCmd*p =&g_cmdDataList[g_cmdSendPos];
+			uart3Send(p->bid,p->fid,p->second,(unsigned char*)p->buf,p->buflen);
 			
-			memset(buf,0,10);
-			g_cmdDataCount--;
+			if(0==p->second)
+			{
+				g_cmdSendPos++;
+				g_cmdSendPos%=20;
+				
+				memset(p,0,sizeof(TzhDoCmd));
+				g_cmdDataCount--;
+			}
+			else if(p->second>0){
+				p->second--;
+			}
+			else{
+				p->second=0;
+			}
 		}
 }
+
+void stopSend(void)
+{
+		g_cmdSendPos=0;
+		g_cmdDataCount=0;
+		addLogicCmd(0xFF,0xFF,3,NULL,0); //全局停止操作指令,持续3秒
+}
+
 void recvLogic(int a,int b,unsigned char* data)
 {
 		switch(a)
@@ -54,13 +73,10 @@ int getCmdCount(void)
 		return g_cmdDataCount; //链表内记录数量
 }
 
-void addLogicCmd(unsigned char*data,int dataLen)
+void addLogicCmd(unsigned char b,unsigned char f,int doSecond,unsigned char*data,int dataLen)
 {
 		int i=0;
-	
-		if(dataLen!=10)
-		{return;}
-		
+			
 		if(g_cmdDataCount<20)
 		{
 				if(20==g_cmdDataPos)
@@ -68,8 +84,12 @@ void addLogicCmd(unsigned char*data,int dataLen)
 				
 				for(i=0;i<dataLen;i++)
 				{
-						g_cmdDataList[g_cmdDataPos][i]=data[i];
+						g_cmdDataList[g_cmdDataPos].buf[i]=data[i];
 				}
+				g_cmdDataList[g_cmdDataPos].bid=b;
+				g_cmdDataList[g_cmdDataPos].fid=f;
+				g_cmdDataList[g_cmdDataPos].second=doSecond*10;//时间同步定时器
+				g_cmdDataList[g_cmdDataPos].buflen=dataLen;
 				g_cmdDataPos++;
 				g_cmdDataCount++;
 		}
@@ -81,32 +101,27 @@ void dev_status(void)
 		{
 			case 0:
 			{
-		unsigned char data[]={	1,0};
-				addLogicCmd(data,10);
+				addLogicCmd(1,0,0,NULL,0);
 			}
 				break;
 			case 1:
 			{
-		unsigned char data[]={	2,0};
-				addLogicCmd(data,10);
+				addLogicCmd(2,0,0,NULL,0);
 			}
 				break;
 			case 2:
 			{
-		unsigned char data[]={	3,0};
-				addLogicCmd(data,10);
+				addLogicCmd(3,0,0,NULL,0);
 			}
 				break;
 			case 3:
 			{
-		unsigned char data[]={	4,0};
-				addLogicCmd(data,10);
+				addLogicCmd(4,0,0,NULL,0);
 			}
 				break;
 			case 4:
 			{
-		unsigned char data[]={	5,0};
-				addLogicCmd(data,10);
+				addLogicCmd(5,0,0,NULL,0);
 			}
 				break;
 		}
@@ -134,46 +149,39 @@ void s4_000(int b,unsigned char*data)
 			case 0x10:
 			{
 				TagUpData485_S4*p=(TagUpData485_S4*)data;
-				switch(p->key)
+				switch(p->key)//按键功能
 				{
 					case 1:
 					{
-							uart3Send(0xFF,0xF1,NULL,0);
+						addLogicCmd(1,0xA0,10,NULL,0);
 					}
 						break;
 					case 2:
 					{
-							uart3Send(0xFF,0xF2,NULL,0);
 					}
 						break;
 					case 3:
 					{
-							uart3Send(0xFF,0xF3,NULL,0);
 					}
 						break;
 					case 4:
 					{
-							uart3Send(0xFF,0xF4,NULL,0);
 					}	
 						break;
 					case 5:
 					{
-							uart3Send(0xFF,0xF5,NULL,0);
 					}
 						break;
 					case 6:
 					{
-							uart3Send(0xFF,0xF6,NULL,0);
 					}
 						break;
 					case 7:
 					{
-							uart3Send(0xFF,0xF7,NULL,0);
 					}
 						break;
 					case 8:
 					{
-							uart3Send(0xFF,0xF8,NULL,0);
 					}
 						break;
 				}
@@ -186,47 +194,4 @@ void s5_000(int b,unsigned char*data)
 		
 }
 
-//------------------------------------------
-void s1_001(unsigned char*data)
-{
-		
-}
-void s2_001(unsigned char*data)
-{
-		
-}
-void s3_001(unsigned char*data)
-{
-		
-}
-void s4_001(unsigned char*data)
-{
-		
-}
-void s5_001(unsigned char*data)
-{
-		
-}
 
-//-------------------------------------------
-//发送控制
-void s1_002(unsigned char*data)
-{
-
-}
-void s2_002(unsigned char*data)
-{
-
-}
-void s3_002(unsigned char*data)
-{
-
-}
-void s4_002(unsigned char*data)
-{
-
-}
-void s5_002(unsigned char*data)
-{
-
-}

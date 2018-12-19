@@ -24,31 +24,28 @@ void delay_s(int n)
 		{ STM32_Delay_ms(100); }
 }
 
+/*
 
+
+*/
 void openGuiZi(void)
 {
-			int n=0,m=0;
-	
-			if(!SENSOR4_STATE())
+			int n=0,m=0;	
+			if(!SENSOR5_STATE())
 			{
 				_unit1(1);
 				_unit2(0);
-				while(SENSOR5_STATE());
+				while(!SENSOR5_STATE()); //this have bug,for line unok
 			}
-			//
-			for(n=0;n<1000;n++)
-				for(m=0;m<1000;m++);
-			//
-			while(SENSOR6_STATE());
 			_unit1(0);
 			_unit2(0);
 			
 			//
-			if(!SENSOR7_STATE())
+			if(!SENSOR8_STATE())
 			{
-				_unit3(1);
-				_unit4(0);
-				while(SENSOR8_STATE());
+				_unit3(0);
+				_unit4(1);
+				while(!SENSOR8_STATE()); //this have bug,for line unok
 			}
 			
 			_unit3(0);
@@ -57,20 +54,20 @@ void openGuiZi(void)
 
 void closeGuiZi(void)
 {
-			if(!SENSOR8_STATE())
+			if(!SENSOR7_STATE())
 			{
-				_unit3(0);
-				_unit4(1);
-				while(SENSOR7_STATE());
+				_unit3(1);
+				_unit4(0);
+				while(!SENSOR7_STATE()); //this have bug,for line unok
 			}
-		  _unit3(0);
+			_unit3(0);
 			_unit4(0);			
 			
-			if(!SENSOR5_STATE())
+			if(!SENSOR4_STATE())
 			{
 				_unit1(0);
 				_unit2(1);
-				while(SENSOR4_STATE());
+				while(!SENSOR4_STATE()); //this have bug,for line unok
 			}			
 			_unit1(0);
 			_unit2(0);

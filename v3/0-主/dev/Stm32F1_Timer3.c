@@ -62,18 +62,18 @@ void TIM3_IRQHandler(void)
 	}
 	
 	//搜索硬件状态指令
-	if(g_intervalSend>10)
+	if(g_intervalSend>30)
 	{
 			if(0==getCmdCount())
 			{
-				dev_status();
+		//		dev_status();
 			}
 			//加入搜索
 			g_intervalSend=0;
 	}
 	
 	//执行间隔
-	if(g_interValLastExc>1)
+	if(g_interValLastExc>10)
 	{
 			sendLogic();
 			g_interValLastExc=0;

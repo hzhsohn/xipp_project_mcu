@@ -21,11 +21,11 @@ void InputDriveInit(void)
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
   GPIO_Init(SENSOR5_GPIO, &GPIO_MyStruct);
 		
-	GPIO_MyStruct.GPIO_Pin = SENSOR6_PIN;
+/*	GPIO_MyStruct.GPIO_Pin = SENSOR6_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;
   GPIO_Init(SENSOR6_GPIO, &GPIO_MyStruct);
-	
+	*/
 	GPIO_MyStruct.GPIO_Pin = SENSOR7_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_IPU;

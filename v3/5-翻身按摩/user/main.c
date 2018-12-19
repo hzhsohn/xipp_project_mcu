@@ -59,6 +59,12 @@ void setFlashData()
 			FLASH_WriteByte(STARTADDRFLAG,(uint8_t*)binFlag,4);
 	}
 }
+
+//气垫应用：翻身
+//void StoolPosture(void);			//大便姿态
+//void AirCushionMassage(void)		//气垫按摩
+
+
 int main(void)
 {
 	STM32_Delay_init();
@@ -77,7 +83,11 @@ int main(void)
 	Stm32F1_Timer3Init();
 	InputDriveInit();
 	OutputDriveInit();
-	//zhSCM_GPIOConfig(); 	
+	//zhSCM_GPIOConfig();
+	
+	//-------继电器测试------------------------
+	//RelayTest();
+	//OutputDriveInit();
 	
 	//-----------------------------------------
 	//获取FALSH数据
@@ -145,3 +155,686 @@ int main(void)
 		
 		}
 }
+	
+
+/*
+void StoolPosture(void)		//大便姿态
+{
+	switch(b)
+	{
+		case 0x00: //获取传感器
+			{
+				uart3SendNull(0x10);
+			}
+			break;
+		case 0x00: //获取传感器
+			{
+				uart3SendNull(0x10);
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_3_STATE(1);		//充气
+				//S4里的真空泵开
+				REL_L1_STATE(1);
+				REL_L3_STATE(1);
+				REL_L7_STATE(1);
+				REL_R1_STATE(1);
+				REL_R3_STATE(1);
+				REL_R7_STATE(1);
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_3_STATE(0);
+				//S4里的真空泵开
+				REL_L1_STATE(0);
+				REL_L3_STATE(0);
+				REL_L7_STATE(0);	
+				REL_R1_STATE(0);
+				REL_R3_STATE(0);
+				REL_R7_STATE(0);
+			}
+			break;
+		case 0x00:
+			{
+				DEF;	//大便完成，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_4_STATE(1);		//放气
+				//S4里的真空泵开
+				REL_L2_STATE(1);
+				REL_L4_STATE(1);
+				REL_L8_STATE(1);
+				REL_R2_STATE(1);
+				REL_R4_STATE(1);
+				REL_R8_STATE(1);
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_4_STATE(0);
+				//S4里的真空泵开
+				REL_L2_STATE(0);
+				REL_L4_STATE(0);
+				REL_L8_STATE(0);
+				REL_R2_STATE(0);
+				REL_R4_STATE(0);
+				REL_R8_STATE(0);
+			}
+			break;			
+	
+	}
+
+}
+
+
+void AirCushionMassage(void)			//气垫按摩
+{
+	switch(b)
+	{
+		case 0x00: //获取传感器
+			{
+				uart3SendNull(0x10);
+			}
+			break;
+
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_L11_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_L11_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_L12_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_L12_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_L9_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_L9_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_L10_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_L10_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_L7_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_L7_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_L8_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_L8_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_L5_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_L5_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_L6_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_L6_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_L3_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_L3_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_L4_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_L4_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_L1_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_L1_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_L2_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_L2_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_R1_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_R1_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_R2_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_R2_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_R3_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_R3_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_R4_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_R4_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_R5_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_R5_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_R6_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_R6_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_R7_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_R7_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_R8_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_R8_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_R9_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_R9_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_R10_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_R10_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0xA0:
+			{
+				REL_1_STATE(1);
+				REL_R11_STATE(1);		//充气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_1_STATE(0);
+				REL_R11_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(1);
+				REL_R12_STATE(1);		//放气
+				//S4里的真空泵开
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*10;	//此处只作个标记，是检测气压，达到要求后，即关掉
+			}
+			break;
+		case 0x00:
+			{
+				REL_2_STATE(0);
+				REL_R12_STATE(0);
+				//S4里的真空泵关
+			}
+			break;
+		case 0x00:
+			{
+				DEF_TIME_MS_DELAY*100;	//此处等待10分钟后，再执行下个动作
+			}
+			break;
+	
+	}
+
+
+}
+*/
+

@@ -105,6 +105,7 @@ int main(void)
 	//看门狗
 	//watchdog_init();
 
+	addLogicCmd(1,1,1,NULL,0);
 	while(1)
 	{
 		//看门狗

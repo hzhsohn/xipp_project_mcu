@@ -74,19 +74,20 @@ void setFlashData()
 			FLASH_WriteByte(STARTADDRFLAG,(uint8_t*)binFlag,4);
 	}
 }
+
 int main(void)
 {
-	int res;
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOD|RCC_APB2Periph_GPIOE,ENABLE);	
 	STM32_Delay_init();
-	STM32F1_UART1_Init(115200);
-	STM32F1_UART2_Init(19200);
+	//STM32F1_UART1_Init(115200);
+	//STM32F1_UART2_Init(19200);
 	STM32F1_UART3_Init(19200);
 	
-	DS18B20_Init();
+	//DS18B20_Init();
 	DS18B20_Init1();
-	Adc_Init();
-	Adc2_Init();
-	Stm32F1_Timer2Init();
+	//Adc_Init();
+	//Adc2_Init();
+	//Stm32F1_Timer2Init();
 	Stm32F1_Timer3Init();
 	InputDriveInit();
 	OutputDriveInit();
@@ -110,10 +111,10 @@ int main(void)
 			
 				//------------------------------------------------------------------
 				//检测有无尿拉下来		
-				if(dxbXuXu)
+				if(pdxbXuXu)
 				{
 					rXuxuDD++;
-					if(rXuxuDD>2000)
+					if(rXuxuDD>3)
 					{
 							rXuxuDD=0;
 							ud485.niao=1;
@@ -125,10 +126,10 @@ int main(void)
 				}
 				//------------------------------------------------------------------
 				//检测有没有屎掉下来
-				if(dxbPooPoo)
+				if(pdxbPooPoo)
 				{
 					rPoopoDD++;
-					if(rPoopoDD>2000)
+					if(rPoopoDD>3)
 					{
 							rPoopoDD=0;
 							ud485.shi=1;
@@ -139,7 +140,7 @@ int main(void)
 					rPoopoDD=0;
 				}
 
-				//------------------------------------------------------------------
+				/*//------------------------------------------------------------------
 				//当前温度
 				rWaterTemp=DS18B20_Get_Temp();
 				if(rWaterTemp<2000 && rWaterTemp> -200) //限制位
@@ -168,7 +169,7 @@ int main(void)
 								ud485.PiGuWenDu=0;
 						}
 				}
-
+*/
 				//-------------------------------------------------------------------
 				//空气加热,实时条件限制
 				rGasTemp=DS18B20_Get_Temp1(); 
@@ -180,7 +181,6 @@ int main(void)
 							isGasTooHot=0;							
 							if(rGasTemp > 60*10) //加热器有问题了吧,太高了就是加热器有问题了.
 							{
-								_unit12(0); //关掉气加热单元
 								//气温太热了.发到串口告诉上位机端,通知护士小妹妹,机器故障了
 								isGasTooHot=1;
 							}

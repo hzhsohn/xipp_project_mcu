@@ -62,7 +62,7 @@ void TIM3_IRQHandler(void)
 
 	//---------------------------
 	//继电器操作
-	if(g_run.juint1Time>0)
+	if(g_run.juint1Time>0)  //真空开
 	{
 			g_run.juint1Time--;
 			_junit1(1);
@@ -71,6 +71,16 @@ void TIM3_IRQHandler(void)
 	{
 			_junit1(0);
 	}
+	if(SENSOR7_STATE()&&SENSOR4_STATE()
+		&& ud485.qiya1_percent > 40)//关桶了就抽了抽,压力大于多少就抽
+	{
+		_junit1(1);
+	}
+	else
+	{
+		_junit1(0);
+	}
+	//---------------------------------------
 	
 	if(g_run.juint2Time>0)
 	{

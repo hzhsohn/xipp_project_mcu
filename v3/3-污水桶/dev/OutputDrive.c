@@ -82,49 +82,53 @@ void Relay_Init(void)
 	RELAY9_STATE(0);
 
 
-	/*RELAY10*/
+	/*RELAY10*/	
 	GPIO_MyStruct.GPIO_Pin = RELAY10_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
   GPIO_Init(RELAY10_GPIO, &GPIO_MyStruct);
 	RELAY10_STATE(0);
+	
 
 
-	/*RELAY11*/
+	/*RELAY11*/	
 	GPIO_MyStruct.GPIO_Pin = RELAY11_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
   GPIO_Init(RELAY11_GPIO, &GPIO_MyStruct);
 	RELAY11_STATE(0);
+	
 
 
-	/*RELAY12*/
+	/*RELAY12*/	
 	GPIO_MyStruct.GPIO_Pin = RELAY12_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
   GPIO_Init(RELAY12_GPIO, &GPIO_MyStruct);
 	RELAY12_STATE(0);
+	
 
-	/*RELAY13*/
+	/*RELAY13*/	
 	GPIO_MyStruct.GPIO_Pin = RELAY13_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
   GPIO_Init(RELAY13_GPIO, &GPIO_MyStruct);
 	RELAY13_STATE(0);
 		
-	/*RELAY14*/
+	/*RELAY14*/	
 	GPIO_MyStruct.GPIO_Pin = RELAY14_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
   GPIO_Init(RELAY14_GPIO, &GPIO_MyStruct);
 	RELAY14_STATE(0);
 		
-	/*RELAY15*/
+	/*RELAY15*/	
 	GPIO_MyStruct.GPIO_Pin = RELAY15_PIN;
   GPIO_MyStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_MyStruct.GPIO_Mode = GPIO_Mode_Out_OD;
   GPIO_Init(RELAY15_GPIO, &GPIO_MyStruct);
 	RELAY15_STATE(0);
+	
 }
 
 void RelayTest()
@@ -146,6 +150,7 @@ void RelayTest()
 	RELAY13_STATE(0);
 	RELAY14_STATE(0);
 	RELAY15_STATE(0);
+	
 	//-------------------------------------------------
 	tmeCal=0;
 	while(tmeCal<3600000)
@@ -222,6 +227,7 @@ void RelayTest()
 	{
 		tmeCal++;
 	}
+
 	
 	RELAY11_STATE(1); 
 	tmeCal=0;
