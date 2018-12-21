@@ -22,45 +22,45 @@ extern int kk_1ms;
 //
 extern int jaopan;
 
-//ÊÇ·ñ×Ô¶¯»¯²Ù×÷
+//æ˜¯å¦è‡ªåŠ¨åŒ–æ“ä½œ
 unsigned char g_isAutomation=1;
 
 unsigned char g_cCleanCurrentSence=0;  
 
-//³¡¾°Ê±¼äµ÷¶È
+//åœºæ™¯æ—¶é—´è°ƒåº¦
 #define DEF_TIME_MS_DELAY		100
 
 /**************/
-//¼ÌµçÆ÷Âß¼­ÖØ¶¨Òå
+//ç»§ç”µå™¨é€»è¾‘é‡å®šä¹‰
 int isOpenDry=0;
 
 
 /**************/
-//´«¸ĞÆ÷Âß¼­ÖØ¶¨Òå
-#define cgqSewageHeight  					SENSOR1_STATE()?1:0 //¾»»¯ÒºµÍ
-#define cgqCleanWaterLow  				SENSOR2_STATE()?0:1 //ÇåË®µÍ
-#define cgqSewageSuitable  				SENSOR3_STATE()?1:0 //ÎÛË®µ½Î»
+//ä¼ æ„Ÿå™¨é€»è¾‘é‡å®šä¹‰
+#define cgqSewageHeight  					SENSOR1_STATE()?1:0 //å‡€åŒ–æ¶²ä½
+#define cgqCleanWaterLow  				SENSOR2_STATE()?0:1 //æ¸…æ°´ä½
+#define cgqSewageSuitable  				SENSOR3_STATE()?1:0 //æ±¡æ°´åˆ°ä½
 
-//´óĞ¡±ã¼ì²â
-#define dxbPooPoo  				SENSOR4_STATE()?0:1    //Êº
-#define dxbXuXu	  				SENSOR5_STATE()?0:1    //Äò
+//å¤§å°ä¾¿æ£€æµ‹
+#define dxbPooPoo  				SENSOR4_STATE()?0:1    //å±
+#define dxbXuXu	  				SENSOR5_STATE()?0:1    //å°¿
 
 //--
-//ÎÂ¶È
+//æ¸©åº¦
 int ntmp;
 s16 rWaterTemperature=0,rWaterTemp=0,rGasTemperature=0,rGasTemp=0;
 s16 rTrueWaterTemp=0,rTrueGasTemp=0;
 int isWaterTooHot=0;
 int isGasTooHot=0;
-int isCheckWaterSensorErr=0; //Ë®ÎÂ·À´íÎóÏŞÖÆ
-int isCheckGasSensorErr=0;//Ë®ÎÂ·À´íÎóÏŞÖÆ
-int isCheckBedCQSensorErr=0;//ÆøÑ¹·À´íÎóÏŞÖÆ
-int isCheckDZCQSensorErr=0;	//ÆøÑ¹·À´íÎóÏŞÖÆ
+int isCheckWaterSensorErr=0; //æ°´æ¸©é˜²é”™è¯¯é™åˆ¶
+int isCheckGasSensorErr=0;//æ°´æ¸©é˜²é”™è¯¯é™åˆ¶
+int isCheckBedCQSensorErr=0;//æ°”å‹é˜²é”™è¯¯é™åˆ¶
+int isCheckDZCQSensorErr=0;	//æ°”å‹é˜²é”™è¯¯é™åˆ¶
 
-//ÆøÑ¹
+//æ°”å‹
 u16_t rPressure=0,rPressureTmp=0,rPressure2=0,rPressure2Tmp=0;
 u16_t rTruePressure1=0,rTruePressure2=0;
-//ÊºÊºÄòÄòµÄ·À¶¶¶¯
+//å±å±å°¿å°¿çš„é˜²æŠ–åŠ¨
 int rPoopoDD=0;
 int rXuxuDD=0;
 int pdxbPooPoo;
@@ -69,25 +69,25 @@ int pdxbXuXu;
 int isTextPOPO=0;
 int isTextXUXU=0;
 
-//½Ç¶È 
+//è§’åº¦ 
 extern unsigned char jiaodu[2];
-//Âö²©
+//è„‰åš
 extern unsigned char cHeartJump;
-//¾»»¯ÒºµÍ
+//å‡€åŒ–æ¶²ä½
 char bSewageHeight=0;
-//ÇåË®Ì«ÉÙ
+//æ¸…æ°´å¤ªå°‘
 char bCleanWaterLow=0;
-//ÎÛË®µ½Î»
+//æ±¡æ°´åˆ°ä½
 char bSewageSuitable=0;
-//¹¤×÷Ê±¼äÉèÖÃ
+//å·¥ä½œæ—¶é—´è®¾ç½®
 TagTimeingSetting g_tmeSetting={0};
 
 
-//ÖĞ¶ÏÔËĞĞchart
+//ä¸­æ–­è¿è¡Œchart
 int isCleanRuning=0;
 int ppxxStep=0;
 
-//ÉãÏñÍ·µç»ú
+//æ‘„åƒå¤´ç”µæœº
 int xiiiLimit=90000;
 int xiii=1000000;
 int xiii2=1000000;
@@ -101,7 +101,7 @@ int monLimitState2L;
 int monLimitState2R;
 
 
-//°´Ä¦×´Ì¬
+//æŒ‰æ‘©çŠ¶æ€
 static int anmiCurrentState=0;
 static int baonianCurrentState=0;
 //
@@ -110,14 +110,14 @@ void senceDelay(int*nCalca,int*ppxxStep,int jmpValue,int delay_ms,int ezhCleanSe
 //
 void LitteSenceRun(void);
 /*
-	ezhCleanSence1×Ô¶¯»¯Ğ¡±ã																					
-	ezhCleanSence2×Ô¶¯»¯´ó±ã 
-	ezhCleanSence3»¤ÎÀ
-	ezhCleanSence4³åÏ´
-	ezhCleanSence5ºæ¸É
-	ezhCleanSence6³ı¾ú
-	ezhCleanSence7°´Ä¦
-	ezhCleanSence8±£Å¯
+	ezhCleanSence1è‡ªåŠ¨åŒ–å°ä¾¿																					
+	ezhCleanSence2è‡ªåŠ¨åŒ–å¤§ä¾¿ 
+	ezhCleanSence3æŠ¤å«
+	ezhCleanSence4å†²æ´—
+	ezhCleanSence5çƒ˜å¹²
+	ezhCleanSence6é™¤èŒ
+	ezhCleanSence7æŒ‰æ‘©
+	ezhCleanSence8ä¿æš–
 */
 void litteSenceRunPooPoo(void);
 void litteSenceRunXuXu(void);
@@ -128,7 +128,7 @@ void litteSenceRunChuQun(void);
 void litteSenceRunAnMo(void);
 void litteSenceRunBaoNang(void);
 
-//¹Ø±ÕËùÓĞÊä³ö
+//å…³é—­æ‰€æœ‰è¾“å‡º
 void allSenceClose()
 {
 		isOpenDry=0;
@@ -151,7 +151,7 @@ void allSenceClose()
 	 _unit15(0); 	
 }
 
-//ÖĞ¶Ï³¡¾°
+//ä¸­æ–­åœºæ™¯
 void allOutClose()
 {	
 		isCleanRuning=0;
@@ -160,7 +160,7 @@ void allOutClose()
 		isTextXUXU=0;
 }
 ////////////////////////////////////////////////////////////////
-//³¡¾°ÑÓÊ±
+//åœºæ™¯å»¶æ—¶
 void senceDelayToValue(int*nCalca,int*ppxxStep,int jmpValue,int delay_ms)
 {
 	if((*nCalca) > delay_ms) 
@@ -170,7 +170,7 @@ void senceDelayToValue(int*nCalca,int*ppxxStep,int jmpValue,int delay_ms)
 	}
 	else
 	{
-			if(0==isCleanRuning)//ÖĞ¶Ï
+			if(0==isCleanRuning)//ä¸­æ–­
 			{g_cCleanCurrentSence=0;(*nCalca)=0;allOutClose();}
 			(*nCalca)=jmpValue;
 	}
@@ -185,7 +185,7 @@ void senceDelayToNext(int*nCalca,int*ppxxStep,int delay_ms)
 	}
 	else
 	{
-			if(0==isCleanRuning)//ÖĞ¶Ï
+			if(0==isCleanRuning)//ä¸­æ–­
 			{g_cCleanCurrentSence=0;(*nCalca)=0;allOutClose();}
 			(*nCalca)++;
 	}
@@ -199,7 +199,7 @@ void senceNext(int*nCalca,int*ppxxStep)
 }
 ////////////////////////////////////////////////////////////////
 
-//Ìá½»µ±Ç°×´Ì¬
+//æäº¤å½“å‰çŠ¶æ€
 void aurtEventStatus()
 {
 		uchar dst_buf[50]={0};
@@ -211,26 +211,26 @@ void aurtEventStatus()
 		cbuf[1]=g_isAutomation;
 		cbuf[2]=g_cCleanCurrentSence;
 				
-		cbuf[3]=bSewageHeight;//´«¸ĞÆ÷ÎÛË®Âú
-		cbuf[4]=bCleanWaterLow;//´«¸ĞÆ÷ÇåË®Ì«Ğ¡
-		cbuf[5]=bSewageSuitable;//´«¸ĞÆ÷ÎÛË®¹ÜÎ´°²×°µ½Î»
+		cbuf[3]=bSewageHeight;//ä¼ æ„Ÿå™¨æ±¡æ°´æ»¡
+		cbuf[4]=bCleanWaterLow;//ä¼ æ„Ÿå™¨æ¸…æ°´å¤ªå°
+		cbuf[5]=bSewageSuitable;//ä¼ æ„Ÿå™¨æ±¡æ°´ç®¡æœªå®‰è£…åˆ°ä½
 		
-		cbuf[6]=cHeartJump; //Âö²©
+		cbuf[6]=cHeartJump; //è„‰åš
 		cbuf[7]=0;
 		
-		cbuf[8]=rTrueWaterTemp&0xff; //Ë®ÎÂ¶È
+		cbuf[8]=rTrueWaterTemp&0xff; //æ°´æ¸©åº¦
 		cbuf[9]=rTrueWaterTemp>>8;
 		
-		cbuf[10]=rTrueGasTemp&0xff; //ÆøÎÂ¶È
+		cbuf[10]=rTrueGasTemp&0xff; //æ°”æ¸©åº¦
 		cbuf[11]=rTrueGasTemp>>8;
 		
-		cbuf[12]=rTruePressure1&0xff; //¿ãµµÆøÑ¹
+		cbuf[12]=rTruePressure1&0xff; //è£¤æ¡£æ°”å‹
 		cbuf[13]=rTruePressure1>>8;
 		
-		cbuf[14]=rTruePressure2&0xff; //´²µæÆøÑ¹
+		cbuf[14]=rTruePressure2&0xff; //åºŠå«æ°”å‹
 		cbuf[15]=rTruePressure2>>8;
 		
-		cbuf[16]=isWaterTooHot;//Èç¹ûÎª1¾ÍÊÇÓĞÎÊÌâ,ÒâË¼¾ÍÊÇ"¼ÓÈÈ¹¦ÄÜ²»ÖªµÀÄÄÀïÓĞÎÊÌâ.."
+		cbuf[16]=isWaterTooHot;//å¦‚æœä¸º1å°±æ˜¯æœ‰é—®é¢˜,æ„æ€å°±æ˜¯"åŠ çƒ­åŠŸèƒ½ä¸çŸ¥é“å“ªé‡Œæœ‰é—®é¢˜.."
 		cbuf[17]=isGasTooHot;
 		
 		myDataLen = miniDataCreate(20,cbuf,dst_buf);
@@ -254,13 +254,13 @@ void aurtEventBtn(int i)
 void aurtEventUnitSence(EzhCleanSence i,int isEnable)
 {
 		/*
-			1//¼ÌµçÆ÷³éÎüÆôÓÃ
-			2//¼ÌµçÆ÷ºæ¸ÉÆôÓÃ
-			3//¼ÌµçÆ÷³ı¾úÆôÓÃ
-			4//¼ÌµçÆ÷´ó±ãÆôÓÃ
-			5//¼ÌµçÆ÷´ó±ã³åÏ´ÆôÓÃ
-			6//¼ÌµçÆ÷Ğ¡±ãÆôÓÃ
-			7//¼ÌµçÆ÷Ğ¡±ã³åÏ´ÆôÓÃ
+			1//ç»§ç”µå™¨æŠ½å¸å¯ç”¨
+			2//ç»§ç”µå™¨çƒ˜å¹²å¯ç”¨
+			3//ç»§ç”µå™¨é™¤èŒå¯ç”¨
+			4//ç»§ç”µå™¨å¤§ä¾¿å¯ç”¨
+			5//ç»§ç”µå™¨å¤§ä¾¿å†²æ´—å¯ç”¨
+			6//ç»§ç”µå™¨å°ä¾¿å¯ç”¨
+			7//ç»§ç”µå™¨å°ä¾¿å†²æ´—å¯ç”¨
 		*/
 		uchar dst_buf[50]={0};
 		int myDataLen=0;
@@ -272,7 +272,7 @@ void aurtEventUnitSence(EzhCleanSence i,int isEnable)
 		STM32F1_UART1SendDataS(dst_buf,myDataLen);
 }
 
-//ÏÔÊ¾ĞÅÏ¢Ö¸Áî
+//æ˜¾ç¤ºä¿¡æ¯æŒ‡ä»¤
 void aurtEventUnitShow(int i)
 {
 		uchar dst_buf[50]={0};
@@ -300,19 +300,19 @@ void setFlashData()
 			binFlag[2]='c';
 			binFlag[3]='d';
 
-			//³õÊ¼»¯FLASHÄÚÈİ
-			g_tmeSetting.pooDelay=1;					  //À­Êººó¶àÉÙÃëÆô¶¯ ,µ¥Î»·ÖÖÓ
-			g_tmeSetting.xuxuDelay=10;				  //À­Êººó¶àÉÙÃëÆô¶¯ ,µ¥Î»Ãë
-			g_tmeSetting.pooFlush=30;					  //ÊºÊº³åÏ´  ,	µ¥Î»Ãë
-			g_tmeSetting.xuxuFlush=10;				  //ÄòÄò³åÏ´  	µ¥Î» Ãë
-			g_tmeSetting.pooDry=2;      		  	//ÊºÊººæ¸ÉÊ±¼ä µ¥Î» ·ÖÖÓ
-			g_tmeSetting.xuxuDry=1;					  	//ÄòÄòºæ¸ÉÊ±¼ä µ¥Î» ·ÖÖÓ
-			g_tmeSetting.pooSterilize=10;			  //ÊºÊºÏû¶¾Ê±¼ä µ¥Î» Ãë
-			g_tmeSetting.xuxuSterilize=10;		  //ÄòÄòÏû¶¾Ê±¼ä µ¥Î» Ãë
-			g_tmeSetting.crotchPressure=13;			//¿ãµµÆøÑ¹ µ¥Î» 100µçÑ¹±äÊı
-			g_tmeSetting.bedPressure=13;   			//´²µæµÄÆøÑ¹  µ¥Î» 100µçÑ¹±äÊı
-			g_tmeSetting.waterTemperature=38;		//×îµÍË®ÎÂ   			µ¥Î»ÉãÊÏ¶È
-			g_tmeSetting.airTemperature=50;  		//×îµÍºæ¸ÉÎÂ¶È   	µ¥Î»ÉãÊÏ¶È
+			//åˆå§‹åŒ–FLASHå†…å®¹
+			g_tmeSetting.pooDelay=1;					  //æ‹‰å±åå¤šå°‘ç§’å¯åŠ¨ ,å•ä½åˆ†é’Ÿ
+			g_tmeSetting.xuxuDelay=10;				  //æ‹‰å±åå¤šå°‘ç§’å¯åŠ¨ ,å•ä½ç§’
+			g_tmeSetting.pooFlush=30;					  //å±å±å†²æ´—  ,	å•ä½ç§’
+			g_tmeSetting.xuxuFlush=10;				  //å°¿å°¿å†²æ´—  	å•ä½ ç§’
+			g_tmeSetting.pooDry=2;      		  	//å±å±çƒ˜å¹²æ—¶é—´ å•ä½ åˆ†é’Ÿ
+			g_tmeSetting.xuxuDry=1;					  	//å°¿å°¿çƒ˜å¹²æ—¶é—´ å•ä½ åˆ†é’Ÿ
+			g_tmeSetting.pooSterilize=10;			  //å±å±æ¶ˆæ¯’æ—¶é—´ å•ä½ ç§’
+			g_tmeSetting.xuxuSterilize=10;		  //å°¿å°¿æ¶ˆæ¯’æ—¶é—´ å•ä½ ç§’
+			g_tmeSetting.crotchPressure=13;			//è£¤æ¡£æ°”å‹ å•ä½ 100ç”µå‹å˜æ•°
+			g_tmeSetting.bedPressure=13;   			//åºŠå«çš„æ°”å‹  å•ä½ 100ç”µå‹å˜æ•°
+			g_tmeSetting.waterTemperature=38;		//æœ€ä½æ°´æ¸©   			å•ä½æ‘„æ°åº¦
+			g_tmeSetting.airTemperature=50;  		//æœ€ä½çƒ˜å¹²æ¸©åº¦   	å•ä½æ‘„æ°åº¦
 			g_tmeSetting.mpuLeft=30;  					//
 			g_tmeSetting.mpuRight=30;  					//
 				
@@ -358,30 +358,30 @@ int main(void)
 	zhSCM_GPIOConfig();
 
 	//-----------------------------------------
-	//»ñÈ¡FALSHÊı¾İ
+	//è·å–FALSHæ•°æ®
 	setFlashData();
   //-----------------------------------------
 
-	//²âÊÔ¼Ìµç×ÓÆ÷Âß¼­	
+	//æµ‹è¯•ç»§ç”µå­å™¨é€»è¾‘	
 	#if 0
 			allOutClose();
 			RelayTest();
 			allOutClose();
 	#endif 
 	
-	//¿´ÃÅ¹·
+	//çœ‹é—¨ç‹—
 	//watchdog_init();
 	
 	while(1)
 	{
-		//¿´ÃÅ¹·
+		//çœ‹é—¨ç‹—
 		//watchdog_action();
 		//
 		pdxbPooPoo=dxbPooPoo;
 		pdxbXuXu=dxbXuXu;
 		//
 		//---------------------
-		//°´¼ü1		»¤ÎÀ¼ü
+		//æŒ‰é”®1		æŠ¤å«é”®
 		ev=zhSCM_keyState(&btn1,TOUCHKEY_1_GPIO,TOUCHKEY_1_PIN);
     switch(ev)
     {
@@ -411,7 +411,7 @@ int main(void)
 			}
        break;
     }
-		//°´¼ü2		³åÏ´¼ü
+		//æŒ‰é”®2		å†²æ´—é”®
 		ev=zhSCM_keyState(&btn2,TOUCHKEY_2_GPIO,TOUCHKEY_2_PIN);
     switch(ev)
     {
@@ -441,7 +441,7 @@ int main(void)
 			}
         break;
     }
-		//°´¼ü3		ºæ¸É¼ü
+		//æŒ‰é”®3		çƒ˜å¹²é”®
 		ev=zhSCM_keyState(&btn3,TOUCHKEY_3_GPIO,TOUCHKEY_3_PIN);
     switch(ev)
     {
@@ -470,7 +470,7 @@ int main(void)
 			}
         break;
     }
-		//°´¼ü4		³ı¾ú¼ü
+		//æŒ‰é”®4		é™¤èŒé”®
 		ev=zhSCM_keyState(&btn4,TOUCHKEY_4_GPIO,TOUCHKEY_4_PIN);
     switch(ev)
     {
@@ -500,7 +500,7 @@ int main(void)
         break;
     }
 		
-		//°´¼ü5		°´Ä¦¼ü
+		//æŒ‰é”®5		æŒ‰æ‘©é”®
 		ev=zhSCM_keyState(&btn5,TOUCHKEY_5_GPIO,TOUCHKEY_5_PIN);
     switch(ev)
     {
@@ -517,11 +517,11 @@ int main(void)
 						g_cCleanCurrentSence=ezhCleanSence7;
 						isCleanRuning=1;
 						anmiCurrentState=!anmiCurrentState;
-						ppxxStep=0; //¸´Î»³¡¾°
+						ppxxStep=0; //å¤ä½åœºæ™¯
 			}
         break;
     }
-		//°´¼ü6		±£Å¯¼ü
+		//æŒ‰é”®6		ä¿æš–é”®
 		ev=zhSCM_keyState(&btn6,TOUCHKEY_6_GPIO,TOUCHKEY_6_PIN);
     switch(ev)
     {
@@ -538,12 +538,12 @@ int main(void)
 						g_cCleanCurrentSence=ezhCleanSence8;
 						isCleanRuning=1;
 						baonianCurrentState=!baonianCurrentState;
-						ppxxStep=0; //¸´Î»³¡¾°
+						ppxxStep=0; //å¤ä½åœºæ™¯
 			}
         break;
     }
 		
-		//°´¼ü7		ÉèÖÃÁ´
+		//æŒ‰é”®7		è®¾ç½®é“¾
 		ev=zhSCM_keyState(&btn7,TOUCHKEY_7_GPIO,TOUCHKEY_7_PIN);
     switch(ev)
     {
@@ -560,7 +560,7 @@ int main(void)
 			}
         break;
     }
-		//°´¼ü8		´ı»ú¿ª¹Ø
+		//æŒ‰é”®8		å¾…æœºå¼€å…³
 		ev=zhSCM_keyState(&btn8,TOUCHKEY_8_GPIO,TOUCHKEY_8_PIN);
     switch(ev)
     {
@@ -579,8 +579,8 @@ int main(void)
     }
 
 		//------------------------------------------------------------------
-		//¼ì²âÓĞÎŞÄòÀ­ÏÂÀ´		
-		//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //ÏŞÖÆÈç¹ûË®ÎÂ²»¹»²»²Ù×÷
+		//æ£€æµ‹æœ‰æ— å°¿æ‹‰ä¸‹æ¥		
+		//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //é™åˆ¶å¦‚æœæ°´æ¸©ä¸å¤Ÿä¸æ“ä½œ
 		{
 					if(dxbXuXu)
 					{
@@ -603,15 +603,15 @@ int main(void)
 					}
 		}
 		//------------------------------------------------------------------
-		//¼ì²âÓĞÃ»ÓĞÊºµôÏÂÀ´
-		//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10)  //ÏŞÖÆÈç¹ûË®ÎÂ²»¹»²»²Ù×÷
+		//æ£€æµ‹æœ‰æ²¡æœ‰å±æ‰ä¸‹æ¥
+		//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10)  //é™åˆ¶å¦‚æœæ°´æ¸©ä¸å¤Ÿä¸æ“ä½œ
 		{
 					if(dxbPooPoo)
 					{
 						rPoopoDD++;
 						if(rPoopoDD>2000)
 						{
-								if(0==g_cCleanCurrentSence && g_isAutomation)//³¡¾°Ö´ĞĞÖĞ
+								if(0==g_cCleanCurrentSence && g_isAutomation)//åœºæ™¯æ‰§è¡Œä¸­
 								{
 										aurtEventBtn(0x51);
 										ppxxStep=0;
@@ -628,23 +628,23 @@ int main(void)
 		}
 
 		//---------------------//
-		if(kk>=10 && xiii>=xiiiLimit && xiii2>=xiiiLimit) //ÏŞÖÆ0.1ÃëÖ´ĞĞÒ»´Î,ÇÒ²½½øµç»ú²»ÄÜÓĞ¶¯×÷
+		if(kk>=10 && xiii>=xiiiLimit && xiii2>=xiiiLimit) //é™åˆ¶0.1ç§’æ‰§è¡Œä¸€æ¬¡,ä¸”æ­¥è¿›ç”µæœºä¸èƒ½æœ‰åŠ¨ä½œ
 		{
 					//------------------------------------------------------------------
-					//Ë®ÎÂ¼ÓÈÈ
+					//æ°´æ¸©åŠ çƒ­
 					rWaterTemp=DS18B20_Get_Temp();
-					if(rWaterTemp<2000 && rWaterTemp> -200) //ÏŞÖÆÎ»
+					if(rWaterTemp<2000 && rWaterTemp> -200) //é™åˆ¶ä½
 					{
 						ntmp=rWaterTemp-rWaterTemperature;
-						if(ntmp<20 && ntmp>-20)	//ÏŞÖÆÍ»±ä·ù¶È
+						if(ntmp<20 && ntmp>-20)	//é™åˆ¶çªå˜å¹…åº¦
 						{
 								isWaterTooHot=0;							
-								if(rWaterTemp > 60*10) //¼ÓÈÈÆ÷ÓĞÎÊÌâÁË°É,Ì«¸ßÁË¾ÍÊÇ¼ÓÈÈÆ÷ÓĞÎÊÌâÁË.
+								if(rWaterTemp > 60*10) //åŠ çƒ­å™¨æœ‰é—®é¢˜äº†å§,å¤ªé«˜äº†å°±æ˜¯åŠ çƒ­å™¨æœ‰é—®é¢˜äº†.
 								{
-										//Ë®Ì«ÈÈÁË.·¢µ½´®¿Ú¸æËßÉÏÎ»»ú¶Ë,Í¨Öª»¤Ê¿Ğ¡ÃÃÃÃ,»úÆ÷¹ÊÕÏÁË
+										//æ°´å¤ªçƒ­äº†.å‘åˆ°ä¸²å£å‘Šè¯‰ä¸Šä½æœºç«¯,é€šçŸ¥æŠ¤å£«å°å¦¹å¦¹,æœºå™¨æ•…éšœäº†
 										isWaterTooHot=1;
 								}
-								else if(rWaterTemp<g_tmeSetting.waterTemperature*10 && 0==bCleanWaterLow) //Ä¬ÈÏĞ¡ÓÚ40¶È¾Í¼ÓÈÈ
+								else if(rWaterTemp<g_tmeSetting.waterTemperature*10 && 0==bCleanWaterLow) //é»˜è®¤å°äº40åº¦å°±åŠ çƒ­
 								{
 										_unit13(1);
 								}
@@ -660,9 +660,9 @@ int main(void)
 					else
 					{
 							isCheckWaterSensorErr++;						
-							if(isCheckWaterSensorErr>10) //´«¸ĞÊı¾İÃ«²¡Ì«¶à¹Øµô¼ÓÈÈ¼ÌµçÆ÷
+							if(isCheckWaterSensorErr>10) //ä¼ æ„Ÿæ•°æ®æ¯›ç—…å¤ªå¤šå…³æ‰åŠ çƒ­ç»§ç”µå™¨
 							{
-								//´«¸ĞÆ÷ÓĞÃ«²¡ÁË.¹Øµô¼ÌµçÆ÷
+								//ä¼ æ„Ÿå™¨æœ‰æ¯›ç—…äº†.å…³æ‰ç»§ç”µå™¨
 								if(g_cCleanCurrentSence==0)
 								{
 											_unit13(0);
@@ -671,27 +671,27 @@ int main(void)
 					}
 
 					//-------------------------------------------------------------------
-					//¿ÕÆø¼ÓÈÈ,ÊµÊ±Ìõ¼şÏŞÖÆ
+					//ç©ºæ°”åŠ çƒ­,å®æ—¶æ¡ä»¶é™åˆ¶
 					rGasTemp=DS18B20_Get_Temp1(); 
-					if(rGasTemp<2000 && rGasTemp> -200) //ÏŞÖÆÎ»
+					if(rGasTemp<2000 && rGasTemp> -200) //é™åˆ¶ä½
 					{
 						ntmp=rGasTemp-rGasTemperature;
-						if(ntmp<20 && ntmp>-20) //ÏŞÖÆÍ»±ä·ù¶È
+						if(ntmp<20 && ntmp>-20) //é™åˆ¶çªå˜å¹…åº¦
 						{
 								isGasTooHot=0;							
-								if(rGasTemp > 60*10) //¼ÓÈÈÆ÷ÓĞÎÊÌâÁË°É,Ì«¸ßÁË¾ÍÊÇ¼ÓÈÈÆ÷ÓĞÎÊÌâÁË.
+								if(rGasTemp > 60*10) //åŠ çƒ­å™¨æœ‰é—®é¢˜äº†å§,å¤ªé«˜äº†å°±æ˜¯åŠ çƒ­å™¨æœ‰é—®é¢˜äº†.
 								{
-									//ÆøÎÂÌ«ÈÈÁË.·¢µ½´®¿Ú¸æËßÉÏÎ»»ú¶Ë,Í¨Öª»¤Ê¿Ğ¡ÃÃÃÃ,»úÆ÷¹ÊÕÏÁË
+									//æ°”æ¸©å¤ªçƒ­äº†.å‘åˆ°ä¸²å£å‘Šè¯‰ä¸Šä½æœºç«¯,é€šçŸ¥æŠ¤å£«å°å¦¹å¦¹,æœºå™¨æ•…éšœäº†
 									isGasTooHot=1;
 								}
 								
-								if(isOpenDry && rGasTemp<g_tmeSetting.airTemperature*10 ) //50¶ÈÇÒºæ¿ª¹ØµÄÊ±ºò²Å´¦Àí
+								if(isOpenDry && rGasTemp<g_tmeSetting.airTemperature*10 ) //50åº¦ä¸”çƒ˜å¼€å…³çš„æ—¶å€™æ‰å¤„ç†
 								{
-									 _unit12(1);  //Æø¼ÓÈÈµ¥Ôª
+									 _unit12(1);  //æ°”åŠ çƒ­å•å…ƒ
 								}
 								else
 								{
-									 _unit12(0);	//Æø¼ÓÈÈµ¥Ôª
+									 _unit12(0);	//æ°”åŠ çƒ­å•å…ƒ
 								}
 								rTrueGasTemp=rGasTemp;
 								isCheckGasSensorErr=0;
@@ -701,15 +701,15 @@ int main(void)
 					else
 					{
 						isCheckGasSensorErr++;						
-						if(isCheckGasSensorErr>10) //´«¸ĞÊı¾İÓĞÃ«²¡¹Øµô¼ÓÈÈ¼ÌµçÆ÷
+						if(isCheckGasSensorErr>10) //ä¼ æ„Ÿæ•°æ®æœ‰æ¯›ç—…å…³æ‰åŠ çƒ­ç»§ç”µå™¨
 						{
-								//´«¸ĞÆ÷ÓĞÃ«²¡ÁË.¹Øµô¼ÌµçÆ÷
-								_unit12(0); //Æø¼ÓÈÈµ¥Ôª
+								//ä¼ æ„Ÿå™¨æœ‰æ¯›ç—…äº†.å…³æ‰ç»§ç”µå™¨
+								_unit12(0); //æ°”åŠ çƒ­å•å…ƒ
 						}
 					}
 
 					//------------------------------------------------------------------
-					//¾»»¯ÒºµÍ
+					//å‡€åŒ–æ¶²ä½
 					if(cgqSewageHeight)
 					{
 							bSewageHeight=1;
@@ -720,7 +720,7 @@ int main(void)
 					}
 
 					//------------------------------------------------------------------
-					//ÇåË®Ì«ÉÙ
+					//æ¸…æ°´å¤ªå°‘
 					if(cgqCleanWaterLow)
 					{
 							bCleanWaterLow=1;
@@ -731,7 +731,7 @@ int main(void)
 					}
 
 					//------------------------------------------------------------------
-					//ÎÛË®²»µ½Î»
+					//æ±¡æ°´ä¸åˆ°ä½
 					if(cgqSewageSuitable)
 					{
 							bSewageSuitable=1;
@@ -745,7 +745,7 @@ int main(void)
 		}
 		
 		//------------------------------------------------------------------
-		//³åÊºÏ´Äò¹¦ÄÜ
+		//å†²å±æ´—å°¿åŠŸèƒ½
 		if(kk_1ms)
 		{
 					LitteSenceRun();
@@ -761,11 +761,11 @@ int main(void)
 
 void LitteSenceRun()
 {
-		if(ezhCleanSence1==(g_cCleanCurrentSence)) //Äò
+		if(ezhCleanSence1==(g_cCleanCurrentSence)) //å°¿
 		{
 				litteSenceRunXuXu();
 		}
-		else if(ezhCleanSence2==(g_cCleanCurrentSence)) //Êº
+		else if(ezhCleanSence2==(g_cCleanCurrentSence)) //å±
 		{			
 				litteSenceRunPooPoo();
 		}
@@ -795,7 +795,7 @@ void LitteSenceRun()
 		}
 		else
 		{
-				//Ã»ÓĞ³¡¾°
+				//æ²¡æœ‰åœºæ™¯
 				g_cCleanCurrentSence=0;
 		}
 }
@@ -803,7 +803,7 @@ void LitteSenceRun()
 
 /*********************************************************
 
-----ÔËĞĞ³¡¾°----
+----è¿è¡Œåœºæ™¯----
 
 ***********************************************************/
 void litteSenceRunXuXu()
@@ -890,10 +890,10 @@ void litteSenceRunXuXu()
 							senceNext(&nCalca,&ppxxStep);
 							break;
 									
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence1,0);
 							allOutClose();
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -979,10 +979,10 @@ void litteSenceRunPooPoo()
 							senceNext(&nCalca,&ppxxStep);
 							break;
 						
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence2,0);
 							allOutClose();
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -1002,10 +1002,10 @@ void litteSenceRunHuWai(void)
 						case 1:
 							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10);
 							break;
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence3,0);
 							allOutClose();
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -1024,17 +1024,17 @@ void litteSenceRunChongXi(void)
 						case 1:	
 							senceDelayToNext(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10);
 							break;						
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence4,0);
 							allOutClose();						
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
 }
 
 /********************************
-//ºæ¸É
+//çƒ˜å¹²
 *********************************/
 void litteSenceRunHongGan(void)
 {
@@ -1074,17 +1074,17 @@ void litteSenceRunHongGan(void)
 							senceNext(&nCalca,&ppxxStep);
 							break;
 						
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence5,0);
 							allOutClose();						
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
 }
 
 /********************************
-//³ı¾ú
+//é™¤èŒ
 *********************************/
 void litteSenceRunChuQun(void)
 {
@@ -1178,17 +1178,17 @@ void litteSenceRunChuQun(void)
 							senceNext(&nCalca,&ppxxStep);
 							break;
 						
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence6,0);
 							allOutClose();
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
 }
 
 /********************************
-//°´Ä¦
+//æŒ‰æ‘©
 *********************************/
 void litteSenceRunAnMo(void)
 {
@@ -1196,7 +1196,7 @@ void litteSenceRunAnMo(void)
 }
 
 /********************************
-//±£Å¯
+//ä¿æš–
 *********************************/
 void litteSenceRunBaoNang(void)
 {

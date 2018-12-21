@@ -33,71 +33,71 @@ extern int jaopan;
 
 //
 extern int g_nMPU_DO;
-//ÊÇ·ñ×Ô¶¯»¯²Ù×÷
+//æ˜¯å¦è‡ªåŠ¨åŒ–æ“ä½œ
 unsigned char g_isAutomation=1;
 
 unsigned char g_cCleanCurrentSence=0;  
 
-//³¡¾°Ê±¼äµ÷¶È
+//åœºæ™¯æ—¶é—´è°ƒåº¦
 #define DEF_TIME_MS_DELAY		100
 
 /**************/
-//¼ÌµçÆ÷Âß¼­ÖØ¶¨Òå
+//ç»§ç”µå™¨é€»è¾‘é‡å®šä¹‰
 int isOpenDry=0;
 
-#define _unit1(x) 							RELAY7_STATE(x)		//Ğ¡±ã×ª»»
-#define _unit2(x) 							RELAY6_STATE(x)		//´ó±ã×ª»»
-#define _unit3(x) 							RELAY11_STATE(x)	//´²Æø×ª»»
-#define _unit4(x) 		 					RELAY12_STATE(x)	//¿ã×ÓÆø×ª»ú
-#define _unit5(x) 							RELAY10_STATE(x)	//¼ÓÈÈÆø×ª»»
-#define _unit6(x) 							RELAY1_STATE(x)		//Æø¼ÓÈÈ
-#define _unit7(x) 							RELAY9_STATE(x)		//³éÎü»ú
-#define _unit8(x) 				 			RELAY3_STATE(x) 	//³éË®»ú
-#define _unit9(x) 							RELAY2_STATE(x)		//É±¾ú·¢ÉúÆ÷
-#define _unit10(x) 				 			RELAY8_STATE(x)		//´µÆø
-#define _unit11(x)							RELAY13_STATE(x) 	//Ë®¼ÓÈÈ
-#define _unit12(x) 	 						RELAY4_STATE(x)		//¾»»¯»ú
-#define _unit13(x) 							RELAY5_STATE(x)		//É±¾úÆø×ª»»
+#define _unit1(x) 							RELAY7_STATE(x)		//å°ä¾¿è½¬æ¢
+#define _unit2(x) 							RELAY6_STATE(x)		//å¤§ä¾¿è½¬æ¢
+#define _unit3(x) 							RELAY11_STATE(x)	//åºŠæ°”è½¬æ¢
+#define _unit4(x) 		 					RELAY12_STATE(x)	//è£¤å­æ°”è½¬æœº
+#define _unit5(x) 							RELAY10_STATE(x)	//åŠ çƒ­æ°”è½¬æ¢
+#define _unit6(x) 							RELAY1_STATE(x)		//æ°”åŠ çƒ­
+#define _unit7(x) 							RELAY9_STATE(x)		//æŠ½å¸æœº
+#define _unit8(x) 				 			RELAY3_STATE(x) 	//æŠ½æ°´æœº
+#define _unit9(x) 							RELAY2_STATE(x)		//æ€èŒå‘ç”Ÿå™¨
+#define _unit10(x) 				 			RELAY8_STATE(x)		//å¹æ°”
+#define _unit11(x)							RELAY13_STATE(x) 	//æ°´åŠ çƒ­
+#define _unit12(x) 	 						RELAY4_STATE(x)		//å‡€åŒ–æœº
+#define _unit13(x) 							RELAY5_STATE(x)		//æ€èŒæ°”è½¬æ¢
 
 //
-#define udoDry(x)						 			_unit5(x);_unit6(x);_unit10(x);isOpenDry=x		//ºæ¸É³ÌĞò
-#define udoSterilization(x) 			_unit5(x);_unit9(x);_unit10(x);_unit13(x)			//É±¾ú
-#define udoWaterHeating(x) 				_unit11(x)																		//Ë®¼ÓÈÈ³ÌĞò
-#define udoXuXuFlush(x) 					_unit1(x);_unit7(x);_unit8(x)									//Ğ¡±ã³åÏ´
-#define udoPoPoFlush(x) 					_unit2(x);_unit7(x);_unit8(x)									//´ó±ã³åÏ´
-#define udoKuZiCongQi(x) 					_unit4(x);_unit10(x)													//¿ã×Ó³äÆø
-#define udoBedCongQi(x) 	 				_unit3(x);_unit10(x)													//´²µæ³äÆø
-#define udoDeodorization(x) 			_unit7(x);_unit12(x)													//³ı³ô
-#define udoKuZiHuanQi(x) 				 	_unit5(x);_unit10(x) 													//¿ã×Ó»»Æø
-#define udoXuPooCollect(x) 				_unit7(x);_unit12(x)													//ÊºÊºÄòÄòÊÕ¼¯
-#define udoJiaoPan(x)             jaopan=x																			//½Á°é
+#define udoDry(x)						 			_unit5(x);_unit6(x);_unit10(x);isOpenDry=x		//çƒ˜å¹²ç¨‹åº
+#define udoSterilization(x) 			_unit5(x);_unit9(x);_unit10(x);_unit13(x)			//æ€èŒ
+#define udoWaterHeating(x) 				_unit11(x)																		//æ°´åŠ çƒ­ç¨‹åº
+#define udoXuXuFlush(x) 					_unit1(x);_unit7(x);_unit8(x)									//å°ä¾¿å†²æ´—
+#define udoPoPoFlush(x) 					_unit2(x);_unit7(x);_unit8(x)									//å¤§ä¾¿å†²æ´—
+#define udoKuZiCongQi(x) 					_unit4(x);_unit10(x)													//è£¤å­å……æ°”
+#define udoBedCongQi(x) 	 				_unit3(x);_unit10(x)													//åºŠå«å……æ°”
+#define udoDeodorization(x) 			_unit7(x);_unit12(x)													//é™¤è‡­
+#define udoKuZiHuanQi(x) 				 	_unit5(x);_unit10(x) 													//è£¤å­æ¢æ°”
+#define udoXuPooCollect(x) 				_unit7(x);_unit12(x)													//å±å±å°¿å°¿æ”¶é›†
+#define udoJiaoPan(x)             jaopan=x																			//æ…ä¼´
 
 /**************/
-//´«¸ĞÆ÷Âß¼­ÖØ¶¨Òå
-#define cgqSewageHeight  					SENSOR1_STATE()?1:0 //ÎÛË®Âú
-#define cgqCleanWaterLow  				SENSOR2_STATE()?0:1 //ÇåË®µÍ
-#define cgqSewageSuitable  				SENSOR3_STATE()?1:0 //ÎÛË®µ½Î»
+//ä¼ æ„Ÿå™¨é€»è¾‘é‡å®šä¹‰
+#define cgqSewageHeight  					SENSOR1_STATE()?1:0 //æ±¡æ°´æ»¡
+#define cgqCleanWaterLow  				SENSOR2_STATE()?0:1 //æ¸…æ°´ä½
+#define cgqSewageSuitable  				SENSOR3_STATE()?1:0 //æ±¡æ°´åˆ°ä½
 
-//´óĞ¡±ã¼ì²â
-#define dxbPooPoo  				SENSOR4_STATE()?0:1    //Êº
-#define dxbXuXu	  				SENSOR5_STATE()?0:1    //Äò
+//å¤§å°ä¾¿æ£€æµ‹
+#define dxbPooPoo  				SENSOR4_STATE()?0:1    //å±
+#define dxbXuXu	  				SENSOR5_STATE()?0:1    //å°¿
 
 //--
-//ÎÂ¶È
+//æ¸©åº¦
 int ntmp;
 s16 rWaterTemperature=0,rWaterTemp=0,rGasTemperature=0,rGasTemp=0;
 s16 rTrueWaterTemp=0,rTrueGasTemp=0;
 int isWaterTooHot=0;
 int isGasTooHot=0;
-int isCheckWaterSensorErr=0; //Ë®ÎÂ·À´íÎóÏŞÖÆ
-int isCheckGasSensorErr=0;//Ë®ÎÂ·À´íÎóÏŞÖÆ
-int isCheckBedCQSensorErr=0;//ÆøÑ¹·À´íÎóÏŞÖÆ
-int isCheckDZCQSensorErr=0;	//ÆøÑ¹·À´íÎóÏŞÖÆ
+int isCheckWaterSensorErr=0; //æ°´æ¸©é˜²é”™è¯¯é™åˆ¶
+int isCheckGasSensorErr=0;//æ°´æ¸©é˜²é”™è¯¯é™åˆ¶
+int isCheckBedCQSensorErr=0;//æ°”å‹é˜²é”™è¯¯é™åˆ¶
+int isCheckDZCQSensorErr=0;	//æ°”å‹é˜²é”™è¯¯é™åˆ¶
 
-//ÆøÑ¹
+//æ°”å‹
 u16_t rPressure=0,rPressureTmp=0,rPressure2=0,rPressure2Tmp=0;
 u16_t rTruePressure1=0,rTruePressure2=0;
-//ÊºÊºÄòÄòµÄ·À¶¶¶¯
+//å±å±å°¿å°¿çš„é˜²æŠ–åŠ¨
 int rPoopoDD=0;
 int rXuxuDD=0;
 int pdxbPooPoo;
@@ -106,24 +106,24 @@ int pdxbXuXu;
 int isTextPOPO=0;
 int isTextXUXU=0;
 
-//½Ç¶È 
+//è§’åº¦ 
 extern unsigned char jiaodu[2];
-//Âö²©
+//è„‰åš
 unsigned char cHeartJump=0;
-//ÎÛË®Âú
+//æ±¡æ°´æ»¡
 char bSewageHeight=0;
-//ÇåË®Ì«ÉÙ
+//æ¸…æ°´å¤ªå°‘
 char bCleanWaterLow=0;
-//ÎÛË®µ½Î»
+//æ±¡æ°´åˆ°ä½
 char bSewageSuitable=0;
-//Ê±¼äµ÷¶ÈÖµ
+//æ—¶é—´è°ƒåº¦å€¼
 extern TagTimeingSetting g_tmeSetting;
 
-//ÖĞ¶ÏÔËĞĞchart
+//ä¸­æ–­è¿è¡Œchart
 int isCleanRuning=0;
 int ppxxStep=0;
 
-//ÉãÏñÍ·µç»ú
+//æ‘„åƒå¤´ç”µæœº
 int xiiiLimit=90000;
 int xiii=1000000;
 int xiii2=1000000;
@@ -136,13 +136,13 @@ int monLimitState1R;
 int monLimitState2L;
 int monLimitState2R;
 
-//ÉÏµç¹¤×÷ÑÓÊ±
+//ä¸Šç”µå·¥ä½œå»¶æ—¶
 int g_delaywork=0;
 
-//ÊÇ·ñÔÚÌåÑéÄ£Ê½
+//æ˜¯å¦åœ¨ä½“éªŒæ¨¡å¼
 int isDemoTest=0;
 
-//°´Ä¦×´Ì¬
+//æŒ‰æ‘©çŠ¶æ€
 static int anmiCurrentState=0;
 static int baonianCurrentState=0;
 //
@@ -151,14 +151,14 @@ void senceDelay(int*nCalca,int*ppxxStep,int delay_ms,int ezhCleanSencePOS);
 
 void LitteSenceRun(void);
 /*
-	ezhCleanSence1×Ô¶¯»¯Ğ¡±ã																					
-	ezhCleanSence2×Ô¶¯»¯´ó±ã 
-	ezhCleanSence3»¤ÎÀ
-	ezhCleanSence4³åÏ´
-	ezhCleanSence5ºæ¸É
-	ezhCleanSence6³ı¾ú
-	ezhCleanSence7°´Ä¦
-	ezhCleanSence8±£Å¯
+	ezhCleanSence1è‡ªåŠ¨åŒ–å°ä¾¿																					
+	ezhCleanSence2è‡ªåŠ¨åŒ–å¤§ä¾¿ 
+	ezhCleanSence3æŠ¤å«
+	ezhCleanSence4å†²æ´—
+	ezhCleanSence5çƒ˜å¹²
+	ezhCleanSence6é™¤èŒ
+	ezhCleanSence7æŒ‰æ‘©
+	ezhCleanSence8ä¿æš–
 */
 void litteSenceRunPooPoo(void);
 void litteSenceRunXuXu(void);
@@ -176,19 +176,19 @@ void litteSenceRunC(void);
 void allSenceClose()
 {
 	 isOpenDry=0;
-	 _unit1(0); 									//Ğ¡±ã×ª»»
-	 _unit2(0); 									//´ó±ã×ª»»
-	 _unit3(0); 									//´²Æø×ª»»
-	 _unit4(0); 		 							//¿ã×ÓÆø×ª»ú
-	 _unit5(0); 									//¼ÓÈÈÆø×ª»»
-	 _unit6(0); 									//Æø¼ÓÈÈ
-	 _unit7(0); 									//³éÎü»ú
-	 _unit8(0); 				 			 		//³éË®»ú
-	 _unit9(0); 									//É±¾ú·¢ÉúÆ÷
-	 _unit10(0); 				 					//´µÆø
-	 _unit11(0);							 		//Ë®¼ÓÈÈ
-	 _unit12(0); 	 								//¾»»¯»ú
-	 _unit13(0); 									//É±¾úÆø×ª»»
+	 _unit1(0); 									//å°ä¾¿è½¬æ¢
+	 _unit2(0); 									//å¤§ä¾¿è½¬æ¢
+	 _unit3(0); 									//åºŠæ°”è½¬æ¢
+	 _unit4(0); 		 							//è£¤å­æ°”è½¬æœº
+	 _unit5(0); 									//åŠ çƒ­æ°”è½¬æ¢
+	 _unit6(0); 									//æ°”åŠ çƒ­
+	 _unit7(0); 									//æŠ½å¸æœº
+	 _unit8(0); 				 			 		//æŠ½æ°´æœº
+	 _unit9(0); 									//æ€èŒå‘ç”Ÿå™¨
+	 _unit10(0); 				 					//å¹æ°”
+	 _unit11(0);							 		//æ°´åŠ çƒ­
+	 _unit12(0); 	 								//å‡€åŒ–æœº
+	 _unit13(0); 									//æ€èŒæ°”è½¬æ¢
 		jaopan=0;
 }
 void allOutClose()
@@ -200,7 +200,7 @@ void allOutClose()
 		isTextXUXU=0;
 }
 ////////////////////////////////////////////////////////////////
-//³¡¾°ÑÓÊ±
+//åœºæ™¯å»¶æ—¶
 void senceDelay(int*nCalca,int*ppxxStep,int delay_ms,int ezhCleanSencePOS)
 {
 	if((*nCalca) > delay_ms) 
@@ -210,14 +210,14 @@ void senceDelay(int*nCalca,int*ppxxStep,int delay_ms,int ezhCleanSencePOS)
 	}
 	else
 	{
-			if(0==isCleanRuning)//ÖĞ¶Ï
+			if(0==isCleanRuning)//ä¸­æ–­
 			{g_cCleanCurrentSence=0;(*nCalca)=0;allOutClose();}
 			(*nCalca)++;
 	}
 }
 ////////////////////////////////////////////////////////////////
 
-//Ìá½»µ±Ç°×´Ì¬
+//æäº¤å½“å‰çŠ¶æ€
 void aurtEventStatus()
 {
 		uchar dst_buf[50]={0};
@@ -229,26 +229,26 @@ void aurtEventStatus()
 		cbuf[1]=g_isAutomation;
 		cbuf[2]=g_cCleanCurrentSence;
 				
-		cbuf[3]=bSewageHeight;//´«¸ĞÆ÷ÎÛË®Âú
-		cbuf[4]=bCleanWaterLow;//´«¸ĞÆ÷ÇåË®Ì«Ğ¡
-		cbuf[5]=bSewageSuitable;//´«¸ĞÆ÷ÎÛË®¹ÜÎ´°²×°µ½Î»
+		cbuf[3]=bSewageHeight;//ä¼ æ„Ÿå™¨æ±¡æ°´æ»¡
+		cbuf[4]=bCleanWaterLow;//ä¼ æ„Ÿå™¨æ¸…æ°´å¤ªå°
+		cbuf[5]=bSewageSuitable;//ä¼ æ„Ÿå™¨æ±¡æ°´ç®¡æœªå®‰è£…åˆ°ä½
 		
-		cbuf[6]=cHeartJump; //Âö²©
+		cbuf[6]=cHeartJump; //è„‰åš
 		cbuf[7]=0;
 		
-		cbuf[8]=rTrueWaterTemp&0xff; //Ë®ÎÂ¶È
+		cbuf[8]=rTrueWaterTemp&0xff; //æ°´æ¸©åº¦
 		cbuf[9]=rTrueWaterTemp>>8;
 		
-		cbuf[10]=rTrueGasTemp&0xff; //ÆøÎÂ¶È
+		cbuf[10]=rTrueGasTemp&0xff; //æ°”æ¸©åº¦
 		cbuf[11]=rTrueGasTemp>>8;
 		
-		cbuf[12]=rTruePressure1&0xff; //¿ãµµÆøÑ¹
+		cbuf[12]=rTruePressure1&0xff; //è£¤æ¡£æ°”å‹
 		cbuf[13]=rTruePressure1>>8;
 		
-		cbuf[14]=rTruePressure2&0xff; //´²µæÆøÑ¹
+		cbuf[14]=rTruePressure2&0xff; //åºŠå«æ°”å‹
 		cbuf[15]=rTruePressure2>>8;
 		
-		cbuf[16]=isWaterTooHot;//Èç¹ûÎª1¾ÍÊÇÓĞÎÊÌâ,ÒâË¼¾ÍÊÇ"¼ÓÈÈ¹¦ÄÜ²»ÖªµÀÄÄÀïÓĞÎÊÌâ.."
+		cbuf[16]=isWaterTooHot;//å¦‚æœä¸º1å°±æ˜¯æœ‰é—®é¢˜,æ„æ€å°±æ˜¯"åŠ çƒ­åŠŸèƒ½ä¸çŸ¥é“å“ªé‡Œæœ‰é—®é¢˜.."
 		cbuf[17]=isGasTooHot;
 		
 
@@ -273,13 +273,13 @@ void aurtEventBtn(int i)
 void aurtEventUnitSence(EzhCleanSence i,int isEnable)
 {
 		/*
-			1//¼ÌµçÆ÷³éÎüÆôÓÃ
-			2//¼ÌµçÆ÷ºæ¸ÉÆôÓÃ
-			3//¼ÌµçÆ÷³ı¾úÆôÓÃ
-			4//¼ÌµçÆ÷´ó±ãÆôÓÃ
-			5//¼ÌµçÆ÷´ó±ã³åÏ´ÆôÓÃ
-			6//¼ÌµçÆ÷Ğ¡±ãÆôÓÃ
-			7//¼ÌµçÆ÷Ğ¡±ã³åÏ´ÆôÓÃ
+			1//ç»§ç”µå™¨æŠ½å¸å¯ç”¨
+			2//ç»§ç”µå™¨çƒ˜å¹²å¯ç”¨
+			3//ç»§ç”µå™¨é™¤èŒå¯ç”¨
+			4//ç»§ç”µå™¨å¤§ä¾¿å¯ç”¨
+			5//ç»§ç”µå™¨å¤§ä¾¿å†²æ´—å¯ç”¨
+			6//ç»§ç”µå™¨å°ä¾¿å¯ç”¨
+			7//ç»§ç”µå™¨å°ä¾¿å†²æ´—å¯ç”¨
 		*/
 		uchar dst_buf[50]={0};
 		int myDataLen=0;
@@ -291,7 +291,7 @@ void aurtEventUnitSence(EzhCleanSence i,int isEnable)
 		STM32F1_UART1SendDataS(dst_buf,myDataLen);
 }
 
-//ÏÔÊ¾ĞÅÏ¢Ö¸Áî
+//æ˜¾ç¤ºä¿¡æ¯æŒ‡ä»¤
 void aurtEventUnitShow(int i)
 {
 		uchar dst_buf[50]={0};
@@ -312,14 +312,14 @@ int main(void)
 {
 	Code_Init();
 	
-	//²âÊÔ¼Ìµç×ÓÆ÷Âß¼­	
+	//æµ‹è¯•ç»§ç”µå­å™¨é€»è¾‘	
 	#if 0
 			allOutClose();
 			RelayTest();
 			allOutClose();
 	#endif 
 	
-	//¿´ÃÅ¹·
+	//çœ‹é—¨ç‹—
 	//watchdog_init();
 	allOutClose();
 	
@@ -329,7 +329,7 @@ int main(void)
 	//
 	LED1_ON;LED2_ON;LED3_ON;
 		
-	//»ñÈ¡Êı¾İ
+	//è·å–æ•°æ®
 	FLASH_ReadByte(STARTADDRFLAG ,(uint8_t*)binFlag,4);
 	FLASH_ReadByte(STARTADDR ,(uint8_t*)&g_tmeSetting,sizeof(g_tmeSetting));
 	
@@ -340,18 +340,18 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		binFlag[2]='c';
 		binFlag[3]='d';
 
-		g_tmeSetting.pooDelay=1;					  //À­Êººó¶àÉÙÃëÆô¶¯ ,µ¥Î»·ÖÖÓ
-		g_tmeSetting.xuxuDelay=10;				  //À­Êººó¶àÉÙÃëÆô¶¯ ,µ¥Î»Ãë
-		g_tmeSetting.pooFlush=30;					  //ÊºÊº³åÏ´  ,	µ¥Î»Ãë
-		g_tmeSetting.xuxuFlush=10;				  //ÄòÄò³åÏ´  	µ¥Î» Ãë
-		g_tmeSetting.pooDry=2;      		  	//ÊºÊººæ¸ÉÊ±¼ä µ¥Î» ·ÖÖÓ
-		g_tmeSetting.xuxuDry=1;					  	//ÄòÄòºæ¸ÉÊ±¼ä µ¥Î» ·ÖÖÓ
-		g_tmeSetting.pooSterilize=10;			  //ÊºÊºÏû¶¾Ê±¼ä µ¥Î» Ãë
-		g_tmeSetting.xuxuSterilize=10;		  //ÄòÄòÏû¶¾Ê±¼ä µ¥Î» Ãë
-		g_tmeSetting.crotchPressure=13;			//¿ãµµÆøÑ¹ µ¥Î» 100µçÑ¹±äÊı
-		g_tmeSetting.bedPressure=13;   			//´²µæµÄÆøÑ¹  µ¥Î» 100µçÑ¹±äÊı
-		g_tmeSetting.waterTemperature=38;		//×îµÍË®ÎÂ   			µ¥Î»ÉãÊÏ¶È
-		g_tmeSetting.airTemperature=50;  		//×îµÍºæ¸ÉÎÂ¶È   	µ¥Î»ÉãÊÏ¶È
+		g_tmeSetting.pooDelay=1;					  //æ‹‰å±åå¤šå°‘ç§’å¯åŠ¨ ,å•ä½åˆ†é’Ÿ
+		g_tmeSetting.xuxuDelay=10;				  //æ‹‰å±åå¤šå°‘ç§’å¯åŠ¨ ,å•ä½ç§’
+		g_tmeSetting.pooFlush=30;					  //å±å±å†²æ´—  ,	å•ä½ç§’
+		g_tmeSetting.xuxuFlush=10;				  //å°¿å°¿å†²æ´—  	å•ä½ ç§’
+		g_tmeSetting.pooDry=2;      		  	//å±å±çƒ˜å¹²æ—¶é—´ å•ä½ åˆ†é’Ÿ
+		g_tmeSetting.xuxuDry=1;					  	//å°¿å°¿çƒ˜å¹²æ—¶é—´ å•ä½ åˆ†é’Ÿ
+		g_tmeSetting.pooSterilize=10;			  //å±å±æ¶ˆæ¯’æ—¶é—´ å•ä½ ç§’
+		g_tmeSetting.xuxuSterilize=10;		  //å°¿å°¿æ¶ˆæ¯’æ—¶é—´ å•ä½ ç§’
+		g_tmeSetting.crotchPressure=13;			//è£¤æ¡£æ°”å‹ å•ä½ 100ç”µå‹å˜æ•°
+		g_tmeSetting.bedPressure=13;   			//åºŠå«çš„æ°”å‹  å•ä½ 100ç”µå‹å˜æ•°
+		g_tmeSetting.waterTemperature=38;		//æœ€ä½æ°´æ¸©   			å•ä½æ‘„æ°åº¦
+		g_tmeSetting.airTemperature=50;  		//æœ€ä½çƒ˜å¹²æ¸©åº¦   	å•ä½æ‘„æ°åº¦
 		g_tmeSetting.mpuLeft=30;  					//??????  ????
 		g_tmeSetting.mpuRight=30;  					//??????  ????
 			
@@ -362,7 +362,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 	//-------------------
 	while(1)
 	{
-		//ÉÏµç¹¤×÷ÑÓÊ±
+		//ä¸Šç”µå·¥ä½œå»¶æ—¶
 		if(0==g_delaywork)
 		{
 			continue;
@@ -370,33 +370,33 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		
 		pdxbPooPoo=dxbPooPoo;
 		pdxbXuXu=dxbXuXu;
-		//¿´ÃÅ¹·
+		//çœ‹é—¨ç‹—
 		//watchdog_action();
 		//
 		TouchKey_Scan();
 		//---------------------
-		//°´¼ü
-		//1»¤ÎÀ¼ü
-		//2³åÏ´¼ü
-		//3ºæ¸É¼ü
-		//4³ı¾ú¼ü
-		//5°´Ä¦¼ü
-		//6±£Å¯¼ü
-		//7ÉèÖÃÁ´
-		//8´ı»ú¿ª¹Ø
+		//æŒ‰é”®
+		//1æŠ¤å«é”®
+		//2å†²æ´—é”®
+		//3çƒ˜å¹²é”®
+		//4é™¤èŒé”®
+		//5æŒ‰æ‘©é”®
+		//6ä¿æš–é”®
+		//7è®¾ç½®é“¾
+		//8å¾…æœºå¼€å…³
 		if(bButton1 )
 		{
 			ppxxStep=0;
 			if(!isCleanRuning && 0==g_cCleanCurrentSence)
 			{
-					isDemoTest=1;//´ò¿ªÌåÑéÄ£Ê½±êÖ¾
+					isDemoTest=1;//æ‰“å¼€ä½“éªŒæ¨¡å¼æ ‡å¿—
 					aurtEventBtn(1);
 					g_cCleanCurrentSence=ezhCleanSence3;
 					isCleanRuning=1;
 			}
 			else
 			{
-					isDemoTest=0;//´ò¿ªÌåÑéÄ£Ê½±êÖ¾
+					isDemoTest=0;//æ‰“å¼€ä½“éªŒæ¨¡å¼æ ‡å¿—
 					g_cCleanCurrentSence=0;
 					isCleanRuning=0;
 					allOutClose();
@@ -465,7 +465,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					g_cCleanCurrentSence=ezhCleanSence7;
 					isCleanRuning=1;
 					anmiCurrentState=!anmiCurrentState;
-					ppxxStep=0; //¸´Î»³¡¾°
+					ppxxStep=0; //å¤ä½åœºæ™¯
 					bButton5 = _Disable;
 		}	
 		if(bButton6 )
@@ -475,7 +475,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					g_cCleanCurrentSence=ezhCleanSence8;
 					isCleanRuning=1;
 					baonianCurrentState=!baonianCurrentState;
-					ppxxStep=0; //¸´Î»³¡¾°
+					ppxxStep=0; //å¤ä½åœºæ™¯
 					bButton6 = _Disable;
 		}
 		if(bButton7 && 0==g_cCleanCurrentSence)
@@ -495,8 +495,8 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		if(0==isDemoTest)
 		{
 					//------------------------------------------------------------------
-					//¼ì²âÓĞÎŞÄòÀ­ÏÂÀ´		
-					//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //ÏŞÖÆÈç¹ûË®ÎÂ²»¹»²»²Ù×÷
+					//æ£€æµ‹æœ‰æ— å°¿æ‹‰ä¸‹æ¥		
+					//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10) //é™åˆ¶å¦‚æœæ°´æ¸©ä¸å¤Ÿä¸æ“ä½œ
 					{
 								if(dxbXuXu)
 								{
@@ -519,15 +519,15 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 								}
 					}
 					//------------------------------------------------------------------
-					//¼ì²âÓĞÃ»ÓĞÊºµôÏÂÀ´
-					//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10)  //ÏŞÖÆÈç¹ûË®ÎÂ²»¹»²»²Ù×÷
+					//æ£€æµ‹æœ‰æ²¡æœ‰å±æ‰ä¸‹æ¥
+					//if(rTrueWaterTemp>=g_tmeSetting.waterTemperature*10)  //é™åˆ¶å¦‚æœæ°´æ¸©ä¸å¤Ÿä¸æ“ä½œ
 					{
 								if(dxbPooPoo)
 								{
 									rPoopoDD++;
 									if(rPoopoDD>2000)
 									{
-											if(0==g_cCleanCurrentSence && g_isAutomation)//³¡¾°Ö´ĞĞÖĞ
+											if(0==g_cCleanCurrentSence && g_isAutomation)//åœºæ™¯æ‰§è¡Œä¸­
 											{
 												aurtEventBtn(0x51);
 												ppxxStep=0;
@@ -545,23 +545,23 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		}
 
 		//---------------------//
-		if(kk>=10 && xiii>=xiiiLimit && xiii2>=xiiiLimit) //ÏŞÖÆ0.1ÃëÖ´ĞĞÒ»´Î,ÇÒ²½½øµç»ú²»ÄÜÓĞ¶¯×÷
+		if(kk>=10 && xiii>=xiiiLimit && xiii2>=xiiiLimit) //é™åˆ¶0.1ç§’æ‰§è¡Œä¸€æ¬¡,ä¸”æ­¥è¿›ç”µæœºä¸èƒ½æœ‰åŠ¨ä½œ
 		{
 					//------------------------------------------------------------------
-					//Ë®ÎÂ¼ÓÈÈ
+					//æ°´æ¸©åŠ çƒ­
 					rWaterTemp=DS18B20_Get_Temp();
-					if(rWaterTemp<2000 && rWaterTemp> -200) //ÏŞÖÆÎ»
+					if(rWaterTemp<2000 && rWaterTemp> -200) //é™åˆ¶ä½
 					{
 						ntmp=rWaterTemp-rWaterTemperature;
-						if(ntmp<20 && ntmp>-20)	//ÏŞÖÆÍ»±ä·ù¶È
+						if(ntmp<20 && ntmp>-20)	//é™åˆ¶çªå˜å¹…åº¦
 						{
 							isWaterTooHot=0;							
-							if(rWaterTemp > 60*10) //¼ÓÈÈÆ÷ÓĞÎÊÌâÁË°É,Ì«¸ßÁË¾ÍÊÇ¼ÓÈÈÆ÷ÓĞÎÊÌâÁË.
+							if(rWaterTemp > 60*10) //åŠ çƒ­å™¨æœ‰é—®é¢˜äº†å§,å¤ªé«˜äº†å°±æ˜¯åŠ çƒ­å™¨æœ‰é—®é¢˜äº†.
 							{
-								//Ë®Ì«ÈÈÁË.·¢µ½´®¿Ú¸æËßÉÏÎ»»ú¶Ë,Í¨Öª»¤Ê¿Ğ¡ÃÃÃÃ,»úÆ÷¹ÊÕÏÁË
+								//æ°´å¤ªçƒ­äº†.å‘åˆ°ä¸²å£å‘Šè¯‰ä¸Šä½æœºç«¯,é€šçŸ¥æŠ¤å£«å°å¦¹å¦¹,æœºå™¨æ•…éšœäº†
 								isWaterTooHot=1;
 							}
-							else if(rWaterTemp<g_tmeSetting.waterTemperature*10 && 0==bCleanWaterLow) //Ä¬ÈÏĞ¡ÓÚ40¶È¾Í¼ÓÈÈ
+							else if(rWaterTemp<g_tmeSetting.waterTemperature*10 && 0==bCleanWaterLow) //é»˜è®¤å°äº40åº¦å°±åŠ çƒ­
 							{
  								udoWaterHeating(1);
 							}
@@ -577,36 +577,36 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					else
 					{
 						isCheckWaterSensorErr++;						
-						if(isCheckWaterSensorErr>10) //´«¸ĞÊı¾İÃ«²¡Ì«¶à¹Øµô¼ÓÈÈ¼ÌµçÆ÷
+						if(isCheckWaterSensorErr>10) //ä¼ æ„Ÿæ•°æ®æ¯›ç—…å¤ªå¤šå…³æ‰åŠ çƒ­ç»§ç”µå™¨
 						{
-							//´«¸ĞÆ÷ÓĞÃ«²¡ÁË.¹Øµô¼ÌµçÆ÷
+							//ä¼ æ„Ÿå™¨æœ‰æ¯›ç—…äº†.å…³æ‰ç»§ç”µå™¨
 							if(g_cCleanCurrentSence==0)
 							{	udoWaterHeating(0);}
 						}
 					}
 
 					//-------------------------------------------------------------------
-					//¿ÕÆø¼ÓÈÈ,ÊµÊ±Ìõ¼şÏŞÖÆ
+					//ç©ºæ°”åŠ çƒ­,å®æ—¶æ¡ä»¶é™åˆ¶
 					rGasTemp=DS18B20_Get_Temp1(); 
-					if(rGasTemp<2000 && rGasTemp> -200) //ÏŞÖÆÎ»
+					if(rGasTemp<2000 && rGasTemp> -200) //é™åˆ¶ä½
 					{
 						ntmp=rGasTemp-rGasTemperature;
-						if(ntmp<20 && ntmp>-20) //ÏŞÖÆÍ»±ä·ù¶È
+						if(ntmp<20 && ntmp>-20) //é™åˆ¶çªå˜å¹…åº¦
 						{
 							isGasTooHot=0;							
-							if(rGasTemp > 60*10) //¼ÓÈÈÆ÷ÓĞÎÊÌâÁË°É,Ì«¸ßÁË¾ÍÊÇ¼ÓÈÈÆ÷ÓĞÎÊÌâÁË.
+							if(rGasTemp > 60*10) //åŠ çƒ­å™¨æœ‰é—®é¢˜äº†å§,å¤ªé«˜äº†å°±æ˜¯åŠ çƒ­å™¨æœ‰é—®é¢˜äº†.
 							{
-								//ÆøÎÂÌ«ÈÈÁË.·¢µ½´®¿Ú¸æËßÉÏÎ»»ú¶Ë,Í¨Öª»¤Ê¿Ğ¡ÃÃÃÃ,»úÆ÷¹ÊÕÏÁË
+								//æ°”æ¸©å¤ªçƒ­äº†.å‘åˆ°ä¸²å£å‘Šè¯‰ä¸Šä½æœºç«¯,é€šçŸ¥æŠ¤å£«å°å¦¹å¦¹,æœºå™¨æ•…éšœäº†
 								isGasTooHot=1;
 							}
 							
-							if(isOpenDry && rGasTemp<g_tmeSetting.airTemperature*10 ) //50¶ÈÇÒºæ¿ª¹ØµÄÊ±ºò²Å´¦Àí
+							if(isOpenDry && rGasTemp<g_tmeSetting.airTemperature*10 ) //50åº¦ä¸”çƒ˜å¼€å…³çš„æ—¶å€™æ‰å¤„ç†
 							{
-								_unit6(1);  //Æø¼ÓÈÈµ¥Ôª
+								_unit6(1);  //æ°”åŠ çƒ­å•å…ƒ
 							}
 							else
 							{
-								_unit6(0);	//Æø¼ÓÈÈµ¥Ôª
+								_unit6(0);	//æ°”åŠ çƒ­å•å…ƒ
 							}
 							rTrueGasTemp=rGasTemp;
 							isCheckGasSensorErr=0;
@@ -616,20 +616,20 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					else
 					{
 						isCheckGasSensorErr++;						
-						if(isCheckGasSensorErr>10) //´«¸ĞÊı¾İÓĞÃ«²¡¹Øµô¼ÓÈÈ¼ÌµçÆ÷
+						if(isCheckGasSensorErr>10) //ä¼ æ„Ÿæ•°æ®æœ‰æ¯›ç—…å…³æ‰åŠ çƒ­ç»§ç”µå™¨
 						{
-							//´«¸ĞÆ÷ÓĞÃ«²¡ÁË.¹Øµô¼ÌµçÆ÷
-							_unit6(0); //Æø¼ÓÈÈµ¥Ôª
+							//ä¼ æ„Ÿå™¨æœ‰æ¯›ç—…äº†.å…³æ‰ç»§ç”µå™¨
+							_unit6(0); //æ°”åŠ çƒ­å•å…ƒ
 						}
 					}
 
 					//------------------------------------------------------------------
-					//¿ãµµÆøÑ¹
+					//è£¤æ¡£æ°”å‹
 					/*if( 0==g_cCleanCurrentSence )
 					{
 							rPressureTmp = Get_Adc_Average(10);
 							ntmp=rPressureTmp-rPressure;
-							if(ntmp<60 && ntmp>-60) //ÏŞÖÆÍ»±ä·ù¶È
+							if(ntmp<60 && ntmp>-60) //é™åˆ¶çªå˜å¹…åº¦
 							{
 								if(rPressureTmp<g_tmeSetting.crotchPressure*100)
 								{
@@ -647,7 +647,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 							else
 							{
 								isCheckDZCQSensorErr++;						
-								if(isCheckDZCQSensorErr>10) //´«¸ĞÊı¾İÓĞÃ«²¡¹Øµô¼ÌµçÆ÷
+								if(isCheckDZCQSensorErr>10) //ä¼ æ„Ÿæ•°æ®æœ‰æ¯›ç—…å…³æ‰ç»§ç”µå™¨
 								{
 									if(g_cCleanCurrentSence==0)
 									{	udoKuZiCongQi(0);}
@@ -657,10 +657,10 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					}*/
 					
 					//------------------------------------------------------------------
-					//´²µæÆøÑ¹,¹¦ÄÜÒÑ¾­·Ïµô
+					//åºŠå«æ°”å‹,åŠŸèƒ½å·²ç»åºŸæ‰
 					rPressure2Tmp= Get_Adc2_Average(10);
 					ntmp=rPressure2Tmp-rPressure2;
-					if(ntmp<60 && ntmp>-60) //ÏŞÖÆÍ»±ä·ù¶È
+					if(ntmp<60 && ntmp>-60) //é™åˆ¶çªå˜å¹…åº¦
 					{
 						if(rPressure2Tmp<g_tmeSetting.bedPressure*100)
 						{
@@ -680,7 +680,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					else
 					{
 						isCheckBedCQSensorErr++;						
-						if(isCheckBedCQSensorErr>10) //´«¸ĞÊı¾İÃ«²¡Ì«¶à¹ØµÈ¼ÌµçÆ÷
+						if(isCheckBedCQSensorErr>10) //ä¼ æ„Ÿæ•°æ®æ¯›ç—…å¤ªå¤šå…³ç­‰ç»§ç”µå™¨
 						{
 							if(g_cCleanCurrentSence==0)
 							{	udoBedCongQi(0);}
@@ -689,7 +689,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					rPressure2=rPressure2Tmp;
 
 					//------------------------------------------------------------------
-					//ÎÛË®Âú
+					//æ±¡æ°´æ»¡
 					if(cgqSewageHeight)
 					{
 							bSewageHeight=1;
@@ -700,7 +700,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					}
 
 					//------------------------------------------------------------------
-					//ÇåË®Ì«ÉÙ
+					//æ¸…æ°´å¤ªå°‘
 					if(cgqCleanWaterLow)
 					{
 							bCleanWaterLow=1;
@@ -711,7 +711,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 					}
 
 					//------------------------------------------------------------------
-					//ÎÛË®²»µ½Î»
+					//æ±¡æ°´ä¸åˆ°ä½
 					if(cgqSewageSuitable)
 					{
 							bSewageSuitable=1;
@@ -725,7 +725,7 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 		}
 		
 		//------------------------------------------------------------------
-		//³åÊºÏ´Äò¹¦ÄÜ
+		//å†²å±æ´—å°¿åŠŸèƒ½
 		if(kk_1ms)
 		{
 					LitteSenceRun();
@@ -742,11 +742,11 @@ if(!(binFlag[0]=='a' && binFlag[1]=='b' && binFlag[2]=='c' && binFlag[3]=='d'))
 
 void LitteSenceRun()
 {
-		if(ezhCleanSence1==(g_cCleanCurrentSence&0xf0) && g_isAutomation) //Äò
+		if(ezhCleanSence1==(g_cCleanCurrentSence&0xf0) && g_isAutomation) //å°¿
 		{			
 				litteSenceRunXuXu();
 		}
-		else if(ezhCleanSence2==(g_cCleanCurrentSence&0xf0) && g_isAutomation) //Êº
+		else if(ezhCleanSence2==(g_cCleanCurrentSence&0xf0) && g_isAutomation) //å±
 		{			
 				litteSenceRunPooPoo();
 		}
@@ -792,7 +792,7 @@ void LitteSenceRun()
 		
 		else
 		{
-				//Ã»ÓĞ³¡¾°
+				//æ²¡æœ‰åœºæ™¯
 				g_cCleanCurrentSence=0;
 				
 		}		
@@ -801,7 +801,7 @@ void LitteSenceRun()
 
 /*********************************************************
 
-----ÔËĞĞ³¡¾°----
+----è¿è¡Œåœºæ™¯----
 
 ***********************************************************/
 void litteSenceRunXuXu()
@@ -813,46 +813,46 @@ void litteSenceRunXuXu()
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence1,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//ä¸‹ä¸€æ­¥
 							break;
 						case 1:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30/*g_tmeSetting.xuxuDelay*/,ezhCleanSence1|ppxxStep);
 							break;
 						case 2:
-							udoXuXuFlush(1);//########### Ğ¡±ã³åÏ´
+							udoXuXuFlush(1);//########### å°ä¾¿å†²æ´—
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//ä¸‹ä¸€æ­¥
 							break;
 						case 3:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence1|ppxxStep);
 							break;
 						case 4:
-							udoXuXuFlush(0);//########### Ğ¡±ã³åÏ´
+							udoXuXuFlush(0);//########### å°ä¾¿å†²æ´—
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//ÏÂÒ»²½
-							udoXuPooCollect(1);//############# ÊºÄòÊÕ¼¯Æ÷
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;	//ä¸‹ä¸€æ­¥
+							udoXuPooCollect(1);//############# å±å°¿æ”¶é›†å™¨
 							break;
 						case 5:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5/*g_tmeSetting.xuxuFlush*/,ezhCleanSence1|ppxxStep);
 							break;
 						case 6:
-							udoXuPooCollect(0);//############# ÊºÄòÊÕ¼¯Æ÷
+							udoXuPooCollect(0);//############# å±å°¿æ”¶é›†å™¨
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;//ÏÂÒ»²½
-							udoDry(1);//########### ºæ¸É
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence1 | ppxxStep;//ä¸‹ä¸€æ­¥
+							udoDry(1);//########### çƒ˜å¹²
 							break;
 						case 7:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50,ezhCleanSence1|ppxxStep);
 							break;
 						case 8:							
-							udoDry(0);//########### ºæ¸É
+							udoDry(0);//########### çƒ˜å¹²
 							nCalca=0;
 							ppxxStep++;
 							break;
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence1,0);
 							allOutClose();
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -867,58 +867,58 @@ void litteSenceRunPooPoo()
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence2,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;	//ä¸‹ä¸€æ­¥
 							udoJiaoPan(1);
 							break;
 						case 1:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*30/*g_tmeSetting.pooDelay * 60*/,ezhCleanSence2|ppxxStep);
 							break;
 						case 2:
-							udoPoPoFlush(1);//########### ´ó±ã³åÏ´
+							udoPoPoFlush(1);//########### å¤§ä¾¿å†²æ´—
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
 						case 3:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence2|ppxxStep);
 							break;
 						case 4:
-							udoPoPoFlush(0);//########### ´ó±ã³åÏ´
+							udoPoPoFlush(0);//########### å¤§ä¾¿å†²æ´—
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;	//ÏÂÒ»²½
-							udoXuPooCollect(1);//############# ÊºÄòÊÕ¼¯Æ÷
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;	//ä¸‹ä¸€æ­¥
+							udoXuPooCollect(1);//############# å±å°¿æ”¶é›†å™¨
 							break;
 						case 5:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*20/*g_tmeSetting.pooFlush*/,ezhCleanSence2|ppxxStep);
 							break;
 						case 6:		
-							udoXuPooCollect(0);//############# ÊºÄòÊÕ¼¯Æ÷
+							udoXuPooCollect(0);//############# å±å°¿æ”¶é›†å™¨
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
-							udoPoPoFlush(1);//########### ´ó±ã³åÏ´
+							udoPoPoFlush(1);//########### å¤§ä¾¿å†²æ´—
 							break;
 						case 7:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence2|ppxxStep);
 							break;
 						case 8:
-							udoPoPoFlush(0);//########### ´ó±ã³åÏ´
+							udoPoPoFlush(0);//########### å¤§ä¾¿å†²æ´—
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
 						
-							udoDry(1);//########### ºæ¸É
+							udoDry(1);//########### çƒ˜å¹²
 							break;
 						case 9:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50/*g_tmeSetting.pooDry*10*/,ezhCleanSence2|ppxxStep);
 							break;
 						case 10:
-							udoDry(0);//########### ºæ¸É
+							udoDry(0);//########### çƒ˜å¹²
 							nCalca=0;
 							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence2 | ppxxStep;
 							break;
 
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence2,0);
 							allOutClose();
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -932,14 +932,14 @@ void litteSenceRunHuWai(void)
 						case 0:				
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence3,1);
-							nCalca=0;ppxxStep=30100; g_cCleanCurrentSence=ezhCleanSence3;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep=30100; g_cCleanCurrentSence=ezhCleanSence3;	//ä¸‹ä¸€æ­¥
 							break;
 						
 						//---------------------------------------
-						//±£êÓ
+						//ä¿æš§
 						case 30100:
 							//aurtEventUnitShow(30100);
-							//±£Å¯Ô¤ÏÈ´ò¿ª
+							//ä¿æš–é¢„å…ˆæ‰“å¼€
 							//BAONAN_STATE(1);
 							nCalca=0; ppxxStep++;
 							break;
@@ -951,7 +951,7 @@ void litteSenceRunHuWai(void)
 							break;
 						
 						//---------------------------------------
-						//ÎÛË®Âú¼ì²â
+						//æ±¡æ°´æ»¡æ£€æµ‹
 						case 30200:
 							aurtEventUnitShow(30200);
 							if(cgqSewageHeight)
@@ -964,20 +964,20 @@ void litteSenceRunHuWai(void)
 								nCalca=0;ppxxStep=30203; 
 							}
 							break;
-						case 30201://ÎÛË®Í°Âú 
+						case 30201://æ±¡æ°´æ¡¶æ»¡ 
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
 							break;
-						case 30202://ÎÛË®ÖØĞÂ¼ì²â 
+						case 30202://æ±¡æ°´é‡æ–°æ£€æµ‹ 
 							nCalca=0;ppxxStep=30200; 
 							break;
-						case 30203://ÎÛË®Í°Õı³£
+						case 30203://æ±¡æ°´æ¡¶æ­£å¸¸
 							aurtEventUnitShow(30203);
 							nCalca=0;ppxxStep=30300; 
 							break;
 						
 						
 						//---------------------------------------
-						//ÎÛË®Í°µ½Î»¼ì²â
+						//æ±¡æ°´æ¡¶åˆ°ä½æ£€æµ‹
 						case 30300:
 							aurtEventUnitShow(30300);
 							if(cgqSewageSuitable)
@@ -990,19 +990,19 @@ void litteSenceRunHuWai(void)
 								nCalca=0;ppxxStep=30303; 
 							}
 							break;
-						case 30301://Î´µ½Î»
+						case 30301://æœªåˆ°ä½
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
 							break;
-						case 30302://ÖØĞÂ¼ì²â 
+						case 30302://é‡æ–°æ£€æµ‹ 
 							nCalca=0;ppxxStep=30300; 
 							break;
-						case 30303://ÎÛË®Í°°²×°Õı³£
+						case 30303://æ±¡æ°´æ¡¶å®‰è£…æ­£å¸¸
 							aurtEventUnitShow(30303);
 							nCalca=0;ppxxStep=30400; 
 							break;
 						
 						//---------------------------------------
-						//ÇåË®µÍ¼ì²â
+						//æ¸…æ°´ä½æ£€æµ‹
 						case 30400:
 							aurtEventUnitShow(30400);
 							if(cgqCleanWaterLow)
@@ -1015,19 +1015,19 @@ void litteSenceRunHuWai(void)
 								nCalca=0;ppxxStep=30403; 
 							}
 							break;
-						case 30401://ÇåË®¹ıµÍ
+						case 30401://æ¸…æ°´è¿‡ä½
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
 							break;
-						case 30402://ÖØĞÂ¼ì²â 
+						case 30402://é‡æ–°æ£€æµ‹ 
 							nCalca=0;ppxxStep=30400; 
 							break;
-						case 30403://ÇåË®Õı³£
+						case 30403://æ¸…æ°´æ­£å¸¸
 							aurtEventUnitShow(30403);
 							nCalca=0;ppxxStep=30500; 
 							break;
 						
 						//---------------------------------------
-						//ÇåË®ÎÂ¶È¼ì²â
+						//æ¸…æ°´æ¸©åº¦æ£€æµ‹
 						case 30500:
 							aurtEventUnitShow(30500);
 							nCalca=0;ppxxStep++;
@@ -1037,7 +1037,7 @@ void litteSenceRunHuWai(void)
 							break;
 						case 30502:
 							aurtEventUnitShow(30500);
-							if(rTrueWaterTemp<280)//Ğ¡ÓÚ28¶È
+							if(rTrueWaterTemp<280)//å°äº28åº¦
 							{
 								aurtEventUnitShow(30502);
 								nCalca=0;ppxxStep++; 
@@ -1047,22 +1047,22 @@ void litteSenceRunHuWai(void)
 								nCalca=0;ppxxStep=30505; 
 							}
 							break;
-						case 30503://Ë®ÎÂÆ«µÍ,¼ÓÈÈÖĞ
+						case 30503://æ°´æ¸©åä½,åŠ çƒ­ä¸­
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
 							break;
-						case 30504://ÖØĞÂ¼ì²â 
+						case 30504://é‡æ–°æ£€æµ‹ 
 							nCalca=0;ppxxStep=30502; 
 							break;
-						case 30505://Ë®ÎÂÕı³£
+						case 30505://æ°´æ¸©æ­£å¸¸
 							aurtEventUnitShow(30505);
 							nCalca=0;ppxxStep=30600; 
 							break;
 						
 						//---------------------------------------
-						//´óĞ¡±ãÑİÊ¾
+						//å¤§å°ä¾¿æ¼”ç¤º
 						case 30600:
 							aurtEventUnitShow(30600);
-							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x01;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x01;	//ä¸‹ä¸€æ­¥
 							break;
 						case 30601:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x01);
@@ -1071,13 +1071,13 @@ void litteSenceRunHuWai(void)
 						{
 							if(0==isTextPOPO)
 							{
-								//Ò»Ö±µÈ´ı¼ì²â
+								//ä¸€ç›´ç­‰å¾…æ£€æµ‹
 								if(dxbPooPoo)
 								{
 									rPoopoDD++;
 									if(rPoopoDD>10)
 									{
-											//Ìøµ½´ó±ãÈ¥
+											//è·³åˆ°å¤§ä¾¿å»
 											nCalca=0;ppxxStep=30610;
 											rPoopoDD=0;
 											isTextPOPO=1;
@@ -1096,7 +1096,7 @@ void litteSenceRunHuWai(void)
 									rXuxuDD++;
 									if(rXuxuDD>10)
 									{
-											//Ìøµ½Ğ¡±ãÈ¥
+											//è·³åˆ°å°ä¾¿å»
 											nCalca=0;ppxxStep=30650;
 											rXuxuDD=0;
 											isTextXUXU=1;
@@ -1108,16 +1108,16 @@ void litteSenceRunHuWai(void)
 							
 							if(isTextXUXU && isTextPOPO)
 							{
-								//Ìøµ½ÏÂÒ»¸ö³¡¾°È¥
+								//è·³åˆ°ä¸‹ä¸€ä¸ªåœºæ™¯å»
 								nCalca=0;ppxxStep=30700;
 							}
 						}
 							break;
 
-						//--------- ´ó±ã
+						//--------- å¤§ä¾¿
 						case 30610:
 							aurtEventUnitShow(30610);
-							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x01;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x01;	//ä¸‹ä¸€æ­¥
 							break;
 						case 30611:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x01);
@@ -1130,87 +1130,87 @@ void litteSenceRunHuWai(void)
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooDelay * 60,ezhCleanSence3| 0x01);
 							break;
 						case 30614:
-							udoXuPooCollect(1);//############# ÊºÄòÊÕ¼¯Æ÷
+							udoXuPooCollect(1);//############# å±å°¿æ”¶é›†å™¨
 							nCalca=0;ppxxStep++; 
 							break;
 						case 30615:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence3| 0x01);
 							break;
 						case 30616:
-							udoPoPoFlush(1);//########### ´ó±ã³åÏ´
+							udoPoPoFlush(1);//########### å¤§ä¾¿å†²æ´—
 							nCalca=0;ppxxStep++;
 							break;
 						case 30617:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*g_tmeSetting.pooFlush,ezhCleanSence3| 0x01);
 							break;
 						case 30618:		
-							udoPoPoFlush(0);//########### ´ó±ã³åÏ´
+							udoPoPoFlush(0);//########### å¤§ä¾¿å†²æ´—
 							nCalca=0;ppxxStep++; 
 							break;
 						case 30619:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence3| 0x01);
 							break;
 						case 30620:
-							udoXuPooCollect(0);//############# ÊºÄòÊÕ¼¯Æ÷
-							udoDry(1);//########### ºæ¸É
+							udoXuPooCollect(0);//############# å±å°¿æ”¶é›†å™¨
+							udoDry(1);//########### çƒ˜å¹²
 							nCalca=0;ppxxStep++;
 							break;
 						case 30621:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50/*g_tmeSetting.pooDry*10*/,ezhCleanSence3| 0x01);
 							break;
 						case 30622:
-							udoDry(0);//########### ºæ¸É
-							udoJiaoPan(0); //½ÁÊºÍ£Ö¹
+							udoDry(0);//########### çƒ˜å¹²
+							udoJiaoPan(0); //æ…å±åœæ­¢
 						
 							aurtEventUnitShow(30622);
 							nCalca=0;ppxxStep=30600; 
 							break;
 						
 						
-						//--------- Ğ¡±ã
+						//--------- å°ä¾¿
 						case 30650:
 							aurtEventUnitShow(30650);
-							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3;	//ä¸‹ä¸€æ­¥
 							break;
 						case 30651:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3);
 							break;
 						case 30652:
-							udoXuXuFlush(1);//########### Ğ¡±ã³åÏ´
+							udoXuXuFlush(1);//########### å°ä¾¿å†²æ´—
 							nCalca=0;ppxxStep++; 
 							break;
 						case 30653:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
 							break;
 						case 30654:
-							udoXuXuFlush(0);//########### Ğ¡±ã³åÏ´
-							udoXuPooCollect(1);//############# ÊºÄòÊÕ¼¯Æ÷
+							udoXuXuFlush(0);//########### å°ä¾¿å†²æ´—
+							udoXuPooCollect(1);//############# å±å°¿æ”¶é›†å™¨
 							nCalca=0;ppxxStep++; 
 							break;
 						case 30655:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence3);
 							break;
 						case 30656:
-							udoXuPooCollect(0);//############# ÊºÄòÊÕ¼¯Æ÷
-							udoDry(1);//########### ºæ¸É
+							udoXuPooCollect(0);//############# å±å°¿æ”¶é›†å™¨
+							udoDry(1);//########### çƒ˜å¹²
 							nCalca=0;ppxxStep++;
 							break;
 						case 30657:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50,ezhCleanSence3);
 							break;
 						case 30658:							
-							udoDry(0);//########### ºæ¸É
+							udoDry(0);//########### çƒ˜å¹²
 							
 							aurtEventUnitShow(30658);
 							nCalca=0;ppxxStep=30600;
 							break;
 
 						//---------------------------------------
-						//·­Éí
-						case 30700://ÌáÊ¾·­Éí
+						//ç¿»èº«
+						case 30700://æç¤ºç¿»èº«
 						{
 							aurtEventUnitShow(30700);
-							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//ä¸‹ä¸€æ­¥
 						}
 							break;
 						case 30701:
@@ -1226,10 +1226,10 @@ void litteSenceRunHuWai(void)
 						case 30703:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*85,ezhCleanSence3| 0x03);
 							break;
-						case 30704://ÌáÊ¾·­Éí
+						case 30704://æç¤ºç¿»èº«
 						{
 							aurtEventUnitShow(30704);
-							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//ä¸‹ä¸€æ­¥
 						}
 						case 30705:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
@@ -1244,10 +1244,10 @@ void litteSenceRunHuWai(void)
 						case 30707:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*85,ezhCleanSence3| 0x03);
 							break;
-						case 30708://ÌáÊ¾·­Éí
+						case 30708://æç¤ºç¿»èº«
 						{
 							aurtEventUnitShow(30708);
-							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//ä¸‹ä¸€æ­¥
 						}
 						case 30709:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
@@ -1262,10 +1262,10 @@ void litteSenceRunHuWai(void)
 						case 30711:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*85,ezhCleanSence3| 0x03);
 							break;
-						case 30712://ÌáÊ¾·­Éí
+						case 30712://æç¤ºç¿»èº«
 						{
 							aurtEventUnitShow(30712);
-							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//ä¸‹ä¸€æ­¥
 						}
 						case 30713:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
@@ -1280,25 +1280,25 @@ void litteSenceRunHuWai(void)
 						case 30715:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*85,ezhCleanSence3| 0x03);
 							break;						
-						case 30716://Íê³É
+						case 30716://å®Œæˆ
 							aurtEventUnitShow(30716);
 							nCalca=0;ppxxStep=3800;
 						break;
 
 
 						//---------------------------------------
-						//°´Ä¦
+						//æŒ‰æ‘©
 						case 30800:
 						{
 							aurtEventUnitShow(30800);
-							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 ;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 ;	//ä¸‹ä¸€æ­¥
 						}
 							break;
 						case 30801:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3);
 							break;
 						case 30802:							
-							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3;	//ä¸‹ä¸€æ­¥
 							ANMO1_STATE(1);
 							break;
 						case 30803:
@@ -1345,7 +1345,7 @@ void litteSenceRunHuWai(void)
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*1,ezhCleanSence3 | 0x04);
 							break;
 						//---------------------------------------
-						//°´Ä¦±£Å¯						
+						//æŒ‰æ‘©ä¿æš–						
 						case 30814:
 							nCalca=0;ppxxStep++;
 						break;
@@ -1353,7 +1353,7 @@ void litteSenceRunHuWai(void)
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3);
 							break;
 						case 30816:							
-							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3;	//ä¸‹ä¸€æ­¥
 							BAONAN_STATE(1);
 							break;
 						case 30817:
@@ -1400,31 +1400,31 @@ void litteSenceRunHuWai(void)
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*90,ezhCleanSence3 | 0x04);
 							break;
 						
-						case 30828://°´Ä¦Íê³É
+						case 30828://æŒ‰æ‘©å®Œæˆ
 							aurtEventUnitShow(30828);
 							nCalca=0;ppxxStep=30900;
 						break;
 						//---------------------------------------
-						//Âö²©¼ì²â
+						//è„‰åšæ£€æµ‹
 						case 30900:
 						{
 							aurtEventUnitShow(30900);
-							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//ÏÂÒ»²½
+							nCalca=0;ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x03;	//ä¸‹ä¸€æ­¥
 						}
 							break;
 						case 30901:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*4,ezhCleanSence3| 0x03);
 							break;
 						case 30902:
-							nCalca=0; ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x05;	//ÏÂÒ»²½
+							nCalca=0; ppxxStep++;g_cCleanCurrentSence=ezhCleanSence3 | 0x05;	//ä¸‹ä¸€æ­¥
 							if(cHeartJump>160 || cHeartJump<35)
 							{
-								//Âö²©Òì³£
+								//è„‰åšå¼‚å¸¸
 								aurtEventBtn(0xEA);
 							}
 							else
 							{
-								//Âö²©Õı³£
+								//è„‰åšæ­£å¸¸
 								aurtEventBtn(0xEB);
 							}
 							break;
@@ -1436,10 +1436,10 @@ void litteSenceRunHuWai(void)
 						break;
 						
 						//---------------------------------------
-						//ÉãÏñÍ·
+						//æ‘„åƒå¤´
 						case 31000:
 							aurtEventUnitShow(31000);
-							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x06;	//ÏÂÒ»²½
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence3 | 0x06;	//ä¸‹ä¸€æ­¥
 							Motor_demo();
 							break;
 						case 31001:
@@ -1451,7 +1451,7 @@ void litteSenceRunHuWai(void)
 						break;
 						
 						//---------------------------------------
-						//ÌáÊ¾»¤ÀíÌåÑé½áÊø
+						//æç¤ºæŠ¤ç†ä½“éªŒç»“æŸ
 						case 31100:
 							aurtEventUnitShow(31100);
 							nCalca=0; ppxxStep++;
@@ -1464,12 +1464,12 @@ void litteSenceRunHuWai(void)
 						break;
 
 						//---------------------------------------
-						default: //Íê±Ï
-							//±£Å¯×îºó¹Ø±Õ
+						default: //å®Œæ¯•
+							//ä¿æš–æœ€åå…³é—­
 							//BAONAN_STATE(0);
 							aurtEventUnitSence(ezhCleanSence3,0);
 							allOutClose();
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -1483,7 +1483,7 @@ void litteSenceRunChongXi(void)
 							allSenceClose();				
 							aurtEventUnitSence(ezhCleanSence4,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;	//ä¸‹ä¸€æ­¥
 						  udoPoPoFlush(1);
 							break;
 						case 1:
@@ -1493,7 +1493,7 @@ void litteSenceRunChongXi(void)
 							udoPoPoFlush(0);
 						  udoXuPooCollect(1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
 						case 3:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*15,ezhCleanSence4|ppxxStep);
@@ -1501,7 +1501,7 @@ void litteSenceRunChongXi(void)
 						case 4:	
 							udoXuPooCollect(0);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//ä¸‹ä¸€æ­¥
 							udoDry(1);
 							break;
 						case 5:
@@ -1510,20 +1510,20 @@ void litteSenceRunChongXi(void)
 						case 6:	
 							udoDry(0);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence4 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
 						
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence4,0);
 							allOutClose();						
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
 }
 
 /********************************
-//ºæ¸É
+//çƒ˜å¹²
 *********************************/
 void litteSenceRunHongGan(void)
 {
@@ -1534,30 +1534,30 @@ void litteSenceRunHongGan(void)
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence5,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;	//ä¸‹ä¸€æ­¥
 						
-							udoDry(1);//########### ºæ¸É
+							udoDry(1);//########### çƒ˜å¹²
 							break;
 						case 1:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*50,ezhCleanSence5|ppxxStep);
 							break;
 						case 2:
-							udoDry(0);//########### ºæ¸É
+							udoDry(0);//########### çƒ˜å¹²
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence5 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
 						
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence5,0);
 							allOutClose();						
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
 }
 
 /********************************
-//³ı¾ú
+//é™¤èŒ
 *********************************/
 void litteSenceRunChuQun(void)
 {
@@ -1567,7 +1567,7 @@ void litteSenceRunChuQun(void)
 						case 0:					
 							allSenceClose();						
 							aurtEventUnitSence(ezhCleanSence6,1);
-							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;	//ÏÂÒ»²½
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;	//ä¸‹ä¸€æ­¥
 
 							_unit5(1);_unit9(1);_unit10(1);/*_unit13(1);*/
 							break;
@@ -1576,28 +1576,28 @@ void litteSenceRunChuQun(void)
 							break;
 						case 2:
 							_unit7(1);
-							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ÏÂÒ»²½
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
 						case 3:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence6|ppxxStep);
 							break;
 						case 4:
 							_unit7(0);
-							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ÏÂÒ»²½
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
 						case 5:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*55,ezhCleanSence6|ppxxStep);
 							break;
 						case 6:
 							_unit7(1);
-							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ÏÂÒ»²½
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
 						case 7:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence6|ppxxStep);
 							break;
 						case 8:
 							_unit7(0);
-							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ÏÂÒ»²½
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
 						case 9:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*55,ezhCleanSence6|ppxxStep);
@@ -1605,14 +1605,14 @@ void litteSenceRunChuQun(void)
 						
 						case 10:
 							_unit7(1);
-							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ÏÂÒ»²½
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
 						case 11:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*5,ezhCleanSence6|ppxxStep);
 							break;
 						case 12:
 							_unit7(0);
-							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ÏÂÒ»²½
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
 						
 						case 13:
@@ -1621,13 +1621,13 @@ void litteSenceRunChuQun(void)
 						
 						case 14:
 							_unit5(1);_unit9(1);_unit10(1);/*_unit13(1);*/
-							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ÏÂÒ»²½
+							nCalca=0; ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
 						
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence6,0);
 							allOutClose();
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -1638,28 +1638,28 @@ void litteSenceRunChuQun(void)
 						case 0:							
 							aurtEventUnitSence(ezhCleanSence6,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;	//ä¸‹ä¸€æ­¥
 
-							udoSterilization(1); //########### ³ı¾ú
+							udoSterilization(1); //########### é™¤èŒ
 						case 1:
 							senceDelay(&nCalca,&ppxxStep,DEF_TIME_MS_DELAY*10,ezhCleanSence6);
 							break;
 						case 2:
-							udoSterilization(0); //########### ³ı¾ú
+							udoSterilization(0); //########### é™¤èŒ
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence6 | ppxxStep;//ä¸‹ä¸€æ­¥
 							break;
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence6,0);
 							allOutClose();
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}*/
 }
 
 /********************************
-//°´Ä¦
+//æŒ‰æ‘©
 *********************************/
 void litteSenceRunAnMo(void)
 {
@@ -1672,7 +1672,7 @@ void litteSenceRunAnMo(void)
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence7,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//ä¸‹ä¸€æ­¥
 							ANMO1_STATE(1);
 							break;
 						case 1:
@@ -1680,7 +1680,7 @@ void litteSenceRunAnMo(void)
 							break;
 						case 2:
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//ä¸‹ä¸€æ­¥
 							ANMO1_STATE(0);
 							break;
 						case 3:
@@ -1689,7 +1689,7 @@ void litteSenceRunAnMo(void)
 						//-----------------------------------------------	
 						case 4:							
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//ä¸‹ä¸€æ­¥
 							ANMO1_STATE(1);
 							break;
 						case 5:
@@ -1697,7 +1697,7 @@ void litteSenceRunAnMo(void)
 							break;
 						case 6:	
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//ä¸‹ä¸€æ­¥
 							ANMO1_STATE(0);
 							break;
 						case 7:
@@ -1707,7 +1707,7 @@ void litteSenceRunAnMo(void)
 							
 						case 8:							
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//ä¸‹ä¸€æ­¥
 							ANMO1_STATE(1);
 							break;
 						case 9:
@@ -1715,7 +1715,7 @@ void litteSenceRunAnMo(void)
 							break;
 						case 10:	
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//ä¸‹ä¸€æ­¥
 							ANMO1_STATE(0);
 							break;
 						case 11:
@@ -1726,7 +1726,7 @@ void litteSenceRunAnMo(void)
 							break;
 							/*
 						//-----------------------------------------------
-							//ÑÓÊ±
+							//å»¶æ—¶
 							case 12:
 							if(nCalca>500)
 							{
@@ -1735,9 +1735,9 @@ void litteSenceRunAnMo(void)
 							}
 							else
 							{
-									if(0==isCleanRuning)//ÖĞ¶Ï
+									if(0==isCleanRuning)//ä¸­æ–­
 									{
-										//ÖĞ¶ÏĞÅºÅ
+										//ä¸­æ–­ä¿¡å·
 										ANMO1_STATE(1);
 										STM32_Delay_ms(200);
 										ANMO1_STATE(0);
@@ -1747,10 +1747,10 @@ void litteSenceRunAnMo(void)
 									nCalca++;
 							}
 							break;*/
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence7,0);
 							allOutClose();						
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -1764,7 +1764,7 @@ void litteSenceRunAnMo(void)
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence7,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;	//ä¸‹ä¸€æ­¥
 							ANMO1_STATE(1);
 							break;
 						case 1:
@@ -1772,16 +1772,16 @@ void litteSenceRunAnMo(void)
 							break;
 						case 2:	
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence7 | ppxxStep;//ä¸‹ä¸€æ­¥
 							ANMO1_STATE(0);
 							break;
 						case 3:
 							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence7|ppxxStep);
 							break;
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence7,0);
 							allOutClose();						
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -1789,7 +1789,7 @@ void litteSenceRunAnMo(void)
 }
 
 /********************************
-//±£Å¯
+//ä¿æš–
 *********************************/
 void litteSenceRunBaoNang(void)
 {
@@ -1803,7 +1803,7 @@ void litteSenceRunBaoNang(void)
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence8,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//ä¸‹ä¸€æ­¥
 							BAONAN_STATE(1);
 							break;
 						case 1:
@@ -1811,7 +1811,7 @@ void litteSenceRunBaoNang(void)
 							break;
 						case 2:
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//ä¸‹ä¸€æ­¥
 							BAONAN_STATE(0);
 							break;
 						case 3:
@@ -1820,7 +1820,7 @@ void litteSenceRunBaoNang(void)
 						//-----------------------------------------------	
 						case 4:							
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//ä¸‹ä¸€æ­¥
 							BAONAN_STATE(1);
 							break;
 						case 5:
@@ -1828,7 +1828,7 @@ void litteSenceRunBaoNang(void)
 							break;
 						case 6:	
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//ä¸‹ä¸€æ­¥
 							BAONAN_STATE(0);
 							break;
 						case 7:
@@ -1838,7 +1838,7 @@ void litteSenceRunBaoNang(void)
 							
 						case 8:							
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//ä¸‹ä¸€æ­¥
 							BAONAN_STATE(1);
 							break;
 						case 9:
@@ -1846,7 +1846,7 @@ void litteSenceRunBaoNang(void)
 							break;
 						case 10:	
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//ä¸‹ä¸€æ­¥
 							BAONAN_STATE(0);
 							break;
 						case 11:
@@ -1857,7 +1857,7 @@ void litteSenceRunBaoNang(void)
 							break;
 							/*
 						//-----------------------------------------------
-							//ÑÓÊ±
+							//å»¶æ—¶
 							case 12:
 							if(nCalca>500)
 							{
@@ -1866,9 +1866,9 @@ void litteSenceRunBaoNang(void)
 							}
 							else
 							{
-									if(0==isCleanRuning)//ÖĞ¶Ï
+									if(0==isCleanRuning)//ä¸­æ–­
 									{
-										//ÖĞ¶ÏĞÅºÅ
+										//ä¸­æ–­ä¿¡å·
 										BAONAN_STATE(1);
 										STM32_Delay_ms(200);
 										BAONAN_STATE(0);
@@ -1878,10 +1878,10 @@ void litteSenceRunBaoNang(void)
 									nCalca++;
 							}
 							break;*/
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence8,0);
 							allOutClose();						
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -1895,7 +1895,7 @@ void litteSenceRunBaoNang(void)
 							allSenceClose();
 							aurtEventUnitSence(ezhCleanSence8,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;	//ä¸‹ä¸€æ­¥
 							BAONAN_STATE(1);
 							break;
 						case 1:
@@ -1903,16 +1903,16 @@ void litteSenceRunBaoNang(void)
 							break;
 						case 2:	
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSence8 | ppxxStep;//ä¸‹ä¸€æ­¥
 							BAONAN_STATE(0);
 							break;
 						case 3:
 							senceDelay(&nCalca,&ppxxStep,30,ezhCleanSence8|ppxxStep);
 							break;
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSence8,0);
 							allOutClose();						
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -1920,7 +1920,7 @@ void litteSenceRunBaoNang(void)
 }
 
 //--------------------------------------------------------------------------
-//ÌåÑé³¡¾°
+//ä½“éªŒåœºæ™¯
 void litteSenceRunA(void)
 {
 				static int nCalca=0;
@@ -1930,23 +1930,23 @@ void litteSenceRunA(void)
 							allOutClose();			
 							aurtEventUnitSence(ezhCleanSenceA,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceA | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceA | ppxxStep;	//ä¸‹ä¸€æ­¥
 							break;
 						case 1:
 							senceDelay(&nCalca,&ppxxStep,10,ezhCleanSenceA|ppxxStep);
 							break;
 						case 2:		
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceA | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceA | ppxxStep;//ä¸‹ä¸€æ­¥
 							
 							break;
 						case 3:
 							senceDelay(&nCalca,&ppxxStep,300,ezhCleanSenceA|ppxxStep);
 							break;
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSenceA,0);
 							allOutClose();						
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -1960,23 +1960,23 @@ void litteSenceRunB(void)
 							allSenceClose();			
 							aurtEventUnitSence(ezhCleanSenceB,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceB | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceB | ppxxStep;	//ä¸‹ä¸€æ­¥
 							break;
 						case 1:
 							senceDelay(&nCalca,&ppxxStep,10,ezhCleanSenceB|ppxxStep);
 							break;
 						case 2:		
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceB | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceB | ppxxStep;//ä¸‹ä¸€æ­¥
 							
 							break;
 						case 3:
 							senceDelay(&nCalca,&ppxxStep,300,ezhCleanSenceB|ppxxStep);
 							break;
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSenceB,0);
 							allOutClose();						
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
@@ -1990,23 +1990,23 @@ void litteSenceRunC(void)
 							allSenceClose();			
 							aurtEventUnitSence(ezhCleanSenceC,1);
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceC | ppxxStep;	//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceC | ppxxStep;	//ä¸‹ä¸€æ­¥
 							break;
 						case 1:
 							senceDelay(&nCalca,&ppxxStep,10,ezhCleanSenceC|ppxxStep);
 							break;
 						case 2:		
 							nCalca=0;
-							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceC | ppxxStep;//ÏÂÒ»²½
+							ppxxStep++; g_cCleanCurrentSence=ezhCleanSenceC | ppxxStep;//ä¸‹ä¸€æ­¥
 							
 							break;
 						case 3:
 							senceDelay(&nCalca,&ppxxStep,300,ezhCleanSenceC|ppxxStep);
 							break;
-						default: //Íê±Ï
+						default: //å®Œæ¯•
 							aurtEventUnitSence(ezhCleanSenceC,0);
 							allOutClose();						
-							g_cCleanCurrentSence=0;  		//³¡¾°¸´Î»
+							g_cCleanCurrentSence=0;  		//åœºæ™¯å¤ä½
 							ppxxStep=0;
 							break;
 					}
