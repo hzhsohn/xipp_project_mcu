@@ -2,9 +2,9 @@
 #include "stdio.h"
 #include "mini-data.h"
 #include "stdlib.h"
+#include "OutputDrive.h"
+#include "a.h"
 
-
-extern TagUpData485 ud485;
 extern TagTimeRun g_run;
 
 //
@@ -115,10 +115,7 @@ void USART3_IRQHandler(void)
 								b=g_ocCmd3.parameter[1];
 								pdata=&g_ocCmd3.parameter[2];
 								//
-								if(a==5)
-								{
-										recvLogic(a,b,pdata);
-								}
+								recvLogic(a,b,pdata);
 						 }
 						 if(tmp>0)
 						 {
@@ -134,94 +131,27 @@ void USART3_IRQHandler(void)
     }
 }
 
-//发送
-void uart3Send(unsigned char f,char*data,int datalen)
-{
-		int i=0;
-		uchar dst_buf[36]={0};
-		int myDataLen=0;
-		unsigned char cbuf[30]={0};
-				
-		cbuf[0]=2; //位置 0-5 ,2代表本机
-		cbuf[1]=f; //功能
-		
-		if(data)
-		{
-				for(i=0;i<datalen;i++)
-				{
-					cbuf[i+2]=data[i];
-				}
-		}
-
-		myDataLen = miniDataCreate(2+datalen,cbuf,dst_buf);
-		STM32F1_UART3SendDataS(dst_buf,myDataLen);
-}
-
-void uart3SendNull(unsigned char f)
-{
-		uart3Send(f,NULL,0);
-}
-
 void recvLogic(int a,int b,unsigned char* data)
 {
-		switch(b)
+		if(5==a)
 		{
-			case 0x00: //获取传感器
-			{				
-					uart3Send(0x10,(char*)&ud485,sizeof(TagUpData485));
-			}
-			break;
-			case 0xA0: //发热垫加热
-			{				
-					//工作秒数
-					unsigned char t=data[0];
-					//工作温度
-					unsigned char w=data[1];
-					g_run.JiaReTime1=t*100;
-					g_run.JiaReWenDu1=w*10;
-			}
-			break;
-			case 0xA1: //发热垫加热关
-			{
-					g_run.JiaReTime1=-1;
-			}
-			break;
-			case 0xA2: //按摩开
-			{				
-					//工作秒数
-					unsigned char t=data[0];
-					g_run.AnmoTime=t*100;
-			}
-			break;
-			case 0xA3: //按摩关
-			{
-					g_run.AnmoTime=-1;
-			}
-			break;
-			case 0xA4: //排污开
-			{				
-					//工作秒数
-					unsigned char t=data[0];
-					g_run.piai_wu_kai=t*100;
-			}
-			break;
-			case 0xA5: //排污关
-			{				
-					//工作秒数
-					unsigned char t=data[0];
-					g_run.piai_wu_guan=t*100;
-			}
-			break;
-			case 0xA6: //小便阀门
-			{				
-					//工作秒数
-					unsigned char t=data[0];
-					g_run.xiaobian_famen=t*100;
-			}
-			break;
-			case 0xA7: //小便阀门中止
-			{
-					g_run.xiaobian_famen=-1;
-			}			
-		}
+				switch(b)
+				{
+					case 1: //平躺模式
+					{
+						senceBegin(ezhCleanSence1);
+					}
+					break;
+					case 2: //拉屎模式
+					{
+						senceBegin(ezhCleanSence2);
+					}
+					break;
+					case 3: //按摩模式
+					{
+						senceBegin(ezhCleanSence3);
+					}
+					break;
+				}
+	}
 }

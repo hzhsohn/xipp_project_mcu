@@ -1,6 +1,7 @@
 --cpu Cortex-M3
 ".\objects\main.o"
 ".\objects\mini-data.o"
+".\objects\a.o"
 ".\objects\stm32f10x_rcc.o"
 ".\objects\stm32f10x_gpio.o"
 ".\objects\stm32f10x_tim.o"
@@ -22,7 +23,6 @@
 ".\objects\stm32f1_uart2.o"
 ".\objects\stm32f1_uart3.o"
 ".\objects\stm32f1_adc1.o"
-".\objects\stm32f1_adc2.o"
 ".\objects\inputdrive.o"
 ".\objects\drive.o"
 ".\objects\delay.o"
