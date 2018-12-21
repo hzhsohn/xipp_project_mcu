@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\Xipp_MCU1_V2.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Xipp_MCU1_V2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Fri Dec 21 22:25:44 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Fri Dec 21 22:51:37 2018
 <BR><P>
 <H3>Maximum Stack Usage =        152 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-TIM3_IRQHandler &rArr; LitteSenceRun &rArr; litteSenceRunHuWai &rArr; uart3Send &rArr; STM32F1_UART3SendDataS
+TIM3_IRQHandler &rArr; LitteSenceRun &rArr; litteSenceRunXuXu &rArr; uart3Send &rArr; STM32F1_UART3SendDataS
 <P>
 <H3>
 Functions with no stack information
@@ -497,7 +497,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WriteByte
 </UL>
 
-<P><STRONG><a name="[88]"></a>FLASH_ReadByte</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, flash_rw.o(i.FLASH_ReadByte))
+<P><STRONG><a name="[89]"></a>FLASH_ReadByte</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, flash_rw.o(i.FLASH_ReadByte))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = FLASH_ReadByte
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setFlashData
@@ -563,7 +563,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[58]"></a>LitteSenceRun</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, logic.o(i.LitteSenceRun))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = LitteSenceRun &rArr; litteSenceRunHuWai &rArr; uart3Send &rArr; STM32F1_UART3SendDataS
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = LitteSenceRun &rArr; litteSenceRunXuXu &rArr; uart3Send &rArr; STM32F1_UART3SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRunXuXu
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRunPooPoo
@@ -720,7 +720,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
 <P><STRONG><a name="[2a]"></a>TIM3_IRQHandler</STRONG> (Thumb, 106 bytes, Stack size 8 bytes, stm32f1_timer3.o(i.TIM3_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = TIM3_IRQHandler &rArr; LitteSenceRun &rArr; litteSenceRunHuWai &rArr; uart3Send &rArr; STM32F1_UART3SendDataS
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = TIM3_IRQHandler &rArr; LitteSenceRun &rArr; litteSenceRunXuXu &rArr; uart3Send &rArr; STM32F1_UART3SendDataS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearITPendingBit
@@ -757,7 +757,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
 <P><STRONG><a name="[33]"></a>USART2_IRQHandler</STRONG> (Thumb, 190 bytes, Stack size 24 bytes, stm32f1_uart2.o(i.USART2_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = USART2_IRQHandler &rArr; miniDataGet
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = USART2_IRQHandler &rArr; uart2RecvLogic &rArr; recvSensorBoard1
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;miniDataGet
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
@@ -879,20 +879,22 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[5a]"></a>litteSenceRunPooPoo</STRONG> (Thumb, 80 bytes, Stack size 4 bytes, logic.o(i.litteSenceRunPooPoo))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = litteSenceRunPooPoo &rArr; senceDelayToNext
+<P><STRONG><a name="[5a]"></a>litteSenceRunPooPoo</STRONG> (Thumb, 128 bytes, Stack size 8 bytes, logic.o(i.litteSenceRunPooPoo))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = litteSenceRunPooPoo &rArr; uart3Send &rArr; STM32F1_UART3SendDataS
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceNext
+<BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart3Send
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceNext
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDone
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelayToNext
 </UL>
 <BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LitteSenceRun
 </UL>
 
-<P><STRONG><a name="[59]"></a>litteSenceRunXuXu</STRONG> (Thumb, 80 bytes, Stack size 4 bytes, logic.o(i.litteSenceRunXuXu))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = litteSenceRunXuXu &rArr; senceDelayToNext
+<P><STRONG><a name="[59]"></a>litteSenceRunXuXu</STRONG> (Thumb, 128 bytes, Stack size 8 bytes, logic.o(i.litteSenceRunXuXu))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = litteSenceRunXuXu &rArr; uart3Send &rArr; STM32F1_UART3SendDataS
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceNext
+<BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart3Send
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceNext
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDone
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceDelayToNext
 </UL>
@@ -932,12 +934,17 @@ Global Symbols
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[89]"></a>recvSensorBoard1</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, sensorrecvlogic.o(i.recvSensorBoard1))
-<BR><BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2RecvLogic
+<P><STRONG><a name="[88]"></a>recvSensorBoard1</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, sensorrecvlogic.o(i.recvSensorBoard1))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = recvSensorBoard1
+</UL>
+<BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;senceBegin
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2RecvLogic
 </UL>
 
 <P><STRONG><a name="[87]"></a>senceBegin</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, logic.o(i.senceBegin))
-<BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvSensorBoard1
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[80]"></a>senceDelayToNext</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, logic.o(i.senceDelayToNext))
@@ -979,15 +986,15 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = setFlashData &rArr; FLASH_WriteByte &rArr; FLASH_ProgramHalfWord &rArr; FLASH_WaitForLastOperation
 </UL>
 <BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WriteByte
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ReadByte
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ReadByte
 </UL>
 <BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[7d]"></a>uart2RecvLogic</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, stm32f1_uart2.o(i.uart2RecvLogic))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = uart2RecvLogic
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = uart2RecvLogic &rArr; recvSensorBoard1
 </UL>
-<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvSensorBoard1
+<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvSensorBoard1
 </UL>
 <BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
 </UL>
@@ -1001,7 +1008,9 @@ Global Symbols
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32F1_UART3SendDataS
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRunHuWai
+<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRunXuXu
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRunPooPoo
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;litteSenceRunHuWai
 </UL>
 
 <P><STRONG><a name="[84]"></a>zhSCM_GPIOConfig</STRONG> (Thumb, 252 bytes, Stack size 8 bytes, key.o(i.zhSCM_GPIOConfig))

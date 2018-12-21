@@ -53,10 +53,12 @@ Section Cross References
     logic.o(i.litteSenceRunHuWai) refers to logic.o(i.senceDelayToNext) for senceDelayToNext
     logic.o(i.litteSenceRunHuWai) refers to logic.o(i.senceDone) for senceDone
     logic.o(i.litteSenceRunHuWai) refers to logic.o(.data) for ppxxStep
+    logic.o(i.litteSenceRunPooPoo) refers to stm32f1_uart3.o(i.uart3Send) for uart3Send
     logic.o(i.litteSenceRunPooPoo) refers to logic.o(i.senceNext) for senceNext
     logic.o(i.litteSenceRunPooPoo) refers to logic.o(i.senceDelayToNext) for senceDelayToNext
     logic.o(i.litteSenceRunPooPoo) refers to logic.o(i.senceDone) for senceDone
     logic.o(i.litteSenceRunPooPoo) refers to logic.o(.data) for ppxxStep
+    logic.o(i.litteSenceRunXuXu) refers to stm32f1_uart3.o(i.uart3Send) for uart3Send
     logic.o(i.litteSenceRunXuXu) refers to logic.o(i.senceNext) for senceNext
     logic.o(i.litteSenceRunXuXu) refers to logic.o(i.senceDelayToNext) for senceDelayToNext
     logic.o(i.litteSenceRunXuXu) refers to logic.o(i.senceDone) for senceDone
@@ -67,6 +69,7 @@ Section Cross References
     logic.o(i.senceDone) refers to logic.o(.data) for g_cCurrentSence
     logic.o(i.urgentSenceInterrupt) refers to logic.o(i.senceDone) for senceDone
     logic.o(i.urgentSenceInterrupt) refers to stm32f1_uart3.o(i.uart3Send) for uart3Send
+    sensorrecvlogic.o(i.recvSensorBoard1) refers to logic.o(i.senceBegin) for senceBegin
     stm32f10x_rcc.o(i.RCC_GetClocksFreq) refers to stm32f10x_rcc.o(.data) for APBAHBPrescTable
     stm32f10x_rcc.o(i.RCC_WaitForHSEStartUp) refers to stm32f10x_rcc.o(i.RCC_GetFlagStatus) for RCC_GetFlagStatus
     stm32f10x_gpio.o(i.GPIO_AFIODeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
@@ -1031,21 +1034,21 @@ Image Symbol Table
     i.litteSenceRunHongGan                   0x08001544   Section        0  logic.o(i.litteSenceRunHongGan)
     i.litteSenceRunHuWai                     0x0800159c   Section        0  logic.o(i.litteSenceRunHuWai)
     i.litteSenceRunPooPoo                    0x08001624   Section        0  logic.o(i.litteSenceRunPooPoo)
-    i.litteSenceRunXuXu                      0x0800167c   Section        0  logic.o(i.litteSenceRunXuXu)
-    i.main                                   0x080016d4   Section        0  main.o(i.main)
-    i.miniDataCreate                         0x080018a8   Section        0  mini-data.o(i.miniDataCreate)
-    i.miniDataGet                            0x080018f2   Section        0  mini-data.o(i.miniDataGet)
-    i.recvSensorBoard1                       0x08001996   Section        0  sensorrecvlogic.o(i.recvSensorBoard1)
-    i.senceBegin                             0x08001998   Section        0  logic.o(i.senceBegin)
-    i.senceDelayToNext                       0x080019b8   Section        0  logic.o(i.senceDelayToNext)
-    i.senceDone                              0x080019ec   Section        0  logic.o(i.senceDone)
-    i.senceNext                              0x08001a08   Section        0  logic.o(i.senceNext)
-    i.setFlashData                           0x08001a14   Section        0  main.o(i.setFlashData)
-    i.uart2RecvLogic                         0x08001a6c   Section        0  stm32f1_uart2.o(i.uart2RecvLogic)
-    i.uart3Send                              0x08001a88   Section        0  stm32f1_uart3.o(i.uart3Send)
-    i.zhSCM_GPIOConfig                       0x08001b08   Section        0  key.o(i.zhSCM_GPIOConfig)
-    i.zhSCM_initKeyState                     0x08001c14   Section        0  key.o(i.zhSCM_initKeyState)
-    i.zhSCM_keyState                         0x08001c1a   Section        0  key.o(i.zhSCM_keyState)
+    i.litteSenceRunXuXu                      0x080016ac   Section        0  logic.o(i.litteSenceRunXuXu)
+    i.main                                   0x08001734   Section        0  main.o(i.main)
+    i.miniDataCreate                         0x08001908   Section        0  mini-data.o(i.miniDataCreate)
+    i.miniDataGet                            0x08001952   Section        0  mini-data.o(i.miniDataGet)
+    i.recvSensorBoard1                       0x080019f6   Section        0  sensorrecvlogic.o(i.recvSensorBoard1)
+    i.senceBegin                             0x08001a1c   Section        0  logic.o(i.senceBegin)
+    i.senceDelayToNext                       0x08001a3c   Section        0  logic.o(i.senceDelayToNext)
+    i.senceDone                              0x08001a70   Section        0  logic.o(i.senceDone)
+    i.senceNext                              0x08001a8c   Section        0  logic.o(i.senceNext)
+    i.setFlashData                           0x08001a98   Section        0  main.o(i.setFlashData)
+    i.uart2RecvLogic                         0x08001af0   Section        0  stm32f1_uart2.o(i.uart2RecvLogic)
+    i.uart3Send                              0x08001b0c   Section        0  stm32f1_uart3.o(i.uart3Send)
+    i.zhSCM_GPIOConfig                       0x08001b8c   Section        0  key.o(i.zhSCM_GPIOConfig)
+    i.zhSCM_initKeyState                     0x08001c98   Section        0  key.o(i.zhSCM_initKeyState)
+    i.zhSCM_keyState                         0x08001c9e   Section        0  key.o(i.zhSCM_keyState)
     .data                                    0x20000000   Section       44  logic.o(.data)
     nCalca                                   0x2000000c   Data           4  logic.o(.data)
     nCalca                                   0x20000010   Data           4  logic.o(.data)
@@ -1275,24 +1278,24 @@ Image Symbol Table
     litteSenceRunChuQun                      0x080014ed   Thumb Code    80  logic.o(i.litteSenceRunChuQun)
     litteSenceRunHongGan                     0x08001545   Thumb Code    80  logic.o(i.litteSenceRunHongGan)
     litteSenceRunHuWai                       0x0800159d   Thumb Code   128  logic.o(i.litteSenceRunHuWai)
-    litteSenceRunPooPoo                      0x08001625   Thumb Code    80  logic.o(i.litteSenceRunPooPoo)
-    litteSenceRunXuXu                        0x0800167d   Thumb Code    80  logic.o(i.litteSenceRunXuXu)
-    main                                     0x080016d5   Thumb Code   450  main.o(i.main)
-    miniDataCreate                           0x080018a9   Thumb Code    74  mini-data.o(i.miniDataCreate)
-    miniDataGet                              0x080018f3   Thumb Code   164  mini-data.o(i.miniDataGet)
-    recvSensorBoard1                         0x08001997   Thumb Code     2  sensorrecvlogic.o(i.recvSensorBoard1)
-    senceBegin                               0x08001999   Thumb Code    18  logic.o(i.senceBegin)
-    senceDelayToNext                         0x080019b9   Thumb Code    42  logic.o(i.senceDelayToNext)
-    senceDone                                0x080019ed   Thumb Code    16  logic.o(i.senceDone)
-    senceNext                                0x08001a09   Thumb Code    12  logic.o(i.senceNext)
-    setFlashData                             0x08001a15   Thumb Code    84  main.o(i.setFlashData)
-    uart2RecvLogic                           0x08001a6d   Thumb Code    26  stm32f1_uart2.o(i.uart2RecvLogic)
-    uart3Send                                0x08001a89   Thumb Code   122  stm32f1_uart3.o(i.uart3Send)
-    zhSCM_GPIOConfig                         0x08001b09   Thumb Code   252  key.o(i.zhSCM_GPIOConfig)
-    zhSCM_initKeyState                       0x08001c15   Thumb Code     6  key.o(i.zhSCM_initKeyState)
-    zhSCM_keyState                           0x08001c1b   Thumb Code   116  key.o(i.zhSCM_keyState)
-    Region$$Table$$Base                      0x08001c90   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08001cb0   Number         0  anon$$obj.o(Region$$Table)
+    litteSenceRunPooPoo                      0x08001625   Thumb Code   128  logic.o(i.litteSenceRunPooPoo)
+    litteSenceRunXuXu                        0x080016ad   Thumb Code   128  logic.o(i.litteSenceRunXuXu)
+    main                                     0x08001735   Thumb Code   450  main.o(i.main)
+    miniDataCreate                           0x08001909   Thumb Code    74  mini-data.o(i.miniDataCreate)
+    miniDataGet                              0x08001953   Thumb Code   164  mini-data.o(i.miniDataGet)
+    recvSensorBoard1                         0x080019f7   Thumb Code    36  sensorrecvlogic.o(i.recvSensorBoard1)
+    senceBegin                               0x08001a1d   Thumb Code    18  logic.o(i.senceBegin)
+    senceDelayToNext                         0x08001a3d   Thumb Code    42  logic.o(i.senceDelayToNext)
+    senceDone                                0x08001a71   Thumb Code    16  logic.o(i.senceDone)
+    senceNext                                0x08001a8d   Thumb Code    12  logic.o(i.senceNext)
+    setFlashData                             0x08001a99   Thumb Code    84  main.o(i.setFlashData)
+    uart2RecvLogic                           0x08001af1   Thumb Code    26  stm32f1_uart2.o(i.uart2RecvLogic)
+    uart3Send                                0x08001b0d   Thumb Code   122  stm32f1_uart3.o(i.uart3Send)
+    zhSCM_GPIOConfig                         0x08001b8d   Thumb Code   252  key.o(i.zhSCM_GPIOConfig)
+    zhSCM_initKeyState                       0x08001c99   Thumb Code     6  key.o(i.zhSCM_initKeyState)
+    zhSCM_keyState                           0x08001c9f   Thumb Code   116  key.o(i.zhSCM_keyState)
+    Region$$Table$$Base                      0x08001d14   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08001d34   Number         0  anon$$obj.o(Region$$Table)
     isCleanRuning                            0x20000000   Data           4  logic.o(.data)
     ppxxStep                                 0x20000004   Data           4  logic.o(.data)
     g_cCurrentSence                          0x20000008   Data           1  logic.o(.data)
@@ -1329,9 +1332,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001d2c, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001db0, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00001cb0, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00001d34, Max: 0x00010000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1448,25 +1451,26 @@ Memory Map of the image
     0x080014ec   0x00000058   Code   RO          221    i.litteSenceRunChuQun  logic.o
     0x08001544   0x00000058   Code   RO          222    i.litteSenceRunHongGan  logic.o
     0x0800159c   0x00000088   Code   RO          223    i.litteSenceRunHuWai  logic.o
-    0x08001624   0x00000058   Code   RO          224    i.litteSenceRunPooPoo  logic.o
-    0x0800167c   0x00000058   Code   RO          225    i.litteSenceRunXuXu  logic.o
-    0x080016d4   0x000001d4   Code   RO            5    i.main              main.o
-    0x080018a8   0x0000004a   Code   RO          196    i.miniDataCreate    mini-data.o
-    0x080018f2   0x000000a4   Code   RO          197    i.miniDataGet       mini-data.o
-    0x08001996   0x00000002   Code   RO          344    i.recvSensorBoard1  sensorrecvlogic.o
-    0x08001998   0x00000020   Code   RO          226    i.senceBegin        logic.o
-    0x080019b8   0x00000034   Code   RO          227    i.senceDelayToNext  logic.o
-    0x080019ec   0x0000001c   Code   RO          229    i.senceDone         logic.o
-    0x08001a08   0x0000000c   Code   RO          230    i.senceNext         logic.o
-    0x08001a14   0x00000058   Code   RO            6    i.setFlashData      main.o
-    0x08001a6c   0x0000001a   Code   RO         2533    i.uart2RecvLogic    stm32f1_uart2.o
-    0x08001a86   0x00000002   PAD
-    0x08001a88   0x00000080   Code   RO         2591    i.uart3Send         stm32f1_uart3.o
-    0x08001b08   0x0000010c   Code   RO         2374    i.zhSCM_GPIOConfig  key.o
-    0x08001c14   0x00000006   Code   RO         2375    i.zhSCM_initKeyState  key.o
-    0x08001c1a   0x00000074   Code   RO         2376    i.zhSCM_keyState    key.o
-    0x08001c8e   0x00000002   PAD
-    0x08001c90   0x00000020   Data   RO         2975    Region$$Table       anon$$obj.o
+    0x08001624   0x00000088   Code   RO          224    i.litteSenceRunPooPoo  logic.o
+    0x080016ac   0x00000088   Code   RO          225    i.litteSenceRunXuXu  logic.o
+    0x08001734   0x000001d4   Code   RO            5    i.main              main.o
+    0x08001908   0x0000004a   Code   RO          196    i.miniDataCreate    mini-data.o
+    0x08001952   0x000000a4   Code   RO          197    i.miniDataGet       mini-data.o
+    0x080019f6   0x00000024   Code   RO          344    i.recvSensorBoard1  sensorrecvlogic.o
+    0x08001a1a   0x00000002   PAD
+    0x08001a1c   0x00000020   Code   RO          226    i.senceBegin        logic.o
+    0x08001a3c   0x00000034   Code   RO          227    i.senceDelayToNext  logic.o
+    0x08001a70   0x0000001c   Code   RO          229    i.senceDone         logic.o
+    0x08001a8c   0x0000000c   Code   RO          230    i.senceNext         logic.o
+    0x08001a98   0x00000058   Code   RO            6    i.setFlashData      main.o
+    0x08001af0   0x0000001a   Code   RO         2533    i.uart2RecvLogic    stm32f1_uart2.o
+    0x08001b0a   0x00000002   PAD
+    0x08001b0c   0x00000080   Code   RO         2591    i.uart3Send         stm32f1_uart3.o
+    0x08001b8c   0x0000010c   Code   RO         2374    i.zhSCM_GPIOConfig  key.o
+    0x08001c98   0x00000006   Code   RO         2375    i.zhSCM_initKeyState  key.o
+    0x08001c9e   0x00000074   Code   RO         2376    i.zhSCM_keyState    key.o
+    0x08001d12   0x00000002   PAD
+    0x08001d14   0x00000020   Data   RO         2975    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00000898, Max: 0x00005000, ABSOLUTE)
@@ -1498,12 +1502,12 @@ Image component sizes
        102          0          0          0          0       1407   flash_rw.o
        156         14          0          0          0        541   inputdrive.o
        390         16          0          0          0       2945   key.o
-       996        106          0         44          0      11475   logic.o
+      1092        106          0         44          0      11499   logic.o
        556         22          0          0          0     261058   main.o
        238          0          0          0          0       1951   mini-data.o
        172         22          0          0          0       1849   misc.o
        652         24          0          0          0       1279   outputdrive.o
-         2          0          0          0          0        495   sensorrecvlogic.o
+        36          0          0          0          0        567   sensorrecvlogic.o
         64         26        236          0       1536        808   startup_stm32f10x_md.o
         68         18          0          4          0        667   stm32_delay.o
        286         36          0          0          0       3588   stm32f10x_flash.o
@@ -1519,9 +1523,9 @@ Image component sizes
        328         28          0         20          0       2245   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-      6720        544        268        124       1980     317284   Object Totals
+      6852        544        268        124       1980     317380   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         6          0          0          0          0          0   (incl. Padding)
+         8          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1569,15 +1573,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      7076        560        268        124       2076     314252   Grand Totals
-      7076        560        268        124       2076     314252   ELF Image Totals
-      7076        560        268        124          0          0   ROM Totals
+      7208        560        268        124       2076     314348   Grand Totals
+      7208        560        268        124       2076     314348   ELF Image Totals
+      7208        560        268        124          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 7344 (   7.17kB)
+    Total RO  Size (Code + RO Data)                 7476 (   7.30kB)
     Total RW  Size (RW Data + ZI Data)              2200 (   2.15kB)
-    Total ROM Size (Code + RO Data + RW Data)       7468 (   7.29kB)
+    Total ROM Size (Code + RO Data + RW Data)       7600 (   7.42kB)
 
 ==============================================================================
 

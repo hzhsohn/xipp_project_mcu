@@ -6,5 +6,13 @@
 
 void recvSensorBoard1(unsigned char funcID,unsigned char* data)
 {
-		
+		switch(funcID)
+		{
+			case 1: //Êº				
+				senceBegin(ezhCleanSence1);
+				break;
+			case 2: //Äò				
+				senceBegin(ezhCleanSence2);
+				break; 
+		}
 }
