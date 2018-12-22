@@ -99,7 +99,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-						senceBegin(ezhCleanSence1);
+						senceBegin(ezhCleanSence10);
 					}
 					 break;
 				}
@@ -115,7 +115,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-						senceBegin(ezhCleanSence2);
+						senceBegin(ezhCleanSence9);
 					}
 						break;
 				}
