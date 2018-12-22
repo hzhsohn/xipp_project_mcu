@@ -15,6 +15,8 @@ extern "C"{
 	ezhCleanSence6除菌
 	ezhCleanSence7按摩
 	ezhCleanSence8保暖
+	ezhCleanSence9小便
+	ezhCleanSence10大便
 */
 typedef enum _EzhCleanSence{
 	ezhCleanSenceNone=0x00,
@@ -25,7 +27,9 @@ typedef enum _EzhCleanSence{
 	ezhCleanSence5,
 	ezhCleanSence6,
 	ezhCleanSence7,
-	ezhCleanSence8
+	ezhCleanSence8,
+	ezhCleanSence9,
+	ezhCleanSence10
 }EzhCleanSence;
 
 ////////////////////////////////////////////////////////////////
@@ -41,8 +45,10 @@ void senceDone(void);
 void LitteSenceRun(void);
 
 //
-void litteSenceRunPooPoo(void);
+void litteSenceRunAutoXuXu(void);
+void litteSenceRunAutoPooPoo(void);
 void litteSenceRunXuXu(void);
+void litteSenceRunPooPoo(void);
 void litteSenceRunHuWai(void);
 void litteSenceRunChongXi(void);
 void litteSenceRunHongGan(void);

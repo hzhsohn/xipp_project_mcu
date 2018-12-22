@@ -128,7 +128,7 @@ void USART3_IRQHandler(void)
 }
 
 //发送
-void uart3Send(unsigned char k,unsigned char f,unsigned char sec,unsigned char*data,int datalen)
+void uart3Send(unsigned char k,unsigned char f,unsigned char max_sec,unsigned char*data,int datalen)
 {
 		int i=0;
 		uchar dst_buf[36]={0};
@@ -137,7 +137,7 @@ void uart3Send(unsigned char k,unsigned char f,unsigned char sec,unsigned char*d
 				
 		cbuf[0]=k;   //板子序号
 		cbuf[1]=f;   //功能
-		cbuf[2]=sec; //最大工作秒数
+		cbuf[2]=max_sec; //最大工作秒数,0为停止,大于0即工作秒数
 		
 		if(data)
 		{
