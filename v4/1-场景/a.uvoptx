@@ -222,9 +222,9 @@
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>93</LineNumber>
+          <LineNumber>92</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134221884</Address>
+          <Address>134221874</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -233,7 +233,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-鍦烘櫙\dev\STM32F1_UART1.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Xipp_MCU1_V2\dev/STM32F1_UART1.c\93</Expression>
+          <Expression>\\Xipp_MCU1_V2\dev/STM32F1_UART1.c\92</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

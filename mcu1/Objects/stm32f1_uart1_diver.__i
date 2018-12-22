@@ -1,0 +1,7 @@
+-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app
+-I C:\Users\han.zh\Desktop\xipp_project_mcu\mcu1\RTE
+-I C:\Users\han.zh\Desktop\xipp_project_mcu\mcu1\RTE\Device\STM32F105VC
+-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER
+-o .\objects\stm32f1_uart1_diver.o --omf_browse .\objects\stm32f1_uart1_diver.crf --depend .\objects\stm32f1_uart1_diver.d "dev\STM32F1_UART1_Diver.c"
