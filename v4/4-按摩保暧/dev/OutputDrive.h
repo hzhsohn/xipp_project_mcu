@@ -4,28 +4,32 @@
 #include "system_init.h"
 
 
-#define RELAY1_GPIO 	GPIOA
-#define RELAY1_PIN  	GPIO_Pin_8
+//-----------------------------------------------
+//保暖
+#define RELAY1_GPIO 	GPIOC
+#define RELAY1_PIN  	GPIO_Pin_6
 
 #define RELAY2_GPIO 	GPIOC
-#define RELAY2_PIN  	GPIO_Pin_8
+#define RELAY2_PIN  	GPIO_Pin_9
+//----------------------------------------------
+//按摩
+#define RELAY3_GPIO 	GPIOC
+#define RELAY3_PIN  	GPIO_Pin_8// 电源
 
-#define RELAY3_GPIO 	GPIOB
-#define RELAY3_PIN  	GPIO_Pin_14
+#define RELAY4_GPIO 	GPIOD
+#define RELAY4_PIN  	GPIO_Pin_12
 
-//------------------------------------------------------------------------------------
-#define RELAY4_GPIO 	GPIOE
-#define RELAY4_PIN  	GPIO_Pin_8
-
-#define RELAY5_GPIO 	GPIOB
-#define RELAY5_PIN  	GPIO_Pin_14	
-                                                                            
+#define RELAY5_GPIO 	GPIOD
+#define RELAY5_PIN  	GPIO_Pin_13  //faqi
+                                    
 #define RELAY6_GPIO 	GPIOD
-#define RELAY6_PIN  	GPIO_Pin_11	
+#define RELAY6_PIN  	GPIO_Pin_14
 
 #define RELAY7_GPIO 	GPIOD
-#define RELAY7_PIN  	GPIO_Pin_15	
+#define RELAY7_PIN  	GPIO_Pin_15 //qy kai
 
+
+//-------------------------------------------------------------------------------
 #define RELAY8_GPIO 	GPIOB
 #define RELAY8_PIN  	GPIO_Pin_15	
 

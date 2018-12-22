@@ -140,11 +140,16 @@ void recvLogic(int a,int b,unsigned char* data)
 					{
 						g_run.baoNianOnOff=!g_run.baoNianOnOff;
 						RELAY1_STATE(g_run.baoNianOnOff);
+						RELAY2_STATE(g_run.baoNianOnOff);
 					}
 					break;
 					case 2:  //按摩开关
 					{
-						RELAY2_STATE(data[0]);
+						RELAY3_STATE(data[0]);
+						RELAY4_STATE(data[0]);
+						RELAY5_STATE(data[0]);
+						RELAY6_STATE(data[0]);
+						RELAY7_STATE(data[0]);
 					}
 					break;
 				}

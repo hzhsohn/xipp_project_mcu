@@ -5,7 +5,7 @@
 
 
 //-----------------------------------------------
-//真空
+//保暖
 #define RELAY1_GPIO 	GPIOC
 #define RELAY1_PIN  	GPIO_Pin_6
 
