@@ -17,27 +17,7 @@
 #include "OutputDrive.h"
 #include "a.h"
 
-
-//关闭所有输出
-void allClose()
-{
-		//
-	 _unit1(0); 								
-	 _unit2(0); 					
-	 _unit3(0); 					
-	 _unit4(0); 		 					
-	 _junit1(0); 						
-	 _junit2(0); 							
-	 _junit3(0); 							
-	 _junit4(0); 				 	
-	 _junit5(0); 								
-	 _junit6(0); 				 		
-	 _unit11(0);					
-	 _unit12(0); 	 						
-	 _unit13(0);
-	 _unit14(0); 
-	 _unit15(0); 	
-}
+TzhRun g_run;
 
 ////////////////////////////////////////////////////////////////
 
@@ -80,7 +60,6 @@ int main(void)
 	//看门狗
 	//watchdog_init();	
 	//
- 	allClose();
 	while(1)
 	{
 					//看门狗

@@ -4,7 +4,8 @@
 #include "stdlib.h"
 #include "a.h"
 #include "OutputDrive.h"
-
+//
+extern TzhRun g_run;
 //
 void recvLogic(int a,int b,unsigned char* data);
 //--------------------------------------------
@@ -135,20 +136,15 @@ void recvLogic(int a,int b,unsigned char* data)
 		{
 				switch(b)
 				{
-					case 1:  //保暖开关
+					case 1:  //保暖开或关
 					{
-						
-						RELAY1_STATE(1);
+						g_run.baoNianOnOff=!g_run.baoNianOnOff;
+						RELAY1_STATE(g_run.baoNianOnOff);
 					}
 					break;
-					case 2: 
+					case 2:  //按摩开关
 					{
-						RELAY2_STATE(data[0]);						
-					}
-					break;
-					case 3: 
-					{
-						RELAY3_STATE(data[0]);
+						RELAY2_STATE(data[0]);
 					}
 					break;
 				}

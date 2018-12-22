@@ -5,7 +5,7 @@
 
 typedef struct _TzhRun
 {
-		int baoNian;
+		int baoNianOnOff;
 }TzhRun;
 
 #endif

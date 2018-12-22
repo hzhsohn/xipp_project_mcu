@@ -20,7 +20,6 @@ void OutputDriveInit(void)
 	 }
 }
 
-
 void Relay_Init(void)
 {
 	GPIO_InitTypeDef GPIO_MyStruct;

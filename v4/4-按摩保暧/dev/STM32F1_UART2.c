@@ -13,9 +13,6 @@ TzhMiniData g_ocCmd2;
 uchar g_isGetCmdOk2;
 int g_timeoverUart2=0;
 
-//继电器处理
-void uartRelayProc(unsigned char i,char isOn);
-	
 //****************************************************************************
 //*函数功能：
 //*参数：
@@ -118,18 +115,4 @@ void USART2_IRQHandler(void)
 						 }
 				 }
     }
-}
-
-//发送控制继电器
-void uartSendUartRelay(unsigned char i,char isOn)
-{
-		uchar dst_buf[32]={0};
-		int myDataLen=0;
-		unsigned char cbuf[24]={0};
-		cbuf[0]=0x00;
-		cbuf[1]=i;
-		cbuf[2]=isOn;
-		
-		myDataLen = miniDataCreate(3,cbuf,dst_buf);
-		STM32F1_UART2SendDataS(dst_buf,myDataLen);
 }
