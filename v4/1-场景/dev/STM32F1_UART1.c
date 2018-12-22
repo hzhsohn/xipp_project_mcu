@@ -1,6 +1,7 @@
 #include "Stm32f1_uart1.h"
 #include "mini-data.h"
 #include "flash_rw.h"
+#include "sensorRecvLogic.h"
 
 //------------------------------------------------------
 //接收缓存
@@ -12,10 +13,7 @@ uchar g_isGetCmdOk;
 int g_timeoverUart1=0;
 //
 //
-//中断当前动作
-extern int isCleanRuning;
-//
-extern unsigned char g_cCleanCurrentSence;  
+void uart1RecvLogic(int a,int b,unsigned char* data);
 
 //****************************************************************************
 //*函数功能：
@@ -100,14 +98,16 @@ void USART1_IRQHandler(void)
 						 //
 						 if(g_isGetCmdOk)
 						 {
+							  int a=0;
+								int b=0;
+								unsigned char *pdata=NULL;
 								//周期计数复位
 								g_timeoverUart1=0;
-								
-							  switch(g_ocCmd.parameter[0])
-								{
-									case 0x00:
-										break;
-								}
+								//
+								a=g_ocCmd.parameter[0];
+								b=g_ocCmd.parameter[1];
+								pdata=&g_ocCmd.parameter[2];
+								uart1RecvLogic(a,b,pdata);
 						 }
 						 if(tmp>0)
 						 {
@@ -121,4 +121,14 @@ void USART1_IRQHandler(void)
 						 }
 				 }
 		 }
+}
+
+void uart1RecvLogic(int a,int b,unsigned char* data)
+{		
+		switch(a)
+		{
+			case 0:
+				recvSensorBoard0(b,data);
+			break;
+		}
 }

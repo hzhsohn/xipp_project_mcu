@@ -14,7 +14,6 @@ TzhMiniData g_ocCmd2;
 uchar g_isGetCmdOk2;
 int g_timeoverUart2=0;
 
-void uart2RecvLogic(int a,int b,unsigned char* data);
 //****************************************************************************
 //*函数功能：
 //*参数：
@@ -105,7 +104,6 @@ void USART2_IRQHandler(void)
 								a=g_ocCmd2.parameter[0];
 								b=g_ocCmd2.parameter[1];
 								pdata=&g_ocCmd2.parameter[2];
-								uart2RecvLogic(a,b,pdata);
 						 }
 						 if(tmp>0)
 						 {
@@ -121,12 +119,3 @@ void USART2_IRQHandler(void)
     }
 }
 
-void uart2RecvLogic(int a,int b,unsigned char* data)
-{		
-		switch(a)
-		{
-			case 0:
-				recvSensorBoard0(b,data);
-			break;
-		}
-}
