@@ -145,11 +145,24 @@ void recvLogic(int a,int b,unsigned char* data)
 					break;
 					case 2:  //按摩开关
 					{
-						RELAY3_STATE(data[0]);
-						RELAY4_STATE(data[0]);
-						RELAY5_STATE(data[0]);
-						RELAY6_STATE(data[0]);
-						RELAY7_STATE(data[0]);
+						if(g_run.anmmoOnOff)
+						{
+							RELAY3_STATE(0);
+							RELAY4_STATE(0);
+							RELAY5_STATE(0);
+							RELAY6_STATE(0);
+							RELAY7_STATE(0);
+							g_run.anmmoOnOff=0;
+						}
+						else
+						{
+							g_run.anmmoOnOff=data[0];
+							RELAY3_STATE(data[0]);
+							RELAY4_STATE(data[0]);
+							RELAY5_STATE(data[0]);
+							RELAY6_STATE(data[0]);
+							RELAY7_STATE(data[0]);
+						}
 					}
 					break;
 				}

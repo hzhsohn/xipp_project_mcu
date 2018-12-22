@@ -17,7 +17,7 @@
 #include "OutputDrive.h"
 #include "a.h"
 
-TzhRun g_run;
+TzhRun g_run={0};
 
 ////////////////////////////////////////////////////////////////
 

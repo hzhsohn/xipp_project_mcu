@@ -972,25 +972,25 @@ Image Symbol Table
     i.main                                   0x0800128a   Section        0  main.o(i.main)
     i.miniDataGet                            0x080012a6   Section        0  mini-data.o(i.miniDataGet)
     i.recvLogic                              0x0800134c   Section        0  stm32f1_uart3.o(i.recvLogic)
-    i.setFlashData                           0x08001484   Section        0  main.o(i.setFlashData)
-    .data                                    0x20000000   Section        4  main.o(.data)
-    .data                                    0x20000004   Section       20  stm32f10x_rcc.o(.data)
-    APBAHBPrescTable                         0x20000004   Data          16  stm32f10x_rcc.o(.data)
-    ADCPrescTable                            0x20000014   Data           4  stm32f10x_rcc.o(.data)
-    .data                                    0x20000018   Section        4  stm32_delay.o(.data)
-    .data                                    0x2000001c   Section       12  stm32f1_uart1.o(.data)
-    .data                                    0x20000028   Section       12  stm32f1_uart2.o(.data)
-    .data                                    0x20000034   Section       12  stm32f1_uart3.o(.data)
-    .data                                    0x20000040   Section       20  system_stm32f10x.o(.data)
-    .bss                                     0x20000054   Section      148  stm32f1_uart1.o(.bss)
-    .bss                                     0x200000e8   Section      148  stm32f1_uart2.o(.bss)
-    .bss                                     0x2000017c   Section      148  stm32f1_uart3.o(.bss)
-    .bss                                     0x20000210   Section       96  libspace.o(.bss)
-    HEAP                                     0x20000270   Section      512  startup_stm32f10x_cl.o(HEAP)
-    Heap_Mem                                 0x20000270   Data         512  startup_stm32f10x_cl.o(HEAP)
-    STACK                                    0x20000470   Section     1024  startup_stm32f10x_cl.o(STACK)
-    Stack_Mem                                0x20000470   Data        1024  startup_stm32f10x_cl.o(STACK)
-    __initial_sp                             0x20000870   Data           0  startup_stm32f10x_cl.o(STACK)
+    i.setFlashData                           0x080014cc   Section        0  main.o(i.setFlashData)
+    .data                                    0x20000000   Section        8  main.o(.data)
+    .data                                    0x20000008   Section       20  stm32f10x_rcc.o(.data)
+    APBAHBPrescTable                         0x20000008   Data          16  stm32f10x_rcc.o(.data)
+    ADCPrescTable                            0x20000018   Data           4  stm32f10x_rcc.o(.data)
+    .data                                    0x2000001c   Section        4  stm32_delay.o(.data)
+    .data                                    0x20000020   Section       12  stm32f1_uart1.o(.data)
+    .data                                    0x2000002c   Section       12  stm32f1_uart2.o(.data)
+    .data                                    0x20000038   Section       12  stm32f1_uart3.o(.data)
+    .data                                    0x20000044   Section       20  system_stm32f10x.o(.data)
+    .bss                                     0x20000058   Section      148  stm32f1_uart1.o(.bss)
+    .bss                                     0x200000ec   Section      148  stm32f1_uart2.o(.bss)
+    .bss                                     0x20000180   Section      148  stm32f1_uart3.o(.bss)
+    .bss                                     0x20000214   Section       96  libspace.o(.bss)
+    HEAP                                     0x20000278   Section      512  startup_stm32f10x_cl.o(HEAP)
+    Heap_Mem                                 0x20000278   Data         512  startup_stm32f10x_cl.o(HEAP)
+    STACK                                    0x20000478   Section     1024  startup_stm32f10x_cl.o(STACK)
+    Stack_Mem                                0x20000478   Data        1024  startup_stm32f10x_cl.o(STACK)
+    __initial_sp                             0x20000878   Data           0  startup_stm32f10x_cl.o(STACK)
 
     Global Symbols
 
@@ -1196,35 +1196,35 @@ Image Symbol Table
     USART_ReceiveData                        0x08001281   Thumb Code    10  stm32f10x_usart.o(i.USART_ReceiveData)
     main                                     0x0800128b   Thumb Code    28  main.o(i.main)
     miniDataGet                              0x080012a7   Thumb Code   164  mini-data.o(i.miniDataGet)
-    recvLogic                                0x0800134d   Thumb Code   300  stm32f1_uart3.o(i.recvLogic)
-    setFlashData                             0x08001485   Thumb Code    84  main.o(i.setFlashData)
-    Region$$Table$$Base                      0x080014dc   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080014fc   Number         0  anon$$obj.o(Region$$Table)
-    g_run                                    0x20000000   Data           4  main.o(.data)
-    fac_us                                   0x20000018   Data           1  stm32_delay.o(.data)
-    fac_ms                                   0x2000001a   Data           2  stm32_delay.o(.data)
-    uart1Data                                0x2000001c   Data           1  stm32f1_uart1.o(.data)
-    g_uart1len                               0x2000001e   Data           2  stm32f1_uart1.o(.data)
-    g_isGetCmdOk                             0x20000020   Data           1  stm32f1_uart1.o(.data)
-    g_timeoverUart1                          0x20000024   Data           4  stm32f1_uart1.o(.data)
-    uart2Data                                0x20000028   Data           1  stm32f1_uart2.o(.data)
-    g_uart2len                               0x2000002a   Data           2  stm32f1_uart2.o(.data)
-    g_isGetCmdOk2                            0x2000002c   Data           1  stm32f1_uart2.o(.data)
-    g_timeoverUart2                          0x20000030   Data           4  stm32f1_uart2.o(.data)
-    uart3Data                                0x20000034   Data           1  stm32f1_uart3.o(.data)
-    g_uart3len                               0x20000036   Data           2  stm32f1_uart3.o(.data)
-    g_isGetCmdOk3                            0x20000038   Data           1  stm32f1_uart3.o(.data)
-    g_timeoverUart3                          0x2000003c   Data           4  stm32f1_uart3.o(.data)
-    SystemCoreClock                          0x20000040   Data           4  system_stm32f10x.o(.data)
-    AHBPrescTable                            0x20000044   Data          16  system_stm32f10x.o(.data)
-    g_cache                                  0x20000054   Data         128  stm32f1_uart1.o(.bss)
-    g_ocCmd                                  0x200000d4   Data          20  stm32f1_uart1.o(.bss)
-    g_cache2                                 0x200000e8   Data         128  stm32f1_uart2.o(.bss)
-    g_ocCmd2                                 0x20000168   Data          20  stm32f1_uart2.o(.bss)
-    g_cache3                                 0x2000017c   Data         128  stm32f1_uart3.o(.bss)
-    g_ocCmd3                                 0x200001fc   Data          20  stm32f1_uart3.o(.bss)
-    __libspace_start                         0x20000210   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x20000270   Data           0  libspace.o(.bss)
+    recvLogic                                0x0800134d   Thumb Code   370  stm32f1_uart3.o(i.recvLogic)
+    setFlashData                             0x080014cd   Thumb Code    84  main.o(i.setFlashData)
+    Region$$Table$$Base                      0x08001524   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08001544   Number         0  anon$$obj.o(Region$$Table)
+    g_run                                    0x20000000   Data           8  main.o(.data)
+    fac_us                                   0x2000001c   Data           1  stm32_delay.o(.data)
+    fac_ms                                   0x2000001e   Data           2  stm32_delay.o(.data)
+    uart1Data                                0x20000020   Data           1  stm32f1_uart1.o(.data)
+    g_uart1len                               0x20000022   Data           2  stm32f1_uart1.o(.data)
+    g_isGetCmdOk                             0x20000024   Data           1  stm32f1_uart1.o(.data)
+    g_timeoverUart1                          0x20000028   Data           4  stm32f1_uart1.o(.data)
+    uart2Data                                0x2000002c   Data           1  stm32f1_uart2.o(.data)
+    g_uart2len                               0x2000002e   Data           2  stm32f1_uart2.o(.data)
+    g_isGetCmdOk2                            0x20000030   Data           1  stm32f1_uart2.o(.data)
+    g_timeoverUart2                          0x20000034   Data           4  stm32f1_uart2.o(.data)
+    uart3Data                                0x20000038   Data           1  stm32f1_uart3.o(.data)
+    g_uart3len                               0x2000003a   Data           2  stm32f1_uart3.o(.data)
+    g_isGetCmdOk3                            0x2000003c   Data           1  stm32f1_uart3.o(.data)
+    g_timeoverUart3                          0x20000040   Data           4  stm32f1_uart3.o(.data)
+    SystemCoreClock                          0x20000044   Data           4  system_stm32f10x.o(.data)
+    AHBPrescTable                            0x20000048   Data          16  system_stm32f10x.o(.data)
+    g_cache                                  0x20000058   Data         128  stm32f1_uart1.o(.bss)
+    g_ocCmd                                  0x200000d8   Data          20  stm32f1_uart1.o(.bss)
+    g_cache2                                 0x200000ec   Data         128  stm32f1_uart2.o(.bss)
+    g_ocCmd2                                 0x2000016c   Data          20  stm32f1_uart2.o(.bss)
+    g_cache3                                 0x20000180   Data         128  stm32f1_uart3.o(.bss)
+    g_ocCmd3                                 0x20000200   Data          20  stm32f1_uart3.o(.bss)
+    __libspace_start                         0x20000214   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x20000274   Data           0  libspace.o(.bss)
 
 
 
@@ -1234,9 +1234,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000151
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001550, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000159c, Max: 0x00040000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000014fc, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00001544, Max: 0x00040000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1343,28 +1343,29 @@ Memory Map of the image
     0x0800128a   0x0000001c   Code   RO            4    i.main              main.o
     0x080012a6   0x000000a4   Code   RO          190    i.miniDataGet       mini-data.o
     0x0800134a   0x00000002   PAD
-    0x0800134c   0x00000138   Code   RO         2507    i.recvLogic         stm32f1_uart3.o
-    0x08001484   0x00000058   Code   RO            5    i.setFlashData      main.o
-    0x080014dc   0x00000020   Data   RO         2897    Region$$Table       anon$$obj.o
+    0x0800134c   0x00000180   Code   RO         2507    i.recvLogic         stm32f1_uart3.o
+    0x080014cc   0x00000058   Code   RO            5    i.setFlashData      main.o
+    0x08001524   0x00000020   Data   RO         2897    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00000870, Max: 0x00010000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00000878, Max: 0x00010000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x00000004   Data   RW            6    .data               main.o
-    0x20000004   0x00000014   Data   RW          269    .data               stm32f10x_rcc.o
-    0x20000018   0x00000004   Data   RW         1846    .data               stm32_delay.o
-    0x2000001c   0x0000000c   Data   RW         2407    .data               stm32f1_uart1.o
-    0x20000028   0x0000000c   Data   RW         2459    .data               stm32f1_uart2.o
-    0x20000034   0x0000000c   Data   RW         2509    .data               stm32f1_uart3.o
-    0x20000040   0x00000014   Data   RW         2682    .data               system_stm32f10x.o
-    0x20000054   0x00000094   Zero   RW         2406    .bss                stm32f1_uart1.o
-    0x200000e8   0x00000094   Zero   RW         2458    .bss                stm32f1_uart2.o
-    0x2000017c   0x00000094   Zero   RW         2508    .bss                stm32f1_uart3.o
-    0x20000210   0x00000060   Zero   RW         2771    .bss                c_w.l(libspace.o)
-    0x20000270   0x00000200   Zero   RW         2669    HEAP                startup_stm32f10x_cl.o
-    0x20000470   0x00000400   Zero   RW         2668    STACK               startup_stm32f10x_cl.o
+    0x20000000   0x00000008   Data   RW            6    .data               main.o
+    0x20000008   0x00000014   Data   RW          269    .data               stm32f10x_rcc.o
+    0x2000001c   0x00000004   Data   RW         1846    .data               stm32_delay.o
+    0x20000020   0x0000000c   Data   RW         2407    .data               stm32f1_uart1.o
+    0x2000002c   0x0000000c   Data   RW         2459    .data               stm32f1_uart2.o
+    0x20000038   0x0000000c   Data   RW         2509    .data               stm32f1_uart3.o
+    0x20000044   0x00000014   Data   RW         2682    .data               system_stm32f10x.o
+    0x20000058   0x00000094   Zero   RW         2406    .bss                stm32f1_uart1.o
+    0x200000ec   0x00000094   Zero   RW         2458    .bss                stm32f1_uart2.o
+    0x20000180   0x00000094   Zero   RW         2508    .bss                stm32f1_uart3.o
+    0x20000214   0x00000060   Zero   RW         2771    .bss                c_w.l(libspace.o)
+    0x20000274   0x00000004   PAD
+    0x20000278   0x00000200   Zero   RW         2669    HEAP                startup_stm32f10x_cl.o
+    0x20000478   0x00000400   Zero   RW         2668    STACK               startup_stm32f10x_cl.o
 
 
 ==============================================================================
@@ -1375,12 +1376,12 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        102          0          0          0          0       1455   flash_rw.o
-       116          4          0          4          0     282534   main.o
+       116          4          0          8          0     282554   main.o
        164          0          0          0          0       1218   mini-data.o
        172         22          0          0          0       1905   misc.o
        648         24          0          0          0       1311   outputdrive.o
         64         26        336          0       1536        820   startup_stm32f10x_cl.o
-        68         18          0          4          0       6047   stm32_delay.o
+        68         18          0          4          0       6063   stm32_delay.o
        286         36          0          0          0       3696   stm32f10x_flash.o
        286          0          0          0          0       2876   stm32f10x_gpio.o
        464         38          0         20          0       5062   stm32f10x_rcc.o
@@ -1390,11 +1391,11 @@ Image component sizes
        224         36          0          0          0       1051   stm32f1_timer3.o
        192         30          0         12        148       1952   stm32f1_uart1.o
        192         30          0         12        148       1499   stm32f1_uart2.o
-       712         52          0         12        148       3652   stm32f1_uart3.o
+       784         54          0         12        148       3684   stm32f1_uart3.o
        396         32          0         20          0       2345   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-      4724        396        368         84       1980     325339   Object Totals
+      4796        398        368         88       1980     325407   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          6          0          0          0          0          0   (incl. Padding)
 
@@ -1424,8 +1425,8 @@ Image component sizes
          2          0          0          0          0         68   use_no_semi.o
 
     ----------------------------------------------------------------------
-       280         16          0          0         96        584   Library Totals
-         8          0          0          0          0          0   (incl. Padding)
+       280         16          0          0        100        584   Library Totals
+         8          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1434,7 +1435,7 @@ Image component sizes
        272         16          0          0         96        584   c_w.l
 
     ----------------------------------------------------------------------
-       280         16          0          0         96        584   Library Totals
+       280         16          0          0        100        584   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -1443,15 +1444,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      5004        412        368         84       2076     323631   Grand Totals
-      5004        412        368         84       2076     323631   ELF Image Totals
-      5004        412        368         84          0          0   ROM Totals
+      5076        414        368         88       2080     323699   Grand Totals
+      5076        414        368         88       2080     323699   ELF Image Totals
+      5076        414        368         88          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 5372 (   5.25kB)
-    Total RW  Size (RW Data + ZI Data)              2160 (   2.11kB)
-    Total ROM Size (Code + RO Data + RW Data)       5456 (   5.33kB)
+    Total RO  Size (Code + RO Data)                 5444 (   5.32kB)
+    Total RW  Size (RW Data + ZI Data)              2168 (   2.12kB)
+    Total ROM Size (Code + RO Data + RW Data)       5532 (   5.40kB)
 
 ==============================================================================
 
