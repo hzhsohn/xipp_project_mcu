@@ -9,12 +9,12 @@ extern "C"{
 	ezhCleanSenceNone没执行,
 	ezhCleanSence1自动化小便																					
 	ezhCleanSence2自动化大便 
-	ezhCleanSence3护卫
-	ezhCleanSence4冲洗
+	ezhCleanSence3护卫---------->未使用
+	ezhCleanSence4冲洗---------->未使用
 	ezhCleanSence5烘干
 	ezhCleanSence6除菌
 	ezhCleanSence7按摩
-	ezhCleanSence8保暖
+	ezhCleanSence8    ---------->保留
 	ezhCleanSence9小便
 	ezhCleanSence10大便
 */
@@ -54,7 +54,6 @@ void litteSenceRunChongXi(void);
 void litteSenceRunHongGan(void);
 void litteSenceRunChuQun(void);
 void litteSenceRunAnMo(void);
-void litteSenceRunBaoNang(void);
 
 #ifdef __cplusplus
 }

@@ -87,7 +87,7 @@ int main(void)
 				//watchdog_action();
 				//
 				//---------------------
-				//按键1		护卫键
+				//按键1		大便键
 				ev=zhSCM_keyState(&btn1,TOUCHKEY_1_GPIO,TOUCHKEY_1_PIN);
 				switch(ev)
 				{
@@ -103,7 +103,7 @@ int main(void)
 					}
 					 break;
 				}
-				//按键2		冲洗键
+				//按键2		小便键
 				ev=zhSCM_keyState(&btn2,TOUCHKEY_2_GPIO,TOUCHKEY_2_PIN);
 				switch(ev)
 				{
@@ -131,7 +131,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-						senceBegin(ezhCleanSence3);
+						senceBegin(ezhCleanSence5);
 					}
 						break;
 				}
@@ -147,7 +147,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-						senceBegin(ezhCleanSence4);
+						senceBegin(ezhCleanSence6);
 					}
 						break;
 				}
@@ -164,7 +164,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-						senceBegin(ezhCleanSence5);
+						senceBegin(ezhCleanSence7);
 					}
 						break;
 				}
@@ -180,11 +180,12 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-						senceBegin(ezhCleanSence6);
+						//保暖开与关
+						uart3Send(4,1,0,NULL,0);
 					}
 						break;
 				}
-				
+
 				//按键7		设置链
 				ev=zhSCM_keyState(&btn7,TOUCHKEY_7_GPIO,TOUCHKEY_7_PIN);
 				switch(ev)

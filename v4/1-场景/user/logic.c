@@ -111,7 +111,7 @@ void LitteSenceRun(void)
 		}
 		else if(ezhCleanSence8==g_cCurrentSence)
 		{
-				litteSenceRunBaoNang();				
+				
 		}
 		else if(ezhCleanSence9==g_cCurrentSence)
 		{
@@ -158,6 +158,7 @@ void litteSenceRunAutoPooPoo(void)
 					break;
 			}
 }
+//洗尿
 void litteSenceRunXuXu()
 {					
 				static int nCalca=0;	
@@ -244,6 +245,7 @@ void litteSenceRunXuXu()
 				}
 }
 
+//洗屎
 void litteSenceRunPooPoo()
 {				
 				static int nCalca=0;	
@@ -411,49 +413,63 @@ void litteSenceRunPooPoo()
 				}
 }
 
+//护卫
 void litteSenceRunHuWai(void)
 {		
 				static int nCalca=0;	
 				switch(ppxxStep)
 				{
 					case 0:	
-						uart3Send(1,31,60,NULL,0);
 						senceNext(&nCalca,&ppxxStep);
-						break;
-					case 1:
-						senceDelayToNext(&nCalca,&ppxxStep,5*DELAY_S);
-						break;
-					case 2:
-						uart3Send(1,32,60,NULL,0);
-						senceNext(&nCalca,&ppxxStep);
-						break;
-					case 3:
-						senceDelayToNext(&nCalca,&ppxxStep,3*DELAY_S);
-						break;									
-					default: //完毕
-						uart3Send(1,33,60,NULL,0);
+						break;								
+					default:
 						senceDone();
 						break;
 				}
 }
+
+//冲洗
 void litteSenceRunChongXi(void)
 {
 				static int nCalca=0;	
 				switch(ppxxStep)
 				{
+					//------------------------
+					//淋水
 					case 0:	
+						uart3Send(2,2,10,NULL,0);
+						uart3Send(2,15,10,NULL,0);
 						senceNext(&nCalca,&ppxxStep);
 						break;
 					case 1:
-						senceDelayToNext(&nCalca,&ppxxStep,5*DELAY_S);
+						senceDelayToNext(&nCalca,&ppxxStep,2*DELAY_S);
 						break;
 					case 2:
+						uart3Send(2,2,0,NULL,0);
+						uart3Send(2,15,0,NULL,0);
 						senceNext(&nCalca,&ppxxStep);
 						break;
+					//-------------------------
+					//让屁眼休息一下
 					case 3:
-						senceDelayToNext(&nCalca,&ppxxStep,3*DELAY_S);
-						break;									
-					default: //完毕
+						senceDelayToNext(&nCalca,&ppxxStep,2*DELAY_S);
+						break;
+					//-------------------------
+					//淋水
+					case 4:	
+						uart3Send(2,2,10,NULL,0);
+						uart3Send(2,15,10,NULL,0);
+						senceNext(&nCalca,&ppxxStep);
+						break;
+					case 5:
+						senceDelayToNext(&nCalca,&ppxxStep,2*DELAY_S);
+						break;
+					case 6:
+						uart3Send(2,2,0,NULL,0);
+						uart3Send(2,15,0,NULL,0);
+						senceNext(&nCalca,&ppxxStep);
+						break;
+					default:
 						senceDone();
 						break;
 				}
@@ -466,19 +482,42 @@ void litteSenceRunHongGan(void)
 {
 				static int nCalca=0;	
 				switch(ppxxStep)
-				{
+				{					
+					//----------------------------
+					//吹干屁股
 					case 0:	
+						uart3Send(2,11,20,NULL,0);
+						uart3Send(2,16,20,NULL,0);
 						senceNext(&nCalca,&ppxxStep);
 						break;
 					case 1:
-						senceDelayToNext(&nCalca,&ppxxStep,5*DELAY_S);
+						senceDelayToNext(&nCalca,&ppxxStep,10*DELAY_S);
 						break;
 					case 2:
+						uart3Send(2,11,0,NULL,0);
+						uart3Send(2,16,0,NULL,0);
 						senceNext(&nCalca,&ppxxStep);
 						break;
+					//------------------------------
+					//让屁股休息一下
 					case 3:
 						senceDelayToNext(&nCalca,&ppxxStep,3*DELAY_S);
-						break;									
+						break;
+					//----------------------------
+					//吹干屁股
+					case 4:	
+						uart3Send(2,11,20,NULL,0);
+						uart3Send(2,16,20,NULL,0);
+						senceNext(&nCalca,&ppxxStep);
+						break;
+					case 5:
+						senceDelayToNext(&nCalca,&ppxxStep,10*DELAY_S);
+						break;
+					case 6:
+						uart3Send(2,11,0,NULL,0);
+						uart3Send(2,16,0,NULL,0);
+						senceNext(&nCalca,&ppxxStep);
+						break;					
 					default: //完毕
 						senceDone();
 						break;
@@ -496,16 +535,7 @@ void litteSenceRunChuQun(void)
 					case 0:	
 						senceNext(&nCalca,&ppxxStep);
 						break;
-					case 1:
-						senceDelayToNext(&nCalca,&ppxxStep,5*DELAY_S);
-						break;
-					case 2:
-						senceNext(&nCalca,&ppxxStep);
-						break;
-					case 3:
-						senceDelayToNext(&nCalca,&ppxxStep,3*DELAY_S);
-						break;									
-					default: //完毕
+					default:
 						senceDone();
 						break;
 				}
@@ -516,48 +546,21 @@ void litteSenceRunChuQun(void)
 *********************************/
 void litteSenceRunAnMo(void)
 {
-				static int nCalca=0;	
+				static int nCalca=0;
 				switch(ppxxStep)
 				{
-					case 0:	
+					case 0:
+						uart3Send(4,2,1,NULL,0);
 						senceNext(&nCalca,&ppxxStep);
 						break;
 					case 1:
-						senceDelayToNext(&nCalca,&ppxxStep,5*DELAY_S);
+						senceDelayToNext(&nCalca,&ppxxStep,15*60*DELAY_S);
 						break;
 					case 2:
+						uart3Send(4,2,0,NULL,0);
 						senceNext(&nCalca,&ppxxStep);
 						break;
-					case 3:
-						senceDelayToNext(&nCalca,&ppxxStep,3*DELAY_S);
-						break;									
-					default: //完毕
-						senceDone();
-						break;
-				}
-}
-
-/********************************
-//保暖
-*********************************/
-void litteSenceRunBaoNang(void)
-{
-				static int nCalca=0;	
-				switch(ppxxStep)
-				{
-					case 0:	
-						senceNext(&nCalca,&ppxxStep);
-						break;
-					case 1:
-						senceDelayToNext(&nCalca,&ppxxStep,5*DELAY_S);
-						break;
-					case 2:
-						senceNext(&nCalca,&ppxxStep);
-						break;
-					case 3:
-						senceDelayToNext(&nCalca,&ppxxStep,3*DELAY_S);
-						break;									
-					default: //完毕
+					default:
 						senceDone();
 						break;
 				}

@@ -131,6 +131,7 @@ void USART3_IRQHandler(void)
 void uart3Send(unsigned char k,unsigned char f,unsigned char max_sec,unsigned char*data,int datalen)
 {
 		int i=0;
+		int n=0;
 		uchar dst_buf[36]={0};
 		int myDataLen=0;
 		unsigned char cbuf[30]={0};
@@ -149,7 +150,11 @@ void uart3Send(unsigned char k,unsigned char f,unsigned char max_sec,unsigned ch
 	
 		myDataLen = miniDataCreate(3+datalen,cbuf,dst_buf);
 		GPIO_SetBits(GPIOD,GPIO_Pin_10);
-		STM32F1_UART3SendDataS(dst_buf,myDataLen);		
+		for(i=0;i<1;i++)//重复发送多少次
+		{
+			STM32F1_UART3SendDataS(dst_buf,myDataLen);	
+			for(n=0;n<10000;n++);
+		}	
 		GPIO_ResetBits(GPIOD,GPIO_Pin_10);	
 }
 
