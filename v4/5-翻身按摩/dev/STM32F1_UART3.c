@@ -133,9 +133,35 @@ void USART3_IRQHandler(void)
 
 void recvLogic(int a,int b,unsigned char* data)
 {
-		if(5==a)
+		if(2==a)
 		{
 				switch(b)
+				{
+					case 17: 
+					{
+						RELAY11_STATE(data[0]);
+					}
+					break;
+					case 18: 
+					{
+						RELAY8_STATE(data[0]);
+					}
+					break;
+					case 19: 
+					{
+						RELAY9_STATE(data[0]);
+					}
+					break;
+					case 20:
+					{
+						RELAY10_STATE(data[0]);
+					}
+					break;
+				}
+		}
+		else if(5==a)
+		{
+				switch(b) //af 02 05 1 fa
 				{
 					case 1: //平躺模式
 					{

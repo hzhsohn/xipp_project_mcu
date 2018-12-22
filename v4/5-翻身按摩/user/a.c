@@ -125,7 +125,10 @@ void litteGiaoGiaoZhu(void)
 			REL_R5_STATE((g_run.guan_qiya_percent[6]>40));
 			REL_L7_STATE((g_run.guan_qiya_percent[7]>40));
 			REL_R7_STATE((g_run.guan_qiya_percent[8]>40));
+			if(g_run.guan_qiya_percent[5]<40 && g_run.guan_qiya_percent[6]<40)
+			{
 			senceNext(&nCalca,&ppxxStep);
+			}
 			break;							
 		default: //完毕
 			//真空泵

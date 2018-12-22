@@ -3,7 +3,7 @@
 #include "mini-data.h"
 #include "stdlib.h"
 #include "a.h"
-
+#include "OutputDrive.h"
 //
 void recvLogic(int a,int b,unsigned char* data);
 //--------------------------------------------
@@ -134,20 +134,34 @@ void recvLogic(int a,int b,unsigned char* data)
 		{
 				switch(b)
 				{
-					case 1: 
-					{
-					}
-					break;
-					case 2: 
-					{					
-					}
-					break;
-					case 3: 
-					{
-					}
-					break;
 					case 4: 
 					{
+						RELAY1_STATE(data[0]);
+					}
+					break;
+					case 5: 
+					{			
+						RELAY2_STATE(data[0]);						
+					}
+					break;
+					case 6: 
+					{
+						RELAY3_STATE(data[0]);
+					}
+					break;
+					case 7: 
+					{
+						RELAY4_STATE(data[0]);
+					}
+					break;					
+					case 8: 
+					{
+						RELAY5_STATE(data[0]);
+					}
+					break;					
+					case 9: 
+					{
+						RELAY6_STATE(data[0]);
 					}
 					break;
 				}

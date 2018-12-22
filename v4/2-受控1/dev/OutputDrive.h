@@ -4,35 +4,36 @@
 #include "system_init.h"
 
 
-#define RELAY1_GPIO 	GPIOB
-#define RELAY1_PIN  	GPIO_Pin_1
+#define RELAY1_GPIO 	GPIOA
+#define RELAY1_PIN  	GPIO_Pin_8
 
-#define RELAY2_GPIO 	GPIOB
-#define RELAY2_PIN  	GPIO_Pin_2
+#define RELAY2_GPIO 	GPIOC
+#define RELAY2_PIN  	GPIO_Pin_8
 
-#define RELAY3_GPIO 	GPIOE
-#define RELAY3_PIN  	GPIO_Pin_7
+#define RELAY3_GPIO 	GPIOB
+#define RELAY3_PIN  	GPIO_Pin_14
 
+//------------------------------------------------------------------------------------
 #define RELAY4_GPIO 	GPIOE
 #define RELAY4_PIN  	GPIO_Pin_8
 
 #define RELAY5_GPIO 	GPIOB
-#define RELAY5_PIN  	GPIO_Pin_14			//真空泵
+#define RELAY5_PIN  	GPIO_Pin_14	
                                                                             
 #define RELAY6_GPIO 	GPIOD
-#define RELAY6_PIN  	GPIO_Pin_11			//抽外桶负压阀
+#define RELAY6_PIN  	GPIO_Pin_11	
 
 #define RELAY7_GPIO 	GPIOD
-#define RELAY7_PIN  	GPIO_Pin_15			//抽内桶负压阀
+#define RELAY7_PIN  	GPIO_Pin_15	
 
 #define RELAY8_GPIO 	GPIOB
-#define RELAY8_PIN  	GPIO_Pin_15			//气囊放气阀
+#define RELAY8_PIN  	GPIO_Pin_15	
 
 #define RELAY9_GPIO 	GPIOC
-#define RELAY9_PIN  	GPIO_Pin_7			//进气阀
+#define RELAY9_PIN  	GPIO_Pin_7	
 
 #define RELAY10_GPIO 	GPIOD
-#define RELAY10_PIN  	GPIO_Pin_14			//净化放气
+#define RELAY10_PIN  	GPIO_Pin_14	
 
 #define RELAY11_GPIO 	GPIOC
 #define RELAY11_PIN  	GPIO_Pin_8

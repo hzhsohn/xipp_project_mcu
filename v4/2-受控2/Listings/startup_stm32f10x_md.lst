@@ -477,12 +477,11 @@ ARM Macro Assembler    Page 8
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\startup_stm32f10x_md.d -o.\objects\startup_stm32f10x_md.
-o -IE:\work\外包\聚德\xipp_project_mcu\v4\2\RTE -IE:\work\外包\聚德\xipp_projec
-t_mcu\v4\2\RTE\Device\STM32F103C8 -ID:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\I
-nclude -ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include --predefin
-e="__UVISION_VERSION SETA 520" --predefine="_RTE_ SETA 1" --predefine="STM32F10
-X_MD SETA 1" --list=.\listings\startup_stm32f10x_md.lst RTE\Device\STM32F103C8\
-startup_stm32f10x_md.s
+o -I.\RTE\Device\STM32F103C8 -I.\RTE\_Target_1 -Id:\Keil_v5\ARM\PACK\ARM\CMSIS\
+5.0.1\CMSIS\Include -Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Inclu
+de --predefine="__UVISION_VERSION SETA 523" --predefine="_RTE_ SETA 1" --predef
+ine="STM32F10X_MD SETA 1" --list=.\listings\startup_stm32f10x_md.lst RTE\Device
+\STM32F103C8\startup_stm32f10x_md.s
 
 
 
