@@ -102,6 +102,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
+						uart2EventBtn(1);
 						senceBegin(ezhCleanSence10);
 					}
 					 break;
@@ -118,6 +119,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
+						uart2EventBtn(2);
 						senceBegin(ezhCleanSence9);
 					}
 						break;
@@ -134,6 +136,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
+						uart2EventBtn(3);
 						senceBegin(ezhCleanSence5);
 					}
 						break;
@@ -150,6 +153,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
+						uart2EventBtn(4);
 						senceBegin(ezhCleanSence6);
 					}
 						break;
@@ -167,6 +171,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
+						uart2EventBtn(5);
 						senceBegin(ezhCleanSence7);
 					}
 						break;
@@ -183,6 +188,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
+						uart2EventBtn(6);
 						//保暖开与关
 						uart3Send(4,1,0,NULL,0);
 					}
@@ -201,6 +207,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
+						uart2EventBtn(7);
 						uart3Send(5,3,1,NULL,0);
 					}
 						break;
@@ -217,7 +224,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-						uart2EventBtn(0xFF);
+						uart2EventBtn(8);
 					}
 						break;
 				}

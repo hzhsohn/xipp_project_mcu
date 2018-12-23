@@ -1,5 +1,5 @@
 Dependencies for Project 'a', Target 'Target 1': (DO NOT MODIFY !)
-F (.\user\main.c)(0x5C1F8607)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\user\main.c)(0x5C1F8A7A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (user\system_init.h)(0x5C1E63B7)
 I (user\stm32f10x_conf.h)(0x5C1E63B7)
 I (.\libs\inc\stm32f10x_adc.h)(0x5C1E63B7)
