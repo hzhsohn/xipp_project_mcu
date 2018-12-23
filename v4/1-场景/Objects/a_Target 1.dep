@@ -1,5 +1,5 @@
 Dependencies for Project 'a', Target 'Target 1': (DO NOT MODIFY !)
-F (.\user\main.c)(0x5C1F8A7A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\user\main.c)(0x5C1F8B2F)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (user\system_init.h)(0x5C1E63B7)
 I (user\stm32f10x_conf.h)(0x5C1E63B7)
 I (.\libs\inc\stm32f10x_adc.h)(0x5C1E63B7)
@@ -96,7 +96,7 @@ I (.\user\global.h)(0x5C1E63B7)
 I (C:\App\Keil_v5\ARM\ARMCC\include\stdio.h)(0x56FE42DE)
 I (C:\App\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x56FE42DE)
 I (user\logic.h)(0x5C1F4B16)
-F (.\user\sensorRecvLogic.c)(0x5C1E63B7)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\sensorrecvlogic.o --omf_browse .\objects\sensorrecvlogic.crf --depend .\objects\sensorrecvlogic.d)
+F (.\user\sensorRecvLogic.c)(0x5C1F8AE9)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\sensorrecvlogic.o --omf_browse .\objects\sensorrecvlogic.crf --depend .\objects\sensorrecvlogic.d)
 I (user\mini-data.h)(0x5C1E63B7)
 I (.\dev\Stm32f1_uart3.h)(0x5C1E63B7)
 I (.\user\system_init.h)(0x5C1E63B7)
@@ -811,7 +811,7 @@ I (.\user\mini-data.h)(0x5C1E63B7)
 I (dev\flash_rw.h)(0x5C1E63B7)
 I (dev\STM32_Delay.h)(0x5C1E63B7)
 I (.\user\sensorRecvLogic.h)(0x5C1E63B7)
-F (.\dev\STM32F1_UART2.c)(0x5C1F8445)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_uart2.o --omf_browse .\objects\stm32f1_uart2.crf --depend .\objects\stm32f1_uart2.d)
+F (.\dev\STM32F1_UART2.c)(0x5C1F8BB9)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\user -I .\libs\inc -I .\dev -I .\app-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE-I C:\Users\han.zh\Desktop\xipp_project_mcu\v4\1-场景\RTE\Device\STM32F105VC-I C:\App\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\App\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f1_uart2.o --omf_browse .\objects\stm32f1_uart2.crf --depend .\objects\stm32f1_uart2.d)
 I (dev\Stm32f1_uart2.h)(0x5C1F8390)
 I (.\user\system_init.h)(0x5C1E63B7)
 I (.\user\stm32f10x_conf.h)(0x5C1E63B7)

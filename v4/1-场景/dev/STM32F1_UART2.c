@@ -121,13 +121,18 @@ void USART2_IRQHandler(void)
 
 void uart2EventBtn(int i)
 {
+		int n=0;
 		uchar dst_buf[10]={0};
 		int myDataLen=0;
 		unsigned char cbuf[5]={0};
 		cbuf[0]=0x01;
 		cbuf[1]=i;
 		myDataLen = miniDataCreate(2,cbuf,dst_buf);
+		
+		for(n=0;n<3;n++)
+		{
 		STM32F1_UART2SendDataS(dst_buf,myDataLen);
+		}
 }
 
 void uart2EventUnitSence(EzhUart2Sence i,int isEnable)
