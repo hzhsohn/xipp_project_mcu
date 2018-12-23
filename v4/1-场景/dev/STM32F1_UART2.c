@@ -6,7 +6,7 @@
 #include "sensorRecvLogic.h"
 
 //--------------------------------------------
-//½ÓÊÕ»º´æ
+//æ¥æ”¶ç¼“å­˜
 u8 uart2Data;
 uchar g_cache2[128]={0};
 unsigned short g_uart2len=0;
@@ -15,13 +15,13 @@ uchar g_isGetCmdOk2;
 int g_timeoverUart2=0;
 
 //****************************************************************************
-//*º¯Êı¹¦ÄÜ£º
-//*²ÎÊı£º
-//*·µ»¹£º
+//*å‡½æ•°åŠŸèƒ½ï¼š
+//*å‚æ•°ï¼š
+//*è¿”è¿˜ï¼š
 //****************************************************************************
 void STM32F1_UART2SendData(u8_t nData)
 {
-    USART_SendData(USART2, nData);                  //Ïò´®¿Ú 2 ·¢ËÍÊı¾İ
+    USART_SendData(USART2, nData);                  //å‘ä¸²å£ 2 å‘é€æ•°æ®
     while(USART_GetFlagStatus(USART2,USART_FLAG_TC)!=SET);
 }
 void STM32F1_UART2SendDataS(u8_t* nData,u8_t nNum)
@@ -30,15 +30,15 @@ void STM32F1_UART2SendDataS(u8_t* nData,u8_t nNum)
 	for (nCnt=0;nCnt<nNum;nCnt++)
 	{
 		int n=10000;
-		USART_SendData(USART2, *(nData+nCnt));                  //Ïò´®¿Ú 2 ·¢ËÍÊı¾İ
+		USART_SendData(USART2, *(nData+nCnt));                  //å‘ä¸²å£ 2 å‘é€æ•°æ®
 		while(USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET && n--); 
 	}
 }
 
 //****************************************************************************
-//*º¯Êı¹¦ÄÜ£ºESP8266³õÊ¼»¯
-//*²ÎÊı£ºlBound-²¨ÌØÂÊ
-//*·µ»¹£º
+//*å‡½æ•°åŠŸèƒ½ï¼šESP8266åˆå§‹åŒ–
+//*å‚æ•°ï¼šlBound-æ³¢ç‰¹ç‡
+//*è¿”è¿˜ï¼š
 //****************************************************************************
 void STM32F1_UART2_Init(u32_t lBaudRate)
 {
@@ -51,12 +51,12 @@ void STM32F1_UART2_Init(u32_t lBaudRate)
     /* Configure USART Tx as alternate function push-pull */
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;//ISART2_TX PA.2
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;//¸´ÓÃÍÆÍìÊä³ö
-    GPIO_Init(GPIOA, &GPIO_InitStructure);//³õÊ¼»¯ GPIOA.2
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;//å¤ç”¨æ¨æŒ½è¾“å‡º
+    GPIO_Init(GPIOA, &GPIO_InitStructure);//åˆå§‹åŒ– GPIOA.2
 	
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;//USART2_RX  PA.3
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;   //¸¡¿ÕÊäÈë
-    GPIO_Init(GPIOA, &GPIO_InitStructure);//³õÊ¼»¯ GPIOA.3
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;   //æµ®ç©ºè¾“å…¥
+    GPIO_Init(GPIOA, &GPIO_InitStructure);//åˆå§‹åŒ– GPIOA.3
 
     USART_InitStructure.USART_BaudRate          =   lBaudRate;
     USART_InitStructure.USART_WordLength        =   USART_WordLength_8b;
@@ -69,9 +69,9 @@ void STM32F1_UART2_Init(u32_t lBaudRate)
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
-    //¿ªÆôÖĞ¶Ï
-    USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);//¿ªÆôÖĞ¶Ï
-    //Ê¹ÄÜ´®¿Ú
+    //å¼€å¯ä¸­æ–­
+    USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);//å¼€å¯ä¸­æ–­
+    //ä½¿èƒ½ä¸²å£
     USART_Cmd(USART2, ENABLE);
 }
 
@@ -81,7 +81,7 @@ void USART2_IRQHandler(void)
     {
 				uart2Data = USART_ReceiveData(USART2);
 				
-			  //ÖÜÆÚ¼ÆÊı¸´Î»
+			  //å‘¨æœŸè®¡æ•°å¤ä½
 			  g_timeoverUart2=0;
 			
 				if(g_uart2len+1>128){ g_uart2len=0; }
@@ -95,15 +95,15 @@ void USART2_IRQHandler(void)
 						 //
 						 if(g_isGetCmdOk2)
 						 {
-							 	int a=0;
-								int b=0;
-								unsigned char *pdata=NULL;
-								//ÖÜÆÚ¼ÆÊı¸´Î»
+							 	//int a=0;
+								//int b=0;
+								//unsigned char *pdata=NULL;
+								//å‘¨æœŸè®¡æ•°å¤ä½
 								g_timeoverUart2=0;
 								//
-								a=g_ocCmd2.parameter[0];
-								b=g_ocCmd2.parameter[1];
-								pdata=&g_ocCmd2.parameter[2];
+								//a=g_ocCmd2.parameter[0];
+								//b=g_ocCmd2.parameter[1];
+								//pdata=&g_ocCmd2.parameter[2];
 						 }
 						 if(tmp>0)
 						 {
@@ -117,5 +117,37 @@ void USART2_IRQHandler(void)
 						 }
 				 }
     }
+}
+
+void uart2EventBtn(int i)
+{
+		uchar dst_buf[10]={0};
+		int myDataLen=0;
+		unsigned char cbuf[5]={0};
+		cbuf[0]=0x01;
+		cbuf[1]=i;
+		myDataLen = miniDataCreate(2,cbuf,dst_buf);
+		STM32F1_UART2SendDataS(dst_buf,myDataLen);
+}
+
+void uart2EventUnitSence(EzhUart2Sence i,int isEnable)
+{
+		/*
+			1//ç»§ç”µå™¨æŠ½å¸å¯ç”¨
+			2//ç»§ç”µå™¨çƒ˜å¹²å¯ç”¨
+			3//ç»§ç”µå™¨é™¤èŒå¯ç”¨
+			4//ç»§ç”µå™¨å¤§ä¾¿å¯ç”¨
+			5//ç»§ç”µå™¨å¤§ä¾¿å†²æ´—å¯ç”¨
+			6//ç»§ç”µå™¨å°ä¾¿å¯ç”¨
+			7//ç»§ç”µå™¨å°ä¾¿å†²æ´—å¯ç”¨
+		*/
+		uchar dst_buf[50]={0};
+		int myDataLen=0;
+		unsigned char cbuf[5]={0};
+		cbuf[0]=0x02;
+		cbuf[1]=i;
+		cbuf[2]=isEnable;
+		myDataLen = miniDataCreate(3,cbuf,dst_buf);
+		STM32F1_UART2SendDataS((u8_t*)dst_buf,myDataLen);
 }
 

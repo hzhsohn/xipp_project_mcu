@@ -64,7 +64,7 @@ int main(void)
 		
 	STM32_Delay_init();
 	STM32F1_UART1_Init(19200);
-	//STM32F1_UART2_Init(19200);
+	STM32F1_UART2_Init(9600);
 	STM32F1_UART3_Init(19200);
 
 	Stm32F1_Timer2Init(); 
@@ -80,8 +80,6 @@ int main(void)
   
   //STM32F1_UART3SendDataS("12345",5);
   uart3Send(100,0,0,NULL,0);
-  
-  
 
 	//看门狗
 	//watchdog_init();
@@ -219,7 +217,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-						senceBegin(ezhCleanSence8);
+						uart2EventBtn(0xFF);
 					}
 						break;
 				}
