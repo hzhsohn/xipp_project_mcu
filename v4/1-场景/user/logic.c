@@ -111,7 +111,6 @@ void LitteSenceRun(void)
 		}
 		else if(ezhCleanSence8==g_cCurrentSence)
 		{
-				
 		}
 		else if(ezhCleanSence9==g_cCurrentSence)
 		{
@@ -554,7 +553,7 @@ void litteSenceRunAnMo(void)
 						senceNext(&nCalca,&ppxxStep);
 						break;
 					case 1:
-						senceDelayToNext(&nCalca,&ppxxStep,15*60*DELAY_S);
+						senceDelayToNext(&nCalca,&ppxxStep,2*60*DELAY_S);
 						break;
 					case 2:
 						uart3Send(4,2,0,NULL,0);
@@ -565,3 +564,4 @@ void litteSenceRunAnMo(void)
 						break;
 				}
 }
+

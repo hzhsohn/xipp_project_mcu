@@ -1,7 +1,7 @@
 
 /*
 ezhCleanSence1 平躺模式
-ezhCleanSence2 拉屎模式
+ezhCleanSence2 全涨模式
 ezhCleanSence3 转圈圈模式
 */
 typedef enum _EzhCleanSence{
@@ -23,6 +23,6 @@ void LitteSenceRun(void);
 
 //
 void litteGiaoGiaoZhu(void);
-void litteLaSi(void);
+void litteAllFull(void);
 void litteQuengQueng(void);
 

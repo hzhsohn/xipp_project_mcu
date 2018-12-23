@@ -77,7 +77,12 @@ int main(void)
 	//获取FALSH数据
 	setFlashData();
   //-----------------------------------------
-	
+  
+  //STM32F1_UART3SendDataS("12345",5);
+  uart3Send(100,0,0,NULL,0);
+  
+  
+
 	//看门狗
 	//watchdog_init();
 	
@@ -186,7 +191,7 @@ int main(void)
 						break;
 				}
 
-				//按键7		设置链
+				//按键7		翻身
 				ev=zhSCM_keyState(&btn7,TOUCHKEY_7_GPIO,TOUCHKEY_7_PIN);
 				switch(ev)
 				{
@@ -198,7 +203,7 @@ int main(void)
 						break;
 					case ZH_KEY_EVENT_UP:
 					{
-						senceBegin(ezhCleanSence7);
+						uart3Send(5,3,1,NULL,0);
 					}
 						break;
 				}

@@ -14,7 +14,7 @@ extern "C"{
 	ezhCleanSence5烘干
 	ezhCleanSence6除菌
 	ezhCleanSence7按摩
-	ezhCleanSence8    ---------->保留
+	ezhCleanSence8----------=---保留
 	ezhCleanSence9小便
 	ezhCleanSence10大便
 */

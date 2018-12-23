@@ -76,7 +76,7 @@ int main(void)
 	//获取FALSH数据
 	setFlashData();
   //-----------------------------------------
-
+//RelayTest();
 	//看门狗
 	//watchdog_init();	
 	//

@@ -6,8 +6,8 @@
 
 typedef struct _TagTimeRun
 {
-	int guan_qiya_percent[14];
+	int is_run_fan_sheng;
+	int guan_qiya_percent[14];//电压采样值
 }TagTimeRun;
-
 
 #endif

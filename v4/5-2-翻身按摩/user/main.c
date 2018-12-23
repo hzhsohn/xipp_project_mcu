@@ -16,7 +16,7 @@
 #include "STM32F1_ADC0.h"
 
 //提交的数据
-TagTimeRun g_run;
+TagTimeRun g_run={0};
 
 //气压
 int ntmp=0;
@@ -26,9 +26,10 @@ u16_t rPressure[14]={0},rPressureTmp[14]={0};
 u16_t rTruePressure1[14]={0};
 int isCheckDZCQSensorErr[14]={0};
 
-AVERAGE *g_average[14]={Get_Adc1_Average,Get_Adc2_Average,Get_Adc3_Average,Get_Adc4_Average,Get_Adc5_Average,
-						Get_Adc6_Average,Get_Adc7_Average,Get_Adc8_Average,Get_Adc9_Average,Get_Adc10_Average,
-						Get_Adc11_Average,Get_Adc12_Average,Get_Adc13_Average,Get_Adc14_Average};
+AVERAGE *g_average[14]={Get_Adc6_Average,Get_Adc5_Average,Get_Adc4_Average,	Get_Adc3_Average,	Get_Adc2_Average,	Get_Adc1_Average, //L
+						Get_Adc8_Average,Get_Adc9_Average,Get_Adc10_Average,Get_Adc11_Average,	Get_Adc12_Average,	Get_Adc13_Average,//R
+						Get_Adc7_Average,Get_Adc14_Average};//头,小便气
+
 //
 void delay_s(int n)
 {
@@ -103,7 +104,7 @@ int main(void)
 					ntmp=rPressureTmp[g_qiya]-rPressure[g_qiya];
 					if(ntmp<60 && ntmp>-60) //限制突变幅度
 					{
-						g_run.guan_qiya_percent[g_qiya]=(float)rPressureTmp[g_qiya]/4096.0f*100;
+						g_run.guan_qiya_percent[g_qiya]=rPressureTmp[g_qiya];
 						rTruePressure1[g_qiya]=rPressureTmp[g_qiya];
 						isCheckDZCQSensorErr[g_qiya]=0;
 					}

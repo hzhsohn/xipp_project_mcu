@@ -89,7 +89,7 @@ void LitteSenceRun(void)
 					litteGiaoGiaoZhu();
 			 break;
 		 case ezhCleanSence2:
-					litteLaSi();
+					litteAllFull();
 			 break;
 		 case ezhCleanSence3:
 					litteQuengQueng();
@@ -102,6 +102,9 @@ void LitteSenceRun(void)
 ----运行场景----
 
 ***********************************************************/
+#define QI_MIN    1400
+#define QI_MAX    3900
+
 void litteGiaoGiaoZhu(void)
 {
 	int n=0;
@@ -110,25 +113,56 @@ void litteGiaoGiaoZhu(void)
 	{
 		case 0:				
 			//充气
-			REL_1_STATE(1);for(n=0;n<200000;n++);
-			REL_2_STATE(1);for(n=0;n<200000;n++);
-		  //真空泵开	
-			RELAY11_STATE(1);for(n=0;n<200000;n++);
+			REL_1_STATE(1);for(n=0;n<100000;n++);
+			REL_2_STATE(1);for(n=0;n<100000;n++);
+			//真空泵开	
+			RELAY11_STATE(1);for(n=0;n<100000;n++);
 			//气阀方向,抽
-			RELAY3_STATE(1);for(n=0;n<200000;n++);
-			RELAY5_STATE(1);for(n=0;n<200000;n++);
-			RELAY7_STATE(0);for(n=0;n<200000;n++);
+			RELAY3_STATE(1);for(n=0;n<100000;n++);
+			RELAY5_STATE(1);for(n=0;n<100000;n++);
+			RELAY7_STATE(0);for(n=0;n<100000;n++);
 			senceNext(&nCalca,&ppxxStep);
 			break;
 		case 1:
-			REL_L5_STATE((g_run.guan_qiya_percent[5]>40));
-			REL_R5_STATE((g_run.guan_qiya_percent[6]>40));
-			REL_L7_STATE((g_run.guan_qiya_percent[7]>40));
-			REL_R7_STATE((g_run.guan_qiya_percent[8]>40));
-			if(g_run.guan_qiya_percent[5]<40 && g_run.guan_qiya_percent[6]<40)
+		{
+			char isTrue[13]={0};
+			int isAllOK=0;
+			int i=0;
+			isTrue[0]=(g_run.guan_qiya_percent[12]>QI_MIN);
+			isTrue[1]=(g_run.guan_qiya_percent[0]>QI_MIN);
+			isTrue[2]=(g_run.guan_qiya_percent[1]>QI_MIN);
+			isTrue[3]=(g_run.guan_qiya_percent[2]>QI_MIN);
+			isTrue[4]=(g_run.guan_qiya_percent[3]>QI_MIN);
+			isTrue[5]=(g_run.guan_qiya_percent[4]>QI_MIN);
+			isTrue[6]=(g_run.guan_qiya_percent[5]>QI_MIN);
+			isTrue[7]=(g_run.guan_qiya_percent[6]>QI_MIN);
+			isTrue[8]=(g_run.guan_qiya_percent[7]>QI_MIN);
+			isTrue[9]=(g_run.guan_qiya_percent[8]>QI_MIN);
+			isTrue[10]=(g_run.guan_qiya_percent[9]>QI_MIN);
+			isTrue[11]=(g_run.guan_qiya_percent[10]>QI_MIN);
+			isTrue[12]=(g_run.guan_qiya_percent[11]>QI_MIN);
+			//
+			REL_TOP_b_STATE(isTrue[0]);
+			REL_L1_b_STATE(isTrue[1]);
+			REL_L2_b_STATE(isTrue[2]);
+			REL_L3_b_STATE(isTrue[3]);
+			REL_L4_b_STATE(isTrue[4]);
+			REL_L5_b_STATE(isTrue[5]);
+			REL_L6_b_STATE(isTrue[6]);
+			REL_R1_b_STATE(isTrue[7]);
+			REL_R2_b_STATE(isTrue[8]);
+			REL_R3_b_STATE(isTrue[9]);
+			REL_R4_b_STATE(isTrue[10]);
+			REL_R5_b_STATE(isTrue[11]);
+			REL_R6_b_STATE(isTrue[12]);
+			//
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }			
+			if(isAllOK)
 			{
-			senceNext(&nCalca,&ppxxStep);
+				senceNext(&nCalca,&ppxxStep);
 			}
+		}
 			break;							
 		default: //完毕
 			//真空泵
@@ -145,7 +179,7 @@ void litteGiaoGiaoZhu(void)
 			break;
 	}
 }
-void litteLaSi(void)
+void litteAllFull(void)
 {
 	int n=0;
 	static int nCalca=0;	
@@ -153,22 +187,56 @@ void litteLaSi(void)
 	{
 		case 0:				
 			//充气
-			REL_1_STATE(1);for(n=0;n<200000;n++);
-			REL_2_STATE(1);for(n=0;n<200000;n++);
-		  //真空泵开	
-			RELAY11_STATE(1);for(n=0;n<200000;n++);
+			REL_1_STATE(1);for(n=0;n<100000;n++);
+			REL_2_STATE(1);for(n=0;n<100000;n++);
+			//真空泵开	
+			RELAY11_STATE(1);for(n=0;n<100000;n++);
 			//气阀方向,抽
-			RELAY3_STATE(1);for(n=0;n<200000;n++);
-			RELAY5_STATE(0);for(n=0;n<200000;n++);
-			RELAY7_STATE(1);for(n=0;n<200000;n++);
+			RELAY3_STATE(1);for(n=0;n<100000;n++);
+			RELAY5_STATE(0);for(n=0;n<100000;n++);
+			RELAY7_STATE(1);for(n=0;n<100000;n++);
 			senceNext(&nCalca,&ppxxStep);
 			break;
 		case 1:
-			REL_L5_STATE((g_run.guan_qiya_percent[5]<60));
-			REL_R5_STATE((g_run.guan_qiya_percent[6]<60));
-			REL_L7_STATE((g_run.guan_qiya_percent[7]<60));
-			REL_R7_STATE((g_run.guan_qiya_percent[8]<60));
-			senceNext(&nCalca,&ppxxStep);
+		{
+			char isTrue[13]={0};
+			int isAllOK=0;
+			int i=0;
+			isTrue[0]=(g_run.guan_qiya_percent[12]<QI_MAX);
+			isTrue[1]=(g_run.guan_qiya_percent[0]<QI_MAX);
+			isTrue[2]=(g_run.guan_qiya_percent[1]<QI_MAX);
+			isTrue[3]=(g_run.guan_qiya_percent[2]<QI_MAX);
+			isTrue[4]=(g_run.guan_qiya_percent[3]<QI_MAX);
+			isTrue[5]=(g_run.guan_qiya_percent[4]<QI_MAX);
+			isTrue[6]=(g_run.guan_qiya_percent[5]<QI_MAX);
+			isTrue[7]=(g_run.guan_qiya_percent[6]<QI_MAX);
+			isTrue[8]=(g_run.guan_qiya_percent[7]<QI_MAX);
+			isTrue[9]=(g_run.guan_qiya_percent[8]<QI_MAX);
+			isTrue[10]=(g_run.guan_qiya_percent[9]<QI_MAX);
+			isTrue[11]=(g_run.guan_qiya_percent[10]<QI_MAX);
+			isTrue[12]=(g_run.guan_qiya_percent[11]<QI_MAX);
+			
+			REL_TOP_a_STATE(isTrue[0]);
+			REL_L1_a_STATE(isTrue[1]);
+			REL_L2_a_STATE(isTrue[2]);
+			REL_L3_a_STATE(isTrue[3]);
+			REL_L4_a_STATE(isTrue[4]);
+			REL_L5_a_STATE(isTrue[5]);
+			REL_L6_a_STATE(isTrue[6]);
+			REL_R1_a_STATE(isTrue[7]);
+			REL_R2_a_STATE(isTrue[8]);
+			REL_R3_a_STATE(isTrue[9]);
+			REL_R4_a_STATE(isTrue[10]);
+			REL_R5_a_STATE(isTrue[11]);
+			REL_R6_a_STATE(isTrue[12]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }			
+			if(isAllOK)
+			{
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
 			break;							
 		default: //完毕
 			//真空泵
@@ -186,28 +254,670 @@ void litteLaSi(void)
 	}
 }
 
+#define _IS_NO_ADC_DEBUG		1
 void litteQuengQueng(void)
 {
 	static int nCalca=0;	
+	int n=0;
 	switch(ppxxStep)
 	{
-		case 0:	
-			RELAY3_STATE(1); //电源
-			RELAY5_STATE(1);
-			RELAY7_STATE(0);
-
+		//-------------------------------
+		//充气模式
+		case 0:				
+			//充气
+			REL_1_STATE(1);for(n=0;n<100000;n++);
+			REL_2_STATE(1);for(n=0;n<100000;n++);
+			//真空泵开	
+			RELAY11_STATE(1);for(n=0;n<100000;n++);
+			//气阀方向,抽
+			RELAY3_STATE(1);for(n=0;n<100000;n++);
+			RELAY5_STATE(0);for(n=0;n<100000;n++);
+			RELAY7_STATE(1);for(n=0;n<100000;n++);
+		
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			#endif
 			senceNext(&nCalca,&ppxxStep);
 			break;
+		//-------------------------------
+		//头涨起
 		case 1:
-			senceDelayToNext(&nCalca,&ppxxStep,1*DELAY_S);
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[12]<QI_MAX);
+			REL_TOP_a_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_TOP_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
 			break;
+		//-------------------------------
+		//左边涨起
 		case 2:
-			senceNext(&nCalca,&ppxxStep);
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[0]<QI_MAX);
+			REL_L1_a_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L1_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
 			break;
 		case 3:
-			senceDelayToNext(&nCalca,&ppxxStep,1*DELAY_S);
-			break;									
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[1]<QI_MAX);
+			REL_L2_a_STATE(isTrue[0]);
+
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L2_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 4:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[2]<QI_MAX);
+			REL_L3_a_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L3_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 5:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+
+			isTrue[0]=(g_run.guan_qiya_percent[3]<QI_MAX);
+			REL_L4_a_STATE(isTrue[0]);
+
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L4_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 6:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+
+			isTrue[0]=(g_run.guan_qiya_percent[4]<QI_MAX);
+			REL_L5_a_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L5_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 7:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[5]<QI_MAX);
+			REL_L6_a_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L6_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		//-------------------------------
+		//右边涨起
+		case 8:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+
+			isTrue[0]=(g_run.guan_qiya_percent[6]<QI_MAX);
+			REL_R1_a_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R1_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 9:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+
+			isTrue[0]=(g_run.guan_qiya_percent[7]<QI_MAX);
+			REL_R2_a_STATE(isTrue[0]);
+
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R2_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 10:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[8]<QI_MAX);
+			REL_R3_a_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R3_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 11:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[9]<QI_MAX);
+			REL_R4_a_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R4_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 12:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+
+			isTrue[0]=(g_run.guan_qiya_percent[10]<QI_MAX);
+			REL_R5_a_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R5_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 13:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[11]<QI_MAX);
+			REL_R6_a_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R6_a_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		//---------------------------------------------------
+		//抽气
+		case 14:
+		{
+			REL_1_STATE(1);for(n=0;n<100000;n++);
+			REL_2_STATE(1);for(n=0;n<100000;n++);
+			//真空泵开	
+			RELAY11_STATE(1);for(n=0;n<100000;n++);
+			//气阀方向,抽
+			RELAY3_STATE(1);for(n=0;n<100000;n++);
+			RELAY5_STATE(0);for(n=0;n<100000;n++);
+			RELAY7_STATE(1);for(n=0;n<100000;n++);
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			#endif
+			senceNext(&nCalca,&ppxxStep);
+		}
+		//---------------------------------------------------
+		//左边下去
+		case 15:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[0]>QI_MIN);
+			REL_L1_b_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L1_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 16:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[1]>QI_MIN);
+			REL_L2_b_STATE(isTrue[0]);
+
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L2_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 17:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[2]>QI_MIN);
+			REL_L3_b_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L3_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 18:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[3]>QI_MIN);
+			REL_L4_b_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L4_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 19:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[4]>QI_MIN);
+			REL_L5_b_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L5_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 20:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[5]>QI_MIN);
+			REL_L6_b_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_L6_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		//---------------------------------------------------
+		//右边下去
+		case 21:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[6]>QI_MIN);
+			REL_R1_b_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R1_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 22:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[7]>QI_MIN);
+			REL_R2_b_STATE(isTrue[0]);
+
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R2_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 23:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[8]>QI_MIN);
+			REL_R3_b_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R3_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 24:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[9]>QI_MIN);
+			REL_R4_b_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R4_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 25:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[10]>QI_MIN);
+			REL_R5_b_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R5_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		case 26:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[11]>QI_MIN);
+			REL_R6_b_STATE(isTrue[0]);
+			
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+			
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_R6_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+			break;
+		//---------------------------------------------------
+		//头下去
+		case 27:
+		{
+			char isTrue[1]={0};
+			int isAllOK=0;
+			int i=0;
+			
+			isTrue[0]=(g_run.guan_qiya_percent[12]>QI_MIN);
+			REL_TOP_b_STATE(isTrue[0]);
+
+			for(i=0;i<sizeof(isTrue);i++)
+			{ isAllOK&=(!isTrue[i]); }
+
+			#if _IS_NO_ADC_DEBUG 
+			for(n=0;n<20000000;n++);
+			isAllOK=1;
+			#endif
+			if(isAllOK)
+			{
+				REL_TOP_b_STATE(0);
+				senceNext(&nCalca,&ppxxStep);
+			}
+		}
+		break;
 		default: //完毕
+			//真空泵
+			RELAY11_STATE(0);
+		  //充气
+			REL_1_STATE(0);
+			REL_2_STATE(0);
+			//气阀方向,全关
+			RELAY3_STATE(0); 
+			RELAY5_STATE(0);
+			RELAY7_STATE(0);
+			//
 			senceDone();
 			break;
 	}

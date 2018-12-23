@@ -11,6 +11,8 @@ extern int g_uart2len;
 
 extern int g_timeoverUart3;
 extern int g_uart3len;
+//
+extern TagTimeRun g_run;
 
 void Stm32F1_Timer3Init(void)
 {
@@ -58,6 +60,9 @@ void TIM3_IRQHandler(void)
 	}
 	//---------------------------
 	LitteSenceRun();
+	//---------------------------
+	//自动充气
+	RELAY8_STATE(g_run.guan_qiya_percent[13]<80);
 	
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
 }

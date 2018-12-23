@@ -6,15 +6,15 @@
 
 //-----------------------------------------------
 //保暖
-#define RELAY1_GPIO 	GPIOC
-#define RELAY1_PIN  	GPIO_Pin_6
+#define RELAY1_GPIO 	GPIOA
+#define RELAY1_PIN  	GPIO_Pin_8
 
 #define RELAY2_GPIO 	GPIOC
 #define RELAY2_PIN  	GPIO_Pin_9
 //----------------------------------------------
 //按摩
-#define RELAY3_GPIO 	GPIOC
-#define RELAY3_PIN  	GPIO_Pin_8// 电源
+#define RELAY3_GPIO 	GPIOD
+#define RELAY3_PIN  	GPIO_Pin_12	// 电源
 
 #define RELAY4_GPIO 	GPIOD
 #define RELAY4_PIN  	GPIO_Pin_12

@@ -168,14 +168,23 @@ void recvLogic(int a,int b,unsigned char* data)
 						senceBegin(ezhCleanSence1);
 					}
 					break;
-					case 2: //拉屎模式
+					case 2: //全涨模式
 					{
 						senceBegin(ezhCleanSence2);
 					}
 					break;
-					case 3: //按摩模式
+					case 3: //跑翻身模式
 					{
-						senceBegin(ezhCleanSence3);
+						if(g_run.is_run_fan_sheng)
+						{
+							senceDone();
+							g_run.is_run_fan_sheng=1;
+						}
+						else
+						{
+							g_run.is_run_fan_sheng=data[0];
+							senceBegin(ezhCleanSence3);
+						}
 					}
 					break;
 				}
